@@ -1,6 +1,6 @@
 # Ultimate SDK and services for C-OS
 
-Specification 0.1, revision 4 — October 10, 2026. Normative companion to [SPEC.md](SPEC.md) and [LANGUAGE.md](LANGUAGE.md). Initial ABI 1; no previous implementation to migrate.
+Specification 0.1, revision 5 — October 10, 2026. Normative companion to [SPEC.md](SPEC.md) and [LANGUAGE.md](LANGUAGE.md). Initial ABI 1; no previous implementation to migrate.
 
 Apps must be able to use video, files and directories, storage, the clock, SID and Ultimate Audio with a small number of calls. The APIs hide UCI, device addresses, DMA, synchronization and firmware differences. Every operation respects kernel isolation and scheduling; the device is never assigned to an app as a directly writable I/O range.
 
@@ -27,6 +27,7 @@ Sections 1–9 define the MVP contract. Section 10 sets the scope of extensions:
 5. A batch is validated before avoidable effects occur. Device operations may fail after partial effects: specify counts and error semantics.
 6. Data read by drivers/hardware must include the latest VM writes; data written by a driver must be visible to subsequent LOADs. Use the kernel's single REU coherence protocol.
 7. Kill/fault/exit release all resources. Cleanup that waits for a device lives in the kernel and does not resume terminated bytecode.
+8. Optional UPIC margin execution follows SPEC §10.4 and is disabled until qualified. Only prepared CPU-local phases are eligible; UCI, REU DMA, device access, and miss-capable cache paths remain outside the active lines. This is not a new SDK entry point or permission to invoke a complete service from the raster IRQ. Completion, owner accounting, and fuel semantics remain unchanged.
 
 Services return the status codes defined in SPEC.md. C-Script wrappers return `value, error` or just `error`. Success is `0`; a service that is present but not enabled returns ENODEV/ENOTSUP, without pretending to succeed.
 

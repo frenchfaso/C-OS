@@ -1,6 +1,6 @@
 # C-Script: the C-OS userspace language
 
-Specification 0.1, revision 4 — 10 October 2026. Normative companion to [SPEC.md](SPEC.md). Project name: **C-Script**; source extension `.cos`.
+Specification 0.1, revision 5 — 10 October 2026. Normative companion to [SPEC.md](SPEC.md). Project name: **C-Script**; source extension `.cos`.
 
 The goal is the simplicity of a small BASIC, with functions, local variables, blocks, and syntax familiar to JavaScript or Lua users. C-Script is compiled on the development computer directly into C-OS bytecode. Only the assembly VM runs on the C64: no parser, language interpreter, JIT, or additional dynamic runtime.
 
@@ -11,6 +11,8 @@ Included: variables with local type inference, 8/16/32-bit integers, float24 and
 Excluded: dynamic objects, classes, metatables, closures, language coroutines, exceptions, eval, generics, float16, double, garbage collection, dynamic module loading, and on-device compilation. Do not promise source compatibility with JS, Lua, Python, or Ruby.
 
 A loop without yield remains preemptible. The compiler must not rely on inserted cooperation points as the sole defense against CPU monopolization: the VM dispatcher consumes fuel for every executed opcode, including those inside generated libraries.
+
+Optional native work in UPIC margins is a kernel scheduling detail governed by SPEC §10.4. It introduces no C-Script construct, callback, intrinsic, or ABI change; bytecode remains outside the active display interval. Applications observe the same syscall results and continuation semantics whether this optimization is disabled or qualified and enabled.
 
 ## 2 Language overview
 

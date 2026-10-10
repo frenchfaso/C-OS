@@ -1,7 +1,7 @@
 # C-OS Commodore OS
 ## Specification for the first implementation
 
-Version 0.1, revision 4 — October 10, 2026. Target: C64 Ultimate, PAL, nominal 64 MHz turbo, 16 MiB REU, 320×200 UPIC video.
+Version 0.1, revision 5 — October 10, 2026. Target: C64 Ultimate, PAL, nominal 64 MHz turbo, 16 MiB REU, 320×200 UPIC video.
 
 Initial numeric ABI version: 1, identical in the REU header, SYS_INFO, and SDK descriptors. Document versions and ABI versions use separate numbering.
 
@@ -13,7 +13,7 @@ This specification defines the behavior to implement. Values marked **initial** 
 
 [C-Script: language and compiler](LANGUAGE.md), [SDK and Ultimate services](ULTIMATE-API.md), and [fractional numbers](NUMERICS.md) are also part of the specification. This document defines the VM, memory, scheduling, and shell; the companion documents define application source code, APIs, and the numeric profile. These are contracts to implement, not documentation of existing functionality.
 
-For the development agent: start with section 22 and the milestone dependencies in §18. The tables in this document are normative for the ISA and core syscalls; ULTIMATE-API.md covers bindings, SDK records, events, and device services; NUMERICS.md covers numeric representation and semantics; LANGUAGE.md covers typing and the function ABI. Update cross-references together when changing a shared contract. This specification defines UI dimensions and behavior. Revision 4 corrects the contract before implementation and retains ABI 1.
+For the development agent: start with section 22 and the milestone dependencies in §18. The tables in this document are normative for the ISA and core syscalls; ULTIMATE-API.md covers bindings, SDK records, events, and device services; NUMERICS.md covers numeric representation and semantics; LANGUAGE.md covers typing and the function ABI. Update cross-references together when changing a shared contract. This specification defines UI dimensions and behavior. Revision 5 adds preparation for optional native work in UPIC horizontal margins, disabled until timing qualification, without changing ABI 1, bytecode, or COS-NUM-1. See the [M2 implementation supplement](M2-UPIC-MARGINS.md).
 
 ## 1 Decisions and scope
 
@@ -29,6 +29,7 @@ For the development agent: start with section 22 and the milestone dependencies 
 | Application memory | Linear 24-bit REU addresses with bounds checking |
 | Multitasking | One VM context per app; suspension enforced by the dispatcher |
 | Fuel | Inexpensive counter per opcode; video deadlines handled separately |
+| UPIC horizontal margins | Optional bounded native work after timing qualification; M2 prepares a disabled hook; VM and REU DMA remain outside active lines |
 | Concurrent processes | Maximum 4 in the first version |
 | Concurrent windows | Maximum 4, one per application |
 | Initial language | C-Script, a small language compiled to bytecode on the development computer; assembler available for tests |
@@ -438,6 +439,8 @@ The native job queue is also served in rotation, **one bounded chunk per owner a
 
 When both queues have work that can be admitted before the raster deadline, alternate a VM slice and a native queue chunk; preserve the turn across service windows. If a queue is empty or its next chunk does not fit in the remaining time, serve the other without losing the turn owed. The shell participates as an owner of ordinary jobs, including composition: two separate round-robin queues are insufficient if one is always served before the other.
 
+Qualified margin work (§10.4) executes a prepared phase of an ordinary native job. Charge its actual work to the same owner and service entitlement; it does not create a second queue, a new quantum, or extra turns for that owner. Preparation and subsequent rotation remain with the ordinary arbiter outside the active interval. Preserve any VM/native turn already owed; a temporary absence of a legal VM window does not authorize an unbounded batch of native phases. M2 defines the handoff and accounting contract; the complete fairness policy remains M3.
+
 NUM_OP, copies, fills, and drawing pass through this arbitration even when a single chunk is sufficient: a fast path must not execute a series of native jobs within one VM slice and bypass rotation. Metadata queries with a small, fixed cost may complete in the syscall handler, with that cost included in the opcode's bound.
 
 Input, cursor, and shell interaction take precedence over ordinary work but are also bounded. Coalesce pointer movement and update slow widgets only when they change. Do not immediately add DWRR, basic-block scheduling, or complex adaptive estimates.
@@ -456,9 +459,9 @@ Maintain a conservative estimate of the maximum cost of each native chunk and a 
 
 The UPIC raster has absolute priority. During the 200 displayed lines, do not execute the VM or start REU DMA. Most work takes place before and after this interval.
 
-Moving from 384 to 320 pixels does not shorten the 200 lines. In the first version, horizontal margins may remain waits: the MVP must already demonstrate responsiveness with this simple configuration.
+Moving from 384 to 320 pixels does not shorten the 200 lines. Horizontal margins remain waits in the default build: the MVP must already demonstrate responsiveness with this simple configuration.
 
-Only after qualification may parts of those waits be replaced by native work of known duration. Running general bytecode in the horizontal margins is outside the MVP.
+M2 prepares the small optional execution hook and internal handoff described in §10.4, without enabling work in the margins. Only after timing qualification may parts of those waits be replaced by native work of known duration. Activation is optional and is not a condition for completing M2 or the baseline MVP. Running general bytecode in the horizontal margins is outside the MVP; the prohibition on REU DMA throughout the 200 active lines remains in force even when native margin work is enabled.
 
 ### 10.2 Renderer
 
@@ -477,6 +480,38 @@ The fundamental rule is: no DMA may still be active when the raster needs to syn
 The IRQ also interrupts native code in progress. However, VM process switching occurs only at a consistent interpreter boundary, not in the middle of a handler.
 
 Disable unnecessary CIA sources. An external NMI may disturb timing: the handler must preserve state, request recovery/emergency handling if necessary, and resynchronize on the next frame. Do not promise disturbance-free output while the firmware menu is opened or an external NMI is generated.
+
+### 10.4 Optional native work in horizontal margins
+
+**Default: disabled.** Provide a build-time switch whose normal setting excludes margin execution. The disabled renderer must preserve its pixel cadence, horizontal phase, geometry, and synchronization behavior; any dormant-hook overhead must be accounted for and requalified rather than silently inserted into a timed path. M2 need not enable the switch to pass. Its preparation adds no opcode, syscall, or userspace callback.
+
+Start with one optional hook **after the final pixel and before synchronization for the next line**. Replacing part of the delay before the pixel stream is a separate optimization with separate qualification. The CPU cycles left after subtracting the pixel stream are not an admission budget: preparation, turbo changes, synchronization, control flow, and guards also consume time. Do not reserve a fixed numerical budget based only on the nominal 64 MHz setting or an average measurement.
+
+**Eligible work and timing**
+
+- A phase is a small trusted kernel routine with a bounded instruction path, already resident code, and operands/results in reserved local RAM. It may advance a native job but is not a general syscall handler. The first trial operates only on private scratch.
+- No VM execution, REU DMA, cache miss/refill/write-back, UCI service, device-register access, allocation, waiting, or generic scheduler/driver callback is allowed inside a phase. Resolve validation, data availability, and any coherence work before publishing it. The renderer's own timed hardware accesses remain unchanged.
+- Its qualified maximum includes admission/selection overhead, dispatch, register and status preservation, checks, the body, state publication, return, and any padding. Include branch/page-crossing costs and relevant stalls for the actual profile. Start only if that complete bound plus the qualified guard fits before the next required raster synchronization or pixel write; otherwise leave the work pending and use the ordinary path later.
+- For a future hook before the pixel stream, all admitted and empty paths must preserve the required pixel start phase, using qualified padding or equivalent synchronization. A merely finite or usually short routine is insufficient.
+- Return with the renderer's required registers, arithmetic status, stack balance, scratch, and patched operands intact. Save continuation state explicitly; no native call frame may remain on the hardware stack between slots or turns.
+
+**Preparation, ownership, and reentrancy**
+
+Outside the active interval, prepare a compact record identifying the kernel routine, owner and incarnation, local state/buffer ownership, maximum slot cost, and declared clobbers. Its byte layout is internal, not a new app ABI. A single prepared record is sufficient initially; do not preallocate a queue for every scanline or build a second scheduler.
+
+Publish readiness only after the record is complete, through a final atomic state transition or an equivalent documented protocol. The IRQ must skip absent, partially prepared, stale, cancelled, or currently executing work rather than wait for it. Claim each prepared phase once; publish progress/completion once; consume that result and advance ordinary queue state outside the raster. Slot reuse must not attribute an old result to a new process incarnation.
+
+An IRQ may interrupt ordinary kernel code using shared state. The hook must not re-enter that code or reuse its live scratch, locks, or half-updated structures. Keep margin scratch explicitly reserved and separate from VM/raster scratch and from any suspended kernel routine; either transfer exclusive ownership of a job before arming it or skip it while the ordinary path owns it. Include the ownership transition and scratch cost in the RAM map and timing bound.
+
+Initial phases use private local buffers. Later framebuffer work requires an explicit raster-aware access rule: do not modify the current source row from operand preparation through its final pixel, because some values are prepatched while others are read during emission. No phase may alter the active pixel stream or turbo/video configuration. Any future use of already resident cache buffers must also prove pinning and coherence without calling a miss-capable cache path inside the slot.
+
+**Qualification and fallback**
+
+Record the artifact hashes, exact routine and complete path bound, slot position, guard, machine/backend, firmware/FPGA, turbo, PAL/output configuration, and measurement method. A change affecting timing invalidates the corresponding qualification. Observed maxima alone do not prove the worst-case bound. Emulation may enable an explicit experimental build only after its timing paths have been checked; this does not enable the feature on physical hardware. A hardware profile requires its own qualification, including the acceptance checks in §17.7.
+
+No matching qualified profile, no ready phase, or insufficient remaining time means no margin work. The ordinary implementation outside the display interval must remain functional. Record admission/defer counts, completed work, timing failures, and per-owner native cost. After a detected overrun, missed synchronization, NMI recovery, or profile mismatch, stop admitting further phases and return to the baseline until the recovery/qualification conditions are restored. These diagnostics cannot undo an overrun already incurred and do not replace the pre-execution bound.
+
+Activation must demonstrate useful work after all overhead, unchanged expected pixel output/phase, and no regression in isolation or ordinary queue progress. It is acceptable to leave the feature disabled if the measured benefit or RAM cost does not justify it.
 
 ## 11 Chosen UI and desktop grid
 
@@ -884,6 +919,8 @@ Minimum counters, readable without altering the app's normal execution flow:
 - duration of directory/storage scans, snapshot usage, storage generations, and RTC cache age.
 - NUM_OP calls and native execution time per process, format, and operation; in diagnostic builds, counts per function/helper and the cost of text conversions.
 
+When margin execution is built, additionally record admitted/deferred phases, useful work completed, complete slot cost, timing failures/fallbacks, and cost per owner. Extended slot traces belong in diagnostic builds and their timing/RAM overhead must be reported. These are internal diagnostics, not new SYS_INFO fields or a userspace ABI change.
+
 Extended counters and tracing may be enabled in diagnostic builds. The normal build must not log a line for every opcode.
 
 Measure the interpreter, cache misses/cache access, DMA, drawing, composition, raster waits, and interaction latency separately. Do not report the number of partial updates as full-frame FPS.
@@ -902,7 +939,7 @@ Initial targets to verify:
 
 On PAL, two/three frames are approximately 40/60 ms. These are acceptance targets to measure, not results already achieved or guarantees for every conceivable workload.
 
-If latency exceeds the targets, profile before adding complexity. Prioritize eliminating unnecessary work, improving locality, reducing overly fine-grained syscalls, and tuning native chunks; only then consider new dispatcher policies or use of the horizontal margins.
+If latency exceeds the targets, profile before adding complexity. Prioritize eliminating unnecessary work, improving locality, reducing overly fine-grained syscalls, and tuning native chunks. The disabled margin hook is prepared in M2, but enabling it still requires the measured benefit and timing qualification of §10.4; a new dispatcher policy is not a prerequisite.
 
 ## 17 Acceptance tests
 
@@ -973,13 +1010,27 @@ Retain the configuration, artifact hashes, manifest, map, numeric outputs, and c
 
 Pass the tests described in the companion documents: compilable C-Script examples, indices beyond 64 KiB, 16/32-bit integer and float24/float32 arithmetic, type and bounds errors; two apps using different files without interfering with each other; directory/stat and mutations within the root; absent/disconnected storage and obsolete generations; valid/expired RTC cache with monotonic scheduling; UCI timeouts without blocking the raster; SID/PCM cleanup on termination; BLIT8 consistent with the source array. Repeat the integrated workload with file reads/writes, directory scans, float calculations without yield, and PCM playback in progress.
 
+### 17.7 Optional UPIC margin execution
+
+For M2 preparation, verify that the default-disabled build retains the baseline renderer timing/geometry and VM/cache behavior. Document hook location, scratch/ownership contract, default switch, code/RAM costs, and qualification steps. Tests of the internal handoff must cover incomplete/stale records, exclusive ownership, and exactly-once completion without requiring active video execution. These preparation checks do not constitute timing qualification or require the M3 scheduler.
+
+Before enabling a profile:
+
+1. Exercise the complete empty/admitted/deferred paths and every relevant branch of each eligible routine, including address-dependent timing. Prove the complete bound fits the slot and guard; insufficient budget must cause no phase effects.
+2. Compare all expected 320×200 pixels, four edges, horizontal phase, and line continuity with the baseline, first with private-scratch work after the final pixel. Test any later pre-pixel slot separately, including padding on empty paths.
+3. Interrupt ordinary VM and kernel execution at ownership/publication boundaries. Verify scratch/register/stack preservation, no reentrant job, stale incarnation rejection, cancellation, and exactly-once publication/consumption. No active-line DMA, UCI/device access, cache miss path, or VM execution is allowed.
+4. Compare outputs with the same job executed outside the display. Preserve fuel, owner accounting, bounded preparation, and the existing VM/native turn; verify progress of other eligible owners when the full scheduler is present.
+5. Measure useful work after overhead and cumulative RAM cost; retain raw timings and profile/artifact identifiers. Run at least ten minutes with the admitted workload and zero missed synchronizations/deadlines, then test bounded NMI/menu disturbance, fallback, and recovery separately. Disturbance-free output during NMI/menu use is not required.
+
+Report emulation and physical-device qualification separately. An unavailable device keeps hardware activation pending, not M2 preparation blocked. Leave ordinary builds disabled unless their exact profile and enabled routines satisfy the gate.
+
 ## 18 Implementation sequence
 
 | Phase | Deliverable | Completion criterion |
 |---|---|---|
 | M0 Hardware and budget | Turbo/REU probes, 320 renderer, map file, DMA measurements, and initial resident-memory budget | Geometry verified on the available backend; explicit timing; measured sizes distinguished from estimated reserves |
 | M1 Host VM | ISA, assembler, disassembler, reference VM | Semantic tests and generation of minimal apps |
-| M2 6510 VM | Dispatcher, pointers, cache, and stack | State comparison with the reference at boundaries and on misses; cumulative budget updated before expanding the SDK/UI |
+| M2 6510 VM | Dispatcher, pointers, cache, stack, and disabled UPIC margin hook/contract | State comparison with the reference at boundaries and on misses; cumulative budget updated before expanding the SDK/UI; default renderer unchanged; margin activation not required |
 | M3 Scheduler | Fuel, PCBs, waits, and bounded REU jobs | Two loops without yield coexist with the raster |
 | M4a C-Script | Host compiler, minimum library, calling ABI, and source map | Language examples and tests run on the VM; loops without yield remain preemptible |
 | M4b Fractional numbers | Float24/float32, NUM_OP, numeric/text conversions, and host model | Bit-exact corpus, scratch isolation, budget, and timing verified for both formats |
@@ -990,6 +1041,8 @@ Pass the tests described in the companion documents: compilable C-Script example
 | M8 MVP qualification | Stress tests, profiles, and reproducible documentation | Acceptance criteria measured, remaining limitations stated |
 
 The numbering identifies deliverables; it does not impose an artificial chain: M1 may proceed while M0 is being qualified; M2 integrates the host model and hardware constraints, then M3 verifies scheduling. After M3, M4a and the M5/M6a/M6b services may advance using small assembler test programs; M4a progressively adds bindings. M4b uses M4a/M3 but **does not block M5 or an initial desktop demo**. M7 gradually integrates these branches; M8 requires every deliverable, including both float types and the planned services. Avoid permissive stubs that make a missing service appear complete.
+
+The [M2 UPIC supplement](M2-UPIC-MARGINS.md) narrows margin work to preparation of the disabled hook, handoff, and scratch contract. M3 owns integration with ordinary native-job fairness and accounting. Experimental or supported activation is a separate qualification under §§10.4 and 17.7, may follow when evidence is available, and is not required by M8. Do not split every service or numeric routine merely to fill horizontal margins.
 
 The resident-memory budget is a continuous gate, not a check to defer until M6b. Starting in M0/M2, report assembled code, tables, ZP, stack/scratch, caches, and reserves for modules still to be implemented separately; include an assembled numeric candidate as soon as one is available. The 4 KiB target for both float types is part of the existing native budget, not additional memory. An estimate does not prove everything will fit: every milestone updates the map and reports any overrun immediately. Before expanding the UI, resolve measured overruns by reducing code or revising the layout with justification; overlays, new schedulers, and alternative formats are not prerequisites to build in advance.
 
@@ -1009,6 +1062,7 @@ If a physical C64 Ultimate is unavailable, complete the checks that can be emula
 | Data cache | 8 global lines | Thrashing between heap and stack |
 | Ordinary DMA | Up to 128 bytes | Measured timing limits |
 | Guard time | At least the qualified margin, initial trial of 2 lines | Actual worst case and renderer phase |
+| UPIC margin work | Disabled; first candidate slot after the final pixel | Complete timing bound, profile qualification, useful work, and RAM cost; no assumed cycle allowance |
 | Dirty list | 16 rectangles | Available RAM and overflow frequency |
 | Event queue | 8 events per app | Overflow and service cost |
 | Directory snapshots | 2 × 16 KiB REU, at most 256 entries each | Name lengths, directory limits, and REU reserve |
@@ -1029,7 +1083,7 @@ After the MVP:
 - possible float16, fixed point, and advanced mathematical functions, with measurements and explicit contracts;
 - package loader, dynamic arena allocation, and more installed apps;
 - userspace widgets subject to the same limits as apps;
-- qualified use of horizontal margins for native jobs;
+- broader use of qualified horizontal-margin phases beyond the optional hook in §10.4;
 - a more compact bytecode format, superinstructions, or block-level fuel, only if profiling justifies them;
 - a possible more compact framebuffer, without losing timing control;
 - N1: TCP/UDP clients with timeouts, handles, and verification of latency imposed on other UCI services;
@@ -1086,6 +1140,8 @@ Deliver at every milestone:
 5. Justified deviations from the initial parameters and remaining limitations.
 
 The first technical delivery must verify the 320×200 renderer, resident RAM, and DMA duration before committing to an extensive graphics implementation. The recommended host tooling language is Rust, as described in §15.3 and LANGUAGE.md; it can progress while hardware qualification is pending.
+
+For M2, also follow [the UPIC margin preparation supplement](M2-UPIC-MARGINS.md). Keep its optional execution disabled until the complete profile-specific timing gate passes; completing this preparation does not authorize VM or DMA activity during the display interval.
 
 The final MVP includes the bootstrap PRG, REU pack, manifest and map file, sources, C-Script compiler, Ultimate SDK, bytecode toolchain, reference VM, demo apps, tests, and qualification report. The normal build must not download arbitrary dependencies or depend on paths to temporary artifacts.
 

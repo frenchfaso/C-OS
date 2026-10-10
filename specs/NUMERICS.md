@@ -1,6 +1,6 @@
 # Fractional numbers in C-Script
 
-Specification 0.1, revision 4 — October 10, 2026. Normative companion to [SPEC.md](SPEC.md) and [LANGUAGE.md](LANGUAGE.md). Initial numeric profile: `COS-NUM-1`.
+Specification 0.1, revision 5 — October 10, 2026. Normative companion to [SPEC.md](SPEC.md) and [LANGUAGE.md](LANGUAGE.md). Initial numeric profile: `COS-NUM-1`.
 
 C-Script provides two fractional formats: **float24**, for compact data and calculations with a short significand, and **float32**, for greater precision. `float` is an alias for float32. The chosen type determines representation and rounding; the assembly backend must produce the same results as the host model. Any float24 speed advantage must be measured, including REU access and call overhead.
 
@@ -146,6 +146,8 @@ NUM_OP uses the existing single native-job queue. SYSCALL costs one opcode and r
 The first implementation choice is an indivisible routine, allowed only after qualifying its maximum cost including the bridge and verifying that it fits in the available window, including guard time. If it does not fit now but fits in the next available window, defer the entire operation. Introduce internal continuations only for operations whose maximum cost does not fit in the qualified service window: in that case, split them into explicit phases, such as alignment, multiplication/division iterations and rounding. No native frame remains on the hardware stack between turns. An algorithm with a finite iteration count is not automatically short enough for the raster.
 
 Operands, format, partial accumulator, carry/sticky bits and phase cursor belong to the process's job. The kernel may use shared ZP scratch only while executing a chunk; save everything that remains live before serving another owner. Do not overlap an external library's FAC/ARG or temporary registers with VM registers or UPIC scratch.
+
+Qualification for an ordinary service window does not qualify a routine for a UPIC horizontal margin. Optional margin execution follows SPEC §10.4: only a separately bounded phase with already resident operands and exclusively owned local scratch may run there, with no REU/cache service or re-entry of an interrupted math routine. Preserve the same job, result semantics, owner accounting, and remaining fuel; retire the syscall only once. Do not split an otherwise suitable indivisible backend merely to populate margins. Numeric implementation remains M4b, and neither its completion nor M2 preparation requires margin activation. COS-NUM-1 is unchanged.
 
 The cost includes the bridge, checks, spills/reloads, context saving and REU access. Kill cancels the job and releases scratch without publishing a result to a terminated process. Each app has at most one pending blocking job, as with the other services.
 
