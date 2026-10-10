@@ -1,41 +1,41 @@
-# Numeri frazionari per C-Script
+# Fractional numbers in C-Script
 
-Specifica 0.1, revisione 4 — 10 ottobre 2026. Allegato normativo a [SPEC.md](SPEC.md) e [LANGUAGE.md](LANGUAGE.md). Profilo numerico iniziale: `COS-NUM-1`.
+Specification 0.1, revision 4 — October 10, 2026. Normative companion to [SPEC.md](SPEC.md) and [LANGUAGE.md](LANGUAGE.md). Initial numeric profile: `COS-NUM-1`.
 
-C-Script offre due formati frazionari: **float24**, per dati compatti e calcoli con mantissa corta, e **float32**, per maggiore precisione. `float` è un alias di float32. Il tipo scelto determina rappresentazione e arrotondamento; il backend assembly deve rispettare lo stesso risultato del modello host. Il vantaggio temporale del float24 va misurato, includendo il costo di accesso alla REU e delle chiamate.
+C-Script provides two fractional formats: **float24**, for compact data and calculations with a short significand, and **float32**, for greater precision. `float` is an alias for float32. The chosen type determines representation and rounding; the assembly backend must produce the same results as the host model. Any float24 speed advantage must be measured, including REU access and call overhead.
 
-## 1 Formati scelti
+## 1 Selected formats
 
-| Tipo | Byte | Bit significativi nei normali | Precisione decimale indicativa | Interi consecutivi esatti |
+| Type | Bytes | Significant bits in normal numbers | Approximate decimal precision | Exactly representable consecutive integers |
 |---|---:|---:|---|---|
-| `float24` | 3 | 16 | Circa 4–5 cifre significative | Da −65.536 a +65.536 |
-| `float32`, alias `float` | 4 | 24 | Circa 6–7 cifre significative | Da −16.777.216 a +16.777.216 |
+| `float24` | 3 | 16 | About 4–5 significant digits | −65,536 through +65,536 |
+| `float32`, alias `float` | 4 | 24 | About 6–7 significant digits | −16,777,216 through +16,777,216 |
 
-Entrambi usano un esponente a 8 bit con bias 127. Il minimo positivo normale è 2^-126, circa 1,17549435×10^-38. Il massimo è `(2 − 2^-15) × 2^127` per float24 e `(2 − 2^-23) × 2^127` per float32. Una mantissa corta riduce la precisione, mantenendo lo stesso intervallo degli esponenti normali.
+Both use an 8-bit exponent with a bias of 127. The smallest positive normal number is 2^-126, approximately 1.17549435×10^-38. The maximum is `(2 − 2^-15) × 2^127` for float24 and `(2 − 2^-23) × 2^127` for float32. A shorter significand reduces precision while retaining the same normal exponent range.
 
-Float32 usa la rappresentazione IEEE binary32. Float24 è un formato C-OS, non uno standard IEEE: segno al bit 23, esponente ai bit 22…15, frazione ai bit 14…0. Il valore normale è `(-1)^sign × (1 + fraction/2^15) × 2^(exponent−127)`. Tutti i valori sono packed little endian.
+Float32 uses the IEEE binary32 representation. Float24 is a C-OS format, not an IEEE standard: sign in bit 23, exponent in bits 22…15, fraction in bits 14…0. A normal value is `(-1)^sign × (1 + fraction/2^15) × 2^(exponent−127)`. All values are packed little endian.
 
-L'espansione esatta di un float24 normale a binary32 corrisponde allo spostamento dei suoi bit di otto posizioni verso sinistra. La riduzione richiede arrotondamento, non il semplice scarto di un byte. I tre byte di un float24 rappresentano un numero, senza alcuna relazione con i puntatori u24 della VM.
+Exact widening of a normal float24 to binary32 corresponds to shifting its bits eight positions to the left. Narrowing requires rounding, rather than simply discarding a byte. The three bytes of a float24 represent a number and have no relation to the VM's u24 pointers.
 
-Il profilo supporta zero e numeri finiti normali. È una semantica limitata, **non una dichiarazione di conformità IEEE 754 completa**:
+The profile supports zero and finite normal numbers. Its semantics are restricted; **this is not a claim of full IEEE 754 compliance**:
 
-- Ogni operazione arrotonda alla precisione del tipo risultato con round-to-nearest, ties-to-even, abbreviato RNE.
-- Il risultato viene prima arrotondato al formato destinazione; se resta subnormale viene trasformato in +0. Un valore che si arrotonda al minimo normale deve sopravvivere.
-- Input subnormali e −0, anche forniti da bytecode manuale, vengono interpretati come +0 all'ingresso delle operazioni numeriche.
-- Gli output zero hanno sempre tutti i bit zero. Non esistono modalità di arrotondamento o flag numerici globali modificabili dalle app.
-- Input con esponente 255, inclusi NaN e infiniti, sono invalidi. Overflow produce errore; divisione per zero produce errore. Il runtime del linguaggio traduce gli errori nei fault definiti sotto.
+- Each operation rounds to the precision of its result type using round-to-nearest, ties-to-even, abbreviated RNE.
+- The result is first rounded to the destination format; if it remains subnormal, it is converted to +0. A value that rounds to the smallest normal number must survive.
+- Subnormal inputs and −0, including those supplied by hand-written bytecode, are interpreted as +0 on entry to numeric operations.
+- Zero outputs always have all bits clear. Apps cannot change any global rounding modes or numeric flags.
+- Inputs with exponent 255, including NaNs and infinities, are invalid. Overflow produces an error; division by zero produces an error. The language runtime maps errors to the faults defined below.
 
-Byte, word, int, dword e long conservano la propria aritmetica intera. Dimensioni, indirizzi, handle, indici, fuel e timer continuano a usare interi.
+Byte, word, int, dword and long retain their integer arithmetic. Sizes, addresses, handles, indices, fuel and timers continue to use integers.
 
-## 2 Float16 e fixed point
+## 2 Float16 and fixed point
 
-Un terzo formato binary16 avrebbe 2 byte, 11 bit significativi, circa 3 cifre significative, massimo 65.504 e minimo normale 2^-14. Resta candidato successivo: nel profilo senza subnormali il limite inferiore è circa 0,000061. A valori intorno a 320, il passo fra rappresentabili sarebbe 0,25; float24 offre un passo di 1/128 e float32 di 1/32.768. Questi sono passi numerici, non misure di fluidità della UI.
+A third format, binary16, would use 2 bytes, 11 significant bits and about 3 significant digits, with a maximum of 65,504 and a smallest normal number of 2^-14. It remains a candidate for later: without subnormals, the lower limit is approximately 0.000061. Around 320, the spacing between representable values would be 0.25; float24 provides a spacing of 1/128 and float32 of 1/32,768. These are numeric spacings, not measurements of UI smoothness.
 
-La prima implementazione include float24 e float32. Evitare il costo di tre backend prima di avere app e misure che giustifichino binary16. Le routine half di Mad-Pascal costituiscono un riferimento concreto di aritmetica a mantissa ridotta; il codice di addizione/prodotto esaminato non è un backend RNE direttamente riutilizzabile. [Libreria f16](https://github.com/tebe6502/Mad-Pascal/blob/master/lib/f16.pas).
+The first implementation includes float24 and float32. Avoid the cost of three backends until apps and measurements justify binary16. Mad-Pascal's half routines are a concrete reference for arithmetic with a reduced significand; the examined addition/multiplication code is not a directly reusable RNE backend. [f16 library](https://github.com/tebe6502/Mad-Pascal/blob/master/lib/f16.pas).
 
-Il fixed point, ad esempio Q16.16, è un'alternativa per interpolazioni con intervallo noto. Offre un passo uniforme ma non l'ampio intervallo dinamico dei float. Può essere una libreria successiva; non aggiungere ora un terzo tipo frazionario chiamandolo float.
+Fixed point, such as Q16.16, is an alternative for interpolation over a known range. It provides uniform spacing but not the wide dynamic range of floats. It may become a later library; do not add a third fractional type now and call it a float.
 
-## 3 Sintassi e conversioni
+## 3 Syntax and conversions
 
 ```text
 fn main() {
@@ -47,159 +47,159 @@ fn main() {
     let mean = measured / 3.0
     let precise_position = float32(position)
     let compact_mean = float24(mean)
-    let pixel = int(position) // troncamento verso zero, con controllo range
+    let pixel = int(position) // truncate toward zero, with a range check
 }
 ```
 
-Letterali frazionari: cifre, punto e cifre, eventualmente seguiti da `e`/`E`, segno opzionale ed esponente decimale; è ammesso anche `1e3`. Esempi validi: `0.5`, `1.0`, `1e-3`, `1.25E+2`. Richiedere le cifre prima e dopo il punto quando presente; `1..10` resta un intervallo intero, senza ambiguità con `1.`. Underscore soltanto fra cifre.
+Fractional literals consist of digits, a decimal point and digits, optionally followed by `e`/`E`, an optional sign and a decimal exponent; `1e3` is also allowed. Valid examples: `0.5`, `1.0`, `1e-3`, `1.25E+2`. Require digits before and after the decimal point when it is present; `1..10` remains an integer range, without ambiguity with `1.`. Underscores are allowed only between digits.
 
-L'inferenza segue LANGUAGE.md §4.1 dal basso verso l'alto. Un letterale diretto è un token numerico racchiuso eventualmente soltanto da parentesi e meno unario; i nomi di costanti e le espressioni composte sono già tipizzati. Senza contesto un letterale frazionario ha tipo float32. Una dichiarazione, assegnazione, parametro, risultato atteso o cast applicato direttamente al letterale può richiedere float24. In un operatore con un operando float già tipizzato e un letterale diretto, quest'ultimo assume il formato dell'altro operando. Se entrambi sono letterali diretti, prendono il tipo senza contesto. Il tipo atteso all'esterno non viene propagato nei loro operatori binari.
+Inference follows LANGUAGE.md §4.1 from the bottom up. A direct literal is a numeric token optionally enclosed only by parentheses and unary minus; constant names and compound expressions are already typed. Without context, a fractional literal has type float32. A declaration, assignment, parameter, expected result or cast applied directly to the literal may require float24. In an operator with one already typed float operand and one direct literal, the literal takes the other operand's format. If both are direct literals, they take their context-free types. An expected type outside the expression is not propagated into their binary operators.
 
-Con `a24: float24`, valgono questi esempi normativi:
+Given `a24: float24`, the following examples are normative:
 
-| Sorgente | Semantica |
+| Source | Semantics |
 |---|---|
-| `let x: float24 = (-0.5)` | Letterale diretto arrotondato a float24 |
-| `let x: float24 = 1.0 + 2.0` | Errore: somma float32 assegnata a float24 senza cast |
-| `float24(1.0 + 2.0)` | Somma float32, poi cast RNE a float24 |
-| `a24 + (1.0 + 2.0)` | Somma interna float32 e risultato esterno float32 |
-| `a24 + 1.0` | Letterale e somma float24 |
-| `float24(1.0) + 2.0` | Somma float24 perché il primo operando è già tipizzato |
+| `let x: float24 = (-0.5)` | Direct literal rounded to float24 |
+| `let x: float24 = 1.0 + 2.0` | Error: float32 sum assigned to float24 without a cast |
+| `float24(1.0 + 2.0)` | float32 sum, then RNE cast to float24 |
+| `a24 + (1.0 + 2.0)` | Inner sum is float32 and outer result is float32 |
+| `a24 + 1.0` | Literal and sum are float24 |
+| `float24(1.0) + 2.0` | float24 sum because the first operand is already typed |
 
-Gli interi senza punto/esponente mantengono le regole del linguaggio quando nessun contesto diretto richiede un float. Non cambiare questi tipi dopo il constant folding.
+Integers without a decimal point/exponent retain the language's rules when no direct context requires a float. Do not change these types after constant folding.
 
-Conversioni implicite aggiuntive: byte/word/int verso entrambi i float; float24 verso float32. Sono esatte per tutti i valori del tipo sorgente. Long/dword verso float richiedono un cast, perché possono perdere unità. Float32 verso float24 richiede un cast RNE. Un cast che racchiude un'espressione già tipizzata converte il risultato: `float24(a32 + b32)` esegue prima la somma float32.
+Additional implicit conversions: byte/word/int to either float; float24 to float32. These are exact for all values of the source type. Long/dword to float require a cast because they may lose integer units. Float32 to float24 requires an RNE cast. A cast enclosing an already typed expression converts its result: `float24(a32 + b32)` performs the float32 addition first.
 
-Il contesto può fissare il formato di un letterale frazionario o convertire un letterale intero isolato; non trasforma in floating point un'espressione composta da soli interi. `float24(1 / 2)` e `let x: float24 = 1 / 2` producono zero: prima si esegue la divisione intera, poi si converte il risultato. Per la divisione frazionaria scrivere `1.0 / 2.0`.
+Context may determine a fractional literal's format or convert an isolated integer literal; it does not turn a compound expression containing only integers into floating-point arithmetic. `float24(1 / 2)` and `let x: float24 = 1 / 2` produce zero: integer division is performed first, then the result is converted. Write `1.0 / 2.0` for fractional division.
 
-Le operazioni miste float24/float32 promuovono a float32. Non restringere implicitamente un risultato float32 per assegnarlo a float24. Gli operatori ammessi sono `+ - * /`, meno unario e i sei confronti, che producono bool. `%`, bitwise e shift rimangono interi. `1 / 2` mantiene la divisione intera; `1.0 / 2.0` produce 0,5.
+Mixed float24/float32 operations promote to float32. Do not implicitly narrow a float32 result when assigning it to float24. The permitted operators are `+ - * /`, unary minus and the six comparisons, which produce bool. `%`, bitwise operations and shifts remain integer operations. `1 / 2` retains integer division; `1.0 / 2.0` produces 0.5.
 
-Float→integer tronca verso zero e controlla il range del risultato troncato prima di scriverlo; nessun wrap o comportamento indefinito del compilatore host. `int(-3.75)` vale −3; `byte(-0.5)` vale 0; `byte(-1.0)` è RANGE. Conversioni a 8/16 bit usano prima il risultato signed/unsigned a 32 bit, poi il controllo esistente.
+Float→integer truncates toward zero and checks the range of the truncated result before writing it; no wrapping or undefined host-compiler behavior is allowed. `int(-3.75)` is −3; `byte(-0.5)` is 0; `byte(-1.0)` is RANGE. Conversions to 8/16 bits first use the signed/unsigned 32-bit result, then apply the existing range check.
 
-I cast fra formati e le costanti vengono arrotondati direttamente al formato richiesto. Il compiler host deve partire dal decimale esatto del token, non da un double già arrotondato. Non cambiare associazione, fondere prodotto/somma o mantenere precisione nascosta oltre un'operazione del sorgente.
+Casts between formats and constants are rounded directly to the required format. The host compiler must start from the token's exact decimal value, not from an already rounded double. Do not reassociate operations, fuse multiplication/addition or retain hidden precision beyond a source operation.
 
-## 4 Libreria minima
+## 4 Minimal library
 
-`math` è un modulo statico. Le funzioni seguenti sono sovraccarichi risolti a compilazione per float24 e float32, senza dispatch dinamico:
+`math` is a static module. The following functions are overloads resolved at compile time for float24 and float32, without dynamic dispatch:
 
-| Funzione | Risultato |
+| Function | Result |
 |---|---|
-| `math.abs(x)` | Stesso tipo di x, valore assoluto |
-| `math.min(a, b)`, `math.max(a, b)` | Tipo comune dopo le conversioni ordinarie |
-| `math.trunc(x)` | Stesso tipo, frazione eliminata verso zero |
-| `math.floor(x)`, `math.ceil(x)` | Stesso tipo, intero matematico inferiore/superiore |
-| `text.real(dst: bytes, value: float24/float32, digits: byte) -> (str, word)` | Formattazione con 1…9 cifre significative, buffer ≥24 byte |
-| `text.parse_float(src: str) -> (float32, word)` | Parsing nel formato normale del linguaggio |
-| `text.parse_float24(src: str) -> (float24, word)` | Parsing diretto nel formato compatto |
+| `math.abs(x)` | Same type as x, absolute value |
+| `math.min(a, b)`, `math.max(a, b)` | Common type after the ordinary conversions |
+| `math.trunc(x)` | Same type, fractional part removed toward zero |
+| `math.floor(x)`, `math.ceil(x)` | Same type, mathematical floor/ceiling |
+| `text.real(dst: bytes, value: float24/float32, digits: byte) -> (str, word)` | Formatting with 1…9 significant digits, buffer ≥24 bytes |
+| `text.parse_float(src: str) -> (float32, word)` | Parsing into the language's default format |
+| `text.parse_float24(src: str) -> (float24, word)` | Parsing directly into the compact format |
 
-Il formato degli overload viene dal tipo dell'argomento numerico, non dal risultato atteso della chiamata. I letterali diretti seguono le regole ordinarie; math.min/max scelgono il tipo comune come un operatore binario, inclusa la regola del letterale diretto accanto a un operando tipizzato. Il tipo così ottenuto deve essere float24 o float32. Con soli argomenti interi richiedere un cast esplicito: `math.abs(1)` è errore, `math.abs(1.0)` sceglie float32 e `math.min(a24, 1.0)` sceglie float24. Text.real applica la stessa regola al parametro value. Non introdurre overload interi di math come conseguenza accidentale delle conversioni implicite.
+The overload format comes from the numeric argument's type, not from the call's expected result type. Direct literals follow the ordinary rules; math.min/max select the common type as a binary operator does, including the rule for a direct literal next to a typed operand. The resulting type must be float24 or float32. If all arguments are integers, require an explicit cast: `math.abs(1)` is an error, `math.abs(1.0)` selects float32 and `math.min(a24, 1.0)` selects float24. Text.real applies the same rule to its value parameter. Do not introduce integer math overloads as an accidental consequence of implicit conversions.
 
-Text.real arrotonda in decimale ties-to-even al numero richiesto di cifre significative; usa forma fissa se l'esponente decimale, dopo tale arrotondamento, è tra −4 e digits−1 inclusi, altrimenti forma scientifica. Rimuove gli zeri frazionari finali e il punto rimasto vuoto; zero diventa `0`. Separatore `.`, esponente `e` con segno e almeno due cifre, nessuna dipendenza dalla locale. L'output è length-delimited. Verificare nell'ordine digits 1…9, capacità dst ≥24 e validità numerica: ERANGE per i primi due errori, EDOM per un input non finito. Subnormali e −0 seguono la canonicalizzazione del profilo. Su errore la vista risultato è vuota e dst resta invariato. Nove cifre permettono il round-trip di float32, sei quello di float24; le cifre stampate non aumentano la precisione del valore.
+Text.real rounds in decimal, ties-to-even, to the requested number of significant digits; it uses fixed notation if the decimal exponent after rounding is between −4 and digits−1 inclusive, otherwise scientific notation. It removes trailing fractional zeros and a decimal point left without fractional digits; zero becomes `0`. The separator is `.`, the exponent is `e` with a sign and at least two digits, and formatting is locale-independent. Output is length-delimited. Validate, in order, digits 1…9, dst capacity ≥24 and numeric validity: ERANGE for the first two errors, EDOM for a non-finite input. Subnormals and −0 follow the profile's canonicalization rules. On error, the result view is empty and dst remains unchanged. Nine digits allow float32 round-tripping and six allow float24 round-tripping; printed digits do not increase the value's precision.
 
-I parser accettano un segno iniziale opzionale, decimali interi o frazionari e un esponente opzionale, senza underscore, spazi o caratteri finali. Il punto richiede cifre su entrambi i lati: `.5` e `1.` sono invalidi, `0.5` e `1.0` validi. Lunghezza da 1 a 63 byte; segnalare EINVAL per sintassi e ERANGE per lunghezza/overflow. Restituire zero con errore, senza parsing parziale. RNE e underflow seguono il formato richiesto. Formattazione e parsing devono gestire interamente l'intervallo del tipo.
+The parsers accept an optional leading sign, integer or fractional decimals and an optional exponent, without underscores, whitespace or trailing characters. The decimal point requires digits on both sides: `.5` and `1.` are invalid, `0.5` and `1.0` are valid. Length is 1 to 63 bytes; report EINVAL for syntax and ERANGE for length/overflow. Return zero on error, without partial parsing. RNE and underflow follow the requested format. Formatting and parsing must handle the type's full range.
 
-Limitare il costo anche per esponenti testuali enormi. Accumularli con saturazione e classificare il risultato prima di costruire potenze di dieci o avviare loop di scala; il lavoro non può essere proporzionale al valore numerico dell'esponente. Dopo la verifica completa della sintassi, zero con qualsiasi esponente resta zero; overflow evidente di un valore non nullo dà ERANGE, underflow evidente dà +0. Il compiler host applica la stessa regola, con un limite di 128 byte per token numerico frazionario, underscore inclusi.
+Bound the cost even for enormous textual exponents. Accumulate them with saturation and classify the result before building powers of ten or starting scaling loops; work must not be proportional to the exponent's numeric value. After full syntax validation, zero with any exponent remains zero; obvious overflow of a nonzero value returns ERANGE, and obvious underflow returns +0. The host compiler applies the same rule, with a limit of 128 bytes per fractional numeric token, including underscores.
 
-Le conversioni testuali iniziano come helper bytecode con workspace statico nel frame dell'app e cicli soggetti a fuel. Evitare allocazioni a ogni conversione. I loro byte in REU, stack, chiamate numeriche e tempi fanno parte del report. Il nucleo assembly residente comprende soltanto aritmetica, confronti e conversioni numeriche; un'accelerazione testuale successiva richiede la stessa qualificazione temporale.
+Text conversions initially use bytecode helpers with static workspace in the app's frame and fuel-metered loops. Avoid allocating on every conversion. Their REU bytes, stack, numeric calls and execution times are included in the report. The resident assembly core contains only arithmetic, comparisons and numeric conversions; later text acceleration requires the same timing qualification.
 
-Sqrt, trigonometria, logaritmi, esponenziali e potenze generali sono estensioni successive. Il tipo float non implica di importare una libreria matematica completa in RAM locale.
+Sqrt, trigonometry, logarithms, exponentials and general powers are later extensions. A float type does not imply importing a complete math library into local RAM.
 
-## 5 ABI del servizio numerico
+## 5 Numeric service ABI
 
-Riservare la syscall esadecimale **30 NUM_OP**. È un servizio del kernel indipendente dai dispositivi Ultimate. Entrambi i formati fanno parte dell'MVP: non sono capability hardware opzionali.
+Reserve hexadecimal syscall **30 NUM_OP**. This is a kernel service independent of Ultimate devices. Both formats are part of the MVP: they are not optional hardware capabilities.
 
-- R1: operazione nei bit 7…0, formato nei bit 15…8; formato 0=float32, 1=float24, altri invalidi.
-- R2/R3: operando A, low16/high16. R4/R5: operando B, low16/high16, zero per operazioni unarie.
-- Float24 occupa i 24 bit bassi; gli 8 alti devono essere zero. Gli input integer32 usano tutti i 32 bit. Non convalidare un intero come rappresentazione float.
-- R0 al ritorno: stato. R2/R3: risultato low16/high16, azzerato su errore. Gli altri R e tutti i P sono preservati.
-- Le operazioni binarie calcolano A op B. FCMP restituisce −1/0/+1 in R2 signed16 e R3=0; i wrapper generano bool con confronti interi.
+- R1: operation in bits 7…0, format in bits 15…8; format 0=float32, 1=float24, other values invalid.
+- R2/R3: operand A, low16/high16. R4/R5: operand B, low16/high16, zero for unary operations.
+- Float24 occupies the low 24 bits; the high 8 bits must be zero. Integer32 inputs use all 32 bits. Do not validate an integer as a float representation.
+- R0 on return: status. R2/R3: result low16/high16, cleared on error. The other R registers and all P registers are preserved.
+- Binary operations compute A op B. FCMP returns −1/0/+1 in signed16 R2 and R3=0; wrappers generate bool values using integer comparisons.
 
-| Op | Nome | Significato del formato selezionato |
+| Op | Name | Meaning of the selected format |
 |---|---|---|
-| 00 | FADD | Entrambi gli input e il risultato |
-| 01 | FSUB | Entrambi gli input e il risultato |
-| 02 | FMUL | Entrambi gli input e il risultato |
-| 03 | FDIV | Entrambi gli input e il risultato |
-| 04 | FCMP | Entrambi gli input |
-| 05 | FROM_I32 | Formato del risultato; A è i32 |
-| 06 | FROM_U32 | Formato del risultato; A è u32 |
-| 07 | TO_I32 | Formato di A; risultato i32 |
-| 08 | TO_U32 | Formato di A; risultato u32 |
-| 09 | FTRUNC | Formato di A e del risultato |
-| 0A | FFLOOR | Formato di A e del risultato |
-| 0B | FCEIL | Formato di A e del risultato |
-| 0C | F24_TO_F32 | Richiede formato 0; A è float24, output float32 |
-| 0D | F32_TO_F24 | Richiede formato 1; A è float32, output float24 |
+| 00 | FADD | Both inputs and the result |
+| 01 | FSUB | Both inputs and the result |
+| 02 | FMUL | Both inputs and the result |
+| 03 | FDIV | Both inputs and the result |
+| 04 | FCMP | Both inputs |
+| 05 | FROM_I32 | Result format; A is i32 |
+| 06 | FROM_U32 | Result format; A is u32 |
+| 07 | TO_I32 | Format of A; i32 result |
+| 08 | TO_U32 | Format of A; u32 result |
+| 09 | FTRUNC | Format of A and the result |
+| 0A | FFLOOR | Format of A and the result |
+| 0B | FCEIL | Format of A and the result |
+| 0C | F24_TO_F32 | Requires format 0; A is float24, output float32 |
+| 0D | F32_TO_F24 | Requires format 1; A is float32, output float24 |
 
-Per 0C/0D convalidare A secondo il tipo di ingresso indicato nella tabella: il formato in R1 descrive il risultato. In particolare il byte alto di A in F32_TO_F24 può essere non nullo. Per tutte le operazioni unarie R4/R5 devono essere zero.
+For 0C/0D, validate A according to the input type specified in the table: the format in R1 describes the result. In particular, A's high byte in F32_TO_F24 may be nonzero. R4/R5 must be zero for all unary operations.
 
-Operazione/formato/campi invalidi: EINVAL. Rappresentazione non finita: nuovo stato 22 EDOM. Denominatore zero dopo la normalizzazione: nuovo stato 23 EDIVZERO. Overflow e conversione fuori range: ERANGE. Convalidare prima gli operandi, poi il denominatore, poi eseguire il calcolo. Non sono errori gli arrotondamenti ordinari o l'underflow a zero.
+Invalid operation/format/fields: EINVAL. Non-finite representation: new status 22 EDOM. Zero denominator after normalization: new status 23 EDIVZERO. Overflow and out-of-range conversion: ERANGE. Validate operands first, then the denominator, then perform the calculation. Ordinary rounding and underflow to zero are not errors.
 
-I wrapper di operatori/cast traducono EDOM in TRAP `$1006 NUMERIC_INVALID`, EDIVZERO in `$1003 DIVIDE_BY_ZERO`, ERANGE aritmetico o da riduzione float in `$1007 FLOAT_OVERFLOW`, ERANGE da cast integer in `$1001 RANGE`. Gli errori del compilatore su espressioni costanti sono diagnosticati a build time. I parser restituiscono gli errori documentati, permettendo all'app di correggere l'input.
+Operator/cast wrappers map EDOM to TRAP `$1006 NUMERIC_INVALID`, EDIVZERO to `$1003 DIVIDE_BY_ZERO`, arithmetic or float-narrowing ERANGE to `$1007 FLOAT_OVERFLOW`, and integer-cast ERANGE to `$1001 RANGE`. Compiler errors in constant expressions are diagnosed at build time. Parsers return their documented errors, allowing the app to correct its input.
 
-Meno unario e abs possono usare operazioni bytecode sui bit del valore già valido, canonicalizzando zero. Non servono registri F persistenti o nuovi opcode del dispatcher. Un valore float32 usa due R16 o quattro byte nel frame; float24 tre byte nel frame e, quando serve, due R16 con la parte alta azzerata.
+Unary minus and abs may use bytecode operations on the bits of an already valid value, canonicalizing zero. No persistent F registers or new dispatcher opcodes are needed. A float32 value uses two R16 registers or four bytes in the frame; float24 uses three bytes in the frame and, when needed, two R16 registers with the high part cleared.
 
-## 6 Scheduling e memoria del backend
+## 6 Backend scheduling and memory
 
-NUM_OP usa l'unica coda di lavori nativi esistente. SYSCALL costa un opcode e registra una sola continuazione; i pezzi matematici sono addebitati al tempo nativo del proprietario, a rotazione con gli altri lavori. Una syscall matematica completata subito, o sospesa per una fase interna, non ricarica il fuel. Per NUM_OP preservare il residuo fino alla normale fine del quantum: è lavoro CPU, non un'attesa di un dispositivo esterno.
+NUM_OP uses the existing single native-job queue. SYSCALL costs one opcode and records one continuation; math chunks are charged to their owner's native time, rotating with other jobs. A math syscall that completes immediately or suspends for an internal phase does not replenish fuel. NUM_OP preserves the remaining fuel until the normal end of the quantum: it is CPU work, not a wait for an external device.
 
-La prima scelta implementativa è una routine indivisibile, ammessa soltanto dopo averne qualificato il costo massimo comprensivo del bridge e verificato che entri nella finestra disponibile, guard time incluso. Se ora non entra ma entra nella prossima finestra utile, rinviare l'intera operazione. Introdurre continuazioni interne soltanto per le operazioni il cui costo massimo non entra nella finestra di servizio qualificata: in quel caso suddividerle in fasi esplicite, per esempio allineamento, iterazioni del prodotto/divisione e arrotondamento. Nessun frame nativo resta sullo stack hardware tra i turni. Un algoritmo con un numero finito di iterazioni non è automaticamente abbastanza breve per il raster.
+The first implementation choice is an indivisible routine, allowed only after qualifying its maximum cost including the bridge and verifying that it fits in the available window, including guard time. If it does not fit now but fits in the next available window, defer the entire operation. Introduce internal continuations only for operations whose maximum cost does not fit in the qualified service window: in that case, split them into explicit phases, such as alignment, multiplication/division iterations and rounding. No native frame remains on the hardware stack between turns. An algorithm with a finite iteration count is not automatically short enough for the raster.
 
-Operandi, formato, accumulatore parziale, carry/sticky e cursore della fase appartengono al lavoro del processo. Il kernel può usare uno scratch ZP comune solo durante l'esecuzione di un pezzo; salvare tutto ciò che resta vivo prima di servire un altro proprietario. Non sovrapporre FAC/ARG o registri temporanei di una libreria esterna ai registri VM o allo scratch UPIC.
+Operands, format, partial accumulator, carry/sticky bits and phase cursor belong to the process's job. The kernel may use shared ZP scratch only while executing a chunk; save everything that remains live before serving another owner. Do not overlap an external library's FAC/ARG or temporary registers with VM registers or UPIC scratch.
 
-Il costo comprende bridge, controlli, spill/reload, salvataggio del contesto e accesso REU. Kill annulla il lavoro e rilascia lo scratch, senza pubblicare un risultato a un processo terminato. Ogni app ha al massimo un lavoro bloccante pendente, come negli altri servizi.
+The cost includes the bridge, checks, spills/reloads, context saving and REU access. Kill cancels the job and releases scratch without publishing a result to a terminated process. Each app has at most one pending blocking job, as with the other services.
 
-Obiettivo iniziale da qualificare: nucleo residente dei due formati, conversioni numeriche e bridge entro **4 KiB complessivi**, inclusi nel budget locale da 20 KiB. Non è una dimensione già dimostrata. Riportare separatamente ZP, RAM scratch, contesti dei lavori in REU e helper testuali. Se il nucleo eccede, condividere percorsi e spostare helper non critici in bytecode; non eliminare un formato o cambiare precisione senza aggiornare esplicitamente la specifica.
+Initial target to qualify: the resident core for both formats, numeric conversions and bridge must fit within **4 KiB total**, included in the 20 KiB local budget. This size has not yet been demonstrated. Report ZP, scratch RAM, job contexts in REU and text helpers separately. If the core exceeds the target, share paths and move noncritical helpers into bytecode; do not remove a format or change precision without explicitly updating the specification.
 
-Float24 deve avere un vero percorso con mantissa a 16 bit: prodotto 16×16 e divisione alla precisione necessaria, con bit di guardia e sticky. Condividere unpack, segni, esponenti, errori e scheduling dove conviene; confrontare specializzazione con un nucleo parametrico. Compilare ogni operazione float24 come float32 più compressione non soddisfa l'obiettivo di accelerazione e può introdurre doppio arrotondamento.
+Float24 must have a genuine 16-bit significand path: a 16×16 product and division at the required precision, with guard and sticky bits. Share unpacking, signs, exponents, errors and scheduling where useful; compare specialization with a parameterized core. Compiling every float24 operation as float32 followed by compression does not meet the acceleration objective and may introduce double rounding.
 
-## 7 Fonti e scelta del backend
+## 7 Sources and backend selection
 
-| Riferimento | Riscontro e impiego in C-OS |
+| Reference | Findings and use in C-OS |
 |---|---|
-| [XC-BASIC 3](https://xc-basic.net/doku.php?id=v3:datatypes) | Float di 4 byte, circa 6–7 cifre. Utile l'affiancamento agli interi; il nome DECIMAL indica BCD per interi 0…9999, non un tipo frazionario. |
-| [Math pack XC-BASIC](https://github.com/neilsf/xc-basic3/blob/55014f0f6a2dfa2d40e377102f4da6b764a1e788/lib/math/_fplib.asm) | Seleziona BYTES_FP=4 e tre byte di mantissa; usa FAC/ARG globali e deriva dal math pack MS BASIC. Formato diverso da binary32 e arrotondamento da verificare. Fonte di algoritmi e conversioni, non libreria da collegare invariata. |
-| [LLVM-MOS add](https://github.com/llvm-mos/llvm-mos/blob/main/compiler-rt/lib/builtins/mos/addsf3.S), [mul](https://github.com/llvm-mos/llvm-mos/blob/main/compiler-rt/lib/builtins/mos/mulsf3.S), [div](https://github.com/llvm-mos/llvm-mos/blob/main/compiler-rt/lib/builtins/mos/divsf3.S) | Assembly 6502 con RNE e trattamento dei valori speciali. Primo candidato per float32 e riferimento per derivare il percorso corto; le routine originali non includono il fuel C-OS. |
-| [Oscar64 runtime](https://github.com/drmortalwombat/oscar64/blob/main/include/crt.c) e [manuale](https://github.com/drmortalwombat/oscar64/blob/main/oscar64.md) | Altro backend binary32 orientato al 6502. Il manuale esclude NaN; gli shift esaminati non dimostrano il nostro contratto RNE. Utile per confronto di algoritmi e dimensioni, non sostituzione senza test. |
-| [Woz e correzioni Rankin](https://github.com/jefftranter/6502/blob/master/asm/wozfp/README.txt) | Esempio storico compatto a 4 byte con mantissa in complemento a due. Richiede un formato diverso; utile per studio, non per cambiare silenziosamente l'ABI numerica. |
-| [Microsoft BASIC M6502](https://github.com/microsoft/BASIC-M6502) | Math pack storico con precisione configurabile; possibile fonte primaria alternativa. La dimensione dell'intero interprete non misura il solo costo dei float. |
-| [SoftFloat per 6502](https://github.com/rweather/berkeley-softfloat-3-6502) | Candidato a oracolo host per binary32. Il port C non prova velocità o ingombro adeguati al kernel C-OS. |
+| [XC-BASIC 3](https://xc-basic.net/doku.php?id=v3:datatypes) | 4-byte floats, about 6–7 digits. Their use alongside integers is useful; DECIMAL denotes BCD integers 0…9999, not a fractional type. |
+| [XC-BASIC math pack](https://github.com/neilsf/xc-basic3/blob/55014f0f6a2dfa2d40e377102f4da6b764a1e788/lib/math/_fplib.asm) | Selects BYTES_FP=4 and three significand bytes; uses global FAC/ARG and derives from the MS BASIC math pack. Its format differs from binary32 and rounding needs verification. A source of algorithms and conversions, not a library to link unchanged. |
+| [LLVM-MOS add](https://github.com/llvm-mos/llvm-mos/blob/main/compiler-rt/lib/builtins/mos/addsf3.S), [mul](https://github.com/llvm-mos/llvm-mos/blob/main/compiler-rt/lib/builtins/mos/mulsf3.S), [div](https://github.com/llvm-mos/llvm-mos/blob/main/compiler-rt/lib/builtins/mos/divsf3.S) | 6502 assembly with RNE and special-value handling. The first candidate for float32 and a reference for deriving the shorter path; the original routines do not include C-OS fuel handling. |
+| [Oscar64 runtime](https://github.com/drmortalwombat/oscar64/blob/main/include/crt.c) and [manual](https://github.com/drmortalwombat/oscar64/blob/main/oscar64.md) | Another 6502-oriented binary32 backend. The manual excludes NaNs; the examined shifts do not establish our RNE contract. Useful for comparing algorithms and sizes, not a replacement without testing. |
+| [Woz and Rankin corrections](https://github.com/jefftranter/6502/blob/master/asm/wozfp/README.txt) | A compact historical 4-byte example with a two's-complement significand. Requires a different format; useful for study, not for silently changing the numeric ABI. |
+| [Microsoft BASIC M6502](https://github.com/microsoft/BASIC-M6502) | A historical math pack with configurable precision; a possible alternative primary source. The entire interpreter's size does not measure the cost of floats alone. |
+| [SoftFloat for 6502](https://github.com/rweather/berkeley-softfloat-3-6502) | A candidate host oracle for binary32. The C port does not demonstrate speed or size suitable for the C-OS kernel. |
 
-Fissare commit e licenze nel report prima di integrare codice. XC-BASIC è MIT a livello di repository, ma il file matematico reca un avviso BSD a due clausole: conservare la provenienza specifica. LLVM-MOS dichiara Apache-2.0 con LLVM exception; Microsoft BASIC-M6502 è MIT; per Oscar64 esaminare GPL e condizioni dei file effettivamente importati. Per i listing storici Woz non dedurre una licenza dal semplice accesso pubblico.
+Pin commits and record licenses in the report before integrating code. XC-BASIC is MIT at the repository level, but its math file carries a two-clause BSD notice: preserve the specific provenance. LLVM-MOS declares Apache-2.0 with the LLVM exception; Microsoft BASIC-M6502 is MIT; for Oscar64, examine the GPL and the terms of the files actually imported. Do not infer a license for historical Woz listings from public access alone.
 
-Non è stato individuato in questa ricognizione un backend NMOS pronto che garantisca esattamente il formato float24 e il profilo qui definiti. La specializzazione e i test sono lavoro della milestone numerica. Nessun rapporto di velocità fra questi candidati è assunto senza misure omogenee.
+This survey did not identify a ready-made NMOS backend that guarantees exactly the float24 format and profile defined here. Specialization and testing are part of the numeric milestone. No speed ratio between these candidates is assumed without comparable measurements.
 
-## 8 Spunti adottati da QuakeC
+## 8 Ideas adopted from QuakeC
 
-QuakeC suggerisce una tabella host unica di operatori, tipi e lowering, deduplicazione delle costanti per rappresentazione target e builtins risolti staticamente. Usare uno schema piccolo e leggibile per generare ID e firme condivisi fra compiler/reference VM/kernel, includendo il profilo numerico. Conservare listing, nomi di funzione e source map fuori dalla build minima. [Compilatore originale](https://github.com/id-Software/Quake-Tools/blob/master/qcc/pr_comp.c), [generazione del contratto condiviso](https://github.com/id-Software/Quake-Tools/blob/master/qcc/qcc.c).
+QuakeC suggests a single host table of operators, types and lowering rules, constant deduplication by target representation and statically resolved builtins. Use a small, readable schema to generate IDs and signatures shared by the compiler/reference VM/kernel, including the numeric profile. Keep listings, function names and source maps outside the minimal build. [Original compiler](https://github.com/id-Software/Quake-Tools/blob/master/qcc/pr_comp.c), [shared contract generation](https://github.com/id-Software/Quake-Tools/blob/master/qcc/qcc.c).
 
-La VM Quake conta statement, offre profiling e termina dopo un limite di runaway; quel controllo non sospende/riprende una funzione. C-OS conserva fuel e continuazioni proprie. Nelle build diagnostiche contare chiamate e costo degli helper float, distinguendo opcode da tempo nativo. [Esecutore originale](https://github.com/id-Software/Quake/blob/master/WinQuake/pr_exec.c).
+The Quake VM counts statements, provides profiling and terminates execution after a runaway limit; that check does not suspend/resume a function. C-OS retains its own fuel and continuations. In diagnostic builds, count float-helper calls and costs, distinguishing opcodes from native time. [Original executor](https://github.com/id-Software/Quake/blob/master/WinQuake/pr_exec.c).
 
-Mantenere gli interi espliciti, il bytecode da quattro byte e i frame guest C-Script. Il modello centrato su float/vettori, gli statement da otto byte e i locali salvati dalla VM Quake non sono requisiti di C-OS. [Tipi e statement Quake](https://github.com/id-Software/Quake/blob/master/WinQuake/pr_comp.h).
+Retain explicit integers, four-byte bytecode and C-Script guest frames. The float/vector-centric model, eight-byte statements and locals saved by the Quake VM are not C-OS requirements. [Quake types and statements](https://github.com/id-Software/Quake/blob/master/WinQuake/pr_comp.h).
 
-## 9 Verifiche richieste
+## 9 Required verification
 
-Il modello host usa interi e rapporti esatti per produrre le operazioni del formato scelto; può usare un oracolo binary32 verificato per confronto indipendente. Esportare un corpus comune di input, risultati in bit ed errori. Il compiler, il constant folder e il backend 6510 devono coincidere, compreso il confine fra normali e subnormali.
+The host model uses exact integers and ratios to produce operations in the selected format; it may use a verified binary32 oracle for independent comparison. Export a shared corpus of inputs, bit-pattern results and errors. The compiler, constant folder and 6510 backend must agree, including at the boundary between normal and subnormal numbers.
 
-Il tooling Rust consigliato in LANGUAGE.md deve implementare questa semantica senza delegare il folding ai normali f32/f64 host. Un oracolo ausiliario indipendente, per esempio Python con Fraction, può generare o verificare il corpus esatto. Condividere il corpus non significa usare la stessa implementazione come unico test di se stessa; la scelta delle librerie host non modifica COS-NUM-1.
+The Rust tooling recommended in LANGUAGE.md must implement these semantics without delegating folding to ordinary host f32/f64 arithmetic. An independent auxiliary oracle, such as Python with Fraction, may generate or verify the exact corpus. Sharing the corpus does not mean using the same implementation as its only test of itself; the choice of host libraries does not change COS-NUM-1.
 
-Copertura minima:
+Minimum coverage:
 
-1. Encoding little endian: zero, ±1, 0,5, massimi, minimi normali, input subnormali, −0, NaN/Inf e bit alti non nulli in input float24.
-2. Quattro operazioni, cancellazione quasi completa, esponenti molto diversi, metà esatte ties-to-even, overflow e divisione per zero per entrambi i formati.
-3. Confini integer32, conversioni signed/unsigned, troncamento prima del range check, promozioni, cast di restringimento ed errori di tipo.
-4. Risultato appena sotto il minimo normale che arrotonda al minimo normale; risultato ancora subnormale che diventa zero.
-5. Constant folding identico al runtime, senza riassociazione o precisione nascosta; letterali float24 convertiti direttamente dal decimale.
-   Verificare inoltre gli esempi di contesto del §3: parentesi e meno unario conservano il letterale diretto, gli operatori binari fissano il tipo prima del contesto esterno e il folding non elimina errori di narrowing.
-6. Test specifico di doppio arrotondamento: in float24 `1.682830810546875 × 1.40277099609375` deve produrre `2.36065673828125`. Passare prima da un prodotto binary32 arrotondato produce invece `2.360595703125`: quel percorso va respinto.
-7. Parsing invalido/oltre quota, dst corto, formattazione ai confini decimali, round-trip a sei/nove cifre e workspace senza crescita dell'heap.
-8. Due app alternano i formati con quantum piccolo e cache miss; risultati e scratch restano indipendenti. Kill e sospensione a ogni fase del lavoro.
-9. Loop float senza yield insieme a input/UI, file I/O e PCM. Misurare latenza, scadenze raster e tempo nativo per processo.
+1. Little-endian encoding: zero, ±1, 0.5, maxima, smallest normal numbers, subnormal inputs, −0, NaN/Inf and nonzero high bits in float24 inputs.
+2. The four operations, near-total cancellation, widely differing exponents, exact ties-to-even halfway cases, overflow and division by zero for both formats.
+3. Integer32 boundaries, signed/unsigned conversions, truncation before the range check, promotions, narrowing casts and type errors.
+4. A result just below the smallest normal number that rounds to the smallest normal number; a result that remains subnormal and becomes zero.
+5. Constant folding identical to runtime, without reassociation or hidden precision; float24 literals converted directly from decimal.
+   Also verify the context examples in §3: parentheses and unary minus preserve a direct literal, binary operators determine the type before outer context is applied, and folding does not remove narrowing errors.
+6. A specific double-rounding test: in float24, `1.682830810546875 × 1.40277099609375` must produce `2.36065673828125`. Going through a rounded binary32 product first instead produces `2.360595703125`: that path must be rejected.
+7. Invalid/over-limit parsing, a short dst, formatting at decimal boundaries, six/nine-digit round-trips and workspace without heap growth.
+8. Two apps alternate formats with a small quantum and cache misses; results and scratch remain independent. Kill and suspension at every job phase.
+9. Float loops without yield alongside input/UI, file I/O and PCM. Measure latency, raster deadlines and native time per process.
 
-Il benchmark riporta separatamente +, −, ×, ÷, compare, cast e testo: dimensione del nucleo linkato, ZP, scratch, cicli minimi/massimi osservati, limite temporale qualificato, costo end-to-end con REU e throughput dentro il calendario UPIC. Riportare la differenza float24/float32 sulla stessa build. Se float24 risparmia soltanto memoria, dichiararlo; l'ABI a tre byte da sola non prova un aumento di velocità.
+The benchmark reports +, −, ×, ÷, comparison, casts and text separately: linked core size, ZP, scratch, observed minimum/maximum cycles, qualified time bound, end-to-end cost with REU and throughput within the UPIC schedule. Report the float24/float32 difference on the same build. If float24 saves only memory, say so; a three-byte ABI alone does not prove a speed increase.
 
-## 10 Consegna
+## 10 Deliverables
 
-M4a produce compiler e ABI di chiamata già previsti. M4b aggiunge i due float, NUM_OP, helper testuali e corpus host/6510 prima della qualificazione completa. Il manifest e ogni oggetto host riportano `numeric_profile="COS-NUM-1"`; il bundler rifiuta combinazioni incompatibili. ABI iniziale 1 resta il contratto di una prima implementazione non ancora distribuita; future modifiche numeriche incompatibili richiedono un nuovo profilo e relativa verifica.
+M4a produces the compiler and calling ABI already specified. M4b adds both floats, NUM_OP, text helpers and the host/6510 corpus before full qualification. The manifest and every host object declare `numeric_profile="COS-NUM-1"`; the bundler rejects incompatible combinations. Initial ABI 1 remains the contract for a first implementation that has not yet shipped; future incompatible numeric changes require a new profile and corresponding verification.
 
-La consegna comprende fonti fissate, licenze, test riproducibili e report di dimensioni/timing. Il supporto numerico è completo quando entrambi i formati funzionano nelle app C-Script e sotto carico concorrente, con i limiti pubblicati.
+Delivery includes pinned sources, licenses, reproducible tests and size/timing reports. Numeric support is complete when both formats work in C-Script apps and under concurrent load, with published limits.

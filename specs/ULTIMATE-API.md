@@ -1,409 +1,409 @@
-# SDK e servizi Ultimate per C-OS
+# Ultimate SDK and services for C-OS
 
-Specifica 0.1, revisione 4 — 10 ottobre 2026. Allegato normativo a [SPEC.md](SPEC.md) e [LANGUAGE.md](LANGUAGE.md). ABI iniziale 1; nessuna implementazione precedente da migrare.
+Specification 0.1, revision 4 — October 10, 2026. Normative companion to [SPEC.md](SPEC.md) and [LANGUAGE.md](LANGUAGE.md). Initial ABI 1; no previous implementation to migrate.
 
-Le app devono poter usare video, file e directory, storage, orologio, SID e Ultimate Audio con poche chiamate. Le API nascondono UCI, indirizzi dei dispositivi, DMA, sincronizzazione e differenze di firmware. Ogni operazione rispetta isolamento e scheduling del kernel; il dispositivo non viene assegnato come intervallo I/O direttamente scrivibile dall'app.
+Apps must be able to use video, files and directories, storage, the clock, SID and Ultimate Audio with a small number of calls. The APIs hide UCI, device addresses, DMA, synchronization and firmware differences. Every operation respects kernel isolation and scheduling; the device is never assigned to an app as a directly writable I/O range.
 
-I nomi, i layout e gli ID seguenti sono proposte normative per l'implementazione C-OS, **non** API già presenti nel firmware Ultimate.
+The following names, layouts and IDs are normative proposals for the C-OS implementation, **not** APIs already provided by the Ultimate firmware.
 
-Priorità dei servizi Ultimate:
+Ultimate service priorities:
 
-| Consegna | API |
+| Delivery | API |
 |---|---|
-| MVP, M6a | File esistenti + stat, directory, mkdir/rename/remove; scoperta storage e lettura RTC |
-| MVP, M6b | SID e Ultimate Audio già previsti |
-| Dopo MVP, N1 | Client TCP/UDP, con limiti di attesa e isolamento dei socket |
-| Dopo MVP, N2 | HTTP e accesso JSON delegati al firmware, dopo prove del backend |
-| Successive | Palette, immagini disco, SoftIEC e strumenti amministrativi |
+| MVP, M6a | Existing files + stat, directories, mkdir/rename/remove; storage discovery and RTC reads |
+| MVP, M6b | SID and Ultimate Audio as already planned |
+| After MVP, N1 | TCP/UDP clients, with bounded waits and socket isolation |
+| After MVP, N2 | HTTP and JSON access delegated to the firmware, after backend testing |
+| Later | Palette, disk images, SoftIEC and administrative tools |
 
-Le sezioni 1–9 sono il contratto MVP. La sezione 10 delimita le estensioni: firme proposte da qualificare prima di assegnare opcode/ABI definitivi.
+Sections 1–9 define the MVP contract. Section 10 sets the scope of extensions: proposed signatures to qualify before assigning final opcodes/ABI definitions.
 
-## 1 Regole comuni
+## 1 Common rules
 
-1. Argomenti e buffer sono valori guest; puntatori lineari REU u24, lunghezze u32. Nessun puntatore 6510 dell'app.
-2. Gli handle identificano una risorsa, il proprietario e il tipo. Non sono indici hardware utilizzabili senza verifica.
-3. Un processo può avere una sola syscall bloccante in corso. La richiesta conserva una continuazione del kernel e sospende soltanto quel processo.
-4. Nessun busy wait lungo, nessun loop nativo proporzionale a una dimensione non limitata, nessuna attesa del firmware con il raster sospeso.
-5. Un batch viene validato prima degli effetti evitabili. Le operazioni su dispositivi possono fallire dopo effetti parziali: dichiarare conteggi e semantica dell'errore.
-6. Dati letti da driver/hardware devono includere le ultime scritture VM; dati scritti dal driver devono essere visibili alle LOAD successive. Usare l'unico protocollo di coerenza REU del kernel.
-7. Kill/fault/uscita rilasciano tutte le risorse. Il cleanup che attende un dispositivo vive nel kernel e non riprende il bytecode terminato.
+1. Arguments and buffers are guest values; linear REU pointers are u24, lengths are u32. Apps have no 6510 pointers.
+2. Handles identify a resource, its owner and its type. They are not hardware indices that can be used without validation.
+3. A process may have only one blocking syscall in progress. The request retains a kernel continuation and suspends only that process.
+4. No long busy waits, no native loops proportional to an unbounded size, and no firmware waits with the raster suspended.
+5. A batch is validated before avoidable effects occur. Device operations may fail after partial effects: specify counts and error semantics.
+6. Data read by drivers/hardware must include the latest VM writes; data written by a driver must be visible to subsequent LOADs. Use the kernel's single REU coherence protocol.
+7. Kill/fault/exit release all resources. Cleanup that waits for a device lives in the kernel and does not resume terminated bytecode.
 
-I servizi restituiscono i codici di stato definiti in SPEC.md. I wrapper C-Script restituiscono `valore, errore` oppure il solo `errore`. Un successo è `0`; un servizio presente ma non abilitato restituisce ENODEV/ENOTSUP, senza simulare un successo.
+Services return the status codes defined in SPEC.md. C-Script wrappers return `value, error` or just `error`. Success is `0`; a service that is present but not enabled returns ENODEV/ENOTSUP, without pretending to succeed.
 
-Gli ID in questo documento sono esadecimali. Tutti i descrittori guest sono little endian, packed; i campi riservati devono essere zero. Un output non descritto non può contenere vecchi registri/dati del kernel.
+IDs in this document are hexadecimal. All guest descriptors are packed and little endian; reserved fields must be zero. An unspecified output must not contain stale kernel registers/data.
 
-## 2 Superficie dell'SDK C-Script
+## 2 C-Script SDK surface
 
-### 2.1 Sistema e UI
+### 2.1 System and UI
 
-| Firma | Comportamento |
+| Signature | Behavior |
 |---|---|
-| `system.exit(code: int)` | Termina il processo, non ritorna |
-| `system.sleep(frames: word) -> word` | Attesa in frame; zero cede il turno |
-| `system.frame() -> dword` | Contatore monotono modulo 2^32 |
-| `ui.open(title: str, width: word, height: word) -> (Window, word)` | Finestra centrata, X pari; misure esterne |
-| `ui.close(win: Window) -> word` | Chiude la finestra |
-| `ui.title(win: Window, title: str) -> word` | Modifica il titolo, massimo 15 byte |
-| `ui.wait(win: Window, timeout: word) -> (Event, word)` | Evento o EAGAIN; 0=poll, 65535=attesa indefinita |
-| `ui.input_state(win: Window) -> (InputState, word)` | Pulsanti, modificatori e puntatore relativo al client |
-| `ui.clear(win: Window, color: byte) -> word` | Riempie il client |
-| `ui.fill(win: Window, x: int, y: int, w: word, h: word, color: byte) -> word` | Rettangolo clippato |
-| `ui.frame(win: Window, x: int, y: int, w: word, h: word, color: byte) -> word` | Bordo interno di un pixel |
-| `ui.text(win: Window, x: int, y: int, value: str, fg: byte, bg: byte) -> word` | Testo opaco, massimo 255 byte per chiamata |
-| `ui.present(win: Window) -> word` | Attende la presentazione del lavoro accettato |
+| `system.exit(code: int)` | Terminates the process; does not return |
+| `system.sleep(frames: word) -> word` | Waits in frames; zero yields the turn |
+| `system.frame() -> dword` | Monotonic counter modulo 2^32 |
+| `ui.open(title: str, width: word, height: word) -> (Window, word)` | Centered window, even X; outer dimensions |
+| `ui.close(win: Window) -> word` | Closes the window |
+| `ui.title(win: Window, title: str) -> word` | Changes the title, maximum 15 bytes |
+| `ui.wait(win: Window, timeout: word) -> (Event, word)` | Event or EAGAIN; 0=poll, 65535=indefinite wait |
+| `ui.input_state(win: Window) -> (InputState, word)` | Buttons, modifiers and pointer relative to the client area |
+| `ui.clear(win: Window, color: byte) -> word` | Fills the client area |
+| `ui.fill(win: Window, x: int, y: int, w: word, h: word, color: byte) -> word` | Clipped rectangle |
+| `ui.frame(win: Window, x: int, y: int, w: word, h: word, color: byte) -> word` | One-pixel inner border |
+| `ui.text(win: Window, x: int, y: int, value: str, fg: byte, bg: byte) -> word` | Opaque text, maximum 255 bytes per call |
+| `ui.present(win: Window) -> word` | Waits for accepted work to be presented |
 
-`ui.FOREVER=65535`. Colori: BLACK=0, WHITE=1, DARK_GRAY=11, GRAY=12, LIGHT_GRAY=15. I wrapper non limitano i colori client a questi cinque; la shell invece deve farlo.
+`ui.FOREVER=65535`. Colors: BLACK=0, WHITE=1, DARK_GRAY=11, GRAY=12, LIGHT_GRAY=15. Wrappers do not restrict client colors to these five; the shell must do so.
 
-Le costanti SDK sono tipizzate nel binding, non semplici `int` inferiti: colori, tipi evento e flag Event sono byte; FOREVER, modi file, capability e codici di errore sono word; i keycode sono int; maschere pulsanti/modificatori sono word. Le altre costanti di record hanno il tipo del campo corrispondente (per esempio FileInfo.kind byte e FileInfo.flags word). Usare nomi distinti nel modulo ui: `KEYCODE_LEFT` per il tasto, `BUTTON_LEFT` per il pulsante, `MOD_SHIFT` per il modificatore; tutti i tasti, pulsanti e modificatori elencati sotto seguono rispettivamente i prefissi KEYCODE_, BUTTON_ e MOD_. I tipi evento conservano nomi come `ui.KEY_DOWN` e `ui.CLOSE_REQUEST`; `ui.REPEAT` è il flag byte. Il compilatore verifica queste firme come quelle delle funzioni.
+SDK constants are typed in the binding, rather than being inferred as plain `int`: colors, event types and Event flags are byte; FOREVER, file modes, capabilities and error codes are word; keycodes are int; button/modifier masks are word. Other record constants have the type of the corresponding field (for example, FileInfo.kind is byte and FileInfo.flags is word). Use distinct names in the ui module: `KEYCODE_LEFT` for the key, `BUTTON_LEFT` for the button, `MOD_SHIFT` for the modifier; all keys, buttons and modifiers listed below use the KEYCODE_, BUTTON_ and MOD_ prefixes, respectively. Event types retain names such as `ui.KEY_DOWN` and `ui.CLOSE_REQUEST`; `ui.REPEAT` is the byte flag. The compiler checks these signatures in the same way as function signatures.
 
-`Event` corrisponde esattamente al record di SPEC.md: `kind: byte`, `flags: byte`, `window: Window`, `arg0: int`, `arg1: int`, `arg2: word`, `frame: dword`, `reserved: word`. Le coordinate signed mantengono lo stesso layout di 16 byte. Tipi evento: 1 POINTER_MOVE, 2 BUTTON_DOWN, 3 BUTTON_UP, 4 KEY_DOWN, 5 KEY_UP, 6 FOCUS, 7 BLUR, 8 CLOSE_REQUEST, 9 INPUT_RESET. Il record viene azzerato dal wrapper se l'attesa restituisce errore, senza interpretare campi non inizializzati.
+`Event` exactly matches the record in SPEC.md: `kind: byte`, `flags: byte`, `window: Window`, `arg0: int`, `arg1: int`, `arg2: word`, `frame: dword`, `reserved: word`. Signed coordinates retain the same 16-byte layout. Event types: 1 POINTER_MOVE, 2 BUTTON_DOWN, 3 BUTTON_UP, 4 KEY_DOWN, 5 KEY_UP, 6 FOCUS, 7 BLUR, 8 CLOSE_REQUEST, 9 INPUT_RESET. The wrapper zeroes the record if the wait returns an error, without interpreting uninitialized fields.
 
-Per POINTER_MOVE/BUTTON: arg0=x client, arg1=y client, arg2=maschera dei pulsanti della cattura dopo la transizione, LEFT=1 e RIGHT=2; senza cattura la maschera è zero. BUTTON_DOWN nel client avvia la cattura per quella finestra: movimenti e transizioni successive le arrivano anche fuori dal client, con coordinate signed, fino al rilascio dell'ultimo pulsante, BLUR, nascondimento o chiusura. Per KEY: arg0=codice normalizzato, arg1=ASCII del testo attuale oppure zero se il tasto non produce testo, arg2=modificatori; SHIFT=1, CONTROL=2, COMMODORE=4. `flags` ammette soltanto bit0 REPEAT su KEY_DOWN; è zero negli altri casi. FOCUS/BLUR/CLOSE_REQUEST/INPUT_RESET hanno argomenti zero. I comandi globali della shell sono consumati dal kernel e non vengono duplicati nella coda dell'app.
+For POINTER_MOVE/BUTTON: arg0=client x, arg1=client y, arg2=captured button mask after the transition, LEFT=1 and RIGHT=2; without capture, the mask is zero. BUTTON_DOWN in the client area starts capture for that window: subsequent movement and transitions reach it even outside the client area, with signed coordinates, until the last button is released, BLUR occurs, or the window is hidden or closed. For KEY: arg0=normalized code, arg1=ASCII for the current text or zero if the key produces no text, arg2=modifiers; SHIFT=1, CONTROL=2, COMMODORE=4. `flags` permits only bit0 REPEAT on KEY_DOWN; it is zero in all other cases. FOCUS/BLUR/CLOSE_REQUEST/INPUT_RESET have zero arguments. Global shell commands are consumed by the kernel and are not duplicated in the app's queue.
 
-La tabella dei codici tasto MVP è unica per kernel e SDK; il manifest non la ridefinisce: `0x20…0x7E` per tasti imprimibili, con lettere maiuscole e simbolo base senza Shift; `0x100` RETURN, `0x101` BACKSPACE, `0x102` INSERT, `0x103` LEFT, `0x104` RIGHT, `0x105` UP, `0x106` DOWN, `0x107` HOME, `0x108` CLEAR, `0x109` RUN_STOP; `0x110…0x117` per F1…F8 in ordine; `0x120` SHIFT, `0x121` CONTROL, `0x122` COMMODORE. Il byte ASCII in arg1 riflette invece il testo effettivo, inclusi Shift e modalità della tastiera. I tasti funzione fisici F1/F3/F5/F7 con Shift producono F2/F4/F6/F8, quindi Shift+F5 produce il codice F6; Shift+RIGHT e Shift+DOWN producono LEFT e UP. Shift+BACKSPACE produce INSERT e Shift+HOME produce CLEAR. Conservare il codice scelto al key-down fino al relativo key-up, anche se Shift viene rilasciato prima. Gli altri codici sono ignorati nell'MVP; nessuno scancode hardware passa alle app.
+The MVP keycode table is shared by the kernel and SDK; the manifest does not redefine it: `0x20…0x7E` for printable keys, with uppercase letters and the base symbol without Shift; `0x100` RETURN, `0x101` BACKSPACE, `0x102` INSERT, `0x103` LEFT, `0x104` RIGHT, `0x105` UP, `0x106` DOWN, `0x107` HOME, `0x108` CLEAR, `0x109` RUN_STOP; `0x110…0x117` for F1…F8 in order; `0x120` SHIFT, `0x121` CONTROL, `0x122` COMMODORE. The ASCII byte in arg1 reflects the actual text, including Shift and the keyboard mode. Physical function keys F1/F3/F5/F7 with Shift produce F2/F4/F6/F8, so Shift+F5 produces the F6 code; Shift+RIGHT and Shift+DOWN produce LEFT and UP. Shift+BACKSPACE produces INSERT and Shift+HOME produces CLEAR. Retain the code chosen at key-down until its corresponding key-up, even if Shift is released first. Other codes are ignored in the MVP; no hardware scancodes reach apps.
 
-`ui.wait` passa Window in R1 a EVENT_WAIT: il kernel verifica proprietario e finestra viva prima di consumare un evento o sospendere il processo. Un handle chiuso restituisce EBADF anche dopo la creazione di una nuova finestra. `ui.input_state` usa INPUT_STATE con R0=Window; il kernel restituisce R1=pulsanti, R2=modificatori, R3=x client, R4=y client. Il wrapper costruisce `InputState`, 8 byte packed: `buttons: word` a 0, `modifiers: word` a 2, `x: int` a 4, `y: int` a 6; su errore il record è zero. Le coordinate possono essere esterne al client e non vengono clippate.
+`ui.wait` passes Window in R1 to EVENT_WAIT: the kernel checks ownership and that the window is live before consuming an event or suspending the process. A closed handle returns EBADF even after a new window has been created. `ui.input_state` uses INPUT_STATE with R0=Window; the kernel returns R1=buttons, R2=modifiers, R3=client x, R4=client y. The wrapper constructs `InputState`, 8 packed bytes: `buttons: word` at 0, `modifiers: word` at 2, `x: int` at 4, `y: int` at 6; on error, the record is zero. Coordinates may lie outside the client area and are not clipped.
 
-InputState rappresenta lo stato consegnabile a quella finestra, non tutti i pulsanti fisicamente premuti: `buttons` è zero se la finestra non possiede la cattura; `modifiers` è zero se non ha il focus. Le coordinate sono comunque quelle attuali relative al client. In questo modo leggere lo stato dopo BLUR non ripristina una pressione il cui rilascio andrebbe altrove.
+InputState represents the state deliverable to that window, rather than all physically pressed buttons: `buttons` is zero if the window does not own capture; `modifiers` is zero if it does not have focus. Coordinates always give the current position relative to the client area. Reading the state after BLUR therefore does not restore a press whose release would be delivered elsewhere.
 
-INPUT_RESET o BLUR impongono all'app di cancellare tutti i propri tasti mantenuti logicamente premuti; BLUR cancella anche pulsanti e interazioni client. Dopo INPUT_RESET l'app può rileggere pulsanti, modificatori e puntatore con `ui.input_state`; la 0.1 non offre una bitmap dei tasti. Questo contratto evita che la perdita di KEY_UP in una coda piena lasci un tasto bloccato nell'app. Flag pendenti, coalescing del focus e ordine di consegna seguono SPEC.md §13.2.
+INPUT_RESET or BLUR require the app to clear all keys it logically tracks as held; BLUR also clears buttons and client interactions. After INPUT_RESET the app can reread buttons, modifiers and the pointer with `ui.input_state`; 0.1 does not provide a key bitmap. This contract prevents a lost KEY_UP in a full queue from leaving a key stuck in the app. Pending flags, focus coalescing and delivery order follow SPEC.md §13.2.
 
-Le prime primitive sono wrapper immediati su GFX_SUBMIT. I wrapper, compresi i blit video, azzerano ogni record di 16 byte prima di compilare i campi usati: i temporanei sullo stack non sono implicitamente zero. L'accesso a batch è `ui.submit(win: Window, commands: bytes, count: word) -> word`: verifica `1 <= count <= 16` e almeno `16*count` byte, usando il formato già definito. I helper più comodi per costruire batch possono essere aggiunti alla libreria dopo avere misurato le app semplici. Non serve un albero retained di widget.
+The first primitives are immediate wrappers over GFX_SUBMIT. Wrappers, including video blits, zero each 16-byte record before filling the fields they use: stack temporaries are not implicitly zero. Batch access is `ui.submit(win: Window, commands: bytes, count: word) -> word`: it checks `1 <= count <= 16` and at least `16*count` bytes, using the format already defined. More convenient helpers for constructing batches can be added to the library after measuring simple apps. No retained widget tree is needed.
 
 ### 2.2 Video
 
-| Firma | Comportamento |
+| Signature | Behavior |
 |---|---|
-| `video.info() -> (VideoInfo, word)` | Risoluzione, formati sorgente e capacità |
-| `video.client_size(win: Window) -> (word, word, word)` | Larghezza, altezza client, errore |
-| `video.blit8(win: Window, x: int, y: int, pixels: bytes, w: word, h: word) -> word` | Sorgente lineare INDEX8, stride=w |
-| `video.blit4(win: Window, x: int, y: int, pixels: bytes, w: word, h: word) -> word` | Sorgente packed, stride=ceil(w/2) |
+| `video.info() -> (VideoInfo, word)` | Resolution, source formats and capabilities |
+| `video.client_size(win: Window) -> (word, word, word)` | Client width, height, error |
+| `video.blit8(win: Window, x: int, y: int, pixels: bytes, w: word, h: word) -> word` | Linear INDEX8 source, stride=w |
+| `video.blit4(win: Window, x: int, y: int, pixels: bytes, w: word, h: word) -> word` | Packed source, stride=ceil(w/2) |
 
-Il wrapper valida che la vista contenga almeno i byte richiesti, poi il kernel valida di nuovo l'intervallo guest. Un blit non modifica il buffer sorgente; la sua vita deve coprire la chiamata bloccante. Clipping e conversione sono nativi e suddivisi in pezzi limitati.
+The wrapper validates that the view contains at least the required bytes, then the kernel validates the guest range again. A blit does not modify the source buffer; its lifetime must cover the blocking call. Clipping and conversion are native and split into bounded chunks.
 
-**Non esiste `video.framebuffer()` nella 0.1.** Un buffer creato con `bytes()` appartiene all'app e appare sullo schermo soltanto dopo il blit. Il formato interno tiled/packed e il framebuffer UPIC non sono visibili. Niente registri VIC, routine raster, sprite hardware o indirizzi UPIC nell'ABI.
+**There is no `video.framebuffer()` in 0.1.** A buffer created with `bytes()` belongs to the app and appears on screen only after a blit. The internal tiled/packed format and UPIC framebuffer are not visible. No VIC registers, raster routines, hardware sprites or UPIC addresses in the ABI.
 
-Una futura estensione potrà restituire `{ptr, width, height, stride, format}` per un framebuffer logico, con acquisizione, danno/presentazione e rilascio espliciti. Potrà essere una superficie dell'app in REU; non dovrà promettere alias con lo scanout fisico. Non riservare oggi un mapping o imporre costi di coerenza per questa possibilità.
+A future extension may return `{ptr, width, height, stride, format}` for a logical framebuffer, with explicit acquisition, damage/presentation and release. It may be an app surface in REU; it must not promise aliasing with physical scanout. Do not reserve a mapping or impose coherence costs today for this possibility.
 
-### 2.3 File
+### 2.3 Files
 
-| Firma | Comportamento |
+| Signature | Behavior |
 |---|---|
-| `fs.open(path: str, mode: word) -> (File, word)` | File relativo alla directory dati dell'app |
-| `fs.read(file: File, dst: bytes) -> (dword, word)` | Byte letti e stato; zero con successo = EOF o richiesta vuota |
-| `fs.write(file: File, src: bytes) -> (dword, word)` | Byte confermati scritti e stato |
-| `fs.seek(file: File, position: dword) -> word` | Posizione assoluta nell'intervallo 0…dimensione, EOF incluso |
-| `fs.tell(file: File) -> (dword, word)` | Posizione logica corrente |
-| `fs.size(file: File) -> (dword, word)` | Dimensione del file |
-| `fs.close(file: File) -> word` | Rilascia l'handle; controllare eventuale errore del backend |
-| `fs.stat(path: str) -> (FileInfo, word)` | Tipo, attributi e metadati disponibili |
-| `fs.opendir(path: str) -> (Dir, word)` | Crea un elenco in REU; `"."` indica la root dati dell'app |
-| `fs.next(dir: Dir, name: bytes) -> (FileInfo, bool, word)` | Una voce; bool=false con errore=0 indica fine elenco |
-| `fs.closedir(dir: Dir) -> word` | Libera l'elenco e invalida l'handle |
-| `fs.mkdir(path: str) -> word` | Crea una directory, senza creare automaticamente gli antenati |
-| `fs.rename(old_path: str, new_path: str) -> word` | Rinomina entro la root dell'app; destinazione già esistente = EEXIST |
-| `fs.remove(path: str) -> word` | Elimina un singolo file; una directory restituisce EISDIR |
+| `fs.open(path: str, mode: word) -> (File, word)` | File relative to the app's data directory |
+| `fs.read(file: File, dst: bytes) -> (dword, word)` | Bytes read and status; zero with success = EOF or an empty request |
+| `fs.write(file: File, src: bytes) -> (dword, word)` | Confirmed bytes written and status |
+| `fs.seek(file: File, position: dword) -> word` | Absolute position in the range 0…size, including EOF |
+| `fs.tell(file: File) -> (dword, word)` | Current logical position |
+| `fs.size(file: File) -> (dword, word)` | File size |
+| `fs.close(file: File) -> word` | Releases the handle; check for backend errors |
+| `fs.stat(path: str) -> (FileInfo, word)` | Type, attributes and available metadata |
+| `fs.opendir(path: str) -> (Dir, word)` | Creates a listing in REU; `"."` denotes the app's data root |
+| `fs.next(dir: Dir, name: bytes) -> (FileInfo, bool, word)` | One entry; bool=false with error=0 indicates the end of the listing |
+| `fs.closedir(dir: Dir) -> word` | Frees the listing and invalidates the handle |
+| `fs.mkdir(path: str) -> word` | Creates a directory without automatically creating ancestors |
+| `fs.rename(old_path: str, new_path: str) -> word` | Renames within the app's root; an existing destination = EEXIST |
+| `fs.remove(path: str) -> word` | Deletes a single file; a directory returns EISDIR |
 
-Modalità iniziali: READ=1, READ_WRITE=2, CREATE_NEW=3, CREATE_TRUNCATE=4. Sono enum C-OS, **non flag UCI da inoltrare senza traduzione**. READ/READ_WRITE richiedono un file esistente; CREATE_NEW fallisce se esiste; CREATE_TRUNCATE crea o tronca. READ permette soltanto lettura; READ_WRITE, CREATE_NEW e CREATE_TRUNCATE garantiscono sia lettura sia scrittura. Se il profilo non supporta l'apertura combinata, FILE_OPEN restituisce ENOTSUP prima di creare o troncare: nessuna riduzione implicita dei permessi del modo richiesto.
+Initial modes: READ=1, READ_WRITE=2, CREATE_NEW=3, CREATE_TRUNCATE=4. These are C-OS enums, **not UCI flags to forward without translation**. READ/READ_WRITE require an existing file; CREATE_NEW fails if it exists; CREATE_TRUNCATE creates or truncates. READ permits only reading; READ_WRITE, CREATE_NEW and CREATE_TRUNCATE guarantee both reading and writing. If the profile does not support combined access when opening, FILE_OPEN returns ENOTSUP before creating or truncating: no implicit reduction in the permissions of the requested mode.
 
-Ogni read/write può restituire un conteggio inferiore alla richiesta. Per la prima implementazione trasferisce al massimo un blocco dati, inizialmente 128 byte: il programma o un helper bytecode ripete la chiamata. Non allocare un buffer locale della dimensione richiesta dall'app. Una richiesta vuota ritorna zero e non dereferenzia il puntatore, ma verifica comunque l'handle.
+Each read/write may return a count smaller than requested. The first implementation transfers at most one data block, initially 128 bytes: the program or a bytecode helper repeats the call. Do not allocate a local buffer the size requested by the app. An empty request returns zero without dereferencing the pointer, but still checks the handle.
 
-`fs.seek` non estende il file: accetta soltanto posizioni fra zero e la dimensione nota verificata, estremi inclusi; oltre EOF restituisce ERANGE senza cambiare cursore o file. Una scrittura può estendere sequenzialmente il file. Prima di inviare ogni singolo blocco calcolare `position + chunk_length` con controllo del riporto: se supera `$FFFFFFFF`, restituire ERANGE con conteggio zero e nessun effetto di quel blocco, senza troncare il trasferimento per farlo entrare. I blocchi completati da chiamate precedenti restano validi.
+`fs.seek` does not extend the file: it accepts only positions between zero and the verified known size, inclusive; beyond EOF it returns ERANGE without changing the cursor or file. A write may extend the file sequentially. Before sending each individual block, compute `position + chunk_length` with carry checking: if it exceeds `$FFFFFFFF`, return ERANGE with a zero count and no effects from that block, without shortening the transfer to make it fit. Blocks completed by previous calls remain valid.
 
-Directory e metadati fanno parte dell'MVP; file picker completo, cancellazione di directory, copie native di interi alberi e mount restano successivi. Una libreria `read_exact`/`write_all` può essere scritta in C-Script usando slice e loop, quindi resta soggetta al fuel.
+Directories and metadata are part of the MVP; a full file picker, directory deletion, native copies of entire trees and mounting come later. A `read_exact`/`write_all` library can be written in C-Script using slices and loops, so it remains subject to fuel.
 
-`fs.next` richiede un buffer nome di almeno 256 byte, riutilizzato a ogni chiamata. Il wrapper verifica la lunghezza u32 della vista e passa capacità 256 alla syscall, anche per viste più grandi, senza troncare la lunghezza a u16. Scrive `info.name_len` byte e un NUL aggiuntivo; usare `text.view(name, dword(info.name_len))` per il testo. A fine elenco restituisce un record zero e non modifica il buffer. Un buffer insufficiente dà ERANGE senza avanzare il cursore.
+`fs.next` requires a name buffer of at least 256 bytes, reused on every call. The wrapper checks the view's u32 length and passes capacity 256 to the syscall, even for larger views, without truncating the length to u16. It writes `info.name_len` bytes and an additional NUL; use `text.view(name, dword(info.name_len))` for the text. At the end of the listing it returns a zero record and leaves the buffer unchanged. An insufficient buffer returns ERANGE without advancing the cursor.
 
-I nomi vengono restituiti per intero fino a 255 byte; una voce che non può essere indirizzata dall'API dei path a 127 byte, o contiene byte non ASCII, ha il flag NAME_UNADDRESSABLE. L'interfaccia può mostrarla ma non deve aprirla usando un nome troncato. Nomi oltre 255 byte causano EOVERFLOW dell'apertura, senza pubblicare un elenco incompleto.
+Names are returned in full up to 255 bytes; an entry that cannot be addressed through the 127-byte path API, or contains non-ASCII bytes, has the NAME_UNADDRESSABLE flag. The interface may display it but must not open it using a truncated name. Names longer than 255 bytes cause EOVERFLOW when opening the listing, without publishing an incomplete listing.
 
 ### 2.4 SID
 
-| Firma | Comportamento |
+| Signature | Behavior |
 |---|---|
-| `sid.count() -> word` | SID logici configurati e disponibili |
-| `sid.open(index: word) -> (SID, word)` | Lease esclusivo di un intero SID |
-| `sid.close(chip: SID) -> word` | Spegne e rilascia il chip |
-| `sid.write(chip: SID, reg: byte, value: byte) -> word` | Scrittura controllata di un registro |
-| `sid.write_batch(chip: SID, pairs: bytes) -> word` | Coppie registro/valore, da 1 a 25 |
-| `sid.note(chip: SID, voice: byte, note: byte, wave: byte, volume: byte) -> word` | Helper semplice, note MIDI 0…95 e voce 0…2 |
-| `sid.off(chip: SID, voice: byte) -> word` | Abbassa il gate della voce |
+| `sid.count() -> word` | Configured and available logical SIDs |
+| `sid.open(index: word) -> (SID, word)` | Exclusive lease of an entire SID |
+| `sid.close(chip: SID) -> word` | Silences and releases the chip |
+| `sid.write(chip: SID, reg: byte, value: byte) -> word` | Validated register write |
+| `sid.write_batch(chip: SID, pairs: bytes) -> word` | Register/value pairs, from 1 to 25 |
+| `sid.note(chip: SID, voice: byte, note: byte, wave: byte, volume: byte) -> word` | Simple helper, MIDI notes 0…95 and voice 0…2 |
+| `sid.off(chip: SID, voice: byte) -> word` | Lowers the voice gate |
 
-`sid.note` è libreria bytecode con tabella di frequenze PAL generata sul computer di sviluppo, non un nuovo sintetizzatore nativo. Configura frequenza, pulse width iniziale $0800, AD=$09, SR=$F0, gate e volume globale. Wave ammessi: TRIANGLE=$10, SAW=$20, PULSE=$40, NOISE=$80; volume 0…15. Per combinazioni e ADSR personalizzati usare write_batch.
+`sid.note` is a bytecode library with a PAL frequency table generated on the development computer, not a new native synthesizer. It configures frequency, initial pulse width $0800, AD=$09, SR=$F0, gate and global volume. Allowed wave values: TRIANGLE=$10, SAW=$20, PULSE=$40, NOISE=$80; volume 0…15. For combinations and custom ADSR, use write_batch.
 
-Il lease è per chip, perché filtro e volume sono condivisi fra le sue tre voci. Non promettere isolamento assegnando semplicemente voci diverse a processi diversi. Modello, base e numero dei SID dipendono dal profilo hardware; non hardcodare nel linguaggio il numero massimo teorico del dispositivo.
+The lease is per chip, because the filter and volume are shared by its three voices. Do not promise isolation by simply assigning different voices to different processes. SID model, base address and count depend on the hardware profile; do not hardcode the device's theoretical maximum count into the language.
 
 ### 2.5 Ultimate Audio
 
-| Firma | Comportamento |
+| Signature | Behavior |
 |---|---|
-| `audio.count() -> word` | Canali PCM disponibili nel profilo |
-| `audio.open() -> (PCM, word)` | Primo canale libero |
-| `audio.play(ch: PCM, sample: bytes, hz: word, volume: byte, pan: byte, loop: bool) -> word` | Avvia PCM signed 8 bit, intero campione; loop opzionale |
-| `audio.stop(ch: PCM) -> word` | Ferma la lettura hardware e rilascia il vincolo sul campione |
+| `audio.count() -> word` | PCM channels available in the profile |
+| `audio.open() -> (PCM, word)` | First free channel |
+| `audio.play(ch: PCM, sample: bytes, hz: word, volume: byte, pan: byte, loop: bool) -> word` | Starts signed 8-bit PCM, entire sample; optional loop |
+| `audio.stop(ch: PCM) -> word` | Stops hardware reads and releases the restriction on the sample |
 | `audio.volume(ch: PCM, value: byte) -> word` | Volume 0…63 |
-| `audio.pan(ch: PCM, value: byte) -> word` | 0…255, centro iniziale 128 |
-| `audio.state(ch: PCM) -> (word, word)` | 0 fermo / 1 in riproduzione, errore |
-| `audio.close(ch: PCM) -> word` | Stop e rilascio del canale |
+| `audio.pan(ch: PCM, value: byte) -> word` | 0…255, initial center 128 |
+| `audio.state(ch: PCM) -> (word, word)` | 0 stopped / 1 playing, error |
+| `audio.close(ch: PCM) -> word` | Stops and releases the channel |
 
-PCM signed 8 bit è il formato logico C-OS. Il driver deve qualificare encoding, rate, loop e pan sul backend: eventuali conversioni vanno dichiarate, non lasciare ambigua la semantica dei campioni. In 0.1 non includere decoder compressi, mixing software o streaming con callback in interrupt.
+Signed 8-bit PCM is the C-OS logical format. The driver must qualify encoding, rate, looping and pan on the backend: any conversions must be documented, rather than leaving sample semantics ambiguous. In 0.1, do not include compressed decoders, software mixing or streaming with interrupt callbacks.
 
-`hz` inizialmente 1.000…32.000; il driver restituisce ERANGE fuori intervallo. La frequenza effettiva dipende dal divisore hardware e viene riportata nei test. Il formato sorgente non espone il divisore. Campioni non vuoti, interamente nell'arena del proprietario e con lunghezza ≤$FFFFFF.
+`hz` is initially 1,000…32,000; the driver returns ERANGE outside this range. The actual frequency depends on the hardware divisor and is reported in tests. The source format does not expose the divisor. Samples must be nonempty, entirely within the owner's arena and have length ≤$FFFFFF.
 
-`loop=true` ripete tutto il campione. Loop con punti A/B, rate variabile e doppio buffer sono estensioni successive; mantenere la prima API piccola.
+`loop=true` repeats the entire sample. Loops with A/B points, variable rate and double buffering are later extensions; keep the first API small.
 
-### 2.6 Informazioni Ultimate
+### 2.6 Ultimate information
 
-| Firma | Comportamento |
+| Signature | Behavior |
 |---|---|
-| `ultimate.info() -> (UltimateInfo, word)` | Profilo, versione ABI, capacità e numero di dispositivi |
-| `ultimate.has(capability: word) -> bool` | Capacità del profilo, senza nuova probe distruttiva |
+| `ultimate.info() -> (UltimateInfo, word)` | Profile, ABI version, capabilities and device counts |
+| `ultimate.has(capability: word) -> bool` | Profile capability, without a new destructive probe |
 
-Capacità numerate: FILE_IO=0, FILE_SEEK=1, SID=2, PCM8=3, VIDEO_BLIT8=4, RTC=5, FILE_META=6, DIRECTORY=7, FILE_MUTATE=8, STORAGE_ENUM=9. Riservate alle estensioni: TCP_CLIENT=10, UDP_CLIENT=11, HTTP=12, HTTP_JSON=13, HTTPS=14; restano zero nell'MVP. `has(n)` legge il bit n di UltimateInfo; indici sconosciuti sono false. UltimateInfo è l'unica sorgente ABI delle capability; SYS_INFO.R4 resta zero riservato.
+Numbered capabilities: FILE_IO=0, FILE_SEEK=1, SID=2, PCM8=3, VIDEO_BLIT8=4, RTC=5, FILE_META=6, DIRECTORY=7, FILE_MUTATE=8, STORAGE_ENUM=9. Reserved for extensions: TCP_CLIENT=10, UDP_CLIENT=11, HTTP=12, HTTP_JSON=13, HTTPS=14; they remain zero in the MVP. `has(n)` reads bit n of UltimateInfo; unknown indices are false. UltimateInfo is the sole ABI source of capabilities; SYS_INFO.R4 remains reserved and zero.
 
-Una capability indica un servizio implementato e qualificato sul profilo; non garantisce che un supporto sia inserito o che un dato sia fresco. Le API restituiscono disponibilità ed errori operativi. RTC viene implementato tramite il comando DOS descritto sotto; il widget usa uptime se l'ora non è disponibile. Niente pass-through generale `ultimate.command(raw_bytes)`: le funzioni future avranno servizi tipizzati, con controllo di risorse e durata.
+A capability indicates a service implemented and qualified on the profile; it does not guarantee that media is inserted or that data is fresh. APIs report availability and operational errors. RTC is implemented through the DOS command described below; the widget uses uptime when the time is unavailable. No general `ultimate.command(raw_bytes)` pass-through: future functions will have typed services with resource and duration checks.
 
 ### 2.7 Storage
 
-| Firma | Comportamento |
+| Signature | Behavior |
 |---|---|
-| `storage.scan() -> (word, dword, word)` | Numero dei supporti, generazione dell'elenco, errore |
-| `storage.info(index: word, generation: dword) -> (StorageInfo, word)` | Legge una voce dell'elenco; generazione superata = ESTALE |
+| `storage.scan() -> (word, dword, word)` | Media count, listing generation, error |
+| `storage.info(index: word, generation: dword) -> (StorageInfo, word)` | Reads a listing entry; outdated generation = ESTALE |
 
-Enumerazione iniziale di massimo cinque supporti. Non ritornare un numero parziale come se l'elenco fosse completo: superato il limite, EOVERFLOW. Scansione esplicita, al boot o su richiesta di aggiornamento; nessuna scansione a ogni frame. Richieste concorrenti possono condividere la scansione in corso. Un elenco precedente resta valido fino alla pubblicazione completa di quello nuovo; l'errore di scansione non pubblica una tabella parziale.
+Initial enumeration of at most five media devices. Do not return a partial count as if the listing were complete: exceeding the limit returns EOVERFLOW. Scans are explicit, at boot or on refresh requests; no scan on every frame. Concurrent requests may share an ongoing scan. A previous listing remains valid until the new one is fully published; a scan error does not publish a partial table.
 
-StorageInfo descrive tipo SD/USB/altro, unità, presenza osservata, selezione per C-OS e stato read-only se noto. Non promette capacità o spazio libero quando il backend non li fornisce. L'ID è un identificatore diagnostico e non concede accesso a un volume: le normali API `fs` operano sempre nella root assegnata all'app.
+StorageInfo describes the SD/USB/other type, unit, observed presence, selection for C-OS and read-only status if known. It does not promise capacity or free space when the backend does not provide them. The ID is a diagnostic identifier and does not grant access to a volume: normal `fs` APIs always operate within the root assigned to the app.
 
-### 2.8 Orologio
+### 2.8 Clock
 
-| Firma | Comportamento |
+| Signature | Behavior |
 |---|---|
-| `clock.now() -> (DateTime, word)` | Ultimo campione recente dell'RTC; EAGAIN se il refresh è pendente |
+| `clock.now() -> (DateTime, word)` | Latest recent RTC sample; EAGAIN if refresh is pending |
 
-Data/ora civile in un record fisso. Il kernel aggiorna una cache condivisa al massimo una volta ogni 50 frame, in un lavoro UCI a bassa priorità. Le chiamate delle app leggono la cache; non moltiplicano le richieste firmware. Un campione più vecchio di 100 frame non viene presentato come attuale: restituire EAGAIN e richiedere un refresh. Senza dispositivo ENODEV; risposta malformata EIO. In caso di EAGAIN/errore il wrapper restituisce un record zero.
+Civil date/time in a fixed record. The kernel updates a shared cache at most once every 50 frames, in a low-priority UCI job. App calls read the cache; they do not multiply firmware requests. A sample older than 100 frames is not presented as current: return EAGAIN and request a refresh. No device returns ENODEV; a malformed response returns EIO. On EAGAIN/error, the wrapper returns a zero record.
 
-Il record riporta il frame in cui è stato acquisito e se l'offset UTC è noto. Senza informazione di fuso orario, zero nell'offset non significa UTC. `system.frame()` rimane il riferimento monotono per timeout e scheduling anche se l'RTC cambia. Impostazione dell'ora e sincronizzazione NTP sono servizi amministrativi successivi.
+The record reports the frame when it was acquired and whether the UTC offset is known. Without time-zone information, zero in the offset does not mean UTC. `system.frame()` remains the monotonic reference for timeouts and scheduling even if the RTC changes. Setting the time and NTP synchronization are later administrative services.
 
-## 3 ABI dei servizi aggiunti
+## 3 ABI for additional services
 
-R0 è sempre lo stato al ritorno. Salvo eccezioni esplicite, output su errore azzerati, nessuna modifica al buffer destinazione. Le syscall core restano definite in SPEC.md.
+R0 always holds the status on return. Unless explicitly stated otherwise, outputs are zeroed on error and the destination buffer is unchanged. Core syscalls remain defined in SPEC.md.
 
-| ID | Servizio | Input | Output |
+| ID | Service | Input | Output |
 |---|---|---|---|
-| 20 | FILE_OPEN | P0=path, R1=lunghezza 1…127, R2=mode | R1=File |
-| 21 | FILE_CLOSE | R0=File | Stato |
-| 22 | FILE_READ | R0=File, P0=dst, R1/R2=lunghezza u32 | R1/R2=byte letti |
-| 23 | FILE_WRITE | R0=File, P0=src, R1/R2=lunghezza u32 | R1/R2=byte confermati |
-| 24 | FILE_SEEK | R0=File, R1/R2=posizione u32 | Stato |
-| 25 | FILE_TELL | R0=File | R1/R2=posizione |
-| 26 | FILE_SIZE | R0=File | R1/R2=dimensione |
-| 27 | FILE_STAT | P0=path, R1=lunghezza, P1=FileInfo destinazione | Stato |
-| 28 | DIR_OPEN | P0=path, R1=lunghezza | R1=Dir |
-| 29 | DIR_NEXT | R0=Dir, P0=nome, R1=capacità ≥256, P1=FileInfo destinazione | R1=1 voce / 0 fine elenco |
-| 2A | DIR_CLOSE | R0=Dir | Stato |
-| 2B | FILE_MKDIR | P0=path, R1=lunghezza | Stato |
-| 2C | FILE_RENAME | P0=vecchio path, R1=lunghezza, P1=nuovo path, R2=lunghezza | Stato |
-| 2D | FILE_REMOVE | P0=path, R1=lunghezza | Stato |
-| 40 | SID_OPEN | R1=indice logico | R1=SID |
-| 41 | SID_CLOSE | R0=SID | Stato |
-| 42 | SID_WRITE_BATCH | R0=SID, P0=coppie, R1=numero coppie 1…25 | Stato |
-| 43 | SID_GATE_OFF | R0=SID, R1=voce 0…2 | Stato |
+| 20 | FILE_OPEN | P0=path, R1=length 1…127, R2=mode | R1=File |
+| 21 | FILE_CLOSE | R0=File | Status |
+| 22 | FILE_READ | R0=File, P0=dst, R1/R2=u32 length | R1/R2=bytes read |
+| 23 | FILE_WRITE | R0=File, P0=src, R1/R2=u32 length | R1/R2=confirmed bytes |
+| 24 | FILE_SEEK | R0=File, R1/R2=u32 position | Status |
+| 25 | FILE_TELL | R0=File | R1/R2=position |
+| 26 | FILE_SIZE | R0=File | R1/R2=size |
+| 27 | FILE_STAT | P0=path, R1=length, P1=destination FileInfo | Status |
+| 28 | DIR_OPEN | P0=path, R1=length | R1=Dir |
+| 29 | DIR_NEXT | R0=Dir, P0=name, R1=capacity ≥256, P1=destination FileInfo | R1=1 entry / 0 end of listing |
+| 2A | DIR_CLOSE | R0=Dir | Status |
+| 2B | FILE_MKDIR | P0=path, R1=length | Status |
+| 2C | FILE_RENAME | P0=old path, R1=length, P1=new path, R2=length | Status |
+| 2D | FILE_REMOVE | P0=path, R1=length | Status |
+| 40 | SID_OPEN | R1=logical index | R1=SID |
+| 41 | SID_CLOSE | R0=SID | Status |
+| 42 | SID_WRITE_BATCH | R0=SID, P0=pairs, R1=pair count 1…25 | Status |
+| 43 | SID_GATE_OFF | R0=SID, R1=voice 0…2 | Status |
 | 50 | AUDIO_OPEN | — | R1=PCM |
-| 51 | AUDIO_CLOSE | R0=PCM | Stato |
-| 52 | AUDIO_PLAY | R0=PCM, P0=AudioDesc | Stato |
-| 53 | AUDIO_STOP | R0=PCM | Stato |
-| 54 | AUDIO_VOLUME | R0=PCM, R1=volume | Stato |
-| 55 | AUDIO_PAN | R0=PCM, R1=pan | Stato |
+| 51 | AUDIO_CLOSE | R0=PCM | Status |
+| 52 | AUDIO_PLAY | R0=PCM, P0=AudioDesc | Status |
+| 53 | AUDIO_STOP | R0=PCM | Status |
+| 54 | AUDIO_VOLUME | R0=PCM, R1=volume | Status |
+| 55 | AUDIO_PAN | R0=PCM, R1=pan | Status |
 | 56 | AUDIO_STATE | R0=PCM | R1=0/1 |
-| 60 | VIDEO_INFO | P0=VideoInfo destinazione, 16 byte | Stato |
-| 61 | VIDEO_CLIENT_SIZE | R0=Window | R1=larghezza, R2=altezza |
-| 70 | ULTIMATE_INFO | P0=UltimateInfo destinazione, 16 byte | Stato |
-| 71 | CLOCK_NOW | P0=DateTime destinazione, 16 byte | Stato |
-| 72 | STORAGE_SCAN | — | R1=numero, R2/R3=generazione low16/high16 |
-| 73 | STORAGE_INFO | R1=indice, R2/R3=generazione, P0=StorageInfo destinazione | Stato |
+| 60 | VIDEO_INFO | P0=destination VideoInfo, 16 bytes | Status |
+| 61 | VIDEO_CLIENT_SIZE | R0=Window | R1=width, R2=height |
+| 70 | ULTIMATE_INFO | P0=destination UltimateInfo, 16 bytes | Status |
+| 71 | CLOCK_NOW | P0=destination DateTime, 16 bytes | Status |
+| 72 | STORAGE_SCAN | — | R1=count, R2/R3=generation low16/high16 |
+| 73 | STORAGE_INFO | R1=index, R2/R3=generation, P0=destination StorageInfo | Status |
 
-Ogni coppia R1/R2 u32 è low16/high16; STORAGE usa esplicitamente R2/R3. Oltre alle syscall core, l'ID 30 NUM_OP è definito in [NUMERICS.md](NUMERICS.md); non usa UCI e non è una capability hardware. Gli ID non definiti da alcun allegato o dalla specifica core sono ENOSYS; 80–8F sono riservati alla futura rete e 90–9F al futuro HTTP, senza handler nell'MVP.
+Each u32 R1/R2 pair is low16/high16; STORAGE explicitly uses R2/R3. In addition to core syscalls, ID 30 NUM_OP is defined in [NUMERICS.md](NUMERICS.md); it does not use UCI and is not a hardware capability. IDs not defined by any companion document or the core specification return ENOSYS; 80–8F are reserved for future networking and 90–9F for future HTTP, with no handlers in the MVP.
 
-AudioDesc, 16 byte: puntatore sample u24 a 0; flag a 3 (bit0 loop); lunghezza u32 a 4; hz u16 a 8; volume u8 a 10; pan u8 a 11; quattro byte zero a 12. Requisiti e check vengono applicati all'intera sorgente, non solo al primo blocco cache.
+AudioDesc, 16 bytes: u24 sample pointer at 0; flags at 3 (bit0 loop); u32 length at 4; u16 hz at 8; u8 volume at 10; u8 pan at 11; four zero bytes at 12. Requirements and checks apply to the entire source, not just the first cache block.
 
-VideoInfo, 16 byte: ABI u16 a 0; width/height u16 a 2/4; formati u16 a 6 (bit0 BLIT4, bit1 BLIT8); numero colori u16 a 8 (=16); flag u16 a 10 (bit0 mapping diretto, sempre zero nella 0.1); quattro byte zero a 12. Nessun indirizzo o formato UPIC.
+VideoInfo, 16 bytes: u16 ABI at 0; u16 width/height at 2/4; u16 formats at 6 (bit0 BLIT4, bit1 BLIT8); u16 color count at 8 (=16); u16 flags at 10 (bit0 direct mapping, always zero in 0.1); four zero bytes at 12. No UPIC address or format.
 
-UltimateInfo, 16 byte: ABI u16 a 0; capability bits u32 a 2; sid_count u8 a 6; pcm_count u8 a 7; timing_profile_id u16 a 8; hardware_profile_id u16 a 10; firmware_profile_id u16 a 12; due byte zero a 14. Gli ID del profilo sono chiavi del manifest/report, non interpretazioni arbitrarie della stringa di versione firmware.
+UltimateInfo, 16 bytes: u16 ABI at 0; u32 capability bits at 2; u8 sid_count at 6; u8 pcm_count at 7; u16 timing_profile_id at 8; u16 hardware_profile_id at 10; u16 firmware_profile_id at 12; two zero bytes at 14. Profile IDs are manifest/report keys, not arbitrary interpretations of the firmware version string.
 
-Handle di ogni tipo: un contatore monotono u16 per incarnazione del processo, condiviso fra Window/File/Dir/SID/PCM; la shell ha un proprio contatore. Zero è invalido e nessun ID viene riutilizzato nella stessa incarnazione. Ogni lookup usa identità del processo chiamante, incarnazione, ID, tipo e stato vivo: lo stesso valore numerico in due app non identifica la stessa risorsa. I record del kernel verificano sempre proprietario e tipo, anche per bytecode scritto a mano.
+Handles of every type: a monotonic u16 counter per process incarnation, shared across Window/File/Dir/SID/PCM; the shell has its own counter. Zero is invalid and no ID is reused within the same incarnation. Every lookup uses the calling process's identity, incarnation, ID, type and live state: the same numeric value in two apps does not identify the same resource. Kernel records always check owner and type, even for handwritten bytecode.
 
-Ogni incarnazione ammette quindi al massimo 65.535 creazioni di handle. All'esaurimento le sue nuove aperture restituiscono ENOSPC senza consumare gli ID di altre app o della shell; le risorse già aperte continuano a funzionare. Il contatore dell'app riparte soltanto dopo terminazione, cleanup completo e nuova partenza con contesto e dati inizializzati ripristinati. Le continuazioni della vecchia incarnazione non possono consegnare risultati a quella nuova. Il contatore della shell dura per la sessione del sistema; anche il suo esaurimento fallisce senza wrap.
+Each incarnation therefore permits at most 65,535 handle creations. Once exhausted, its new opens return ENOSPC without consuming IDs belonging to other apps or the shell; resources already open continue to work. The app's counter restarts only after termination, complete cleanup and a fresh start with its context and initialized data restored. Continuations from the old incarnation must not deliver results to the new one. The shell's counter lasts for the system session; its exhaustion also fails without wrapping.
 
-### 3.1 Record di file, directory, storage e ora
+### 3.1 File, directory, storage and time records
 
-DateTime, 16 byte:
+DateTime, 16 bytes:
 
-| Offset | Campo |
+| Offset | Field |
 |---|---|
 | 0 | `year`, u16, 1…9999 |
 | 2 | `month`, u8, 1…12 |
-| 3 | `day`, u8, valido per mese/anno |
+| 3 | `day`, u8, valid for the month/year |
 | 4 | `hour`, u8, 0…23 |
 | 5 | `minute`, u8, 0…59 |
 | 6 | `second`, u8, 0…59 |
 | 7 | `flags`, u8: bit0 VALID, bit1 OFFSET_KNOWN |
-| 8 | `utc_offset_minutes`, i16; zero se sconosciuto |
-| 10 | Due byte riservati zero |
-| 12 | `sampled_frame`, u32; zero quando il record rappresenta il timestamp di un file |
+| 8 | `utc_offset_minutes`, i16; zero if unknown |
+| 10 | Two reserved zero bytes |
+| 12 | `sampled_frame`, u32; zero when the record represents a file timestamp |
 
-FileInfo, 32 byte: `kind` u8 a 0 (0 sconosciuto, 1 file, 2 directory, 3 altro); `attributes` u8 a 1 (READ_ONLY=1, HIDDEN=2, SYSTEM=4, ARCHIVE=8); `valid` u16 a 2 (SIZE=1, MODIFIED=2); `size` u32 a 4; `modified` DateTime a 8; `name_len` u16 a 24; `flags` u16 a 26 (NAME_UNADDRESSABLE=1); quattro byte zero a 28. Campi senza bit di validità sono zero e non vanno interpretati come misure reali. Per `stat`, name_len è la lunghezza del componente finale, zero per la root `"."`.
+FileInfo, 32 bytes: `kind` u8 at 0 (0 unknown, 1 file, 2 directory, 3 other); `attributes` u8 at 1 (READ_ONLY=1, HIDDEN=2, SYSTEM=4, ARCHIVE=8); `valid` u16 at 2 (SIZE=1, MODIFIED=2); `size` u32 at 4; `modified` DateTime at 8; `name_len` u16 at 24; `flags` u16 at 26 (NAME_UNADDRESSABLE=1); four zero bytes at 28. Fields without validity bits are zero and must not be interpreted as actual measurements. For `stat`, name_len is the length of the final component, zero for the root `"."`.
 
-`fs.FILE=1`, `fs.DIRECTORY=2`, `fs.SIZE_VALID=1`, `fs.MODIFIED_VALID=2` e `fs.NAME_UNADDRESSABLE=1` sono costanti SDK. Un elenco directory non esegue automaticamente stat per ogni voce: normalmente contiene tipo, attributi e nome; dimensione/data possono restare sconosciute. Richiedere stat quando servono, ad esempio sulla voce selezionata.
+`fs.FILE=1`, `fs.DIRECTORY=2`, `fs.SIZE_VALID=1`, `fs.MODIFIED_VALID=2` and `fs.NAME_UNADDRESSABLE=1` are SDK constants. A directory listing does not automatically run stat on every entry: it normally contains type, attributes and name; size/date may remain unknown. Request stat when needed, for example on the selected entry.
 
-StorageInfo, 16 byte: `id` u16 a 0; `kind` u8 a 2 (1 SD, 2 USB, 3 altro); `unit` u8 a 3; `flags` u16 a 4 (PRESENT=1, SELECTED=2, READ_ONLY=4, READY=8, READ_ONLY_KNOWN=16); due byte zero a 6; `generation` u32 a 8; quattro byte zero a 12. READY indica che il supporto è stato accessibile durante la scansione, non che qualunque operazione futura avrà successo. Gli ID possono essere riutilizzati soltanto con una nuova generazione della tabella.
+StorageInfo, 16 bytes: `id` u16 at 0; `kind` u8 at 2 (1 SD, 2 USB, 3 other); `unit` u8 at 3; `flags` u16 at 4 (PRESENT=1, SELECTED=2, READ_ONLY=4, READY=8, READ_ONLY_KNOWN=16); two zero bytes at 6; `generation` u32 at 8; four zero bytes at 12. READY means the media was accessible during the scan, not that every future operation will succeed. IDs may be reused only with a new table generation.
 
-I record restituiti dal wrapper sono valori copiati nel frame del chiamante; non contengono puntatori a scratch del kernel. DIR_NEXT valida tutti gli output, inclusa l'assenza di sovrapposizione fra nome e FileInfo, prima di copiare e avanzare. Anche a fine elenco scrive FileInfo zero. Su errore gli output in memoria restano invariati; il wrapper azzera i propri risultati, come per le altre syscall.
+Records returned by the wrapper are values copied into the caller's frame; they contain no pointers to kernel scratch space. DIR_NEXT validates all outputs, including the absence of overlap between the name and FileInfo, before copying and advancing. It also writes a zero FileInfo at the end of the listing. On error, memory outputs remain unchanged; the wrapper zeroes its own results, as with other syscalls.
 
-## 4 Driver UCI incrementale
+## 4 Incremental UCI driver
 
-UCI è una risorsa condivisa; il kernel possiede l'interfaccia per l'intera sessione. Le librerie esistenti sono riferimenti del protocollo, non da importare con i loro busy wait. La documentazione descrive FIFO, stato/ack e comandi DOS; alcune funzioni sono marcate non testate. Verificare protocollo e firmware alla revisione usata dal progetto. [Manuale della libreria UCI](https://github.com/xahmol/ultimate-uci-oscar64/blob/main/docs/UCILIB_MANUAL.md), [interfaccia DOS](https://github.com/xahmol/ultimate-uci-oscar64/blob/main/include/ultimate_dos_lib.h).
+UCI is a shared resource; the kernel owns the interface for the entire session. Existing libraries are protocol references, not code to import with their busy waits. Documentation describes FIFO, status/ack and DOS commands; some functions are marked untested. Verify the protocol and firmware at the revision used by the project. [UCI library manual](https://github.com/xahmol/ultimate-uci-oscar64/blob/main/docs/UCILIB_MANUAL.md), [DOS interface](https://github.com/xahmol/ultimate-uci-oscar64/blob/main/include/ultimate_dos_lib.h).
 
-Macchina a stati minima:
+Minimal state machine:
 
 ```text
 IDLE -> PREPARE -> SEND_CHUNK -> PUSH -> WAIT_RESPONSE
                                   -> DRAIN_DATA -> DRAIN_STATUS -> ACK
                                   -> COMPLETE / NEXT_STEP
-qualsiasi stato -> TIMEOUT -> ABORT/DRAIN -> RECOVER oppure OFFLINE
+any state -> TIMEOUT -> ABORT/DRAIN -> RECOVER or OFFLINE
 ```
 
-Ogni visita esegue al massimo un numero fisso di accessi FIFO o un breve polling, inizialmente ≤32 byte o un singolo controllo stato. Il limite effettivo deve passare la verifica temporale, non essere solo un limite in byte. PREPARE può richiedere cache/DMA e deve poter sospendere senza mutare i registri di una transazione già attiva.
+Each visit performs at most a fixed number of FIFO accesses or a short poll, initially ≤32 bytes or a single status check. The actual limit must pass timing verification, rather than merely being a byte limit. PREPARE may require cache/DMA work and must be able to suspend without changing the registers of a transaction already in progress.
 
-L'arbitro serializza i comandi fino alla risposta completa, status incluso. Nessun secondo processo può consumare dati/status della richiesta precedente. Non fare read-modify-write su registri di controllo che condividono l'indirizzo con uno stato di lettura: usare valori di comando espliciti.
+The arbiter serializes commands through the complete response, including status. No second process may consume data/status from the previous request. Do not perform read-modify-write on control registers that share an address with a read status register: use explicit command values.
 
-Non tenere gli interrupt disabilitati durante l'attesa di USB/SD/firmware. Il raster mantiene priorità; in v0.1 anche il servizio UCI viene eseguito fuori dalle 200 righe attive. Il backend deve verificare che pause fra pezzi di FIFO siano ammesse.
+Do not keep interrupts disabled while waiting for USB/SD/firmware. The raster retains priority; in v0.1, UCI service also runs outside the 200 active lines. The backend must verify that pauses between FIFO chunks are permitted.
 
-Timeout iniziale: 250 frame PAL per una transazione di comando, configurabile per profilo; usare differenze del contatore frame con wrap corretto. La UI deve restare reattiva anche se l'app aspetta cinque secondi. Un timeout non autorizza a ripetere una scrittura: l'esito esterno potrebbe essere incerto.
+Initial timeout: 250 PAL frames per command transaction, configurable per profile; use frame counter differences with correct wrap handling. The UI must remain responsive even if the app waits five seconds. A timeout does not authorize retrying a write: the external outcome may be uncertain.
 
-Una recovery limitata invia abort/draina secondo protocollo. Se non raggiunge uno stato noto entro un secondo limite configurato, marca il backend OFFLINE, fallisce le richieste pendenti e lascia funzionare desktop/VM/video. Non fare un reset generale dell'Ultimate per recuperare una syscall.
+Bounded recovery sends abort/drains according to the protocol. If it cannot reach a known state within a second configured limit, it marks the backend OFFLINE, fails pending requests and keeps the desktop/VM/video running. Do not perform a global Ultimate reset to recover a syscall.
 
-I comandi firmware che scrivono direttamente nella RAM C64/REU o caricano intere immagini non sono il percorso iniziale del servizio file. Prima di usarli occorre dimostrare controllo degli intervalli, coerenza e interferenza temporale accettabile. Il percorso baseline passa per FIFO e copie REU limitate del kernel.
+Firmware commands that write directly into C64/REU RAM or load entire images are not the initial file service path. Before using them, demonstrate range control, coherence and acceptable timing interference. The baseline path uses FIFO and bounded kernel REU copies.
 
-## 5 File handle, path e concorrenza
+## 5 File handles, paths and concurrency
 
-Il protocollo DOS di riferimento espone il file correntemente aperto e una directory corrente. Non trattarlo come una tabella di file descriptor indipendenti. I file logici di C-OS sono virtualizzati sopra questo stato. [Dichiarazioni delle operazioni DOS](https://github.com/xahmol/ultimate-uci-oscar64/blob/main/include/ultimate_dos_lib.h).
+The reference DOS protocol exposes the currently open file and a current directory. Do not treat it as a table of independent file descriptors. C-OS logical files are virtualized over this state. [DOS operation declarations](https://github.com/xahmol/ultimate-uci-oscar64/blob/main/include/ultimate_dos_lib.h).
 
-Limiti iniziali: quattro handle file userspace globali, massimo due per app, più un handle riservato alla shell. Metadati freddi e path in REU; mantenere in RAM locale soltanto il contesto della transazione attiva e gli indici necessari. Il kernel non riserva 128 byte locali per ogni path.
+Initial limits: four global userspace file handles, at most two per app, plus one handle reserved for the shell. Cold metadata and paths live in REU; keep only the active transaction context and necessary indices in local RAM. The kernel does not reserve 128 local bytes for each path.
 
-Per ogni handle conservare proprietario/generazione, path canonico, modo, posizione u32, stato e dimensione nota. Prima di servire un handle diverso da quello aperto fisicamente:
+For each handle, retain owner/generation, canonical path, mode, u32 position, state and known size. Before servicing a handle different from the physically open one:
 
-1. Terminare la transazione precedente e chiudere il file fisico se necessario.
-2. Selezionare la directory/il path corretti senza esporre un cwd condiviso all'app.
-3. Riaprire in modalità non distruttiva: CREATE/TRUNCATE avvengono **soltanto** alla prima FILE_OPEN logica.
-4. Ripristinare la posizione con seek verificato.
-5. Eseguire il singolo read/write, aggiornare la posizione soltanto in base ai byte confermati.
+1. Finish the previous transaction and close the physical file if necessary.
+2. Select the correct directory/path without exposing a shared cwd to the app.
+3. Reopen in a nondestructive mode: CREATE/TRUNCATE occur **only** on the first logical FILE_OPEN.
+4. Restore the position with a verified seek.
+5. Perform the single read/write, updating the position only from confirmed bytes.
 
-Mantenere il file fisico aperto è una piccola ottimizzazione quando il proprietario non cambia. Round-robin fra richieste complete a blocchi, senza assegnare il backend a un'app per tutta la vita del suo handle.
+Keeping the physical file open is a small optimization when ownership does not change. Use round-robin scheduling between complete block requests, without assigning the backend to an app for its handle's entire lifetime.
 
-Seek e riapertura senza troncamento sono test obbligatori della milestone file. Se un firmware non li supporta correttamente, riportare la limitazione del profilo: non dichiarare completata la concorrenza I/O e non simulare handle indipendenti sopra un solo cursore fisico.
+Seek and reopening without truncation are mandatory tests for the file milestone. If a firmware does not support them correctly, report the profile limitation: do not declare I/O concurrency complete or simulate independent handles over a single physical cursor.
 
-L'installazione iniziale produce un albero dati da copiare sullo storage: `cos/apps/<id>` per ogni ID stabile e `cos/.system` per la shell. La root fisica viene scoperta o selezionata secondo la sezione 5.4; il sorgente usa nomi relativi come `notes.txt`, non `/usb0/...`.
+Initial installation produces a data tree to copy to storage: `cos/apps/<id>` for each stable ID and `cos/.system` for the shell. The physical root is discovered or selected according to section 5.4; source code uses relative names such as `notes.txt`, not `/usb0/...`.
 
-Path ASCII da 1 a 127 byte, relativi, senza NUL, componenti `..`, backslash o prefissi assoluti; normalizzare separatori e `.` prima del controllo della root. Una directory mancante restituisce ENOENT. `"."` identifica la root per stat/opendir; le mutazioni della root sono vietate. Nessun cambio globale di cwd da parte dell'app. `mkdir` crea soltanto la directory esplicitamente richiesta entro questa root.
+ASCII paths from 1 to 127 bytes, relative, without NUL, `..` components, backslashes or absolute prefixes; normalize separators and `.` before checking the root. A missing directory returns ENOENT. `"."` identifies the root for stat/opendir; root mutations are forbidden. Apps cannot change the global cwd. `mkdir` creates only the explicitly requested directory within this root.
 
-Il kernel serializza accessi al medesimo path: più lettori sono ammessi; uno scrittore esclude altri handle sullo stesso file finché resta aperto. Conflitto = EBUSY. Questo protegge le app C-OS tra loro, non le modifiche fatte fuori da C-OS dal menu firmware o da un altro computer.
+The kernel serializes access to the same path: multiple readers are allowed; a writer excludes other handles to the same file while it remains open. Conflict = EBUSY. This protects C-OS apps from each other, not from changes made outside C-OS through the firmware menu or another computer.
 
-READ può lasciare un prefisso valido nel buffer e restituire `count>0` con errore; WRITE restituisce soltanto byte confermati dal firmware. È un'eccezione esplicita alla regola output-zero su errore. Un successo WRITE con `count>0` conferma esattamente quel prefisso e avanza di count; non promette la scrittura dell'intera vista richiesta. Se il backend non conferma il conteggio parziale dopo un errore, il kernel non lo deduce dalla lunghezza inviata: count resta zero per il blocco incerto, anche se il dispositivo potrebbe averne scritto una parte. Timeout/reset o errore con avanzamento non determinabile invalidano l'handle e richiedono una riapertura esplicita. Non ritentare automaticamente la porzione incerta; un errore con count zero non dimostra che il file sia rimasto intatto.
+READ may leave a valid prefix in the buffer and return `count>0` with an error; WRITE returns only bytes confirmed by the firmware. This is an explicit exception to the zero-output-on-error rule. A successful WRITE with `count>0` confirms exactly that prefix and advances by count; it does not promise to write the entire requested view. If the backend does not confirm the partial count after an error, the kernel must not infer it from the length sent: count remains zero for the uncertain block, even if the device may have written part of it. Timeout/reset or an error with indeterminate advancement invalidate the handle and require an explicit reopen. Do not automatically retry the uncertain portion; an error with a zero count does not prove that the file was left untouched.
 
-FILE_CLOSE invalida l'handle anche in caso di errore del backend. Il successo significa completamento del comando di chiusura, non una garanzia fisica di durata oltre quelle dello storage. La terminazione del processo non deve inviare ulteriori dati dell'app dopo il suo kill; completa soltanto protocollo e cleanup necessari.
+FILE_CLOSE invalidates the handle even on a backend error. Success means that the close command completed, not a physical durability guarantee beyond those provided by the storage. Process termination must not send further app data after its kill; it completes only the necessary protocol and cleanup.
 
-### 5.1 Persistenza del desktop
+### 5.1 Desktop persistence
 
-Due slot `layout.0` e `layout.1` nella directory `.system`. Ogni salvataggio scrive lo slot meno recente, lasciando quello valido corrente intatto. Non dipende da rename atomico o da nuove funzioni filesystem.
+Two slots, `layout.0` and `layout.1`, in the `.system` directory. Each save writes the older slot, leaving the current valid one intact. It does not depend on atomic rename or new filesystem functions.
 
-Formato: header 16 byte e N record da 8 byte, N≤12, lunghezza totale esatta `16+8*N`:
+Format: 16-byte header and N records of 8 bytes, N≤12, exact total length `16+8*N`:
 
-| Offset header | Campo |
+| Header offset | Field |
 |---|---|
-| 0 | Quattro byte ASCII `COSL` |
-| 4 | Versione u16 = 1 |
+| 0 | Four ASCII bytes `COSL` |
+| 4 | u16 version = 1 |
 | 6 | N, u8 |
-| 7 | Riservato zero |
-| 8 | Generazione u32 |
-| 12 | CRC16 u16 |
-| 14 | Due byte zero |
+| 7 | Reserved, zero |
+| 8 | u32 generation |
+| 12 | u16 CRC16 |
+| 14 | Two zero bytes |
 
-Record: ID oggetto u16 a 0; tipo u8 a 2 (1 launcher, 2 widget); colonna u8 a 3; riga u8 a 4; flag u8 a 5 (zero inizialmente); due byte zero a 6. CRC16-CCITT-FALSE, polinomio $1021, init $FFFF, senza riflessione/xor finale; calcolato su tutto il file trattando i due byte CRC come zero.
+Record: u16 object ID at 0; u8 type at 2 (1 launcher, 2 widget); u8 column at 3; u8 row at 4; u8 flags at 5 (initially zero); two zero bytes at 6. CRC16-CCITT-FALSE, polynomial $1021, init $FFFF, no reflection/final xor; computed over the whole file with the two CRC bytes treated as zero.
 
-Al boot scegliere lo slot valido più recente con confronto modulo 2^32 a distanza <2^31. A parità preferire slot 0; casi ambigui o file entrambi invalidi usano il default. ID sconosciuti, duplicati, coordinate fuori griglia o collisioni rendono lo slot invalido nella 0.1.
+At boot, select the most recent valid slot using a modulo 2^32 comparison with distance <2^31. On a tie, prefer slot 0; ambiguous cases or two invalid files use the default. Unknown IDs, duplicates, coordinates outside the grid or collisions make the slot invalid in 0.1.
 
-Dopo la scrittura e la chiusura, rileggere e validare prima di considerare completato il salvataggio. Se lo storage scompare, tenere il layout in RAM e riportare l'errore. Debounce di 50 frame dall'ultimo movimento; una nuova modifica durante il salvataggio marca un altro salvataggio pendente senza alterare il buffer già inviato.
+After writing and closing, reread and validate before considering the save complete. If storage disappears, keep the layout in RAM and report the error. Debounce for 50 frames after the last movement; a new change during a save marks another save pending without altering the buffer already sent.
 
-### 5.2 Elenchi directory in REU
+### 5.2 Directory listings in REU
 
-Il protocollo di riferimento restituisce una sequenza di pacchetti con attributi e nome. Il kernel deve completare o annullare questo comando prima di usare UCI per altri comandi; lasciare una directory aperta in attesa della prossima chiamata dell'app bloccherebbe gli altri servizi. [Implementazione DOS: directory e stat](https://github.com/xahmol/ultimate-uci-oscar64/blob/main/include/ultimate_dos_lib.c).
+The reference protocol returns a sequence of packets with attributes and a name. The kernel must complete or cancel this command before using UCI for other commands; leaving a directory open while waiting for the app's next call would block other services. [DOS implementation: directories and stat](https://github.com/xahmol/ultimate-uci-oscar64/blob/main/include/ultimate_dos_lib.c).
 
-DIR_OPEN raccoglie l'elenco in una snapshot privata del kernel nella REU, procedendo per pezzi limitati. Quando la risposta e lo status sono stati consumati, pubblica l'handle Dir e rilascia UCI. DIR_NEXT legge soltanto la snapshot; un'app che non la scorre non trattiene il canale firmware.
+DIR_OPEN gathers the listing into a private kernel snapshot in REU, using bounded chunks. Once the response and status have been consumed, it publishes the Dir handle and releases UCI. DIR_NEXT reads only the snapshot; an app that does not iterate over it does not retain the firmware channel.
 
-Limiti iniziali: due snapshot globali, al massimo una per processo, ciascuna da 16 KiB, fino a 256 voci e nomi di massimo 255 byte. Il limite in byte può essere raggiunto prima del numero di voci. I 32 KiB provengono dalla riserva sistema già prevista, agli indirizzi indicati in SPEC.md; non sono RAM locale aggiuntiva.
+Initial limits: two global snapshots, at most one per process, each 16 KiB, up to 256 entries and names of at most 255 bytes. The byte limit may be reached before the entry limit. The 32 KiB come from the existing system reserve, at the addresses listed in SPEC.md; they are not additional local RAM.
 
-Formato interno semplice: header compatto, poi record FileInfo da 32 byte seguiti da name_len byte di nome e padding zero fino a un offset pari. Il cursore conserva offset e indice della prossima voce. Nessuna tabella di puntatori userspace, allocazione per voce o ordinamento nel driver. La snapshot non è direttamente mappata all'app.
+Simple internal format: compact header, then 32-byte FileInfo records followed by name_len name bytes and zero padding to an even offset. The cursor retains the offset and index of the next entry. No userspace pointer table, per-entry allocation or sorting in the driver. The snapshot is not mapped directly to the app.
 
-DIR_OPEN pubblica soltanto elenchi completi. Directory vuota = successo e prima DIR_NEXT con bool=false. Superamento di un limite = EOVERFLOW, handle zero, snapshot liberata e comando drenato/annullato prima di un'altra operazione. Non consumare lo spazio destinato alla seconda snapshot. Se non c'è uno slot libero restituire ENOSPC; se l'app possiede già un Dir, EBUSY.
+DIR_OPEN publishes only complete listings. Empty directory = success and the first DIR_NEXT returns bool=false. Exceeding a limit = EOVERFLOW, zero handle, snapshot freed and command drained/canceled before another operation. Do not consume space intended for the second snapshot. If no slot is free, return ENOSPC; if the app already owns a Dir, return EBUSY.
 
-La raccolta rispetta il timeout e le regole di abort del motore UCI. Durante la raccolta progrediscono VM, input e video; altri comandi UCI attendono la fine della transazione. Il limite della directory è visibile nella diagnostica e nel messaggio della demo. Aumentarlo è un parametro da misurare, non un motivo per restituire silenziosamente le prime voci come elenco completo.
+Collection follows the UCI engine's timeout and abort rules. VM, input and video make progress during collection; other UCI commands wait for the transaction to finish. The directory limit is visible in diagnostics and in the demo's message. Increasing it is a parameter to measure, not a reason to silently return the first entries as a complete listing.
 
-Saltare le voci sintetiche `.` e `..`. Convertire gli attributi nel formato SDK; preservare il nome esatto. FileInfo.valid non deve marcare size o modified quando il pacchetto non li contiene. Stat separato converte il formato del timestamp restituito dal firmware, senza inventare un fuso orario.
+Skip synthetic `.` and `..` entries. Convert attributes into the SDK format; preserve the exact name. FileInfo.valid must not mark size or modified when the packet does not contain them. A separate stat converts the timestamp format returned by the firmware without inventing a time zone.
 
-L'elenco è una fotografia della scansione: dopo rename/create/remove, l'app lo riapre per aggiornarlo. Una vecchia snapshot può ancora contenere nomi non esistenti; questo non impedisce le mutazioni. Non garantire una fotografia atomica rispetto a modifiche esterne al sistema. Rimozione del supporto rilevata o cambio della root invalida invece gli handle legati a quella sessione di storage.
+The listing is a snapshot of the scan: after rename/create/remove, the app reopens it to refresh it. An old snapshot may still contain names that no longer exist; this does not prevent mutations. Do not guarantee an atomic snapshot with respect to changes made outside the system. Detected media removal or a root change, however, invalidates handles tied to that storage session.
 
-### 5.3 Mutazioni piccole e delimitate
+### 5.3 Small, bounded mutations
 
-Mkdir, rename e remove fanno parte del primo servizio file. Validare tutti i path e riservare la transazione prima degli effetti. Su un supporto noto read-only restituire EROFS; non provare scritture per scoprirne lo stato durante una scansione.
+Mkdir, rename and remove are part of the first file service. Validate all paths and reserve the transaction before any effects. On media known to be read-only, return EROFS; do not attempt writes to discover its status during a scan.
 
-- Mkdir crea una sola directory, con antenati già presenti. Destinazione esistente = EEXIST.
-- Rename opera nella stessa root, senza rimpiazzare una destinazione esistente. Entrambi i nomi sono validati prima dell'invio; vietati root, spostamento di una directory dentro sé stessa e attraversamento di supporti.
-- Remove elimina un solo file. Le directory restituiscono EISDIR; nessuna cancellazione ricorsiva o espansione di wildcard.
-- File aperti coinvolti, o file aperti sotto una directory che si vuole rinominare, causano EBUSY. Una snapshot di elenco non è un file aperto e non impedisce le modifiche.
-- Il driver non ritenta automaticamente una mutazione dopo un timeout dall'esito incerto. Restituisce l'errore e richiede alla logica chiamante di rileggere lo stato.
+- Mkdir creates a single directory with existing ancestors. Existing destination = EEXIST.
+- Rename operates within the same root, without replacing an existing destination. Both names are validated before sending; the root, moving a directory inside itself and crossing media are forbidden.
+- Remove deletes a single file. Directories return EISDIR; no recursive deletion or wildcard expansion.
+- Open files involved in the operation, or open files under a directory being renamed, cause EBUSY. A listing snapshot is not an open file and does not prevent changes.
+- The driver does not automatically retry a mutation after a timeout with an uncertain outcome. It returns the error and requires the calling logic to reread the state.
 
-Confronti e lock dei path devono rispettare anche alias di maiuscole/minuscole del backend. Per i nomi ASCII su storage FAT, due varianti di case non possono aggirare il lease di un file. Conservare il nome originale per la visualizzazione e una chiave canonica per i lock. Il profilo deve verificare la semantica di rename senza overwrite, non dedurla dal nome del comando.
+Path comparisons and locks must also respect the backend's case aliases. For ASCII names on FAT storage, two case variants must not bypass a file lease. Retain the original name for display and a canonical key for locks. The profile must verify rename semantics without overwrite, rather than infer them from the command name.
 
-Un salvataggio in file temporaneo può usare queste primitive, ma l'SDK non promette sostituzione atomica o durata su disco. Il layout della shell mantiene il formato a due slot della sezione 5.1.
+Saving through a temporary file may use these primitives, but the SDK does not promise atomic replacement or disk durability. The shell layout retains the two-slot format from section 5.1.
 
-### 5.4 Scoperta e ciclo di vita dello storage
+### 5.4 Storage discovery and lifecycle
 
-Usare l'enumerazione delle root visibili al firmware per scoprire USB/SD, invece di assumere la presenza di `/usb0/`. Il riferimento esistente effettua questa scansione con le operazioni directory; non è un nuovo dispositivo hardware. Il driver C-OS deve farlo tramite il motore UCI incrementale. [Helper di scansione media](https://github.com/xahmol/ultimate-uci-oscar64/blob/main/include/ultimate_dos_lib.c).
+Use enumeration of roots visible to the firmware to discover USB/SD, rather than assuming `/usb0/` exists. The existing reference performs this scan through directory operations; it is not a new hardware device. The C-OS driver must do so through the incremental UCI engine. [Media scan helper](https://github.com/xahmol/ultimate-uci-oscar64/blob/main/include/ultimate_dos_lib.c).
 
-La scansione di sistema filtra il flusso delle directory direttamente nella piccola tabella dei supporti. Conserva in REU al massimo cinque path radice di supporto, ciascuno in 128 byte incluso il terminatore; i suffissi C-OS sono costruiti separatamente. Non richiede un terzo buffer da 16 KiB e deve poter procedere anche quando entrambe le snapshot delle app sono occupate. Candidati o path oltre i limiti causano EOVERFLOW, senza troncamenti o pubblicazione parziale.
+The system scan filters the directory stream directly into the small media table. It retains at most five media root paths in REU, each in 128 bytes including the terminator; C-OS suffixes are constructed separately. It does not require a third 16 KiB buffer and must be able to proceed even when both app snapshots are occupied. Candidates or paths beyond the limits cause EOVERFLOW, without truncation or partial publication.
 
-In modalità discover del manifest, cercare la directory `cos` e il file marker `.cos-volume`, prodotto dagli strumenti di installazione con contenuto ASCII esatto `COSDATA1\n`. La scansione legge soltanto. Un solo candidato valido diventa la root del sistema; più candidati richiedono una scelta nella shell, oppure un path esplicito nel manifest. In assenza di una root selezionata il desktop funziona in RAM, e le API file restituiscono ENODEV.
+In the manifest's discover mode, look for the `cos` directory and the `.cos-volume` marker file, produced by the installation tools with the exact ASCII content `COSDATA1\n`. The scan is read-only. A single valid candidate becomes the system root; multiple candidates require a selection in the shell or an explicit path in the manifest. Without a selected root, the desktop runs in RAM and file APIs return ENODEV.
 
-Il marker serve a riconoscere una directory predisposta, non a identificare univocamente un supporto fisico. Scelta del volume e creazione iniziale dell'albero dati appartengono alla shell/agli strumenti di installazione; `storage.scan` eseguito da un'app non cambia la root attiva e non scrive su alcun volume.
+The marker identifies a prepared directory, not a unique physical medium. Volume selection and initial creation of the data tree belong to the shell/installation tools; `storage.scan` run by an app neither changes the active root nor writes to any volume.
 
-Pubblicare l'elenco con una generazione u32. Se i dati osservati sono identici, la generazione può restare uguale; se cambiano, incrementarla e rifiutare le vecchie coppie indice/generazione con ESTALE. Non avvolgere il contatore: all'esaurimento restituire EOVERFLOW. Un errore di nuova scansione non significa che il vecchio elenco sia una fotografia aggiornata.
+Publish the listing with a u32 generation. If the observed data is identical, the generation may remain unchanged; if it changes, increment it and reject old index/generation pairs with ESTALE. Do not wrap the counter: on exhaustion, return EOVERFLOW. A new scan error does not mean that the old listing is an up-to-date snapshot.
 
-Separare questa generazione dalla sessione del supporto usata dagli handle file/Dir. Una scansione senza cambiamenti non deve invalidare file aperti. Una rimozione rilevata, un cambio della root o una recovery che perde il contesto dei file chiudono la sessione: vecchi handle danno ESTALE finché identificabili come revocati, oppure EBADF dopo cleanup. I nuovi handle hanno nuovi ID.
+Keep this generation separate from the media session used by file/Dir handles. A scan with no changes must not invalidate open files. Detected removal, a root change or recovery that loses file context ends the session: old handles return ESTALE while still identifiable as revoked, or EBADF after cleanup. New handles have new IDs.
 
-Dopo una perdita del supporto, non selezionare automaticamente un altro candidato e non riprendere scritture pendenti su di esso. La shell può riconnettere/selezionare il volume; le app devono riaprire esplicitamente i file e gestire gli errori già ricevuti. Non promettere rilevamento istantaneo di un cambio fisico avvenuto interamente fra due osservazioni: qualificare ciò che il firmware consente di rilevare.
+After media loss, do not automatically select another candidate or resume pending writes on it. The shell may reconnect/select the volume; apps must explicitly reopen files and handle the errors already received. Do not promise instant detection of a physical change occurring entirely between two observations: qualify what the firmware can detect.
 
-Prima di directory, stat o scansioni che cambiano il cwd del firmware, preservare i cursori logici e chiudere/invalidare il binding del file fisico quando necessario. L'operazione successiva di un'app deve comunque riaprire il proprio path corretto e ripristinare il proprio offset.
+Before directory, stat or scan operations that change the firmware's cwd, preserve logical cursors and close/invalidate the physical file binding when necessary. An app's next operation must still reopen its own correct path and restore its own offset.
 
-### 5.5 Lettura RTC
+### 5.5 RTC reads
 
-Il backend usa DOS GET_TIME `$26`, sul target DOS; la libreria di riferimento legge una stringa `yyyy/mm/dd hh:mm:ss`. Non usare il distinto opcode RTC del target Control, indicato come non implementato nella documentazione della libreria. [Implementazione time](https://github.com/xahmol/ultimate-uci-oscar64/blob/main/include/ultimate_time_lib.c), [tabella dei comandi UCI](https://github.com/xahmol/ultimate-uci-oscar64/blob/main/docs/UCILIB_MANUAL.md).
+The backend uses DOS GET_TIME `$26`, on the DOS target; the reference library reads a `yyyy/mm/dd hh:mm:ss` string. Do not use the separate RTC opcode on the Control target, documented by the library as unimplemented. [Time implementation](https://github.com/xahmol/ultimate-uci-oscar64/blob/main/include/ultimate_time_lib.c), [UCI command table](https://github.com/xahmol/ultimate-uci-oscar64/blob/main/docs/UCILIB_MANUAL.md).
 
-Validare lunghezza, cifre, separatori e data di calendario prima di pubblicare DateTime. Una risposta malformata non sostituisce il campione valido con valori parziali. Il frame di acquisizione viene registrato quando il campione è completo; la cache viene pubblicata tutta insieme.
+Validate length, digits, separators and calendar date before publishing DateTime. A malformed response does not replace a valid sample with partial values. Record the acquisition frame when the sample is complete; publish the cache as a whole.
 
-Iniziare un refresh al boot dopo la disponibilità di UCI. Durante il funzionamento, tenere al massimo un refresh pendente e servire il clock a bassa priorità. Risposta non supportata = capability RTC disattivata per il profilo; indisponibilità temporanea o dato vecchio = errore operativo, senza alterare il contatore monotono. Una lettura valida non certifica che l'orologio sia sincronizzato o impostato correttamente dall'utente.
+Start a refresh at boot once UCI is available. During operation, keep at most one refresh pending and service the clock at low priority. Unsupported response = RTC capability disabled for the profile; temporary unavailability or stale data = operational error, without altering the monotonic counter. A valid read does not certify that the clock is synchronized or correctly set by the user.
 
-Il widget distingue ora civile e uptime. Non scrivere nell'RTC per ottenere una lettura e non impostare la data da quella della build.
+The widget distinguishes civil time from uptime. Do not write to the RTC to obtain a reading or set the date from the build date.
 
-## 6 Driver SID
+## 6 SID driver
 
-La tabella dei SID logici viene dal profilo verificato: base I/O, modello/frequenza e disponibilità. Vietare intervalli che si sovrappongano a REU, UCI, sampler o altri dispositivi attivi. L'assenza di un chip leggibile non può essere diagnosticata con un semplice read-back di registri write-only.
+The logical SID table comes from the verified profile: I/O base, model/frequency and availability. Reject ranges that overlap REU, UCI, the sampler or other active devices. The absence of a readable chip cannot be diagnosed through a simple read-back of write-only registers.
 
-Scritture ammesse ai registri $00…$18 del SID selezionato, al massimo 25 coppie. Il kernel mantiene lo shadow dei control register per gate-off e cleanup; non leggere un registro di scrittura per ricostruirne il valore.
+Writes are allowed to registers $00…$18 of the selected SID, at most 25 pairs. The kernel maintains shadow control registers for gate-off and cleanup; do not read a write register to reconstruct its value.
 
-Validare tutte le coppie prima della prima scrittura. La durata massima di 25 scritture va misurata; se il batch non entra nel tempo disponibile, rimandarlo intero. Non presentare il batch come atomico rispetto all'elettronica analogica: le scritture arrivano nell'ordine indicato.
+Validate all pairs before the first write. The maximum duration of 25 writes must be measured; if the batch does not fit in the available time, defer it as a whole. Do not present the batch as atomic with respect to the analog circuitry: writes arrive in the specified order.
 
-All'apertura impostare uno stato silenzioso noto. Alla chiusura/kill abbassare i gate, azzerare il volume e rilasciare il lease nella prima finestra temporale sicura. Un'app proprietaria del chip controlla anche filtro e volume; le altre ottengono EBUSY. Nessuna callback userspace da IRQ audio.
+On open, establish a known silent state. On close/kill, lower the gates, zero the volume and release the lease in the first safe time window. An app owning the chip also controls its filter and volume; other apps receive EBUSY. No userspace callbacks from audio IRQs.
 
-Esempio C-Script:
+C-Script example:
 
 ```text
 import sid
@@ -419,41 +419,41 @@ fn main() {
 }
 ```
 
-## 7 Driver Ultimate Audio e campioni in REU
+## 7 Ultimate Audio driver and REU samples
 
-L'interfaccia di riferimento descrive sette canali, campioni a 8 bit, volume massimo 63 e registri per indirizzo, lunghezza e rate. Il codice converte gli offset REU in indirizzi SDRAM e scrive alcuni campi in ordine big endian. Questi dettagli restano nel driver, non nell'ABI guest. [Header audio](https://github.com/xahmol/ultimate-uci-oscar64/blob/main/include/ultimate_audio_lib.h), [implementazione audio](https://github.com/xahmol/ultimate-uci-oscar64/blob/main/include/ultimate_audio_lib.c).
+The reference interface describes seven channels, 8-bit samples, maximum volume 63 and registers for address, length and rate. The code converts REU offsets into SDRAM addresses and writes some fields in big endian order. These details stay in the driver, not in the guest ABI. [Audio header](https://github.com/xahmol/ultimate-uci-oscar64/blob/main/include/ultimate_audio_lib.h), [audio implementation](https://github.com/xahmol/ultimate-uci-oscar64/blob/main/include/ultimate_audio_lib.c).
 
-Il profilo deve fissare registro per registro formato, segni, bit di loop/start/stop, ordine delle scritture e divisore. La routine di detect del riferimento modifica lo stato dei canali: eseguirla eventualmente al boot prima di assegnare risorse, mai come risposta a `audio.count()` durante una riproduzione. Non copiare commenti contraddittori sui bit o sull'endianness senza verificare il codice e l'uscita.
+The profile must specify format, signedness, loop/start/stop bits, write order and divisor for each register. The reference detection routine changes channel state: if used, run it at boot before assigning resources, never in response to `audio.count()` during playback. Do not copy contradictory comments about bits or endianness without verifying the code and output.
 
-Esiste già un riferimento locale per PCM signed e divisori in `tools/generate_e1m1_audio.py` nel workspace C64 originale, esterno a questa repository, con conversione unsigned→signed e gestione del campione finale. Esaminarlo senza modificarlo; documentare la formula realmente qualificata nel profilo C-OS, poiché i riferimenti non usano tutti la stessa approssimazione del rate. STOP/CLOSE/cleanup devono portare anche il volume a zero, evitando di scambiare la fine delle letture per la garanzia di silenzio in uscita. Testare esplicitamente il mantenimento dell'ultimo campione e il completamento one-shot.
+A local reference for signed PCM and divisors already exists in `tools/generate_e1m1_audio.py` in the original C64 workspace, outside this repository, with unsigned→signed conversion and handling of the final sample. Examine it without modifying it; document the formula actually qualified in the C-OS profile, because the references do not all use the same rate approximation. STOP/CLOSE/cleanup must also set the volume to zero, rather than mistaking the end of reads for guaranteed silence at the output. Explicitly test holding of the final sample and one-shot completion.
 
-Il kernel traduce l'offset guest in un indirizzo hardware consentito; non permette a un descrittore dell'app di selezionare un'altra banca SDRAM. Un PLAY non può far leggere al dispositivo dati del kernel o di altre app.
+The kernel translates the guest offset into an allowed hardware address; it does not allow an app descriptor to select another SDRAM bank. PLAY must not make the device read kernel data or another app's data.
 
-### 7.1 Proprietà, coerenza e protezione
+### 7.1 Ownership, coherence and protection
 
-Per evitare una seconda copia di ogni campione, PLAY legge direttamente il campione già nella REU dell'app. La regione viene **protetta dalle scritture per tutta la durata della riproduzione**:
+To avoid a second copy of every sample, PLAY reads the sample already in the app's REU directly. The region is **write-protected for the entire duration of playback**:
 
-1. Validare l'intero intervallo e il lease del canale. Per sostituire un campione, validare il nuovo prima di fermare quello vecchio, quando possibile.
-2. Completare i write-back delle linee dirty interessate; invalidare eventuali permessi di scrittura memorizzati nei metadati della cache.
-3. Registrare il vincolo read-only, poi programmare il canale in una finestra sicura. Pubblicare PLAYING soltanto dopo l'avvio riuscito.
-4. LOAD, blit e FILE_WRITE con il campione come sorgente restano consentiti. STORE VM verso il campione genera fault `READ_ONLY`; MEM_FILL/MEM_COPY/FILE_READ con destinazione sovrapposta restituiscono EBUSY prima degli effetti.
-5. STOP/CLOSE/kill fermano l'hardware prima di rilasciare il vincolo. Il completamento one-shot viene rilevato con polling limitato; solo dopo viene sbloccata la regione.
+1. Validate the entire range and the channel lease. When replacing a sample, validate the new one before stopping the old one, where possible.
+2. Complete write-back of the affected dirty lines; invalidate any write permissions stored in cache metadata.
+3. Record the read-only restriction, then program the channel in a safe window. Publish PLAYING only after a successful start.
+4. LOAD, blits and FILE_WRITE with the sample as source remain allowed. A VM STORE into the sample causes a `READ_ONLY` fault; MEM_FILL/MEM_COPY/FILE_READ with an overlapping destination return EBUSY before any effects.
+5. STOP/CLOSE/kill stop the hardware before releasing the restriction. One-shot completion is detected through bounded polling; only then is the region unlocked.
 
-Più canali possono leggere intervalli sovrapposti dello stesso processo; una regione resta protetta finché almeno un canale la usa. Massimo sette record di vincolo, associati ai canali, senza allocatore generale nel kernel.
+Multiple channels may read overlapping ranges from the same process; a region stays protected while at least one channel uses it. At most seven restriction records, associated with channels, without a general allocator in the kernel.
 
-Il percorso STORE senza campioni attivi deve rimanere economico: flag per processo per saltare il controllo aggiuntivo quando il numero di vincoli è zero. Con audio attivo, il costo massimo del controllo va incluso nei limiti temporali degli opcode; non introdurre un percorso che ignori il vincolo su un cache hit.
+The STORE path without active samples must remain cheap: a per-process flag skips the additional check when the restriction count is zero. With active audio, the check's worst-case cost must be included in opcode timing bounds; do not introduce a path that ignores the restriction on a cache hit.
 
-Il rilevamento del fine campione non può basarsi solo su una stima `length/hz` se l'hardware può essere rallentato, fermato o in loop. Qualificare la condizione di completamento reale. Se non affidabile, mantenere il vincolo finché STOP esplicito e riportare tale limite del profilo.
+End-of-sample detection must not rely solely on a `length/hz` estimate if hardware can slow down, stop or loop. Qualify the actual completion condition. If it is unreliable, retain the restriction until explicit STOP and report this profile limitation.
 
-Un fault dell'app che scrive nel proprio campione provoca il normale cleanup e non deve lasciare una lettura hardware su memoria poi riutilizzata. Nessun ring buffer modificabile contemporaneamente nella prima API.
+An app fault from writing to its own sample triggers normal cleanup and must not leave hardware reading memory that is then reused. No concurrently writable ring buffer in the first API.
 
 ### 7.2 Timing
 
-Il sampler legge memoria indipendentemente dal codice VM: verificarne l'interferenza con DMA REU e scanout, senza dedurre assenza di costo dal fatto che non esegue opcode. Il profilo iniziale può pubblicare meno di sette canali se è l'unico numero qualificato; riportare il limite e la misura.
+The sampler reads memory independently of VM code: verify its interference with REU DMA and scanout, rather than inferring zero cost because it executes no opcodes. The initial profile may publish fewer than seven channels if that is the only qualified count; report the limit and measurement.
 
-Disabilitare IRQ sampler non necessari. Tutte le scritture ai registri sono brevi e fuori dal raster attivo nella prima versione. Il driver esegue una sola conversione nativa hz→divisore per PLAY, con costo massimo misurato e durata limitata; AudioDesc trasporta soltanto hz. La conversione fa parte della preparazione del job e non viene ripetuta durante la riproduzione.
+Disable unnecessary sampler IRQs. All register writes are short and outside the active raster in the first version. The driver performs a single native hz→divisor conversion per PLAY, with measured worst-case cost and bounded duration; AudioDesc carries only hz. The conversion is part of job preparation and is not repeated during playback.
 
-Esempio: onda quadra firmata, 64 campioni ripetuti a 8 kHz:
+Example: signed square wave, 64 samples repeated at 8 kHz:
 
 ```text
 import audio
@@ -465,7 +465,7 @@ fn main() {
     let sample = bytes(64)
     for i in 0..sample.len {
         if i < 32 { sample[i] = 48 }
-        else { sample[i] = 208 } // byte che rappresenta -48 in PCM signed
+        else { sample[i] = 208 } // byte representing -48 in signed PCM
     }
     let play_error = audio.play(channel, sample, 8000, 16, 128, true)
     if play_error == 0 { system.sleep(50) }
@@ -474,77 +474,77 @@ fn main() {
 }
 ```
 
-Il programma non modifica `sample` durante PLAY. Il suono continua quando la VM cede il turno, perché la riproduzione appartiene all'hardware.
+The program does not modify `sample` during PLAY. Sound continues when the VM yields its turn, because playback is handled by hardware.
 
-## 8 Dimensioni e implementazione minima
+## 8 Size and minimal implementation
 
-Usare lo staging da 512 byte già previsto dalla mappa; UCI, grafica e DMA lo prenotano esplicitamente, senza mantenere puntatori a uno staging che un altro job può sovrascrivere durante una sospensione. Una richiesta sospesa conserva in REU i dati che non possono restare nello staging prenotato.
+Use the 512-byte staging area already allocated in the map; UCI, graphics and DMA reserve it explicitly, without retaining pointers to staging that another job can overwrite during suspension. A suspended request retains in REU any data that cannot remain in the reserved staging area.
 
-Metadati freddi dei file, snapshot directory e profilo stanno nella riserva sistema REU. Le continuazioni attive, i lease audio e i piccoli shadow indispensabili entrano nel budget RAM misurato. Generare il report anche con tutti i driver abilitati: una build con servizi esclusi non dimostra che il sistema completo entri nei 20 KiB. Riportare separatamente i due buffer directory da 16 KiB, i metadati storage e i 16 byte della cache RTC; questi ultimi possono risiedere in REU se il budget locale lo richiede.
+Cold file metadata, directory snapshots and the profile live in the REU system reserve. Active continuations, audio leases and essential small shadow state must fit within the measured RAM budget. Generate the report with all drivers enabled as well: a build with services excluded does not demonstrate that the complete system fits in 20 KiB. Report the two 16 KiB directory buffers, storage metadata and 16-byte RTC cache separately; the latter may reside in REU if the local budget requires it.
 
-Riusare il motore di lavori limitati per conversione pixel, copie, file e flush. Evitare una coda o uno scheduler indipendente per ogni libreria. I wrapper, formattazione del testo, tabelle SID e helper file possono essere bytecode nelle arene delle app.
+Reuse the bounded-job engine for pixel conversion, copies, files and flushes. Avoid a separate queue or scheduler for each library. Wrappers, text formatting, SID tables and file helpers can be bytecode in app arenas.
 
-La prima consegna può implementare servizi per tappe, ma la release MVP deve contenere i binding e i driver richiesti. Hardware assente e hardware non ancora implementato sono due condizioni differenti da rendere esplicite nel rapporto.
+The first delivery may implement services in stages, but the MVP release must contain the required bindings and drivers. Absent hardware and hardware not yet implemented are two different conditions that must be made explicit in the report.
 
-## 9 Test obbligatori
+## 9 Mandatory tests
 
-1. Valori, handle, proprietari, lunghezze, descrittori e indirizzi malformati; nessuna scrittura fuori arena o I/O non autorizzato.
-2. VideoInfo senza mapping; BLIT8 attraversa 64 KiB, coord negative, crop e X dispari; confronto dei pixel attesi.
-3. Due app leggono e scrivono file distinti con cursori differenti, alternandosi a ogni blocco; checksum finale e dimensioni corretti.
-4. Riapertura di un file CREATE_TRUNCATE durante lo switching senza nuovo troncamento; conflitto sul medesimo path; read+write garantiti dai tre modi scrivibili oppure ENOTSUP prima di creare/troncare.
-5. Read/write parziali, EOF, spazio esaurito, storage rimosso, risposta ritardata e timeout; conteggio non inventato su scrittura incerta e nessun busy wait che blocchi il raster. Seek a EOF, oltre EOF e write vicino al limite u32, con ERANGE senza effetti per il blocco che eccede.
-6. Kill in ogni stato UCI: nessuna risposta consegnata a un altro processo o file, nessun retry di una scrittura dall'esito incerto.
-7. File layout troncato, CRC errato, ID duplicati e collisioni; recupero dello slot valido e default se necessario.
-8. SID: lease conteso, batch invalido senza effetti, gate-off/volume zero su kill, shadow coerente.
-9. PCM: dati appena scritti in cache, sample oltre 64 KiB, ultimo indirizzo valido, tentativo oltre REU, range non proprio, loop e one-shot.
-10. Scritture CPU/native durante pin audio, overlap fra canali e rilascio solo dopo ultimo stop; niente campioni alterati o letture dopo riuso dell'arena.
-11. Riscontro dell'audio riprodotto: frequenza/encoding, volume, pan e stop sul backend disponibile; i soli log dei registri non sono una prova del suono.
-12. Stress combinato VM/UI/UCI/PCM per dieci minuti con report di latenza, deadline, occupazione RAM, traffico DMA e progressi delle app.
-13. Directory vuota, due snapshot contemporanee, limite in byte/voci, nome da 255 byte, nome non indirizzabile, buffer nome corto e kill durante la raccolta; nessun handle parziale e UCI nuovamente disponibile.
-14. Elenco directory seguito da I/O su file con posizioni diverse: cwd e cursori non devono contaminarsi. Una snapshot non consumata non impedisce altre operazioni UCI.
-15. Stat con data/dimensione note e sconosciute; attributi normalizzati, timestamp valido e nessun fuso inventato. Nuova scansione dopo una modifica aggiorna l'elenco.
-16. Mkdir senza antenati, rename con destinazione esistente, lock anche con case diverso, remove di directory, tentativi fuori root e timeout di mutazione senza retry.
-17. Nessuno storage, un candidato, più candidati, tabella cambiata, generazione vecchia, limiti superati, scansione con entrambe le snapshot occupate, supporto read-only e scollegamento durante read/write; nessun passaggio automatico a un altro volume.
-18. RTC valido, assente, risposta malformata, cache scaduta, cambio all'indietro, attraversamento del wrap di system.frame; tutti i timeout continuano a usare tempo monotono.
-19. Handle chiuso passato a wait/input_state dopo close/reopen; nessun evento consumato dalla nuova finestra. Overflow input, INPUT_RESET/BLUR, trascinamento fuori client, Shift rilasciato prima del tasto e comandi globali consumati dalla shell; nessun tasto mantenuto bloccato nell'app.
-20. Esaurimento dei 65.535 ID di un'app senza effetti sulle nuove aperture delle altre app o della shell; cleanup e nuova incarnazione, con nessuna continuazione o handle vivo ereditati.
+1. Malformed values, handles, owners, lengths, descriptors and addresses; no writes outside the arena or unauthorized I/O.
+2. VideoInfo without mapping; BLIT8 across 64 KiB, negative coordinates, cropping and odd X; comparison with expected pixels.
+3. Two apps read and write distinct files with different cursors, alternating on every block; correct final checksums and sizes.
+4. Reopening a CREATE_TRUNCATE file during switching without retruncation; conflict on the same path; read+write guaranteed by all three writable modes, or ENOTSUP before creating/truncating.
+5. Partial reads/writes, EOF, exhausted space, removed storage, delayed response and timeout; no invented count for uncertain writes and no busy wait blocking the raster. Seek to EOF, beyond EOF and writes near the u32 limit, with ERANGE and no effects for the block that exceeds it.
+6. Kill in every UCI state: no response delivered to another process or file, no retry of a write with an uncertain outcome.
+7. Truncated layout file, incorrect CRC, duplicate IDs and collisions; recovery of the valid slot and use of defaults when necessary.
+8. SID: contested lease, invalid batch without effects, gate-off/zero volume on kill, coherent shadow state.
+9. PCM: data just written into cache, sample beyond 64 KiB, last valid address, attempted access beyond REU, unowned range, loop and one-shot.
+10. CPU/native writes during audio pinning, overlap between channels and release only after the last stop; no altered samples or reads after arena reuse.
+11. Verification of played audio: frequency/encoding, volume, pan and stop on the available backend; register logs alone do not prove sound output.
+12. Combined VM/UI/UCI/PCM stress for ten minutes with a report of latency, deadlines, RAM usage, DMA traffic and app progress.
+13. Empty directory, two simultaneous snapshots, byte/entry limits, a 255-byte name, an unaddressable name, a short name buffer and kill during collection; no partial handle and UCI available again.
+14. Directory listing followed by file I/O at different positions: cwd and cursors must not contaminate each other. An unconsumed snapshot does not prevent other UCI operations.
+15. Stat with known and unknown date/size; normalized attributes, valid timestamp and no invented time zone. A new scan after a change updates the listing.
+16. Mkdir without ancestors, rename with an existing destination, locking even with different case, remove on a directory, attempts outside the root and mutation timeout without retry.
+17. No storage, one candidate, multiple candidates, changed table, old generation, exceeded limits, a scan with both snapshots occupied, read-only media and disconnection during reads/writes; no automatic switch to another volume.
+18. Valid RTC, absent RTC, malformed response, expired cache, backward change, crossing the system.frame wrap; all timeouts continue to use monotonic time.
+19. Closed handle passed to wait/input_state after close/reopen; no event consumed from the new window. Input overflow, INPUT_RESET/BLUR, dragging outside the client area, Shift released before the key and global commands consumed by the shell; no key left stuck as held in the app.
+20. Exhaustion of an app's 65,535 IDs without affecting new opens by other apps or the shell; cleanup and a new incarnation, with no inherited continuation or live handle.
 
-Conservare revisioni delle fonti hardware, versione firmware e impostazioni insieme ai risultati. Le capacità esposte devono corrispondere a ciò che è stato implementato e verificato nel profilo, non all'elenco massimo di funzioni del firmware.
+Keep hardware source revisions, firmware version and settings alongside the results. Exposed capabilities must match what has been implemented and verified in the profile, not the firmware's maximum feature list.
 
-## 10 Estensioni dopo l'MVP
+## 10 Extensions after the MVP
 
-Questa roadmap prepara il seguito senza richiedere nuovi driver residenti nella prima build. Le firme sono proposte per C-Script; record, codici d'errore specifici e assegnazioni degli ID verranno congelati dopo le prove del backend. Importare `net` o `http` nell'MVP deve produrre un errore di compilazione chiaro, senza stub che simulino un successo.
+This roadmap prepares later work without requiring new resident drivers in the first build. Signatures are proposals for C-Script; records, specific error codes and ID assignments will be frozen after backend testing. Importing `net` or `http` in the MVP must produce a clear compilation error, without stubs that pretend to succeed.
 
-### 10.1 N1: client TCP/UDP
+### 10.1 N1: TCP/UDP clients
 
-Prime API proposte: `net.connect(host, port, timeout)`, `net.udp(host, port)`, `net.read(socket, dst, timeout)`, `net.write(socket, src, timeout)`, `net.close(socket)` e `net.info()`. Handle Socket del kernel; due socket per app e quattro globali come limiti iniziali da misurare. DNS/connect e trasferimenti devono avere timeout e possibilità di cleanup; i dati sono buffer binari con lunghezza, anche se contengono NUL.
+First proposed APIs: `net.connect(host, port, timeout)`, `net.udp(host, port)`, `net.read(socket, dst, timeout)`, `net.write(socket, src, timeout)`, `net.close(socket)` and `net.info()`. Kernel Socket handles; two sockets per app and four globally as initial limits to measure. DNS/connect and transfers must have timeouts and cleanup paths; data is held in binary buffers with lengths, even when it contains NUL.
 
-Il firmware espone TCP/UDP client; i vecchi comandi listener non sono da considerare disponibili senza verificare il dispatcher del firmware target. [API di rete e limiti documentati](https://github.com/xahmol/ultimate-uci-oscar64/blob/main/docs/UCILIB_MANUAL.md#13-network-functions).
+The firmware exposes TCP/UDP clients; legacy listener commands must not be considered available without checking the target firmware's dispatcher. [Network APIs and documented limits](https://github.com/xahmol/ultimate-uci-oscar64/blob/main/docs/UCILIB_MANUAL.md#13-network-functions).
 
-TCP restituisce conteggi parziali, distingue timeout da EOF e conserva i byte accettati su errori parziali. Per UDP definire una API separata di datagrammi se il firmware preserva confini e metadati: non inventare semantica datagramma sopra una semplice sequenza di byte. Qualificare questo punto prima di congelare le firme.
+TCP returns partial counts, distinguishes timeout from EOF and preserves accepted bytes on partial errors. For UDP, define a separate datagram API if the firmware preserves boundaries and metadata: do not invent datagram semantics over a plain byte sequence. Qualify this point before freezing the signatures.
 
-Gate N1: verificare attesa di DNS/connect/read, comportamento di abort e recupero, reale rilascio dei socket su kill e interferenza con file I/O. Un servizio asincrono rispetto alla VM può comunque occupare tutta UCI per secondi: misurare anche il ritardo imposto alle altre richieste, non soltanto la continuità del raster.
+N1 gate: verify waits for DNS/connect/read, abort and recovery behavior, actual socket release on kill and interference with file I/O. A service that is asynchronous with respect to the VM may still occupy all of UCI for seconds: also measure the delay imposed on other requests, not just raster continuity.
 
-Esempi di accettazione: client testuale verso un server locale, trasferimento binario con NUL e timeout; richiesta NTP UDP come demo successiva, senza scrivere automaticamente nell'RTC. Servizi server TCP e configurazione IP globale restano separati.
+Acceptance examples: a text client to a local server, binary transfer with NUL and timeout; a UDP NTP request as a later demo, without automatically writing to the RTC. TCP server services and global IP configuration remain separate.
 
-### 10.2 N2: HTTP e JSON nel firmware
+### 10.2 N2: HTTP and JSON in firmware
 
-Il target HTTP presente nel sorgente firmware v3.15a gestisce header, body, scambi e strutture JSON; i wrapper di riferimento sono marcati non ancora testati su hardware. [Sorgente firmware HTTP](https://github.com/GideonZ/1541ultimate/blob/v3.15a/software/io/command_interface/http_target.cc), [stato dei wrapper](https://github.com/xahmol/ultimate-uci-oscar64/blob/main/include/ultimate_http_lib.h).
+The HTTP target in firmware v3.15a source handles headers, bodies, exchanges and JSON structures; the reference wrappers are marked as not yet tested on hardware. [HTTP firmware source](https://github.com/GideonZ/1541ultimate/blob/v3.15a/software/io/command_interface/http_target.cc), [wrapper status](https://github.com/xahmol/ultimate-uci-oscar64/blob/main/include/ultimate_http_lib.h).
 
-API iniziali proposte: `http.get(url, timeout)`, `http.read(response, dst)`, `http.status(response)`, `http.close(response)`. Aggiungere header e POST soltanto dopo il percorso GET binario. Per risposte JSON: `http.json_int(response, path)` e `http.json_text(response, path, dst)`, con output in buffer del chiamante, tipi verificati e nessuna allocazione implicita per campo.
+Initial proposed APIs: `http.get(url, timeout)`, `http.read(response, dst)`, `http.status(response)`, `http.close(response)`. Add headers and POST only after the binary GET path. For JSON responses: `http.json_int(response, path)` and `http.json_text(response, path, dst)`, with output in caller buffers, checked types and no implicit allocation per field.
 
-Questo può ridurre il lavoro della VM delegando parsing e gestione HTTP al firmware. Non obbliga C-Script a introdurre oggetti dinamici. Limiti iniziali proposti: una exchange UCI alla volta, una risposta viva per app, lunghezza URL/header e dimensione risposta limitate dal kernel prima e durante il trasferimento.
+This may reduce VM work by delegating parsing and HTTP handling to the firmware. It does not require C-Script to introduce dynamic objects. Proposed initial limits: one UCI exchange at a time, one live response per app, URL/header length and response size bounded by the kernel before and during transfer.
 
-Il kernel mantiene la proprietà di tutti gli handle header/body firmware, incluse risposte temporanee e percorsi di errore. Una chiamata globale del tipo FREE_ALL non può essere usata per il cleanup di una singola app. Rilasciare soltanto i suoi handle; verificare che timeout/abort non lascino oggetti irraggiungibili nel firmware.
+The kernel owns all firmware header/body handles, including temporary responses and error paths. A global call such as FREE_ALL must not be used to clean up a single app. Release only its handles; verify that timeout/abort do not leave unreachable objects in the firmware.
 
-Gate N2: GET testuale/binario e JSON, risposta malformata, body oltre quota, disconnessione, cleanup, latenza degli altri servizi UCI e misure CPU/RAM. Il backend UCI comune è una dipendenza, non la precedente implementazione dei socket N1: se qualificato, HTTP può essere sviluppato senza scrivere lo stack HTTP su TCP nella VM.
+N2 gate: text/binary GET and JSON, malformed response, body beyond quota, disconnection, cleanup, latency of other UCI services and CPU/RAM measurements. The shared UCI backend is a dependency, not the prior implementation of N1 sockets: if qualified, HTTP may be developed without writing an HTTP stack over TCP in the VM.
 
-HTTPS ha una capability distinta. Abilitarla solo dopo avere verificato supporto effettivo e autenticazione TLS, compresi catena dei certificati e hostname; non accettare URL https declassificandoli a http. Documentare redirect e limiti del firmware prima di esporli come comportamento garantito.
+HTTPS has a distinct capability. Enable it only after verifying actual support and TLS authentication, including the certificate chain and hostname; do not accept https URLs by downgrading them to http. Document redirects and firmware limits before exposing them as guaranteed behavior.
 
-### 10.3 Altre API e responsabilità della shell
+### 10.3 Other APIs and shell responsibilities
 
-Palette programmabile: utile soprattutto con un futuro fullscreen. Il kernel deve salvare/ripristinare la palette, proteggere i cinque colori della shell e gestire la proprietà globale prima di consentire modifiche alle app.
+Programmable palette: useful especially with future fullscreen support. The kernel must save/restore the palette, protect the shell's five colors and manage global ownership before allowing apps to change it.
 
-Mount/unmount di immagini disco, informazioni sui drive e SoftIEC: candidati per utility Commodore, con lease sui drive e impatto esplicito sui file in uso. Il percorso SoftIEC UCI documentato riguarda il drive virtuale dell'Ultimate, non equivale a un driver per ogni periferica IEC fisica. [Funzioni e copertura UCI](https://github.com/xahmol/ultimate-uci-oscar64/blob/main/docs/UCILIB_MANUAL.md).
+Disk image mount/unmount, drive information and SoftIEC: candidates for Commodore utilities, with drive leases and an explicit impact on files in use. The documented SoftIEC UCI path concerns the Ultimate's virtual drive; it is not equivalent to a driver for every physical IEC peripheral. [UCI functions and coverage](https://github.com/xahmol/ultimate-uci-oscar64/blob/main/docs/UCILIB_MANUAL.md).
 
-Configurazione globale, cambio IP/ora, freeze, reboot e caricamento/salvataggio completo della REU restano servizi amministrativi della shell. Caricare una REU mentre C-OS la usa sovrascrive anche kernel backing, superfici e processi: richiede un vero protocollo di uscita/ripristino, non una normale syscall app.
+Global configuration, IP/time changes, freeze, reboot and full REU loading/saving remain administrative shell services. Loading a REU while C-OS uses it also overwrites kernel backing, surfaces and processes: it requires a real exit/restore protocol, not a normal app syscall.

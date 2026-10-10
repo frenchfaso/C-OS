@@ -1,602 +1,602 @@
 # C-OS Commodore OS
-## Specifica per la prima implementazione
+## Specification for the first implementation
 
-Versione 0.1, revisione 4 — 10 ottobre 2026. Target: C64 Ultimate, PAL, turbo nominale a 64 MHz, REU da 16 MiB, video UPIC 320×200.
+Version 0.1, revision 4 — October 10, 2026. Target: C64 Ultimate, PAL, nominal 64 MHz turbo, 16 MiB REU, 320×200 UPIC video.
 
-Versione numerica dell'ABI iniziale: 1, identica in header REU, SYS_INFO e descrittori SDK. Versioni del documento e ABI sono numerazioni distinte.
+Initial numeric ABI version: 1, identical in the REU header, SYS_INFO, and SDK descriptors. Document versions and ABI versions use separate numbering.
 
-C-OS è un piccolo sistema operativo grafico con kernel e interprete in assembly 6510. Le applicazioni eseguono bytecode e accedono alla REU mediante indirizzi lineari a 24 bit. Il kernel controlla video, memoria, input e distribuzione del tempo CPU; nessuna applicazione deve cooperare affinché le altre continuino a funzionare.
+C-OS is a small graphical operating system with a kernel and interpreter written in 6510 assembly. Applications execute bytecode and access the REU through linear 24-bit addresses. The kernel controls video, memory, input, and CPU time allocation; no application has to cooperate for the others to keep running.
 
-La UI scelta è **C — NeXT libero**: desktop semplice, senza dock, taskbar o barra menu permanente; icone e widget quadrati liberamente collocabili su una griglia delle stesse dimensioni delle icone. La shell usa esclusivamente nero, bianco e i tre grigi del C64. La prima implementazione deve privilegiare semplicità, latenza dell'interazione e dimensione del codice.
+The chosen UI is **C — Free NeXT desktop**: a simple desktop without a dock, taskbar, or permanent menu bar; square icons and widgets can be placed freely on a grid whose cells match the icon size. The shell uses only black, white, and the C64's three grays. The first implementation must prioritize simplicity, interaction latency, and code size.
 
-Questa specifica definisce il comportamento da implementare. I valori indicati come **iniziali** sono parametri da misurare e affinare; non sono prestazioni già conseguite. La geometria scelta, l'indirizzamento lineare e la preemption delle app sono requisiti. Il layout interno della RAM e le dimensioni delle cache possono essere adattati documentando il motivo e mantenendo questi requisiti.
+This specification defines the behavior to implement. Values marked **initial** are parameters to measure and refine; they are not achieved performance figures. The chosen geometry, linear addressing, and application preemption are requirements. The internal RAM layout and cache sizes may be adjusted, provided the reason is documented and these requirements are preserved.
 
-Fanno parte della specifica anche [C-Script: linguaggio e compilatore](LANGUAGE.md), [SDK e servizi Ultimate](ULTIMATE-API.md) e [numeri frazionari](NUMERICS.md). Il presente documento definisce VM, memoria, scheduling e shell; gli allegati definiscono sorgente delle app, API e profilo numerico. Sono contratti da implementare, non documentazione di funzionalità già esistenti.
+[C-Script: language and compiler](LANGUAGE.md), [SDK and Ultimate services](ULTIMATE-API.md), and [fractional numbers](NUMERICS.md) are also part of the specification. This document defines the VM, memory, scheduling, and shell; the companion documents define application source code, APIs, and the numeric profile. These are contracts to implement, not documentation of existing functionality.
 
-Per il dev agent: partire dalla sezione 22 e dalle dipendenze delle milestone in §18. Le tabelle di questo documento sono normative per ISA e syscall core; ULTIMATE-API.md per binding, record SDK, eventi e servizi dispositivo; NUMERICS.md per rappresentazione e semantica numerica; LANGUAGE.md per tipizzazione e ABI delle funzioni. Aggiornare insieme i rimandi quando si cambia un contratto condiviso. Dimensioni e comportamento della UI sono definiti da questa specifica. La revisione 4 corregge il contratto ancora non implementato e mantiene ABI 1.
+For the development agent: start with section 22 and the milestone dependencies in §18. The tables in this document are normative for the ISA and core syscalls; ULTIMATE-API.md covers bindings, SDK records, events, and device services; NUMERICS.md covers numeric representation and semantics; LANGUAGE.md covers typing and the function ABI. Update cross-references together when changing a shared contract. This specification defines UI dimensions and behavior. Revision 4 corrects the contract before implementation and retains ABI 1.
 
-## 1 Decisioni e perimetro
+## 1 Decisions and scope
 
-| Tema | Decisione per la versione 0.1 |
+| Topic | Decision for version 0.1 |
 |---|---|
-| Nome | C-OS, Commodore OS |
-| Hardware | C64 Ultimate con 16 MiB REU e turbo nominale 64 MHz |
-| Video | PAL; UPIC realmente ristretto a 320×200; 16 colori indipendenti per pixel |
-| Shell | NeXT minimale; desktop senza barre permanenti |
-| Palette della shell | Indici C64 0, 1, 11, 12, 15 |
-| Desktop | Celle 32×32; icone e widget occupano una cella intera |
-| Runtime | VM a registri, implementata in assembly NMOS 6502/6510 |
-| Memoria delle app | Indirizzi REU lineari a 24 bit, con controllo dei limiti |
-| Multitasking | Un contesto VM per app; sospensione imposta dal dispatcher |
-| Fuel | Contatore economico per opcode; scadenze video gestite separatamente |
-| Processi simultanei | Massimo 4 nella prima versione |
-| Finestre simultanee | Massimo 4, una per applicazione |
-| Linguaggio iniziale | C-Script, piccolo linguaggio compilato in bytecode sul computer di sviluppo; assembler disponibile per test |
-| Numeri frazionari | Float24 compatto e float32 più preciso; float è alias di float32; profilo COS-NUM-1 |
-| Distribuzione iniziale | Bootstrap PRG e immagine REU generati insieme |
-| API Ultimate | File e directory, metadati, storage e RTC tramite UCI; SID e Ultimate Audio mediante servizi del kernel |
-| Video userspace | Superfici tramite handle, primitive native e blit da array di pixel dell'app; mapping diretto rinviato |
-| Persistenza iniziale | Documenti e layout tramite il servizio file, quando lo storage è disponibile |
+| Name | C-OS, Commodore OS |
+| Hardware | C64 Ultimate with 16 MiB REU and nominal 64 MHz turbo |
+| Video | PAL; UPIC actually reduced to 320×200; 16 independent colors per pixel |
+| Shell | Minimal NeXT style; desktop without permanent bars |
+| Shell palette | C64 indices 0, 1, 11, 12, 15 |
+| Desktop | 32×32 cells; each icon or widget occupies one whole cell |
+| Runtime | Register VM implemented in NMOS 6502/6510 assembly |
+| Application memory | Linear 24-bit REU addresses with bounds checking |
+| Multitasking | One VM context per app; suspension enforced by the dispatcher |
+| Fuel | Inexpensive counter per opcode; video deadlines handled separately |
+| Concurrent processes | Maximum 4 in the first version |
+| Concurrent windows | Maximum 4, one per application |
+| Initial language | C-Script, a small language compiled to bytecode on the development computer; assembler available for tests |
+| Fractional numbers | Compact float24 and more precise float32; float aliases float32; COS-NUM-1 profile |
+| Initial distribution | Bootstrap PRG and REU image generated together |
+| Ultimate APIs | Files and directories, metadata, storage, and RTC through UCI; SID and Ultimate Audio through kernel services |
+| Userspace video | Surfaces accessed through handles, native primitives, and blits from the app's pixel arrays; direct mapping deferred |
+| Initial persistence | Documents and layout through the file service when storage is available |
 
-Non sono necessari per il primo MVP: POSIX, Linux, emulazione RISC-V, compatibilità binaria con altre VM, Lua, WAMR, JIT, garbage collector, rete, USB HID nativo, processi nativi non fidati, un filesystem scritto da zero o compilazione sul C64. File I/O, directory/stat, mkdir/rename/remove di file, scoperta storage, lettura RTC, SID, Ultimate Audio e compilatore C-Script fanno parte del perimetro; la disponibilità dei dispositivi viene comunicata alle app. Rete e HTTP hanno milestone successive definite nell'allegato SDK.
+The first MVP does not require POSIX, Linux, RISC-V emulation, binary compatibility with other VMs, Lua, WAMR, a JIT, garbage collection, networking, native USB HID, untrusted native processes, a filesystem written from scratch, or compilation on the C64. File I/O, directory/stat, mkdir/rename/file removal, storage discovery, RTC reads, SID, Ultimate Audio, and the C-Script compiler are in scope; device availability is reported to apps. Networking and HTTP have later milestones defined in the SDK document.
 
-Non portare il modello event/update/render o lo scheduler di Freeview. Le applicazioni C-OS hanno un normale punto di ingresso e un contesto persistente; possono eseguire un event loop, attendere eventi o calcolare.
+Do not port Freeview's event/update/render model or scheduler. C-OS applications have a normal entry point and a persistent context; they can run an event loop, wait for events, or compute.
 
-## 2 Risultato atteso del primo MVP
+## 2 Expected outcome of the first MVP
 
-Il sistema deve avviarsi nel desktop, permettere di spostare le icone fra celle e aprire almeno due applicazioni VM. Un'applicazione in ciclo infinito e un'applicazione che accede continuamente alla REU devono poter convivere con input, finestre e desktop utilizzabili.
+The system must boot to the desktop, allow icons to move between cells, and open at least two VM applications. An application in an infinite loop and an application continuously accessing the REU must coexist with usable input, windows, and desktop interaction.
 
-La dimostrazione deve includere:
+The demonstration must include:
 
-- un'app Note in C-Script con buffer modificabile e apertura/salvataggio tramite il servizio file;
-- un'app Contatore che aggiorna una parte limitata della propria finestra;
-- un'app Stress che alterna calcolo e accessi oltre i primi 64 KiB;
-- un monitor nativo che visualizza processi, fault, memoria e contatori diagnostici.
+- a Note app in C-Script with an editable buffer and open/save operations through the file service;
+- a Counter app that updates a limited area of its window;
+- a Stress app alternating computation and accesses beyond the first 64 KiB;
+- a native monitor showing processes, faults, memory, and diagnostic counters.
 
-Fornire inoltre esempi C-Script di lettura/scrittura file, riproduzione SID e PCM tramite Ultimate Audio, e disegno da array lineare. Non devono tutti essere processi residenti contemporaneamente: il pack contiene al massimo quattro app, e il bundler deve poter generare un pack di demo alternativo. I servizi assenti restituiscono un errore esplicito; desktop e app senza dipendenze dal dispositivo continuano a funzionare.
+Also provide C-Script examples of file reads/writes, SID and PCM playback through Ultimate Audio, and drawing from a linear array. They do not all need to be resident processes at the same time: the pack contains at most four apps, and the bundler must be able to generate an alternative demo pack. Unavailable services return explicit errors; the desktop and apps without dependencies on that device continue running.
 
-Includere una demo di elenco directory con stat della voce selezionata e un pannello della shell per visualizzare/aggiornare lo storage rilevato. Verificare boot senza storage, scelta fra più root C-OS e orologio civile con fallback uptime. Sono sufficienti una lista semplice e i servizi descritti; un file manager completo non è richiesto.
+Include a directory-listing demo with stat for the selected entry and a shell panel to display/refresh detected storage. Verify boot without storage, selection between multiple C-OS roots, and a wall clock with uptime fallback. A simple list and the specified services are sufficient; a full file manager is not required.
 
-Includere inoltre un piccolo pannello numerico C-Script: input testuale, scelta float24/float32, quattro operazioni e risultato formattato. Un loop di calcolo senza yield in un'altra app deve convivere con il pannello e il desktop. L'esempio dimostra i due tipi e la gestione degli errori; il confronto delle prestazioni vive nel benchmark separato.
+Also include a small C-Script numeric panel: text input, float24/float32 selection, the four arithmetic operations, and a formatted result. A computation loop without yield in another app must coexist with the panel and desktop. The example demonstrates both types and error handling; performance comparisons belong in the separate benchmark.
 
-Un file manager completo non è richiesto nell'MVP. Ogni icona attiva deve aprire una funzione reale; evitare pulsanti decorativi che non fanno nulla.
+A full file manager is not required for the MVP. Every active icon must open real functionality; avoid decorative buttons that do nothing.
 
-Il monitor della shell può aprire un pannello temporaneo gestito come un menu del compositor: non occupa un quinto processo o una quinta superficie di finestra. Deve restare raggiungibile quando tutti e quattro i processi sono occupati, e consentire di identificare e terminare quello attivo.
+The shell monitor may open a temporary panel handled like a compositor menu: it does not consume a fifth process or a fifth window surface. It must remain reachable when all four processes are busy and allow the active process to be identified and terminated.
 
-## 3 Hardware e fatti di partenza
+## 3 Hardware and baseline facts
 
-La REU non è RAM direttamente indirizzabile dal 6510: il driver programma i trasferimenti fra REU e RAM locale. La VM rende questa distinzione invisibile alle app attraverso LOAD, STORE e puntatori lineari. I registri del DMA restano esclusivamente del kernel.
+The REU is not RAM directly addressable by the 6510: the driver programs transfers between the REU and local RAM. The VM hides this distinction from apps through LOAD, STORE, and linear pointers. DMA registers remain exclusively under kernel control.
 
-UPIC genera l'immagine scrivendo il colore del bordo in sincronia con il raster. Ridurre la larghezza libera memoria e lavoro per riga, ma un ciclo che aspetta comunque tutte le righe non restituisce automaticamente quel tempo alla VM. Il raster deve essere prodotto anche quando il desktop non cambia.
+UPIC generates the image by writing the border color in sync with the raster. Reducing the width saves memory and work per line, but a loop that still waits through every line does not automatically return that time to the VM. The raster must be generated even when the desktop does not change.
 
-Riferimenti per i vincoli hardware: [documentazione turbo Ultimate](https://1541u-documentation.readthedocs.io/en/latest/config/turbo_mode.html), [manuale UPIC](https://github.com/xahmol/ultimate-uci-oscar64/blob/main/docs/UPIC_MANUAL.md), [interfaccia Ultimate Audio](https://github.com/xahmol/ultimate-uci-oscar64/blob/main/include/ultimate_audio_lib.h). I dettagli da verificare per file, SID e audio sono nell'allegato SDK.
+References for hardware constraints: [Ultimate turbo documentation](https://1541u-documentation.readthedocs.io/en/latest/config/turbo_mode.html), [UPIC manual](https://github.com/xahmol/ultimate-uci-oscar64/blob/main/docs/UPIC_MANUAL.md), [Ultimate Audio interface](https://github.com/xahmol/ultimate-uci-oscar64/blob/main/include/ultimate_audio_lib.h). The SDK document covers details to verify for files, SID, and audio.
 
-| Punto | Regola |
+| Item | Rule |
 |---|---|
-| Turbo | Verificare la velocità effettiva al boot; non fidarsi soltanto del valore di $D031 |
-| Avvio | Attendere la disponibilità effettiva del turbo dopo il reset |
-| PAL | Primo target; NTSC escluso dal profilo iniziale |
-| DMA | Sincrono e non interrompibile dalla CPU; misurarne durata e costo di setup |
-| Arbitraggio | Non assumere che il DMA diventi 64 volte più veloce grazie al turbo |
-| Firmware | Registrare modello, versione, impostazioni e profilo di timing nei risultati |
-| Emulazione | Utile per regressioni e diagnostica; non sostituisce la qualificazione del timing sul dispositivo |
-| NMI e menu firmware | Disturbi esterni al normale scheduling; prevedere recupero del display e documentarne gli effetti |
+| Turbo | Verify actual speed at boot; do not rely solely on the value of $D031 |
+| Startup | Wait until turbo is actually available after reset |
+| PAL | First target; NTSC excluded from the initial profile |
+| DMA | Synchronous and not interruptible by the CPU; measure duration and setup cost |
+| Arbitration | Do not assume DMA becomes 64 times faster because of turbo |
+| Firmware | Record model, version, settings, and timing profile with the results |
+| Emulation | Useful for regressions and diagnostics; does not replace timing qualification on the device |
+| NMI and firmware menu | Disturbances outside normal scheduling; provide display recovery and document their effects |
 
-Per la REU partire da FETCH/STASH immediati, indirizzi incrementanti, interrupt REU disabilitati, autoload disabilitato. Ogni transazione deve inizializzare esplicitamente i registri necessari. Una richiesta software di lunghezza zero è un no-op: non passarla come zero ai registri di lunghezza, dove può significare 65.536 byte.
+For the REU, start with immediate FETCH/STASH, incrementing addresses, REU interrupts disabled, and autoload disabled. Every transaction must explicitly initialize the required registers. A zero-length software request is a no-op: do not pass zero to the length registers, where it can mean 65,536 bytes.
 
-## 4 Architettura
+## 4 Architecture
 
 ```text
-Applicazioni in bytecode
-    registri, indirizzi lineari, syscall
+Bytecode applications
+    registers, linear addresses, syscalls
                     |
-VM assembly + fuel + controlli di accesso
+Assembly VM + fuel + access checks
                     |
-Kernel: scheduler, cache, code di eventi e lavori limitati
+Kernel: scheduler, caches, event queues, and bounded jobs
              /                     \
-Window manager e disegno       Driver REU
+Window manager and drawing     REU driver
              \                     /
-          RAM locale e framebuffer
+          Local RAM and framebuffer
                     |
-          Scanout UPIC a priorità massima
+          Highest-priority UPIC scanout
 ```
 
-Il kernel e la shell sono codice nativo fidato. L'applicazione non può chiamare indirizzi 6510, modificare i vettori, toccare zero page o stack hardware, cambiare il turbo, programmare REU/VIC/CIA o accedere al framebuffer fisico.
+The kernel and shell are trusted native code. An application cannot call 6510 addresses, modify vectors, touch zero page or the hardware stack, change turbo settings, program the REU/VIC/CIA, or access the physical framebuffer.
 
-C-Script viene compilato direttamente per questa VM; non aggiunge un secondo interprete. Il kernel possiede anche UCI, SID e Ultimate Audio. Le API possono sospendere l'app chiamante mentre il kernel serve le altre attività. I dettagli UPIC non fanno parte né del linguaggio né dell'ABI video.
+C-Script compiles directly for this VM; it does not add a second interpreter. The kernel also owns UCI, SID, and Ultimate Audio. APIs may suspend the calling app while the kernel serves other work. UPIC details are part of neither the language nor the video ABI.
 
-La VM non emula un'intera macchina: nessun chipset, MMU hardware, timer guest o istruzioni privilegiate. Il suo stato consiste in registri, PC, stack virtuale e metadati del processo.
+The VM does not emulate a whole machine: no chipset, hardware MMU, guest timers, or privileged instructions. Its state consists of registers, PC, a virtual stack, and process metadata.
 
-## 5 RAM locale e framebuffer
+## 5 Local RAM and framebuffer
 
-### 5.1 Bilancio
+### 5.1 Budget
 
-| Risoluzione | Pixel packed 4 bpp | Riserva con colonne da 256 byte |
+| Resolution | Packed 4 bpp pixels | Reservation with 256-byte columns |
 |---|---:|---:|
-| 384×200 | 38.400 byte | 49.152 byte |
-| 360×200 | 36.000 byte | 46.080 byte |
-| 320×200 | 32.000 byte | 40.960 byte |
+| 384×200 | 38,400 bytes | 49,152 bytes |
+| 360×200 | 36,000 bytes | 46,080 bytes |
+| 320×200 | 32,000 bytes | 40,960 bytes |
 
-C-OS parte dalle colonne da 256 byte: letture indicizzate prevedibili, nessun attraversamento di pagina con Y fra 0 e 199. I 56 byte non visualizzati di ogni colonna restano inutilizzati nell'MVP.
+C-OS starts with 256-byte columns: predictable indexed reads, with no page crossing for Y between 0 and 199. The 56 undisplayed bytes in each column remain unused in the MVP.
 
-Dei 64 KiB locali, 40 KiB sono framebuffer e 4 KiB sono la finestra I/O visibile. Restano **20 KiB direttamente utilizzabili** per codice, stack, cache e dati, mantenendo I/O visibile. I 24 KiB “fuori dal framebuffer” non sono tutti RAM normalmente accessibile.
+Of the local 64 KiB, 40 KiB hold the framebuffer and 4 KiB are the visible I/O window. This leaves **20 KiB directly usable** for code, stacks, caches, and data while keeping I/O visible. The 24 KiB “outside the framebuffer” are not all normally accessible RAM.
 
-### 5.2 Mappa iniziale
+### 5.2 Initial map
 
-ROM BASIC/KERNAL escluse e I/O visibile durante il normale funzionamento, con configurazione del port 6510 coerente con $01=$35.
+BASIC/KERNAL ROMs are banked out and I/O remains visible during normal operation, with the 6510 port configured consistently with $01=$35.
 
-| Intervallo inclusivo | Byte | Uso iniziale |
+| Inclusive range | Bytes | Initial use |
 |---|---:|---|
-| $0000–$0001 | 2 | Registri del port 6510 |
-| $0002–$007F | 126 | Registri VM attivi e scratch del dispatcher |
-| $0080–$00BF | 64 | Scratch kernel e driver |
-| $00C0–$00FF | 64 | Scratch riservato al raster e agli interrupt |
-| $0100–$01FF | 256 | Stack hardware, solo kernel |
-| $0200–$02FF | 256 | Tabella di estrazione del nibble alto |
-| $0300–$03FF | 256 | Stato globale e descrittori compatti delle finestre |
-| $0400–$05FF | 512 | Quattro PCB da 128 byte |
-| $0600–$07FF | 512 | Quattro code eventi, 8 record da 16 byte ciascuna |
-| $0800–$0BFF | 1.024 | Cache codice: due linee da 128 byte per processo |
-| $0C00–$0FFF | 1.024 | Cache dati condivisa: otto linee da 128 byte |
-| $1000–$11FF | 512 | Buffer temporanei di DMA e lavori grafici |
-| $1200–$3FFF | 11.776 | Codice residente kernel, VM, shell e driver |
-| $4000–$CFFF | 36.864 | Prime 144 colonne packed del framebuffer |
-| $D000–$DFFF | 4.096 | I/O; non usarlo come normale RAM |
-| $E000–$EFFF | 4.096 | Ultime 16 colonne packed del framebuffer |
-| $F000–$F9FF | 2.560 | Renderer UPIC, preparazione e sincronizzazione |
-| $FA00–$FCFF | 768 | Font residente, 96 glifi da 8 byte |
-| $FD00–$FD7F | 128 | Save-under del cursore |
-| $FD80–$FDFF | 128 | Metadati delle cache |
-| $FE00–$FFF9 | 506 | Stato desktop, dirty list, titoli e diagnostica |
-| $FFFA–$FFFF | 6 | Vettori NMI, RESET e IRQ |
+| $0000–$0001 | 2 | 6510 port registers |
+| $0002–$007F | 126 | Active VM registers and dispatcher scratch |
+| $0080–$00BF | 64 | Kernel and driver scratch |
+| $00C0–$00FF | 64 | Scratch reserved for raster and interrupts |
+| $0100–$01FF | 256 | Hardware stack, kernel only |
+| $0200–$02FF | 256 | High-nibble extraction table |
+| $0300–$03FF | 256 | Global state and compact window descriptors |
+| $0400–$05FF | 512 | Four 128-byte PCBs |
+| $0600–$07FF | 512 | Four event queues, each with 8 records of 16 bytes |
+| $0800–$0BFF | 1,024 | Code cache: two 128-byte lines per process |
+| $0C00–$0FFF | 1,024 | Shared data cache: eight 128-byte lines |
+| $1000–$11FF | 512 | DMA and graphics job staging buffers |
+| $1200–$3FFF | 11,776 | Resident kernel, VM, shell, and driver code |
+| $4000–$CFFF | 36,864 | First 144 packed framebuffer columns |
+| $D000–$DFFF | 4,096 | I/O; do not use as ordinary RAM |
+| $E000–$EFFF | 4,096 | Last 16 packed framebuffer columns |
+| $F000–$F9FF | 2,560 | UPIC renderer, preparation, and synchronization |
+| $FA00–$FCFF | 768 | Resident font, 96 glyphs of 8 bytes |
+| $FD00–$FD7F | 128 | Cursor save-under |
+| $FD80–$FDFF | 128 | Cache metadata |
+| $FE00–$FFF9 | 506 | Desktop state, dirty list, titles, and diagnostics |
+| $FFFA–$FFFF | 6 | NMI, RESET, and IRQ vectors |
 
-È un budget di progetto da confrontare con la prima map file, non una misura del kernel finito. Se una sezione non entra, il build deve fallire: niente sovrapposizioni silenziose, banking temporaneo dell'I/O nel raster o sottrazione implicita di memoria alla VM.
+This is a design budget to compare with the first map file, not a measurement of the finished kernel. If a section does not fit, the build must fail: no silent overlaps, temporary I/O banking during raster output, or implicit removal of memory from the VM.
 
-Le strutture hanno limiti fissi. Generare un report con dimensione effettiva di ogni sezione, occupazione massima dello stack hardware e margine residuo. Non aggiungere un framework UI prima di avere questo report.
+Structures have fixed limits. Generate a report with each section's actual size, maximum hardware stack usage, and remaining headroom. Do not add a UI framework before this report exists.
 
-Il budget comprende anche i driver aggiunti nell'allegato SDK: non assumere spazio extra oltre la mappa. Tenere in REU metadati freddi, nomi dei file e librerie bytecode; mantenere residenti soltanto dispatcher, driver e continuazioni necessari. La dimensione del kernel completo è un rischio da verificare presto. Se non entra, ridurre duplicazioni e spostare logica non privilegiata in bytecode, oppure proporre una revisione misurata della mappa; non eliminare silenziosamente servizi richiesti.
+The budget also includes the drivers added in the SDK document: do not assume extra space beyond this map. Keep cold metadata, filenames, and bytecode libraries in the REU; only the necessary dispatcher, drivers, and continuations should be resident. The complete kernel's size is a risk to check early. If it does not fit, reduce duplication and move unprivileged logic into bytecode, or propose a measured revision of the map; do not silently remove required services.
 
-Il nucleo numerico per float24/float32 e il suo scratch rientrano nello stesso budget. NUMERICS.md pone un obiettivo iniziale da qualificare di 4 KiB complessivi per nucleo, conversioni numeriche e bridge; i convertitori testuali iniziano in bytecode nelle arene REU delle app. Non aggiungere 4 KiB alla mappa come se fossero memoria libera esterna al limite.
+The float24/float32 numeric core and its scratch space must fit within the same budget. NUMERICS.md sets an initial target to qualify of 4 KiB total for the core, numeric conversions, and bridge; text converters start as bytecode in the apps' REU arenas. Do not add 4 KiB to the map as though it were free memory outside the limit.
 
-### 5.3 Accesso al framebuffer
+### 5.3 Framebuffer access
 
-Per x fra 0 e 319 e y fra 0 e 199:
+For x from 0 to 319 and y from 0 to 199:
 
 ```text
 c = x >> 1
-base(c) = $4000 + 256*c                  se c < 144
-base(c) = $E000 + 256*(c-144)            altrimenti
-indirizzo = base(c) + y
-x pari: nibble basso; x dispari: nibble alto
+base(c) = $4000 + 256*c                  if c < 144
+base(c) = $E000 + 256*(c-144)            otherwise
+address = base(c) + y
+even x: low nibble; odd x: high nibble
 ```
 
-Le primitive devono preservare il nibble del pixel adiacente. La geometria e le colonne devono essere ristrette davvero a 320: una viewport da 320 dentro un renderer da 384 non soddisfa questo requisito.
+Primitives must preserve the adjacent pixel's nibble. The geometry and columns must actually be reduced to 320: a 320-wide viewport inside a 384-wide renderer does not satisfy this requirement.
 
-## 6 Memoria REU lineare e isolamento
+## 6 Linear REU memory and isolation
 
-### 6.1 Modello scelto
+### 6.1 Chosen model
 
-Lo spazio numerico degli indirizzi è $000000–$FFFFFF. Un puntatore contiene esattamente tre byte, little endian.
+The numeric address space is $000000–$FFFFFF. A pointer contains exactly three bytes, little endian.
 
-Nell'MVP **l'indirizzo dell'app coincide con l'offset REU**. Non introdurre una tabella di pagine virtuali o una somma della base del processo per ogni accesso. Il loader assegna a ogni applicazione un'arena contigua; l'assembler/linker sul computer di sviluppo risolve i riferimenti alla base assegnata.
+In the MVP, **the application's address equals the REU offset**. Do not introduce a virtual page table or add a process base on every access. The loader assigns a contiguous arena to each application; the assembler/linker on the development computer resolves references against the assigned base.
 
-Questa scelta dà indirizzamento lineare e un controllo di appartenenza semplice. Non offre spazi privati tutti basati a zero né overcommit. I 16 MiB sono la memoria fisica totale condivisa: non 16 MiB dedicati a ciascuna app.
+This provides linear addressing and a simple ownership check. It does not provide separate private address spaces all based at zero, or overcommit. The 16 MiB are the total shared physical memory, not 16 MiB dedicated to each app.
 
-Un array può attraversare $xxFFFF senza istruzioni di cambio banco. LOAD/STORE, copia, stack, codice e API accettano gli stessi puntatori.
+An array may cross $xxFFFF without bank-switch instructions. LOAD/STORE, copies, stack, code, and APIs accept the same pointers.
 
-### 6.2 Riserva del sistema
+### 6.2 System reservation
 
-| Intervallo REU inclusivo | Dimensione | Destinazione iniziale |
+| Inclusive REU range | Size | Initial purpose |
 |---|---:|---|
-| $000000–$00FFFF | 64 KiB | Header, immagini del kernel, seed delle app e asset di boot |
-| $010000–$017FFF | 32 KiB | Superficie client della finestra 1 |
-| $018000–$01FFFF | 32 KiB | Superficie client della finestra 2 |
-| $020000–$027FFF | 32 KiB | Superficie client della finestra 3 |
-| $028000–$02FFFF | 32 KiB | Superficie client della finestra 4 |
-| $030000–$033FFF | 16 KiB | Snapshot directory 1 |
-| $034000–$037FFF | 16 KiB | Snapshot directory 2 |
-| $038000–$03FFFF | 32 KiB | Asset shell, configurazione, metadati freddi e riserva del sistema |
-| $040000–$FFFFFF | 15,75 MiB | Arene delle applicazioni |
+| $000000–$00FFFF | 64 KiB | Header, kernel images, app initialization seeds, and boot assets |
+| $010000–$017FFF | 32 KiB | Client surface for window 1 |
+| $018000–$01FFFF | 32 KiB | Client surface for window 2 |
+| $020000–$027FFF | 32 KiB | Client surface for window 3 |
+| $028000–$02FFFF | 32 KiB | Client surface for window 4 |
+| $030000–$033FFF | 16 KiB | Directory snapshot 1 |
+| $034000–$037FFF | 16 KiB | Directory snapshot 2 |
+| $038000–$03FFFF | 32 KiB | Shell assets, configuration, cold metadata, and system reserve |
+| $040000–$FFFFFF | 15.75 MiB | Application arenas |
 
-La riserva iniziale del sistema è quindi 256 KiB. Esporla nei report; non descrivere 15,75 MiB liberi come 16 MiB effettivamente allocabili dalle app. Il confine può essere rivisto dopo misure, mantenendo lo spazio lineare a 24 bit.
+The initial system reservation is therefore 256 KiB. Show it in reports; do not describe 15.75 MiB free as 16 MiB actually allocatable by apps. The boundary may be revised after measurement while retaining the linear 24-bit space.
 
-Le snapshot directory riutilizzano 32 KiB della riserva originaria; non aumentano il limite di RAM residente del 6510. Il report di build deve dimostrare che asset shell e metadati entrino nei 32 KiB rimanenti. Slot e memoria delle snapshot tornano disponibili dopo closedir, kill o fallimento di opendir.
+Directory snapshots reuse 32 KiB of the original reservation; they do not increase the 6510 resident RAM limit. The build report must demonstrate that shell assets and metadata fit in the remaining 32 KiB. Snapshot slots and memory become available again after closedir, kill, or a failed opendir.
 
-### 6.3 Arena di un processo
+### 6.3 Process arena
 
-Ogni arena contiene codice immutabile, dati inizializzati/BSS, heap e stack virtuale separato. Inizio e dimensione dell'arena, inizi delle sezioni e dimensione dello stack sono multipli di 128 byte; il codice è anche allineato a quattro byte. Heap e stack contengono almeno 128 byte ciascuno. Il manifest dichiara tutti i limiti. Due arene non condividono mai una linea cache fisica.
+Each arena contains immutable code, initialized data/BSS, a heap, and a separate virtual stack. Arena start and size, section starts, and stack size are multiples of 128 bytes; code is also aligned to four bytes. Heap and stack each contain at least 128 bytes. The manifest declares every bound. Two arenas must never share a physical cache line.
 
-Dati inizializzati e BSS possono essere vuoti: descriverli con inizio e lunghezza, con lunghezza zero che non autorizza accessi o copie. Le regioni con limiti inclusivi elencate sotto sono invece sempre non vuote. Il padding di allineamento non è codice eseguibile e non fa parte della lunghezza dei dati da ripristinare.
+Initialized data and BSS may be empty: describe them with a start and length, where zero length authorizes no access or copy. The regions with inclusive bounds listed below are always nonempty. Alignment padding is not executable code and is not part of the data length to restore.
 
-Il kernel conserva limiti **inclusivi a 24 bit**: arena_first/last, code_first/last, heap_first/last, stack_first/last. Questo evita di dover rappresentare $1000000 in un puntatore a 24 bit.
+The kernel stores **inclusive 24-bit bounds**: arena_first/last, code_first/last, heap_first/last, stack_first/last. This avoids representing $1000000 in a 24-bit pointer.
 
-Per un accesso di N byte con N>0:
+For an access of N bytes where N>0:
 
-1. Calcolare last = address + N - 1 con rilevamento dell'overflow.
-2. Verificare address >= arena_first e last <= arena_last.
-3. Per una scrittura, verificare che l'intervallo non intersechi il codice o un campione audio attualmente protetto dal kernel.
-4. Per fetch/branch/return, verificare che il target sia allineato a quattro e che tutti e quattro i byte dell'istruzione siano nel codice.
+1. Compute last = address + N - 1 with overflow detection.
+2. Check address >= arena_first and last <= arena_last.
+3. For a write, check that the range does not intersect code or an audio sample currently protected by the kernel.
+4. For fetch/branch/return, check that the target is aligned to four and that all four instruction bytes are within code.
 
-Non troncare il riporto oltre 24 bit. Il kernel può indirizzare la propria riserva, ma l'app non può farlo, neppure attraverso una syscall.
+Do not discard carry beyond 24 bits. The kernel may address its own reservation, but the app cannot, including through a syscall.
 
-Un puntatore fuori arena può essere costruito o conservato come valore; il suo dereferenziamento è vietato. Questo mantiene semplici confronti e aritmetica senza indebolire l'accesso alla memoria.
+An out-of-arena pointer may be constructed or stored as a value; dereferencing it is prohibited. This keeps comparisons and arithmetic simple without weakening memory access protection.
 
-### 6.4 Heap e ciclo di vita
+### 6.4 Heap and lifecycle
 
-Niente GC nell'MVP. Fornire inizialmente una libreria userspace con bump allocator e reset dell'arena heap quando l'app riparte; malloc/free generale può arrivare successivamente.
+No GC in the MVP. Initially provide a userspace library with a bump allocator and reset the heap arena when the app restarts; general malloc/free may come later.
 
-Al riavvio della stessa app ripristinare i dati inizializzati, azzerare BSS e contesto, e ricreare stack e risorse. Il contenuto dell'heap non è garantito zero. Le arene dell'MVP sono assegnate staticamente e non vengono riassegnate a un'altra app durante la sessione.
+When the same app restarts, restore initialized data, clear BSS and context, and recreate its stack and resources. Heap contents are not guaranteed to be zero. MVP arenas are assigned statically and are not reassigned to another app during the session.
 
-Prima di un'eventuale futura riassegnazione a un'altra app, azzerare la regione. Terminando un processo, annullare i lavori pendenti e invalidare tutte le linee cache e gli handle che gli appartengono prima di riutilizzare lo slot.
+Before any future reassignment to another app, clear the region. When terminating a process, cancel pending jobs and invalidate every cache line and handle it owns before reusing the slot.
 
-Prima di riutilizzare memoria letta dall'hardware audio, fermare i canali e rilasciare i relativi vincoli. Un'operazione UCI già inviata può richiedere drenaggio/abort e non va attribuita al nuovo processo che occupa lo stesso slot. La terminazione ha una continuazione di cleanup del kernel, distinta dal contesto VM ormai fermo.
+Before reusing memory being read by audio hardware, stop the channels and release the associated constraints. An already submitted UCI operation may require draining/abort and must not be attributed to a new process occupying the same slot. Termination has a kernel cleanup continuation separate from the now-stopped VM context.
 
-## 7 Cache e transazioni REU
+## 7 Caches and REU transactions
 
-### 7.1 Cache iniziali
+### 7.1 Initial caches
 
-- Codice: due linee da 128 byte per processo, sola lettura; sostituzione alternata o LRU a un bit.
-- Dati: otto linee da 128 byte totali, write-back; sostituzione CLOCK semplice.
-- Tag: indirizzo REU del blocco e stato valid/dirty/busy; i dati sporchi restano associati al proprietario.
-- Pagina REU qui significa soltanto un blocco di cache, non una finestra visibile all'app.
+- Code: two 128-byte lines per process, read-only; alternating replacement or one-bit LRU.
+- Data: eight 128-byte lines total, write-back; simple CLOCK replacement.
+- Tags: REU block address and valid/dirty/busy state; dirty data remains associated with its owner.
+- A REU page here means only a cache block, not a window visible to the app.
 
-Le dimensioni sono parametri di build da confrontare almeno con una variante a linee da 64 byte. Non introdurre cache associative complesse senza misure di un problema reale.
+Sizes are build parameters to compare against at least one variant with 64-byte lines. Do not introduce complex associative caches without measuring a real problem.
 
-### 7.2 Miss e ripresa
+### 7.2 Misses and resumption
 
-Un cache miss porta il processo in WAIT_REU e restituisce il controllo al kernel. Il kernel effettua write-back/refill in transazioni limitate quando il calendario video lo permette.
+A cache miss puts the process in WAIT_REU and returns control to the kernel. The kernel performs write-back/refill in bounded transactions when the video schedule permits.
 
-La linea di destinazione resta busy e non utilizzabile fino al completamento del trasferimento. Solo allora pubblicare il tag valido e risvegliare il processo.
+The destination line remains busy and unavailable until the transfer completes. Only then publish the valid tag and wake the process.
 
-Prima di modificare registri, stack o memoria, un opcode deve avere verificato tutti i limiti e reso disponibili tutte le linee necessarie. LOAD/STORE di 16 o 24 bit possono attraversare due linee: fissarle entrambe per la breve fase di esecuzione.
+Before modifying registers, stack, or memory, an opcode must have checked all bounds and made every required line available. A 16- or 24-bit LOAD/STORE may cross two lines: pin both during the short execution phase.
 
-Se manca una linea, riprendere dallo stesso PC senza aver cambiato stato visibile. Questo evita STORE parziali, PUSH duplicati, doppie syscall e consumo ripetuto del fuel sul medesimo tentativo.
+If a line is missing, resume from the same PC without having changed visible state. This prevents partial STOREs, duplicate PUSHes, double syscalls, and repeated fuel consumption for the same attempt.
 
-### 7.3 Coerenza fra VM e servizi nativi
+### 7.3 Coherence between the VM and native services
 
-Non servono flush completi a ogni context switch. Tuttavia driver e servizi nativi non possono leggere dalla REU una copia vecchia di dati ancora sporchi in cache.
+Full flushes are not needed at every context switch. However, drivers and native services cannot read a stale REU copy of data still dirty in the cache.
 
-Tutti gli accessi nativi alla memoria dell'app devono:
+All native accesses to application memory must either:
 
-- usare lo stesso livello di accesso coerente della VM; oppure
-- scrivere le linee dirty interessate prima della lettura DMA e invalidare/aggiornare le linee interessate da una scrittura DMA.
+- use the same coherent access layer as the VM; or
+- write back the affected dirty lines before a DMA read, and invalidate/update lines affected by a DMA write.
 
-La seconda strada deve essere centralizzata nel driver, non replicata in ogni syscall. I buffer delle superfici appartengono al kernel e usano staging separato dalla cache dati delle app.
+The second approach must be centralized in the driver rather than duplicated in each syscall. Surface buffers belong to the kernel and use staging separate from the apps' data cache.
 
-### 7.4 Driver DMA
+### 7.4 DMA driver
 
-Un solo arbitro possiede i registri REU. Ogni richiesta dichiara direzione, indirizzo REU, indirizzo locale, lunghezza, proprietario e continuazione.
+A single arbiter owns the REU registers. Every request declares direction, REU address, local address, length, owner, and continuation.
 
-Il driver:
+The driver:
 
-- non trasferisce mai su I/O, codice, zero page o stack hardware per conto di un'app;
-- evita il wrap dell'indirizzo locale a 16 bit e quello REU a 24 bit;
-- spezza i trasferimenti secondo il budget temporale, non soltanto secondo il limite dei registri;
-- tratta FETCH e STASH come operazioni sincrone distinte, con costi propri;
-- non avvia un DMA se non può terminare prima del guard time del video.
+- never transfers into I/O, code, zero page, or the hardware stack on behalf of an app;
+- prevents wrap of the 16-bit local address and 24-bit REU address;
+- splits transfers according to the time budget, not just the register limit;
+- treats FETCH and STASH as distinct synchronous operations with their own costs;
+- never starts DMA unless it can finish before the video guard time.
 
-Valore iniziale conservativo: transazioni fino a 128 byte durante il normale servizio. Il profilo hardware può ridurle o ampliarle sulla base delle misure. Una lunghezza massima non sostituisce il controllo del tempo disponibile.
+Conservative initial value: transactions of up to 128 bytes during normal service. The hardware profile may reduce or increase this based on measurements. A maximum length does not replace checking the available time.
 
-## 8 VM e bytecode
+## 8 VM and bytecode
 
-### 8.1 Stato architetturale
+### 8.1 Architectural state
 
-| Stato | Dimensione | Uso |
+| State | Size | Use |
 |---|---:|---|
-| R0–R7 | 8 × 16 bit | Interi, contatori, handle e argomenti |
-| P0–P3 | 4 × 24 bit | Puntatori lineari |
-| PC | 24 bit | Indirizzo dell'opcode corrente |
-| SP | 24 bit | Prossimo byte libero dello stack virtuale discendente |
-| Fuel | 8 bit | Istruzioni ancora ammesse nella slice corrente |
-| PCB | Metadati separati | Limiti, stato, attese, eventi, lavori e diagnostica |
+| R0–R7 | 8 × 16 bits | Integers, counters, handles, and arguments |
+| P0–P3 | 4 × 24 bits | Linear pointers |
+| PC | 24 bits | Address of the current opcode |
+| SP | 24 bits | Next free byte in the descending virtual stack |
+| Fuel | 8 bits | Instructions still allowed in the current slice |
+| PCB | Separate metadata | Bounds, state, waits, events, jobs, and diagnostics |
 
-R e P del processo attivo risiedono in zero page; al cambio processo vengono copiati nel PCB. Le app non accedono direttamente a questa zero page.
+The active process's R and P registers reside in zero page; they are copied to the PCB at a process switch. Apps cannot access this zero page directly.
 
-Non esistono flag aritmetici persistenti della VM: i branch confrontano registri. Gli interi sono little endian; i valori signed a 16 bit usano complemento a due. ADD/SUB sugli interi fanno wrap modulo 65.536; l'aritmetica dei puntatori controlla invece l'overflow a 24 bit.
+The VM has no persistent arithmetic flags: branches compare registers. Integers are little endian; signed 16-bit values use two's complement. Integer ADD/SUB wrap modulo 65,536; pointer arithmetic instead checks for 24-bit overflow.
 
-### 8.2 Codifica iniziale
+### 8.2 Initial encoding
 
-Ogni istruzione occupa **quattro byte**: opcode, b1, b2, b3. PC e destinazioni di controllo sono allineati a quattro.
+Every instruction occupies **four bytes**: opcode, b1, b2, b3. PC and control-flow destinations are aligned to four.
 
-È una scelta iniziale per decoder, fetch e validazione semplici. Consuma più codice di un bytecode variabile, ma evita decodifica delle lunghezze e bitmap delle destinazioni. Misurare esplicitamente il traffico REU del codice; non dichiarare questo formato il più veloce senza confronto.
+This is an initial choice for simple decoding, fetching, and validation. It uses more code space than variable-length bytecode but avoids length decoding and destination bitmaps. Explicitly measure code traffic through the REU; do not claim this is the fastest format without comparison.
 
-Regole degli operandi:
+Operand rules:
 
-- rr: b1 basso nibble = destinazione/lhs; alto nibble = sorgente/rhs; indici R validi 0–7.
-- pp: stesso schema per P, indici validi 0–3.
-- rp: basso nibble = R; alto nibble = P.
-- pr: basso nibble = P; alto nibble = R.
-- u16/i16: b2 basso, b3 alto.
-- u24: b1 basso, b2 medio, b3 alto.
-- Un singolo registro R/P occupa tutto b1 come indice unsigned, salvo posizione esplicitamente diversa nella tabella; indici R>7 o P>3 sono invalidi. Nei formati a nibble verificare separatamente entrambi gli indici.
-- Campi non usati devono essere zero; codifiche riservate generano fault.
+- rr: b1 low nibble = destination/lhs; high nibble = source/rhs; valid R indices 0–7.
+- pp: the same layout for P, with valid indices 0–3.
+- rp: low nibble = R; high nibble = P.
+- pr: low nibble = P; high nibble = R.
+- u16/i16: b2 low, b3 high.
+- u24: b1 low, b2 middle, b3 high.
+- A single R/P register occupies all of b1 as an unsigned index unless the table explicitly specifies another position; R>7 or P>3 indices are invalid. In nibble formats, validate both indices separately.
+- Unused fields must be zero; reserved encodings cause a fault.
 
-Per i branch relativi: target = PC + 4 + 4 × sign_extend(i16). Il calcolo usa un intermedio sufficientemente largo e non deve avvolgersi a 24 bit.
+For relative branches: target = PC + 4 + 4 × sign_extend(i16). Compute this with a sufficiently wide intermediate; it must not wrap at 24 bits.
 
-Quando un'istruzione continua, validare il prossimo PC effettivamente scelto prima degli effetti; un branch non preso usa PC+4. CALL valida anche PC+4 come futuro indirizzo di ritorno prima del push. JMP/RET e terminazione non richiedono un fall-through valido. Per una syscall che può ritornare, il PC di ripresa deve essere valido prima di accettare il lavoro. Il compilatore chiude ogni percorso con RET, EXIT o TRAP e non lascia esecuzione implicita oltre il codice.
+When an instruction continues, validate the actual next PC selected before applying effects; a branch not taken uses PC+4. CALL also validates PC+4 as the future return address before pushing it. JMP/RET and termination do not require a valid fall-through. For a syscall that may return, the resumption PC must be valid before accepting the job. The compiler closes every path with RET, EXIT, or TRAP and leaves no implicit execution beyond the code.
 
-### 8.3 Set di istruzioni iniziale
+### 8.3 Initial instruction set
 
-Tutti gli opcode validi costano un'unità di fuel nella versione 0.1. Le operazioni native sono contabilizzate separatamente.
+All valid opcodes cost one fuel unit in version 0.1. Native operations are accounted for separately.
 
-| Hex | Istruzione | Operandi | Semantica |
+| Hex | Instruction | Operands | Semantics |
 |---|---|---|---|
-| 00 | NOP | zero | Nessun effetto |
+| 00 | NOP | zero | No effect |
 | 01 | MOV | rr | Rdst = Rsrc |
-| 02 | LDI | Rdst, u16 | Carica una costante a 16 bit |
+| 02 | LDI | Rdst, u16 | Load a 16-bit constant |
 | 03 | ADD | rr | Rdst += Rsrc |
 | 04 | SUB | rr | Rdst -= Rsrc |
-| 05 | AND | rr | AND bit a bit |
-| 06 | OR | rr | OR bit a bit |
-| 07 | XOR | rr | XOR bit a bit |
-| 08 | SHL | Rdst, b2=count | Shift sinistro, count 0–15 |
-| 09 | SHR | Rdst, b2=count | Shift destro logico, count 0–15 |
-| 0A | SAR | Rdst, b2=count | Shift destro aritmetico, count 0–15 |
-| 0B | ADDI | Rdst, u16 | Somma immediata modulo 65.536 |
-| 0C | TRUNC8 | Rdst | Azzera gli 8 bit alti |
-| 0D | SEXT8 | Rdst | Estende il segno degli 8 bit bassi |
-| 0E | NOT | Rdst | Complemento a 16 bit |
+| 05 | AND | rr | Bitwise AND |
+| 06 | OR | rr | Bitwise OR |
+| 07 | XOR | rr | Bitwise XOR |
+| 08 | SHL | Rdst, b2=count | Left shift, count 0–15 |
+| 09 | SHR | Rdst, b2=count | Logical right shift, count 0–15 |
+| 0A | SAR | Rdst, b2=count | Arithmetic right shift, count 0–15 |
+| 0B | ADDI | Rdst, u16 | Immediate addition modulo 65,536 |
+| 0C | TRUNC8 | Rdst | Clear the high 8 bits |
+| 0D | SEXT8 | Rdst | Sign-extend the low 8 bits |
+| 0E | NOT | Rdst | 16-bit complement |
 | 10 | LD8 | rp, u16 | R = zero_extend(mem[P+u16]) |
-| 11 | LD16 | rp, u16 | R = lettura little endian di due byte |
-| 12 | ST8 | rp, u16 | Scrive gli 8 bit bassi di R |
-| 13 | ST16 | rp, u16 | Scrive due byte di R |
-| 14 | LDP | pp, u16 | Pdst = tre byte da [Psrc+u16] |
-| 15 | STP | pp, u16 | Scrive P basso nibble a [P alto nibble + u16] |
+| 11 | LD16 | rp, u16 | R = little-endian read of two bytes |
+| 12 | ST8 | rp, u16 | Write the low 8 bits of R |
+| 13 | ST16 | rp, u16 | Write two bytes of R |
+| 14 | LDP | pp, u16 | Pdst = three bytes from [Psrc+u16] |
+| 15 | STP | pp, u16 | Write the P selected by the low nibble to [P selected by the high nibble + u16] |
 | 16 | PMOV | pp | Pdst = Psrc |
-| 17 | PADD | pr | Pdst += unsigned(Rsrc), con overflow controllato |
-| 18 | PSUB | pr | Pdst -= unsigned(Rsrc), con underflow controllato |
-| 19 | PGETLO | rp | R = 16 bit bassi di P |
-| 1A | PGETHI | rp | R = 8 bit alti di P, zero-extended |
-| 1B | PMAKE | b1=Pdst, b2=Rlo, b3=Rhi | P = Rlo + (Rhi << 16); Rhi deve essere <=255 |
-| 1C–1F | PLI0–PLI3 | u24 | Carica un puntatore immediato nel P indicato dall'opcode |
-| 20 | JMP | u24 | Salta a un indirizzo assoluto |
-| 21 | CALL | u24 | Salva PC+4 sullo stack e salta |
-| 22 | RET | zero | Recupera e valida il PC di ritorno |
-| 23 | BEQ | rr, i16 | Branch se i due R sono uguali |
-| 24 | BNE | rr, i16 | Branch se diversi |
-| 25 | BLTU | rr, i16 | Branch se lhs < rhs unsigned |
-| 26 | BGEU | rr, i16 | Branch se lhs >= rhs unsigned |
-| 27 | BLTS | rr, i16 | Branch se lhs < rhs signed |
-| 28 | BGES | rr, i16 | Branch se lhs >= rhs signed |
-| 29 | PBEQ | pp, i16 | Confronto di uguaglianza a 24 bit |
-| 2A | PBNE | pp, i16 | Confronto di disuguaglianza a 24 bit |
-| 2B | PBLTU | pp, i16 | Confronto unsigned dei puntatori |
-| 2C | PBGEU | pp, i16 | Confronto unsigned dei puntatori |
-| 30 | PUSH16 | Rsrc | Push di due byte |
-| 31 | POP16 | Rdst | Pop di due byte |
-| 32 | PUSHP | Psrc | Push di tre byte |
-| 33 | POPP | Pdst | Pop di tre byte |
-| 34 | GETSP | Pdst | Copia SP |
-| 35 | SETSP | Psrc | Imposta SP entro i limiti dello stack |
-| 36 | SYSCALL | b1=id | Invoca un servizio del kernel |
-| 37 | YIELD | zero | Termina volontariamente la slice |
-| 38 | TRAP | b1=0, u16 | Fault esplicito dell'app |
+| 17 | PADD | pr | Pdst += unsigned(Rsrc), with checked overflow |
+| 18 | PSUB | pr | Pdst -= unsigned(Rsrc), with checked underflow |
+| 19 | PGETLO | rp | R = low 16 bits of P |
+| 1A | PGETHI | rp | R = high 8 bits of P, zero-extended |
+| 1B | PMAKE | b1=Pdst, b2=Rlo, b3=Rhi | P = Rlo + (Rhi << 16); Rhi must be <=255 |
+| 1C–1F | PLI0–PLI3 | u24 | Load an immediate pointer into the P selected by the opcode |
+| 20 | JMP | u24 | Jump to an absolute address |
+| 21 | CALL | u24 | Save PC+4 on the stack and jump |
+| 22 | RET | zero | Retrieve and validate the return PC |
+| 23 | BEQ | rr, i16 | Branch if the two R registers are equal |
+| 24 | BNE | rr, i16 | Branch if different |
+| 25 | BLTU | rr, i16 | Branch if lhs < rhs unsigned |
+| 26 | BGEU | rr, i16 | Branch if lhs >= rhs unsigned |
+| 27 | BLTS | rr, i16 | Branch if lhs < rhs signed |
+| 28 | BGES | rr, i16 | Branch if lhs >= rhs signed |
+| 29 | PBEQ | pp, i16 | 24-bit equality comparison |
+| 2A | PBNE | pp, i16 | 24-bit inequality comparison |
+| 2B | PBLTU | pp, i16 | Unsigned pointer comparison |
+| 2C | PBGEU | pp, i16 | Unsigned pointer comparison |
+| 30 | PUSH16 | Rsrc | Push two bytes |
+| 31 | POP16 | Rdst | Pop two bytes |
+| 32 | PUSHP | Psrc | Push three bytes |
+| 33 | POPP | Pdst | Pop three bytes |
+| 34 | GETSP | Pdst | Copy SP |
+| 35 | SETSP | Psrc | Set SP within stack bounds |
+| 36 | SYSCALL | b1=id | Invoke a kernel service |
+| 37 | YIELD | zero | Voluntarily end the slice |
+| 38 | TRAP | b1=0, u16 | Explicit application fault |
 
-Moltiplicazione, divisione e operazioni intere a 32 bit iniziano come librerie di bytecode. Non aggiungere un opcode con lavoro arbitrariamente lungo per accelerarle. I float usano il servizio NUM_OP con lavoro nativo contabilizzato e limitato, secondo NUMERICS.md; l'ISA non acquisisce registri F o opcode floating point monolitici.
+Multiplication, division, and 32-bit integer operations start as bytecode libraries. Do not add an opcode with arbitrarily long work to accelerate them. Floats use the NUM_OP service with bounded and accounted native work, as specified in NUMERICS.md; the ISA does not gain F registers or monolithic floating-point opcodes.
 
-### 8.4 Stack e chiamate
+### 8.4 Stack and calls
 
-Stack discendente nella REU. SP iniziale = stack_last. Per PUSH di N byte:
+Descending stack in the REU. Initial SP = stack_last. For a PUSH of N bytes:
 
 ```text
-verificare SP-(N-1) >= stack_first
-scrivere il valore little endian in [SP-(N-1), SP]
+check SP-(N-1) >= stack_first
+write the little-endian value to [SP-(N-1), SP]
 SP = SP-N
 ```
 
-Per POP di N byte verificare SP+N <= stack_last, leggere [SP+1, SP+N] e incrementare SP di N. A stack pieno SP = stack_first-1; a stack vuoto SP = stack_last. L'arena delle app inizia ben sopra zero, quindi entrambi sono rappresentabili a 24 bit.
+For a POP of N bytes, check SP+N <= stack_last, read [SP+1, SP+N], and increment SP by N. When the stack is full, SP = stack_first-1; when empty, SP = stack_last. Application arenas begin well above zero, so both are representable in 24 bits.
 
-CALL usa un PUSH di tre byte; RET valida il target prima di modificare PC o SP. GETSP/SETSP consentono frame e locali software; SETSP accetta soltanto [stack_first-1, stack_last].
+CALL uses a three-byte PUSH; RET validates the target before changing PC or SP. GETSP/SETSP support software frames and locals; SETSP accepts only [stack_first-1, stack_last].
 
-L'ISA non salva automaticamente alcun registro oltre al PC di CALL. L'ABI C-Script aggiunge via prologo/epilogo la conservazione di P2, come definito in LANGUAGE.md. Nessun byte dello stack virtuale viene conservato sullo stack hardware fra slice o attese.
+The ISA does not automatically save any register other than the PC for CALL. The C-Script ABI adds preservation of P2 through the prologue/epilogue, as defined in LANGUAGE.md. No virtual-stack byte remains on the hardware stack between slices or waits.
 
-### 8.5 Fault
+### 8.5 Faults
 
-Un opcode invalido, un PC non allineato, un accesso illecito, overflow dei puntatori, stack overflow/underflow o TRAP terminano solo il processo responsabile.
+An invalid opcode, misaligned PC, illegal access, pointer overflow, stack overflow/underflow, or TRAP terminates only the responsible process.
 
-Registrare PID, PC dell'istruzione, causa e indirizzo coinvolto. Annullare le sue attese, invalidare gli handle e rimuovere la finestra tramite il normale compositor. Il monitor deve restare utilizzabile.
+Record PID, instruction PC, cause, and affected address. Cancel its waits, invalidate its handles, and remove its window through the normal compositor. The monitor must remain usable.
 
-## 9 Fuel e scheduler
+## 9 Fuel and scheduler
 
-### 9.1 Regola di preemption
+### 9.1 Preemption rule
 
-Quantum iniziale: **128 opcode ritirati**. Il dispatcher ha un controllo obbligatorio che l'app non può saltare. Non servono yield inseriti dal compilatore e non esistono debug hook.
+Initial quantum: **128 retired opcodes**. The dispatcher has a mandatory check that an app cannot skip. Compiler-inserted yields are unnecessary, and there are no debug hooks.
 
-Sequenza logica:
+Logical sequence:
 
 ```text
-se fuel == 0: restituire FUEL_EXHAUSTED al kernel
-fetch e decodifica
-verifica limiti, risorse e linee cache
-se serve I/O: restituire WAIT senza effetti architetturali
-decrementare fuel una sola volta
-eseguire una fase limitata e completare l'istruzione
-pubblicare PC successivo o stato di attesa della syscall
+if fuel == 0: return FUEL_EXHAUSTED to the kernel
+fetch and decode
+check bounds, resources, and cache lines
+if I/O is needed: return WAIT without architectural effects
+decrement fuel exactly once
+execute a bounded phase and complete the instruction
+publish the next PC or the syscall's wait state
 ```
 
-Il kernel può interrompere la slice anche per una scadenza video o un evento prioritario. Nel caso di sola sospensione temporale, conservare il fuel residuo. Un miss non consuma di nuovo fuel al retry.
+The kernel may also interrupt the slice for a video deadline or a priority event. If suspension is purely for timing, preserve the remaining fuel. A miss does not consume fuel again on retry.
 
-SYSCALL avanza il PC una sola volta quando il kernel accetta il lavoro e ne conserva una continuazione. Alla ripresa si consegna il risultato; non si riesegue l'invocazione.
+SYSCALL advances PC exactly once when the kernel accepts the job and stores a continuation. On resumption, deliver the result; do not execute the invocation again.
 
-### 9.2 Stati del processo
+### 9.2 Process states
 
 STOPPED, RUNNABLE, WAIT_REU, WAIT_JOB, WAIT_EVENT, SLEEPING, FAULTED.
 
-Non lasciare un processo WAIT nelle liste eseguibili. La conclusione di I/O, un evento o la scadenza di sleep lo riporta a RUNNABLE. Ogni app ha al massimo una syscall/lavoro bloccante pendente.
+Do not leave a WAIT process in runnable lists. I/O completion, an event, or sleep expiry returns it to RUNNABLE. Each app has at most one pending blocking syscall/job.
 
-### 9.3 Politica iniziale
+### 9.3 Initial policy
 
-Round-robin fra i processi RUNNABLE, con medesimo quantum e senza priorità dinamiche. Il risveglio inserisce il processo in coda e non gli assegna una scorciatoia per eseguire ripetutamente prima degli altri.
+Round-robin among RUNNABLE processes, with equal quanta and no dynamic priorities. Waking a process inserts it at the tail and does not give it a shortcut to run repeatedly ahead of others.
 
-Un nuovo quantum completo si assegna all'esaurimento o dopo un'attesa effettiva di evento, sleep positivo o I/O esterno. Cache miss e sospensioni per lavoro CPU interno non ricaricano il budget: questa regola vale anche per MEM_COPY/FILL, disegno, presentazione e creazione di superfici.
+Assign a new full quantum on exhaustion or after an actual wait for an event, positive sleep, or external I/O. Cache misses and suspensions for internal CPU work do not refill the budget: this also applies to MEM_COPY/FILL, drawing, presentation, and surface creation.
 
-NUM_OP è lavoro CPU: le sue continuazioni conservano il fuel residuo anche se attraversano più finestre di servizio. Attendere la coda numerica non equivale a una nuova attivazione da I/O esterno. Il costo delle fasi viene registrato nel budget nativo del proprietario, con la normale rotazione dei lavori.
+NUM_OP is CPU work: its continuations preserve remaining fuel even across multiple service windows. Waiting in the numeric queue is not a new activation from external I/O. Phase costs are recorded in the owner's native budget, with normal job rotation.
 
-YIELD e SLEEP(0) rinunciano al fuel residuo e inseriscono l'app in fondo alla coda; il turno seguente parte con il quantum normale. Un poll che restituisce subito EAGAIN non è una vera attesa e non ricarica il fuel. Ridurre una slice per la scadenza raster significa limitarne gli opcode eseguibili adesso, senza cancellare o aumentare il credito residuo del turno.
+YIELD and SLEEP(0) surrender the remaining fuel and place the app at the tail; its next turn starts with the normal quantum. A poll that immediately returns EAGAIN is not a real wait and does not refill fuel. Shortening a slice for the raster deadline limits the opcodes executable now, without discarding or increasing the turn's remaining credit.
 
-La coda dei lavori nativi viene servita anch'essa a rotazione, **un pezzo limitato per proprietario alla volta**. Una grande copia o un enorme riempimento non monopolizzano il servizio. Registrare separatamente opcode ritirati, byte DMA e tempo nativo per processo.
+The native job queue is also served in rotation, **one bounded chunk per owner at a time**. A large copy or huge fill cannot monopolize service. Record retired opcodes, DMA bytes, and native time per process separately.
 
-Quando entrambe hanno lavoro ammissibile prima della scadenza raster, alternare una slice VM e un pezzo della coda nativa; conservare il turno fra finestre di servizio. Se una coda è vuota o il suo prossimo pezzo non entra nel tempo residuo, servire l'altra senza perdere il turno dovuto. La shell partecipa come proprietario dei lavori ordinari, inclusa la composizione: due code round-robin separate non bastano se una viene sempre servita prima dell'altra.
+When both queues have work that can be admitted before the raster deadline, alternate a VM slice and a native queue chunk; preserve the turn across service windows. If a queue is empty or its next chunk does not fit in the remaining time, serve the other without losing the turn owed. The shell participates as an owner of ordinary jobs, including composition: two separate round-robin queues are insufficient if one is always served before the other.
 
-NUM_OP, copie, riempimenti e disegno passano da questo arbitraggio anche quando basta un solo pezzo: un percorso rapido non deve eseguire una serie di lavori nativi dentro la stessa slice VM aggirando la rotazione. Le query di metadati a costo piccolo e fisso possono completare nel gestore della syscall, includendo quel costo nel limite dell'opcode.
+NUM_OP, copies, fills, and drawing pass through this arbitration even when a single chunk is sufficient: a fast path must not execute a series of native jobs within one VM slice and bypass rotation. Metadata queries with a small, fixed cost may complete in the syscall handler, with that cost included in the opcode's bound.
 
-Input, cursore e interazione con la shell hanno precedenza rispetto al lavoro ordinario, ma sono anch'essi limitati. Coalescere i movimenti del puntatore e aggiornare i widget lenti solo quando cambiano. Non aggiungere subito DWRR, schedulazione per basic block o stime adattive complesse.
+Input, cursor, and shell interaction take precedence over ordinary work but are also bounded. Coalesce pointer movement and update slow widgets only when they change. Do not immediately add DWRR, basic-block scheduling, or complex adaptive estimates.
 
-### 9.4 Fuel e tempo reale
+### 9.4 Fuel and real time
 
-Un opcode non equivale a una durata costante. Il fuel limita la monopolizzazione della VM; il calendario video limita quando si può avviare lavoro.
+An opcode does not have a constant duration. Fuel limits VM monopolization; the video schedule limits when work may start.
 
-Prima di una slice, il kernel può ridurne il quantum in base al tempo disponibile e al peggior costo misurato degli opcode senza miss. Le vie lente tornano al kernel prima di avviare DMA o altro lavoro lungo.
+Before a slice, the kernel may reduce its quantum based on available time and the worst measured cost of opcodes without misses. Slow paths return to the kernel before starting DMA or other lengthy work.
 
-Mantenere una stima conservativa del costo massimo di ogni pezzo nativo e un guard time prima del video. Se un pezzo non entra, rinviarlo al periodo utile seguente. Non usare una media del tempo di DMA come limite superiore di sicurezza.
+Maintain a conservative estimate of the maximum cost of each native chunk and a guard time before video. If a chunk does not fit, defer it to the next usable period. Do not use average DMA time as a safe upper bound.
 
-## 10 Calendario video e interrupt
+## 10 Video schedule and interrupts
 
-### 10.1 Prima implementazione
+### 10.1 First implementation
 
-Il raster UPIC ha precedenza assoluta. Durante le 200 righe visualizzate non eseguire la VM e non avviare DMA REU. Il lavoro principale si svolge prima e dopo questo intervallo.
+The UPIC raster has absolute priority. During the 200 displayed lines, do not execute the VM or start REU DMA. Most work takes place before and after this interval.
 
-Il passaggio da 384 a 320 pixel non abbrevia le 200 righe. Nella prima versione i margini orizzontali possono restare attese: l'MVP deve già dimostrare responsività in questa configurazione semplice.
+Moving from 384 to 320 pixels does not shorten the 200 lines. In the first version, horizontal margins may remain waits: the MVP must already demonstrate responsiveness with this simple configuration.
 
-Solo dopo la qualificazione si potranno sostituire parti delle attese con lavori nativi a durata nota. Eseguire bytecode generico nei margini orizzontali è fuori dall'MVP.
+Only after qualification may parts of those waits be replaced by native work of known duration. Running general bytecode in the horizontal margins is outside the MVP.
 
 ### 10.2 Renderer
 
-Usare come riferimento il passo dei pixel corretto di UPIC 1.3: la variante a 320 pixel ha 160 coppie, 20 caricamenti immediati da preparare e 2.520 cicli nel solo flusso dei pixel. Preparazione, sincronizzazione e chiusura sono costi aggiuntivi.
+Use the corrected UPIC 1.3 pixel cadence as a reference: the 320-pixel variant has 160 pairs, 20 immediate loads to prepare, and 2,520 cycles in the pixel stream alone. Preparation, synchronization, and completion add further costs.
 
-Non copiare indiscriminatamente i ritardi della variante 384 o quelli calibrati nell'emulatore. Verificare i pixel ai quattro bordi, l'allineamento e l'assenza di righe saltate sul profilo scelto. [Descrizione del timing UPIC](https://github.com/xahmol/mandelbrot-upic/blob/main/docs/UPIC_VIEWER.md).
+Do not indiscriminately copy delays from the 384 variant or those calibrated in the emulator. Verify pixels at all four edges, alignment, and the absence of skipped lines on the chosen profile. [UPIC timing description](https://github.com/xahmol/mandelbrot-upic/blob/main/docs/UPIC_VIEWER.md).
 
-L'IRQ deve preservare A/X/Y e tutte le risorse condivise che usa; lo scratch raster deve essere separato da quello VM. L'interprete e il kernel devono usare esclusivamente istruzioni NMOS 6502/6510 supportate.
+The IRQ must preserve A/X/Y and every shared resource it uses; raster scratch must be separate from VM scratch. The interpreter and kernel must use only supported NMOS 6502/6510 instructions.
 
-### 10.3 Scadenze
+### 10.3 Deadlines
 
-Armare l'IRQ abbastanza prima della prima riga utile per sincronizzare la fase. Un valore iniziale di due righe di guardia è da verificare, non da assumere sufficiente a priori.
+Arm the IRQ early enough before the first active line to synchronize phase. An initial guard of two lines must be verified, not assumed sufficient in advance.
 
-La regola fondamentale è: nessun DMA ancora attivo quando il raster deve sincronizzarsi. SEI non risolve questo problema; un DMA può trattenere la CPU oltre la scadenza.
+The fundamental rule is: no DMA may still be active when the raster needs to synchronize. SEI does not solve this; DMA can hold the CPU beyond the deadline.
 
-L'IRQ costituisce anche un'interruzione del codice nativo in corso. Il cambio di processo VM avviene però solo a un confine consistente dell'interprete, non nel mezzo di un handler.
+The IRQ also interrupts native code in progress. However, VM process switching occurs only at a consistent interpreter boundary, not in the middle of a handler.
 
-Disabilitare le sorgenti CIA non necessarie. Un NMI esterno può disturbare il timing: il gestore deve conservare lo stato, richiedere eventualmente recupero/emergenza e risincronizzare al frame successivo. Non promettere assenza di disturbi mentre si apre il menu firmware o si genera un NMI esterno.
+Disable unnecessary CIA sources. An external NMI may disturb timing: the handler must preserve state, request recovery/emergency handling if necessary, and resynchronize on the next frame. Do not promise disturbance-free output while the firmware menu is opened or an external NMI is generated.
 
-## 11 UI scelta e griglia del desktop
+## 11 Chosen UI and desktop grid
 
-### 11.1 Direzione visiva approvata
+### 11.1 Approved visual direction
 
-Direzione scelta: **NeXT libero**, con desktop essenziale e oggetti mobili sulla griglia.
+Chosen direction: **Free NeXT desktop**, with a minimal desktop and objects movable on the grid.
 
-Il desktop ha un fondo uniforme, poche icone quadrate e piccoli widget. Non riserva spazio a taskbar, dock, barra menu globale o pannelli permanenti. Le finestre possono sovrapporsi alle icone; un comando “Mostra desktop” permette di raggiungerle.
+The desktop has a uniform background, a few square icons, and small widgets. It reserves no space for a taskbar, dock, global menu bar, or permanent panels. Windows may overlap icons; a “Show Desktop” command provides access to them.
 
-Font, icone, posizioni e colori devono rispettare la griglia reale del renderer e le metriche definite qui, in particolare il movimento a celle intere. Le immagini di presentazione del progetto saranno screenshot dell'implementazione quando disponibili.
+Fonts, icons, positions, and colors must follow the renderer's actual grid and the metrics defined here, especially movement in whole cells. Project presentation images will use screenshots of the implementation when available.
 
 ### 11.2 Palette
 
-| Nome | Indice C64 | Uso |
+| Name | C64 index | Use |
 |---|---:|---|
-| Nero | 0 | Testo, contorni, selezione, titlebar attiva |
-| Bianco | 1 | Testo su nero, campi, luce dei bordi |
-| Grigio scuro | 11 | Ombre nette e contorni secondari |
-| Grigio medio | 12 | Fondo desktop e stati inattivi |
-| Grigio chiaro | 15 | Superfici di icone, pulsanti e pannelli |
+| Black | 0 | Text, outlines, selection, active title bar |
+| White | 1 | Text on black, fields, border highlights |
+| Dark gray | 11 | Hard shadows and secondary outlines |
+| Medium gray | 12 | Desktop background and inactive states |
+| Light gray | 15 | Icon, button, and panel surfaces |
 
-Tutti i pixel della shell, inclusi cursore, icone, widget, menu e finestre di sistema, devono usare questi cinque indici. Le applicazioni possono usare gli altri colori **all'interno della propria area client**.
+Every shell pixel, including cursor, icons, widgets, menus, and system windows, must use these five indices. Applications may use other colors **inside their own client area**.
 
-Niente gradienti, trasparenza, antialiasing, ombre sfumate, interlacciamento o dithering temporale. Un pattern spaziale binario è ammesso solo quando serve a distinguere selezione/focus. Non usare XOR arbitrario sugli indici, perché potrebbe generare colori fuori palette.
+No gradients, transparency, antialiasing, soft shadows, interlacing, or temporal dithering. A binary spatial pattern is allowed only when needed to distinguish selection/focus. Do not use arbitrary XOR on indices because it could generate colors outside the palette.
 
-Non fissare gli RGB del dispositivo ai valori dei PNG generati: i riferimenti normativi sono gli indici C64, la loro funzione e il contrasto. La palette hardware corrente può influire sulla resa RGB.
+Do not fix device RGB values to those of generated PNGs: the normative references are the C64 indices, their roles, and contrast. The current hardware palette may affect the resulting RGB colors.
 
-### 11.3 Celle delle stesse dimensioni delle icone
+### 11.3 Cells the same size as icons
 
-**La cella misura 32×32 pixel, esattamente come l'intero riquadro di un'icona o widget. Non esiste uno snap a 8×8 per il desktop.**
+**A cell measures 32×32 pixels, exactly matching the entire icon or widget square. There is no 8×8 snapping on the desktop.**
 
-A 320×200:
+At 320×200:
 
-- 10 colonne, col = 0…9;
-- 6 righe, row = 0…5;
-- origine della griglia: x=0, y=4;
-- posizione del riquadro: x=32×col, y=4+32×row;
-- 4 pixel di margine sopra e sotto;
-- ogni oggetto occupa una cella; nessuna sovrapposizione fra oggetti desktop.
+- 10 columns, col = 0…9;
+- 6 rows, row = 0…5;
+- grid origin: x=0, y=4;
+- square position: x=32×col, y=4+32×row;
+- 4-pixel margins above and below;
+- each object occupies one cell; desktop objects cannot overlap.
 
-Il movimento è come spostare un pezzo fra caselle di una scacchiera: l'oggetto passa da una cella all'altra. Non sono imposti movimenti diagonali o verso caselle adiacenti: col mouse si può raggiungere qualsiasi cella libera.
+Movement is like moving a piece between squares on a checkerboard: the object moves from one cell to another. There is no restriction to diagonal moves or adjacent cells: the mouse may reach any free cell.
 
-Il riquadro da 32×32 comprende bordo, icona e breve etichetta. Il disegno principale deve restare semplice; etichette di norma entro quattro caratteri con font 6×8. Usare nomi brevi o icone comprensibili, senza ridurre il testo sotto la dimensione leggibile.
+The 32×32 square includes the border, icon, and short label. The main graphic must stay simple; labels should normally fit within four characters using the 6×8 font. Use short names or recognizable icons without shrinking text below a readable size.
 
-Gli oggetti adiacenti occupano celle contigue. Se serve separazione visiva, ottenerla all'interno del riquadro, non cambiando il passo della griglia.
+Adjacent objects occupy contiguous cells. If visual separation is needed, provide it inside the square rather than changing the grid spacing.
 
-### 11.4 Trascinamento
+### 11.4 Dragging
 
-1. Pressione sull'icona: selezionarla e memorizzare la cella sorgente.
-2. Dopo una piccola soglia iniziale del puntatore, entrare in drag; annullare l'eventuale doppio click.
-3. Calcolare la cella candidata dalla posizione del riquadro, conservando l'offset iniziale di presa. Arrotondare alla cella più vicina e limitare col/row all'intervallo valido.
-4. Mostrare l'anteprima **già agganciata alla cella**; evitare che l'icona definitiva vaghi fra posizioni non valide.
-5. Al rilascio in una cella libera, aggiornare il record e invalidare solo le aree necessarie.
-6. Su una cella occupata da un altro oggetto, lasciare l'oggetto nella posizione originale. Niente scambio, riordino o spostamento automatico degli altri.
-7. RUN/STOP annulla il drag. La cella sorgente è valida per annullare senza effetti.
+1. Press on an icon: select it and record the source cell.
+2. After a small initial pointer threshold, enter dragging mode; cancel any pending double click.
+3. Compute the candidate cell from the square's position, preserving the initial grab offset. Round to the nearest cell and clamp col/row to the valid range.
+4. Show the preview **already snapped to the cell**; avoid allowing the final icon to wander through invalid positions.
+5. On release in a free cell, update the record and invalidate only the necessary areas.
+6. If another object occupies the cell, leave the object in its original position. No swapping, reordering, or automatic movement of other objects.
+7. RUN/STOP cancels dragging. The source cell is a valid cancellation target without side effects.
 
-Il drag è gestito dal kernel e deve funzionare anche se un'app VM è bloccata. Icone e widget seguono esattamente le stesse regole.
+Dragging is handled by the kernel and must work even if a VM app is stuck. Icons and widgets follow exactly the same rules.
 
-Sul desktop F5 seleziona l'oggetto successivo e F6 (Shift+F5 fisico) il precedente, in ordine riga/colonna con ritorno all'inizio; entrando nel desktop senza selezione scegliere il primo oggetto. RETURN apre l'oggetto selezionato. C=+M entra nella modalità “Sposta”: i cursori muovono la cella candidata, RETURN conferma e RUN/STOP annulla. Valgono le stesse regole di occupazione e limiti del mouse. Le associazioni sono costanti del driver/shell; un editor delle scorciatoie non è richiesto nell'MVP.
+On the desktop, F5 selects the next object and F6 (physical Shift+F5) the previous one, in row/column order with wraparound; when entering the desktop without a selection, choose the first object. RETURN opens the selected object. C=+M enters “Move” mode: cursor keys move the candidate cell, RETURN confirms, and RUN/STOP cancels. The same occupancy and bounds rules as for the mouse apply. Bindings are driver/shell constants; a shortcut editor is not required for the MVP.
 
-Click singolo seleziona; doppio click apre/ripristina un'app o attiva il widget. Soglia iniziale del doppio click: 12 frame PAL, da rifinire con una prova d'uso. La distanza e il trascinamento hanno precedenza sull'apertura.
+A single click selects; a double click opens/restores an app or activates a widget. Initial double-click threshold: 12 PAL frames, to refine through usability testing. Distance and dragging take precedence over opening.
 
-### 11.5 Oggetti e layout
+### 11.5 Objects and layout
 
-Capacità iniziale: 12 oggetti desktop, pur essendoci 60 celle. Gli oggetti iniziali sono un launcher per ciascuna delle 0–4 app effettivamente presenti nel pack e due widget: orologio/uptime e monitor di sistema.
+Initial capacity: 12 desktop objects, despite the grid having 60 cells. Initial objects are one launcher for each of the 0–4 apps actually present in the pack, plus two widgets: clock/uptime and system monitor.
 
-Ogni record contiene almeno ID stabile, tipo, app/widget associato, colonna, riga e flag. La posizione non dipende dall'ordine della lista o dalla posizione delle finestre.
+Each record contains at least a stable ID, type, associated app/widget, column, row, and flags. Position does not depend on list order or window positions.
 
-Layout iniziale suggerito: app nelle celle (0,0), (1,0), (0,1), (1,1); widget nelle celle (9,0), (9,1). L'utente può modificarlo liberamente.
+Suggested initial layout: apps in cells (0,0), (1,0), (0,1), (1,1); widgets in cells (9,0), (9,1). Users may change it freely.
 
-In sessione, il layout resta in memoria. Salvarlo tramite il servizio file dopo un periodo di inattività iniziale di 50 frame dall'ultimo spostamento, non a ogni passo del drag. Il formato versionato contiene ID e coordinate, separati dal codice della shell. Validare dimensioni, duplicati e collisioni; un file invalido lascia attivo un layout valido di default. Storage assente o errore di scrittura non bloccano il desktop; segnalarli nel monitor e conservare lo stato di sessione. Formato e recupero sono definiti nell'allegato SDK.
+During a session, the layout remains in memory. Save it through the file service after an initial idle period of 50 frames since the last move, not at every drag step. The versioned format contains IDs and coordinates, separate from shell code. Validate sizes, duplicates, and collisions; an invalid file leaves a valid default layout active. Unavailable storage or a write error must not block the desktop; report them in the monitor and retain the session state. The SDK document defines the format and recovery.
 
-I widget dell'MVP sono nativi e con lavoro limitato. L'orologio usa la cache RTC condivisa, aggiornata dal driver a bassa priorità; se il campione è assente o scaduto mostra chiaramente l'uptime, senza presentarlo come ora civile. Le chiamate delle app all'ora non generano una richiesta UCI ciascuna. Il monitor si aggiorna al massimo alcune volte al secondo. Widget userspace estensibili sono successivi.
+MVP widgets are native and perform bounded work. The clock uses the shared RTC cache, refreshed by the driver at low priority; if the sample is unavailable or stale, it clearly displays uptime rather than presenting it as wall-clock time. App time queries do not each generate a UCI request. The monitor refreshes at most a few times per second. Extensible userspace widgets come later.
 
-### 11.6 Font e controlli
+### 11.6 Font and controls
 
-Font iniziale monospaziato 6×8, con glifo utile fino a 5×7 e spaziatura. Conservare 8 byte per glifo, 96 glifi. Testo ASCII stampabile nell'MVP; caratteri non supportati diventano un glifo sostitutivo.
+Initial font: monospaced 6×8, with a glyph area up to 5×7 plus spacing. Store 8 bytes per glyph, 96 glyphs. Printable ASCII text in the MVP; unsupported characters become a replacement glyph.
 
-Metriche iniziali:
+Initial metrics:
 
-| Elemento | Dimensione logica |
+| Element | Logical size |
 |---|---|
-| Icona/widget desktop | 32×32, una cella |
+| Desktop icon/widget | 32×32, one cell |
 | Font | 6×8 |
-| Bordo finestra | 2 pixel |
-| Barra titolo | 12 pixel, all'interno dei bordi |
-| Pulsante comune | Altezza 14 pixel |
-| Voce di menu | Altezza 12 pixel |
-| Cursore | Massimo 12×16 pixel |
-| Finestra minima | 128×80 |
-| Finestra tipica | 240×152 |
-| Finestra massima | 320×200 |
+| Window border | 2 pixels |
+| Title bar | 12 pixels, inside the borders |
+| Standard button | 14 pixels high |
+| Menu item | 12 pixels high |
+| Cursor | Maximum 12×16 pixels |
+| Minimum window | 128×80 |
+| Typical window | 240×152 |
+| Maximum window | 320×200 |
 
-Il titolo attivo è nero con testo bianco. Superfici chiare e bordi netti a uno/due pixel richiamano NeXT senza imitarne le dimensioni originali. Pulsanti, selezioni e focus devono essere leggibili con i soli cinque toni.
+The active title bar is black with white text. Light surfaces and crisp one/two-pixel borders evoke NeXT without reproducing its original dimensions. Buttons, selections, and focus must be readable using only the five tones.
 
-Per l'MVP bastano testo, pulsante, checkbox, lista semplice e campo di testo monoriga. Il comportamento dei controlli client può vivere nella piccola libreria userspace; la shell gestisce nativamente menu e controlli propri. Non introdurre un albero di widget generico, layout engine o skin dinamiche.
+Text, a button, checkbox, simple list, and single-line text field are sufficient for the MVP. Client control behavior may live in the small userspace library; the shell handles its own menus and controls natively. Do not introduce a generic widget tree, layout engine, or dynamic skins.
 
-## 12 Finestre e composizione
+## 12 Windows and composition
 
 ### 12.1 Window manager
 
-Massimo quattro finestre, una per app, con ordine Z esplicito, focus, spostamento, chiusura e nascondimento. I menu sono contestuali o locali alla finestra.
+Maximum four windows, one per app, with explicit Z order, focus, movement, closing, and hiding. Menus are contextual or local to a window.
 
-Non applicare la griglia del desktop alle finestre. Per semplificare il primo blitter si possono usare origini X pari e Y intere; il movimento deve risultare comprensibile e coerente.
+Do not apply the desktop grid to windows. Even X origins and integer Y origins may be used to simplify the first blitter; movement must remain understandable and consistent.
 
-La prima versione può avere dimensioni fissate dall'app alla creazione. Il ridimensionamento interattivo e il maximize con reflow sono successivi, non prerequisiti del multitasking.
+The first version may use dimensions fixed by the app at creation. Interactive resizing and maximization with reflow come later and are not prerequisites for multitasking.
 
-Durante lo spostamento usare un contorno o un'anteprima limitata; ricomporre il contenuto alla conferma. Evitare di copiare tutta la superficie REU a ogni movimento del mouse.
+Use an outline or limited preview while moving; recompose contents on confirmation. Avoid copying the entire REU surface on every mouse movement.
 
-F1 alterna “Mostra desktop” e ripristino della disposizione precedente; F3 porta in primo piano la prossima finestra. Non modificare l'esecuzione delle app solo perché le finestre vengono nascoste.
+F1 toggles “Show Desktop” and restoration of the previous arrangement; F3 brings the next window to the front. Do not change app execution merely because windows are hidden.
 
-Il launcher di un'app già attiva ripristina/porta avanti la sua finestra; non avvia duplicati nell'MVP. Se il processo è vivo ma ha chiuso la finestra, apre il monitor nativo con quel processo selezionato, consentendone la terminazione. Un piccolo indicatore interno all'icona segnala lo stato attivo, senza colori aggiuntivi.
+The launcher for an already active app restores/brings forward its window; it does not start duplicates in the MVP. If the process is alive but has closed its window, it opens the native monitor with that process selected, allowing termination. A small indicator inside the icon shows the active state without additional colors.
 
-### 12.2 Superfici client
+### 12.2 Client surfaces
 
-Ogni finestra ha una superficie privata del kernel nella REU. L'app può disegnarvi attraverso syscall, ma non conosce un puntatore scrivibile alla superficie.
+Every window has a kernel-private surface in the REU. The app can draw on it through syscalls but has no writable pointer to the surface.
 
-**Il mapping diretto del framebuffer userspace è rinviato.** Per disegno personalizzato l'app può allocare un array lineare di pixel INDEX8 nella propria arena e inviarlo con BLIT8. Questo array è una sorgente: modificarlo non aggiorna automaticamente lo schermo. Il kernel effettua conversione, clipping e composizione; pagina-colonne, nibble e timing UPIC restano privati. L'estensione futura dovrà preservare questa separazione.
+**Direct userspace framebuffer mapping is deferred.** For custom drawing, an app may allocate a linear INDEX8 pixel array in its arena and submit it with BLIT8. This array is a source: modifying it does not automatically update the screen. The kernel performs conversion, clipping, and composition; page columns, nibbles, and UPIC timing remain private. A future extension must preserve this separation.
 
-Formato interno iniziale: tile 8×8, 4 bpp, 32 byte per tile; tile ordinate per righe. Dentro una tile usare quattro colonne packed da otto byte, con pixel pari nel nibble basso:
+Initial internal format: 8×8 tiles, 4 bpp, 32 bytes per tile; tiles arranged in row order. Within a tile, use four packed columns of eight bytes, with even pixels in the low nibble:
 
 ```text
 tile_x = x >> 3; tile_y = y >> 3
@@ -605,222 +605,222 @@ tile_offset = (tile_y * tile_cols + tile_x) * 32
 byte_offset = ((x & 7) >> 1) * 8 + (y & 7)
 ```
 
-Queste tile sono soltanto il formato di memorizzazione grafica: **non cambiano le celle 32×32 del desktop**.
+These tiles are only the graphics storage format: **they do not change the desktop's 32×32 cells**.
 
-Con una finestra 320×200 e bordi/titolo definiti sopra, il client massimo è 316×184: 40×23 tile, 29.440 byte. Entra in uno slot da 32 KiB.
+With a 320×200 window and the borders/title bar defined above, the maximum client area is 316×184: 40×23 tiles, 29,440 bytes. It fits in a 32 KiB slot.
 
-All'apertura inizializzare tutta la parte utilizzata della superficie prima di esporla; fino a quel momento la shell può mostrare il chrome e un client uniforme. La creazione è un lavoro limitato, non un unico DMA lungo.
+On opening, initialize the entire used portion of the surface before exposing it; until then the shell may show the chrome and a uniform client area. Creation is bounded work, not one long DMA transfer.
 
 ### 12.3 Dirty regions
 
-Un solo framebuffer locale. Non creare un secondo framebuffer locale o ricopiare l'intero schermo ogni frame.
+Use a single local framebuffer. Do not create a second local framebuffer or recopy the entire screen every frame.
 
-Conservare fino a 16 rettangoli sporchi. Unire quelli sovrapposti; se la capacità viene superata, passare a una ricomposizione completa **progressiva e limitata**, non a un lavoro monolitico.
+Keep up to 16 dirty rectangles. Merge overlapping ones; if capacity is exceeded, switch to **progressive, bounded** full recomposition rather than a monolithic job.
 
-Per ogni area sporca:
+For each dirty area:
 
-1. Ricostruire sfondo, icone/widget e finestre secondo l'ordine Z corrente.
-2. Disegnare il chrome con primitive native locali.
-3. Leggere soltanto le porzioni client visibili necessarie.
-4. Clippare rispetto a schermo, client e finestre davanti.
-5. Aggiornare il framebuffer in pezzi limitati durante il tempo ammesso.
+1. Reconstruct the background, icons/widgets, and windows according to current Z order.
+2. Draw chrome with native local primitives.
+3. Read only the required visible client portions.
+4. Clip against the screen, client, and windows in front.
+5. Update the framebuffer in bounded chunks during the permitted time.
 
-Il contenuto di una finestra può essere ripristinato anche quando l'app è bloccata, perché la sua superficie appartiene al kernel. Una finestra coperta continua ad aggiornare la propria superficie senza costringere il compositor a disegnarla.
+A window's contents can be restored even when the app is stuck because its surface belongs to the kernel. A covered window continues updating its own surface without forcing the compositor to draw it.
 
-Non promettere presentazione atomica di un intero frame senza doppio buffer. Gli aggiornamenti grandi possono apparire progressivamente; le operazioni piccole della UI devono avere precedenza e latenza limitata.
+Do not promise atomic presentation of an entire frame without double buffering. Large updates may appear progressively; small UI operations must take precedence and have bounded latency.
 
-### 12.4 Cursore
+### 12.4 Cursor
 
-Cursore software in palette shell, con piccolo save-under locale. Prima di disegnare un'area che lo interseca, ripristinare il fondo; dopo gli aggiornamenti, salvare il nuovo fondo e ridisegnare il cursore.
+Use a software cursor in the shell palette with a small local save-under. Before drawing an intersecting area, restore the background; after updates, save the new background and redraw the cursor.
 
-Il save-under deve includere l'allineamento a coppie di pixel: 12 pixel di larghezza con X dispari possono occupare 7 byte per riga. La riserva da 128 byte copre 7×16=112 byte.
+The save-under must account for pixel-pair alignment: a 12-pixel width at an odd X may occupy 7 bytes per row. The 128-byte reservation covers 7×16=112 bytes.
 
-Non usare automaticamente sprite VIC per il cursore: verificare prima la compatibilità con il modo border UPIC. Il primo backend usa soltanto il framebuffer software.
+Do not automatically use VIC sprites for the cursor: first verify compatibility with UPIC border mode. The first backend uses only the software framebuffer.
 
-## 13 Input ed eventi
+## 13 Input and events
 
-### 13.1 Backend iniziali
+### 13.1 Initial backends
 
-Tastiera C64 completamente utilizzabile dal primo MVP. Puntatore iniziale da joystick in porta 2 o backend mouse disponibile e verificato sull'Ultimate; non dipendere da un nuovo stack USB.
+The C64 keyboard must be fully usable from the first MVP. The initial pointer comes from a joystick in port 2 or a mouse backend available and verified on the Ultimate; do not depend on a new USB stack.
 
-Il driver espone eventi normalizzati, indipendenti dal dispositivo. Un futuro 1351/backend mouse deve poter essere aggiunto senza cambiare VM e window manager.
+The driver exposes normalized, device-independent events. A future 1351/mouse backend must be addable without changing the VM or window manager.
 
-Scorciatoie iniziali:
+Initial shortcuts:
 
-| Comando | Azione |
+| Command | Action |
 |---|---|
-| F1 | Mostra desktop / ripristina finestre |
-| F3 | Prossima finestra |
-| F5 / F6 (Shift+F5 fisico) | Prossimo / precedente oggetto desktop o controllo client |
-| RETURN | Attiva il controllo selezionato |
-| RUN/STOP | Annulla menu, drag o modalità di spostamento |
-| C=+M sul desktop | Sposta l'oggetto selezionato per celle |
-| C=+RUN/STOP | Terminazione forzata dell'app attiva tramite shell |
+| F1 | Show desktop / restore windows |
+| F3 | Next window |
+| F5 / F6 (physical Shift+F5) | Next / previous desktop object or client control |
+| RETURN | Activate the selected control |
+| RUN/STOP | Cancel menu, dragging, or movement mode |
+| C=+M on the desktop | Move the selected object by cells |
+| C=+RUN/STOP | Force termination of the active app through the shell |
 
-Non basare la navigazione su un tasto Tab fisico non presente nella tastiera standard. Le combinazioni devono essere verificate sul driver reale.
+Do not base navigation on a physical Tab key absent from the standard keyboard. Combinations must be verified on the actual driver.
 
-La shell consuma F1, F3 e le proprie combinazioni prima di generare eventi per le app. Sul desktop o nei pannelli nativi gestisce anche la navigazione; nella finestra client F5/F6, RETURN e RUN/STOP sono normali eventi che la libreria controlli interpreta. Keycode, ASCII, modificatori e flag sono congelati nell'allegato SDK §2.1, senza una tabella per-app nel manifest.
+The shell consumes F1, F3, and its own combinations before generating app events. It also handles navigation on the desktop and in native panels; within a client window, F5/F6, RETURN, and RUN/STOP are ordinary events interpreted by the controls library. Keycodes, ASCII, modifiers, and flags are fixed in SDK §2.1, without a per-app table in the manifest.
 
-### 13.2 Code
+### 13.2 Queues
 
-Ogni app ha una coda di otto eventi da 16 byte:
+Each app has a queue of eight 16-byte events:
 
-| Offset | Campo |
+| Offset | Field |
 |---|---|
-| 0 | tipo, u8 |
-| 1 | flag, u8 |
-| 2 | handle finestra, u16 |
+| 0 | type, u8 |
+| 1 | flags, u8 |
+| 2 | window handle, u16 |
 | 4 | arg0, i16 |
 | 6 | arg1, i16 |
 | 8 | arg2, u16 |
-| 10 | frame di origine, u32 |
-| 14 | riservato, due byte zero |
+| 10 | source frame, u32 |
+| 14 | reserved, two zero bytes |
 
-Tipi iniziali: POINTER_MOVE, BUTTON_DOWN, BUTTON_UP, KEY_DOWN, KEY_UP, FOCUS, BLUR, CLOSE_REQUEST e INPUT_RESET. Le coordinate puntatore sono relative al client; i tasti hanno un codice normalizzato e un eventuale ASCII.
+Initial types: POINTER_MOVE, BUTTON_DOWN, BUTTON_UP, KEY_DOWN, KEY_UP, FOCUS, BLUR, CLOSE_REQUEST, and INPUT_RESET. Pointer coordinates are relative to the client; keys have a normalized code and optional ASCII value.
 
-Coalescere POINTER_MOVE. Se non è possibile accodare una transizione, scartare gli eventi di input ormai incoerenti e marcare INPUT_RESET in un flag pendente esterno al ring. Alla consegna l'app cancella il proprio stato dei tasti mantenuti e legge pulsanti/modificatori/puntatore tramite INPUT_STATE; non si promette una bitmap dei tasti premuti. La prossima KEY_DOWN ricrea lo stato del relativo tasto. Il flag viene consegnato prima di nuovi eventi di input, senza rischiare di perderlo per overflow.
+Coalesce POINTER_MOVE. If a transition cannot be queued, discard input events that are no longer consistent and mark INPUT_RESET in a pending flag outside the ring. Upon delivery, the app clears its held-key state and reads buttons/modifiers/pointer through INPUT_STATE; no pressed-key bitmap is promised. The next KEY_DOWN recreates state for that key. Deliver the flag before new input events so overflow cannot lose it.
 
-Le notifiche critiche hanno flag pendenti separati dal ring: CLOSE_REQUEST persistente fino alla consegna, e stato finale di focus da notificare. Cambi ripetuti prima della lettura possono coalescere nell'ultimo FOCUS/BLUR; non richiedono una seconda coda. Ordine di consegna: CLOSE_REQUEST, variazione focus, INPUT_RESET, ring ordinario. A ogni perdita di focus invalidare gli eventi di input della vecchia destinazione e la sua cattura, e marcare INPUT_RESET anche se un successivo FOCUS assorbe il BLUR pendente. BLUR cancella anche lo stato logico dei tasti/pulsanti dell'app. Una nuova finestra parte con coda e flag puliti.
+Critical notifications have pending flags separate from the ring: CLOSE_REQUEST persists until delivery, and the final focus state remains pending for notification. Repeated changes before reading may coalesce into the last FOCUS/BLUR; they do not require a second queue. Delivery order: CLOSE_REQUEST, focus change, INPUT_RESET, ordinary ring. On every loss of focus, invalidate the old destination's input events and capture, and mark INPUT_RESET even if a later FOCUS absorbs the pending BLUR. BLUR also clears the app's logical key/button state. A new window starts with a clean queue and flags.
 
-La tastiera va alla finestra attiva, dopo i comandi globali della shell. Il drag del desktop e quello delle finestre usano cattura del puntatore nel kernel e non dipendono dalle code delle app. Un BUTTON_DOWN dentro un client gli assegna cattura implicita fino all'ultimo BUTTON_UP, BLUR, nascondimento o chiusura. Durante la cattura inviare anche movimento/rilascio fuori client, con coordinate signed; senza cattura gli eventi puntatore vanno solo al client visibile sotto il puntatore. Un click sul client ne acquisisce prima il focus.
+Keyboard input goes to the active window after global shell commands. Desktop and window dragging use pointer capture in the kernel and do not depend on app queues. A BUTTON_DOWN within a client gives it implicit capture until the final BUTTON_UP, BLUR, hiding, or closing. During capture, send movement/release outside the client too, using signed coordinates; without capture, pointer events go only to the visible client under the pointer. Clicking a client first gives it focus.
 
-## 14 ABI delle syscall
+## 14 Syscall ABI
 
-### 14.1 Convenzioni
+### 14.1 Conventions
 
-SYSCALL usa l'ID in b1. Argomenti in R/P, senza puntatori nativi. R0 ritorna lo stato; gli altri registri restano invariati salvo output espliciti.
+SYSCALL uses the ID in b1. Arguments are in R/P, with no native pointers. R0 returns status; other registers remain unchanged except for explicit outputs.
 
-Stati: 0 OK, 1 EINVAL, 2 ERANGE, 3 ENOMEM, 4 EAGAIN, 5 EBADF, 6 ENOSYS, 7 ECANCELLED, 8 EIO, 9 EBUSY, 10 ENODEV, 11 ENOTSUP, 12 ETIMEDOUT, 13 ENOENT, 14 EEXIST, 15 EACCES, 16 ENOSPC, 17 EOVERFLOW, 18 ENOTDIR, 19 EISDIR, 20 ESTALE, 21 EROFS, 22 EDOM, 23 EDIVZERO. ENOSYS indica ID sconosciuto; ENOTSUP un'operazione conosciuta ma non supportata dal profilo. EOVERFLOW include gli elenchi che superano i limiti dichiarati; ESTALE identifica riferimenti a una generazione superata. EDOM/EDIVZERO sono gli errori numerici descritti in NUMERICS.md.
+Statuses: 0 OK, 1 EINVAL, 2 ERANGE, 3 ENOMEM, 4 EAGAIN, 5 EBADF, 6 ENOSYS, 7 ECANCELLED, 8 EIO, 9 EBUSY, 10 ENODEV, 11 ENOTSUP, 12 ETIMEDOUT, 13 ENOENT, 14 EEXIST, 15 EACCES, 16 ENOSPC, 17 EOVERFLOW, 18 ENOTDIR, 19 EISDIR, 20 ESTALE, 21 EROFS, 22 EDOM, 23 EDIVZERO. ENOSYS indicates an unknown ID; ENOTSUP indicates a known operation unsupported by the profile. EOVERFLOW includes listings exceeding declared limits; ESTALE identifies references to an outdated generation. EDOM/EDIVZERO are the numeric errors described in NUMERICS.md.
 
-Gli errori di argomento delle syscall restituiscono uno stato senza modifiche parziali evitabili. Gli accessi illegali delle istruzioni VM generano invece fault del processo. Validare tutti gli intervalli, anche quelli contenuti in descrittori o array di comandi.
+Syscall argument errors return a status without avoidable partial changes. Illegal accesses by VM instructions instead cause a process fault. Validate every range, including those inside descriptors or command arrays.
 
-Le syscall bloccanti mantengono il processo in WAIT_JOB/WAIT_EVENT/SLEEPING; la CPU continua con gli altri processi. “Bloccante per l'app” non significa “bloccante per il sistema”.
+Blocking syscalls leave the process in WAIT_JOB/WAIT_EVENT/SLEEPING; the CPU continues with other processes. “Blocking for the app” does not mean “blocking for the system”.
 
-### 14.2 Servizi iniziali
+### 14.2 Initial services
 
-| ID | Nome | Input | Output/comportamento |
+| ID | Name | Input | Output/behavior |
 |---|---|---|---|
-| 00 | PROC_EXIT | R0=exit code | Termina; non ritorna |
-| 01 | SYS_INFO | — | R1=ABI, R2=320, R3=200, R4=0 riservato; capability in UltimateInfo |
-| 02 | GET_FRAME | — | R1=low16, R2=high16 del contatore frame |
-| 03 | SLEEP | R0=numero frame | 0 equivale a YIELD; altrimenti attesa |
-| 04 | EVENT_WAIT | P0=record destinazione, R0=timeout, R1=Window | 0 poll; $FFFF attesa indefinita; altrimenti frame |
-| 05 | WIN_CREATE | P0=descrittore | R1=handle; una finestra per app |
-| 06 | WIN_CLOSE | R0=handle | Chiude la finestra, non necessariamente il processo |
-| 07 | WIN_TITLE | R0=handle, P0=testo, R1=lunghezza | Massimo 15 caratteri |
-| 08 | GFX_SUBMIT | R0=handle, P0=comandi, R1=numero | 1–16 comandi; ritorna quando la superficie è aggiornata |
-| 09 | GFX_PRESENT | R0=handle | Attende la presentazione del lavoro già accettato |
-| 0A | MEM_FILL | P0=dst, R1=byte, R2/R3=lunghezza | Riempimento in pezzi limitati |
-| 0B | MEM_COPY | P0=dst, P1=src, R2/R3=lunghezza | Semantica memmove, overlap incluso |
+| 00 | PROC_EXIT | R0=exit code | Terminate; does not return |
+| 01 | SYS_INFO | — | R1=ABI, R2=320, R3=200, R4=0 reserved; capabilities in UltimateInfo |
+| 02 | GET_FRAME | — | R1=low16, R2=high16 of the frame counter |
+| 03 | SLEEP | R0=frame count | 0 is equivalent to YIELD; otherwise wait |
+| 04 | EVENT_WAIT | P0=destination record, R0=timeout, R1=Window | 0 polls; $FFFF waits indefinitely; otherwise frames |
+| 05 | WIN_CREATE | P0=descriptor | R1=handle; one window per app |
+| 06 | WIN_CLOSE | R0=handle | Close the window, not necessarily the process |
+| 07 | WIN_TITLE | R0=handle, P0=text, R1=length | Maximum 15 characters |
+| 08 | GFX_SUBMIT | R0=handle, P0=commands, R1=count | 1–16 commands; returns when the surface is updated |
+| 09 | GFX_PRESENT | R0=handle | Wait for presentation of work already accepted |
+| 0A | MEM_FILL | P0=dst, R1=byte, R2/R3=length | Fill in bounded chunks |
+| 0B | MEM_COPY | P0=dst, P1=src, R2/R3=length | memmove semantics, including overlap |
 | 0C | MEM_INFO | — | P0/P1=heap first/last, P2/P3=stack first/last |
-| 0D | INPUT_STATE | R0=Window | R1=pulsanti, R2=modificatori, R3=x, R4=y client signed; binding InputState nell'SDK |
+| 0D | INPUT_STATE | R0=Window | R1=buttons, R2=modifiers, R3=x, R4=y signed client coordinates; InputState binding in the SDK |
 
-Lunghezza a 32 bit = R2 + (R3 << 16), da validare contro lo spazio reale; non troncarla a 16/24 bit prima dei controlli. MEM_FILL/MEM_COPY con lunghezza zero non accedono ai puntatori.
+32-bit length = R2 + (R3 << 16), to be validated against actual address space; do not truncate it to 16/24 bits before checking. Zero-length MEM_FILL/MEM_COPY do not access their pointers.
 
-EVENT_WAIT valida proprietà e validità di R1 prima di leggere la coda o sospendere il processo; un handle scaduto dà EBADF anche se ora esiste un'altra finestra dello stesso processo. Restituisce EAGAIN se il timeout scade; in questo caso non altera il record. Scrive il record solo dopo aver validato e reso disponibili tutti i suoi byte. INPUT_STATE verifica lo stesso handle, senza consumare eventi; le coordinate possono essere fuori client. R1 è zero senza cattura della finestra, R2 è zero senza focus: non ricreare pressioni il cui rilascio non verrebbe consegnato. Per le syscall core, gli output scalari dichiarati sono zero su errore; i buffer restano invariati salvo errori di esecuzione successivi alla validazione di lavori progressivi. Su errore di argomento nessun pezzo viene eseguito.
+EVENT_WAIT validates R1 ownership and liveness before reading the queue or suspending the process; an expired handle returns EBADF even if another window of the same process now exists. It returns EAGAIN if the timeout expires; in that case it leaves the record unchanged. It writes the record only after validating and making all its bytes available. INPUT_STATE validates the same handle without consuming events; coordinates may be outside the client. R1 is zero without that window's capture, and R2 is zero without focus: do not recreate presses whose release would not be delivered. For core syscalls, declared scalar outputs are zero on error; buffers remain unchanged except for execution errors after validation of progressive jobs. No chunk executes on an argument error.
 
-GET_FRAME è un contatore monotono modulo 2^32, incrementato a ogni periodo video PAL, anche senza ricomposizione del desktop. Timeout e uptime usano differenze unsigned del contatore, senza dipendere dall'RTC o dall'orologio civile; nessun timeout finito dell'MVP si avvicina a 2^31 frame.
+GET_FRAME is a monotonic counter modulo 2^32, incremented every PAL video period even without desktop recomposition. Timeouts and uptime use unsigned differences of the counter, independent of the RTC or wall clock; no finite MVP timeout approaches 2^31 frames.
 
-Handle finestra: identificatore non nullo a 16 bit, verificato contro processo proprietario e finestra viva. Usa il contatore monotono per incarnazione del processo definito in ULTIMATE-API.md §3: niente riuso mentre quella app è viva; esaurimento = ENOSPC confinato al proprietario. Riavviare il contatore solo dopo cleanup completo e nuova inizializzazione dell'app.
+Window handle: a nonzero 16-bit identifier checked against the owning process and a live window. It uses the monotonic counter per process incarnation defined in ULTIMATE-API.md §3: no reuse while that app is alive; exhaustion = ENOSPC confined to the owner. Restart the counter only after complete cleanup and a fresh app initialization.
 
-### 14.3 Creazione finestra
+### 14.3 Window creation
 
-Descrittore WIN_CREATE, 16 byte:
+WIN_CREATE descriptor, 16 bytes:
 
-| Offset | Campo |
+| Offset | Field |
 |---|---|
 | 0 | x, u16 |
 | 2 | y, u16 |
-| 4 | larghezza esterna, u16 |
-| 6 | altezza esterna, u16 |
-| 8 | puntatore titolo, u24 |
-| 11 | lunghezza titolo, u8, massimo 15 |
-| 12 | flag, zero per l'MVP |
-| 13 | riservato, tre byte zero |
+| 4 | outer width, u16 |
+| 6 | outer height, u16 |
+| 8 | title pointer, u24 |
+| 11 | title length, u8, maximum 15 |
+| 12 | flags, zero for the MVP |
+| 13 | reserved, three zero bytes |
 
-Dimensioni e posizione devono entrare nello schermo e rispettare i minimi. X deve essere pari nel backend iniziale. Input non valido restituisce EINVAL/ERANGE; non correggere silenziosamente una struttura malformata.
+Dimensions and position must fit within the screen and meet the minimum sizes. X must be even in the initial backend. Invalid input returns EINVAL/ERANGE; do not silently correct a malformed structure.
 
-### 14.4 Comandi grafici
+### 14.4 Graphics commands
 
-Record di 16 byte:
+16-byte record:
 
-| Offset | Campo |
+| Offset | Field |
 |---|---|
-| 0 | operazione, u8 |
-| 1 | flag, u8 |
-| 2 | x, i16, coordinate client |
+| 0 | operation, u8 |
+| 1 | flags, u8 |
+| 2 | x, i16, client coordinates |
 | 4 | y, i16 |
-| 6 | w oppure lunghezza testo, u16 |
+| 6 | w or text length, u16 |
 | 8 | h, u16 |
-| 10 | colore primo piano, u8, 0–15 |
-| 11 | colore fondo, u8, 0–15 |
-| 12 | puntatore sorgente, u24 |
-| 15 | riservato, zero |
+| 10 | foreground color, u8, 0–15 |
+| 11 | background color, u8, 0–15 |
+| 12 | source pointer, u24 |
+| 15 | reserved, zero |
 
-Operazioni: 1 CLEAR, 2 FILL_RECT, 3 FRAME_RECT, 4 TEXT, 5 BLIT4, 6 BLIT8.
+Operations: 1 CLEAR, 2 FILL_RECT, 3 FRAME_RECT, 4 TEXT, 5 BLIT4, 6 BLIT8.
 
-- CLEAR usa il primo piano per l'intero client.
-- FILL_RECT riempie il rettangolo clippato.
-- FRAME_RECT disegna il bordo interno di un pixel del rettangolo originale e poi lo clippa; non crea bordi nuovi lungo il limite del client.
-- TEXT usa w come numero di byte ASCII, massimo 255; h=0. Flag bit 0 indica fondo trasparente; altrimenti usa il colore fondo. Nessuna ricerca illimitata del terminatore.
-- BLIT4 legge una sorgente row-major, stride ceil(w/2), due pixel per byte, primo pixel nel nibble basso. Verificare l'intero intervallo sorgente con aritmetica larga. Niente scaling o alpha nell'MVP.
-- BLIT8 legge una sorgente row-major, stride=w, un byte per pixel. I quattro bit bassi selezionano l'indice 0–15; i quattro bit alti sono ignorati. Non è necessario scansionare tutti i pixel per validare il batch. Il controllo del buffer usa w×h con aritmetica a 32 bit e verifica l'intero intervallo prima degli effetti.
+- CLEAR uses the foreground color for the entire client.
+- FILL_RECT fills the clipped rectangle.
+- FRAME_RECT draws a one-pixel inner border of the original rectangle and then clips it; it does not create new borders along the client boundary.
+- TEXT uses w as the number of ASCII bytes, maximum 255; h=0. Flag bit 0 indicates a transparent background; otherwise it uses the background color. No unbounded search for a terminator.
+- BLIT4 reads a row-major source, stride ceil(w/2), two pixels per byte, first pixel in the low nibble. Validate the entire source range with wide arithmetic. No scaling or alpha in the MVP.
+- BLIT8 reads a row-major source, stride=w, one byte per pixel. The low four bits select index 0–15; the high four bits are ignored. Validating the batch does not require scanning every pixel. Buffer checking uses w×h with 32-bit arithmetic and validates the entire range before effects.
 
-Gli altri flag e i campi inutilizzati devono essere zero: CLEAR usa solo primo piano; FILL_RECT/FRAME_RECT usano x/y/w/h e primo piano; TEXT usa x/y/w, i due colori e sorgente; BLIT4/8 usano x/y/w/h e sorgente. Dimensioni nulle dei rettangoli o testo di lunghezza zero sono no-op; colori e formato vanno comunque validati. Non dereferenziare la sorgente dei comandi vuoti. Il clipping di un comando non vuoto non evita la validazione dell'intero intervallo sorgente dichiarato.
+Other flags and unused fields must be zero: CLEAR uses only foreground; FILL_RECT/FRAME_RECT use x/y/w/h and foreground; TEXT uses x/y/w, both colors, and source; BLIT4/8 use x/y/w/h and source. Zero rectangle dimensions or zero-length text are no-ops; colors and format must still be validated. Do not dereference the source of empty commands. Clipping a nonempty command does not remove the requirement to validate its entire declared source range.
 
-Validare il batch prima degli effetti. Durante il lavoro l'app è sospesa, quindi comandi e sorgenti restano stabili. Elaborare per tile/porzioni limitate, con continuazioni esplicite.
+Validate the batch before effects. The app is suspended during the job, so commands and sources remain stable. Process bounded tiles/portions with explicit continuations.
 
-GFX_SUBMIT aggiorna la superficie e marca il danno; non garantisce che tutto sia già sul monitor. GFX_PRESENT attende che le parti attualmente visibili siano composte e attraversate da uno scanout. Se la finestra è interamente nascosta, può terminare quando la superficie è aggiornata. Il ripristino successivo userà quella superficie.
+GFX_SUBMIT updates the surface and marks damage; it does not guarantee that everything is already on the display. GFX_PRESENT waits for currently visible portions to be composed and scanned out. If the window is entirely hidden, it may complete once the surface is updated. Later restoration uses that surface.
 
-Una continuazione del compositor non può riusare geometria o ordine Z ormai superati. Mantenere una generazione della scena per move/focus/show/hide/close e una revisione del contenuto per finestra. Prima di pubblicare un pezzo preparato, verificare entrambe: se sono cambiate, scartare lo staging obsoleto e ricomporre dalla scena corrente. Cancellare il danno solo per la revisione effettivamente composta. GFX_PRESENT attende almeno la revisione richiesta, senza cancellare danno aggiunto nel frattempo.
+A compositor continuation cannot reuse outdated geometry or Z order. Maintain a scene generation for move/focus/show/hide/close and a content revision per window. Before publishing a prepared chunk, check both: if they changed, discard stale staging and recompose from the current scene. Clear damage only for the revision actually composed. GFX_PRESENT waits for at least the requested revision without clearing damage added in the meantime.
 
-### 14.5 Servizi estesi
+### 14.5 Extended services
 
-L'allegato [SDK e servizi Ultimate](ULTIMATE-API.md) riserva gli ID 20–2F per file/directory, 40–4F per SID, 50–5F per Ultimate Audio, 60–6F per video e 70–7F per informazioni Ultimate, storage e RTC. 80–8F e 90–9F sono riservati alle future rete e HTTP e restituiscono ENOSYS nell'MVP. Tutti gli ID sono esadecimali. Usa le stesse regole di isolamento, fuel, continuazione e controllo degli argomenti; nessuna API esegue un puntatore nativo fornito dall'app.
+The [SDK and Ultimate services](ULTIMATE-API.md) document reserves IDs 20–2F for files/directories, 40–4F for SID, 50–5F for Ultimate Audio, 60–6F for video, and 70–7F for Ultimate information, storage, and RTC. 80–8F and 90–9F are reserved for future networking and HTTP and return ENOSYS in the MVP. All IDs are hexadecimal. Apply the same isolation, fuel, continuation, and argument-checking rules; no API executes a native pointer supplied by the app.
 
-L'ID **30 NUM_OP** è definito in [NUMERICS.md](NUMERICS.md): selettore in R1, operandi scalari in R2/R3 e R4/R5, risultato in R2/R3, stato in R0. È un servizio numerico del kernel, senza dipendenza da UCI o dalle capability hardware Ultimate. 31–3F restano ENOSYS.
+ID **30 NUM_OP** is defined in [NUMERICS.md](NUMERICS.md): selector in R1, scalar operands in R2/R3 and R4/R5, result in R2/R3, status in R0. It is a kernel numeric service with no dependency on UCI or Ultimate hardware capabilities. 31–3F remain ENOSYS.
 
-## 15 Boot e strumenti di sviluppo
+## 15 Boot and development tools
 
 ### 15.1 Bootstrap
 
-Produrre un PRG piccolo e un'immagine REU da 16.777.216 byte. Il PRG parte all'indirizzo convenzionale $0801 e carica dalla REU i segmenti residenti, con destinazioni esplicitamente consentite.
+Produce a small PRG and a 16,777,216-byte REU image. The PRG starts at the conventional address $0801 and loads resident segments from the REU into explicitly permitted destinations.
 
-Il pack REU deve essere già caricato all'avvio del PRG: la consegna include la procedura verificata di caricamento nell'emulatore e nel menu Ultimate. Un loader del pack tramite il servizio file del nuovo OS non è richiesto per il primo bootstrap; questo servizio esiste soltanto dopo l'avvio del kernel.
+The REU pack must already be loaded when the PRG starts: the delivery includes a verified loading procedure for the emulator and the Ultimate menu. A pack loader using the new OS's file service is not required for the first bootstrap; that service exists only after the kernel has started.
 
-Non creare un PRG piatto che venga caricato ingenuamente attraverso $D000–$DFFF con I/O attivo. Il bootstrap non deve sovrascriversi mentre copia i segmenti; la RAM della sua area può diventare cache solo dopo il salto definitivo al kernel.
+Do not create a flat PRG that is naively loaded across $D000–$DFFF while I/O is active. The bootstrap must not overwrite itself while copying segments; RAM in its own area may become cache only after the final jump to the kernel.
 
-Procedura:
+Procedure:
 
-1. Disabilitare gli interrupt non necessari e impostare un ambiente 6510 noto, incluso CLD.
-2. Verificare header/build del pack REU.
-3. Verificare presenza e dimensione della REU con una prova che salva e ripristina i byte interessati; un test di alias deve distinguere almeno le dimensioni inferiori supportate.
-4. Verificare PAL e velocità effettiva; attendere la fine dell'eventuale fase lenta dopo reset.
-5. Caricare soltanto i segmenti residenti autorizzati e inizializzare vettori, RAM e framebuffer.
-6. Inizializzare cache, processi, input, superfici e desktop; predisporre le richieste incrementali di scoperta storage e RTC, che proseguono a display avviato nelle finestre di servizio fuori dalle 200 righe attive.
-7. Avviare il raster e il ciclo del kernel.
+1. Disable unnecessary interrupts and establish a known 6510 environment, including CLD.
+2. Verify the REU pack header/build.
+3. Verify REU presence and size with a test that saves and restores affected bytes; an aliasing test must distinguish at least the smaller supported sizes.
+4. Verify PAL and actual speed; wait for any slow phase after reset to end.
+5. Load only authorized resident segments and initialize vectors, RAM, and framebuffer.
+6. Initialize caches, processes, input, surfaces, and desktop; prepare incremental storage-discovery and RTC requests, which continue after the display starts in service windows outside the 200 active lines.
+7. Start the raster and kernel loop.
 
-Una configurazione insufficiente produce una diagnostica leggibile; non tentare di eseguire il renderer 64 MHz a una velocità minore fingendo compatibilità.
+An insufficient configuration produces readable diagnostics; do not try to run the 64 MHz renderer at a lower speed while pretending compatibility.
 
-### 15.2 Pack MVP
+### 15.2 MVP pack
 
-Header REU di 16 byte a $000000:
+16-byte REU header at $000000:
 
-| Offset | Campo |
+| Offset | Field |
 |---|---|
-| 0 | Otto byte ASCII: COSREU01 |
+| 0 | Eight ASCII bytes: COSREU01 |
 | 8 | build_tag, u32 little endian |
-| 12 | versione ABI, u16 |
-| 14 | numero app, u8, 0–4 |
-| 15 | riservato, zero |
+| 12 | ABI version, u16 |
+| 14 | app count, u8, 0–4 |
+| 15 | reserved, zero |
 
-Il medesimo build_tag viene compilato nel bootstrap. Serve a rilevare un PRG abbinato al pack sbagliato, non è una firma di sicurezza.
+The same build_tag is compiled into the bootstrap. It detects a PRG paired with the wrong pack; it is not a security signature.
 
-Nell'MVP il bundler genera i descrittori e gli indirizzi come costanti assembly, oltre a un manifest JSON leggibile. Non serve un linker dinamico o un formato di eseguibile generale sul C64.
+In the MVP, the bundler generates descriptors and addresses as assembly constants in addition to a readable JSON manifest. No dynamic linker or general executable format is needed on the C64.
 
-Per ogni app dichiarare ID stabile, nome, sorgente, arena, sezioni codice/dati/BSS/heap/stack, entry point e seed per i dati inizializzati. ID distinti in 1…65535, nomi ASCII di 1…15 byte; il PID esposto alla VM è l'ID stabile dell'app, non l'indice dello slot PCB. Il codice ha lunghezza positiva multipla di quattro. Le arene non si sovrappongono; il build valida tutti i limiti, gli allineamenti di §6.3 e gli indirizzi di branch statici. heap_min e stack_size sono multipli di 128 e almeno 128; anche un pack senza app è valido.
+For each app, declare a stable ID, name, source, arena, code/data/BSS/heap/stack sections, entry point, and initialization seed. Distinct IDs in 1…65535, ASCII names of 1…15 bytes; the PID exposed to the VM is the app's stable ID, not its PCB slot index. Code length is positive and a multiple of four. Arenas do not overlap; the build validates all bounds, §6.3 alignments, and static branch addresses. heap_min and stack_size are multiples of 128 and at least 128; a pack with no apps is also valid.
 
-Il manifest di ingresso al bundler può restare piccolo. Esempio di pack con una sola app, con numeri decimali per evitare un formato JSON non standard:
+The bundler input manifest may remain small. Example pack with a single app, using decimal numbers to avoid nonstandard JSON:
 
 ```json
 {
@@ -843,250 +843,250 @@ Il manifest di ingresso al bundler può restare piccolo. Esempio di pack con una
 }
 ```
 
-La modalità discover cerca l'albero dati predisposto sui supporti rilevati, secondo ULTIMATE-API.md §5.4. È ammessa in alternativa `"storage": {"mode": "explicit", "root": "/usb0/cos"}` per una configurazione nota; quel path non è garantito su ogni dispositivo. Il bundler rifiuta configurazioni ambigue e produce anche il marker `COSDATA1\n` e l'albero `cos/.system`, `cos/apps/<id>` da installare. Una root assente non impedisce il boot in RAM; una scelta fra più candidati avviene dalla shell dopo l'avvio del desktop.
+Discover mode searches detected media for the prepared data tree, as specified in ULTIMATE-API.md §5.4. Alternatively, `"storage": {"mode": "explicit", "root": "/usb0/cos"}` is allowed for a known configuration; that path is not guaranteed on every device. The bundler rejects ambiguous configurations and also produces the `COSDATA1\n` marker and the `cos/.system`, `cos/apps/<id>` tree to install. A missing root does not prevent booting in RAM; the shell handles selection among multiple candidates after the desktop starts.
 
-I path host sono relativi alla root C-OS dichiarata al bundler. Codice/dati/BSS vengono collocati in ordine, con allineamento di 128 byte; stack in cima all'arena; spazio rimanente all'heap, almeno heap_min. Il report espone tutti gli intervalli effettivi e il seed dei dati. L'entry viene dal simbolo esportato `_cos_start` per le app C-Script, oppure dall'entry dichiarata nell'oggetto assembler.
+Host paths are relative to the C-OS root declared to the bundler. Code/data/BSS are placed in order with 128-byte alignment; the stack sits at the top of the arena; the remaining space goes to the heap, at least heap_min. The report shows all actual ranges and the data seed. The entry comes from the exported `_cos_start` symbol for C-Script apps, or from the entry declared in the assembler object.
 
-All'ingresso dell'app: PC=entry, SP=stack_last, R0=PID, R1=versione ABI, gli altri R=0; P0=heap_first, P1=heap_last, P2=inizio dati, P3=stack_last. Se i dati inizializzati sono vuoti, P2 vale zero; indirizzi BSS e dei dati runtime vengono dal linker. Il linker e la libreria iniziale devono usare questa stessa convenzione.
+On app entry: PC=entry, SP=stack_last, R0=PID, R1=ABI version, other R registers=0; P0=heap_first, P1=heap_last, P2=data start, P3=stack_last. If initialized data is empty, P2 is zero; BSS and runtime data addresses come from the linker. The linker and startup library must use this same convention.
 
 ### 15.3 Toolchain
 
-Assembly nativo: Kick Assembler, coerente con il workspace. **Rust è la scelta consigliata per il compilatore e il tooling host**: assembler/disassembler VM, bundler, reference VM e runner. Iniziare con un piccolo workspace Cargo e condividere definizioni ISA, formati e diagnostica fra i comandi; non introdurre molti crate o framework prima che servano. Preferire la libreria standard e poche dipendenze motivate, con Cargo.lock e toolchain documentata per build riproducibili. Rust gira sul computer di sviluppo; kernel e interprete target restano assembly 6510.
+Native assembly: Kick Assembler, consistent with the workspace. **Rust is the recommended choice for the compiler and host tooling**: VM assembler/disassembler, bundler, reference VM, and runner. Start with a small Cargo workspace and share ISA definitions, formats, and diagnostics between commands; do not introduce many crates or frameworks before they are needed. Prefer the standard library and a few justified dependencies, with Cargo.lock and a documented toolchain for reproducible builds. Rust runs on the development computer; the target kernel and interpreter remain in 6510 assembly.
 
-Script ausiliari già presenti e oracoli indipendenti, per esempio calcoli razionali esatti per i test numerici, possono usare Python quando utile. Non mantenere due compilatori o due pipeline di packaging equivalenti. I comandi Cargo/CLI proposti in LANGUAGE.md sostituiscono la precedente indicazione di costruire tutta la toolchain in Python.
+Existing auxiliary scripts and independent oracles, such as exact rational calculations for numeric tests, may use Python where useful. Do not maintain two compilers or two equivalent packaging pipelines. The Cargo/CLI commands proposed in LANGUAGE.md replace the earlier direction to build the entire toolchain in Python.
 
-Fornire:
+Provide:
 
-- assembler del bytecode a due passate, etichette, costanti e listing;
-- compilatore C-Script descritto in LANGUAGE.md, binding SDK tipizzati ed esempi sorgente;
-- disassembler che mostri indirizzi, opcode e operandi;
-- bundler PRG/REU, manifest e map file;
-- interprete di riferimento host per l'ISA;
-- runner di test per emulatore e acquisizione dei contatori;
-- una libreria userspace minima per chiamate, heap e controlli di base.
+- a two-pass bytecode assembler, labels, constants, and listings;
+- the C-Script compiler described in LANGUAGE.md, typed SDK bindings, and source examples;
+- a disassembler showing addresses, opcodes, and operands;
+- a PRG/REU bundler, manifest, and map files;
+- a host reference interpreter for the ISA;
+- an emulator test runner and counter capture;
+- a minimal userspace library for calls, heap allocation, and basic controls.
 
-Verificare ISA, memoria e scheduler con piccoli programmi assembler, poi completare C-Script nella stessa versione MVP. Non serve portare un compilatore C o Lua. Il formato resta sperimentale fino al completamento dei test fondamentali; eventuali cambi devono aggiornare insieme compilatore, assembler, runtime, ABI e test.
+Verify the ISA, memory, and scheduler with small assembler programs, then complete C-Script within the same MVP release. There is no need to port a C or Lua compiler. The format remains experimental until the fundamental tests are complete; any changes must update the compiler, assembler, runtime, ABI, and tests together.
 
-## 16 Diagnostica e prestazioni
+## 16 Diagnostics and performance
 
-Contatori minimi, leggibili senza alterare il normale flusso dell'app:
+Minimum counters, readable without altering the app's normal execution flow:
 
-- frame prodotti e sincronizzazioni mancate;
-- deadline miss e DMA rinviati;
-- opcode ritirati e context switch per processo;
-- miss della cache codice/dati, write-back e byte trasferiti;
-- massimo tempo di un pezzo nativo e massimo trasferimento DMA;
-- profondità massima dello stack hardware;
-- overflow/coalescing delle code eventi;
-- rettangoli/tile ricomposti e backlog grafico;
-- frame di ricezione input, applicazione dell'effetto e prima visualizzazione;
-- richieste UCI, timeout, byte I/O, canali audio attivi e campioni protetti;
-- durata delle scansioni directory/storage, occupazione delle snapshot, generazioni storage e anzianità della cache RTC.
-- chiamate e tempo nativo NUM_OP per processo, formato e operazione; nelle build diagnostiche, conteggi per funzione/helper e costo delle conversioni testuali.
+- frames produced and missed synchronizations;
+- missed deadlines and deferred DMA transfers;
+- retired opcodes and context switches per process;
+- code/data cache misses, write-backs, and bytes transferred;
+- maximum duration of a native chunk and maximum DMA transfer;
+- maximum hardware stack depth;
+- event queue overflows/coalescing;
+- recomposed rectangles/tiles and graphics backlog;
+- frames when input is received, its effect is applied, and it first becomes visible;
+- UCI requests, timeouts, I/O bytes, active audio channels, and protected samples;
+- duration of directory/storage scans, snapshot usage, storage generations, and RTC cache age.
+- NUM_OP calls and native execution time per process, format, and operation; in diagnostic builds, counts per function/helper and the cost of text conversions.
 
-Contatori estesi e trace possono essere abilitati nella build diagnostica. La build ordinaria non deve registrare una riga di log per opcode.
+Extended counters and tracing may be enabled in diagnostic builds. The normal build must not log a line for every opcode.
 
-Misurare separatamente interprete, miss/cache, DMA, disegno, composizione, attesa del raster e latenza dell'interazione. Non usare il numero di aggiornamenti parziali come FPS completi.
+Measure the interpreter, cache misses/cache access, DMA, drawing, composition, raster waits, and interaction latency separately. Do not report the number of partial updates as full-frame FPS.
 
-Obiettivi iniziali da verificare:
+Initial targets to verify:
 
-| Scenario | Obiettivo |
+| Scenario | Target |
 |---|---|
-| Desktop fermo | Nessuna ricomposizione completa ripetuta; scanout regolare |
-| Input sulla shell con due app di stress | Latenza visibile p95 entro 2 frame, p99 entro 3 frame |
-| Movimento del puntatore | Aggiornamento quando ci sono input; niente dipendenza dai yield delle app |
-| App in loop infinito | Le altre app e la shell continuano a progredire |
-| Grande MEM_COPY/FILL | Servizio progressivo senza monopolizzare un frame o una coda |
-| Stabilità video | Zero deadline miss in 10 minuti del carico di accettazione qualificato |
-| Avvio/apertura finestre | Misurare e riportare; distinguere chrome pronto e superficie client pronta |
+| Idle desktop | No repeated full recomposition; regular scanout |
+| Shell input with two stress-test apps | Visible latency p95 within 2 frames, p99 within 3 frames |
+| Pointer movement | Updates when input is available; no dependence on app yields |
+| App in an infinite loop | Other apps and the shell continue making progress |
+| Large MEM_COPY/FILL | Progressive service without monopolizing a frame or queue |
+| Video stability | Zero missed deadlines during 10 minutes of the qualified acceptance workload |
+| Startup/window opening | Measure and report; distinguish ready chrome from a ready client surface |
 
-A PAL, due/tre frame sono circa 40/60 ms. Sono obiettivi di accettazione da misurare; non risultati già ottenuti e non garanzie per qualsiasi carico immaginabile.
+On PAL, two/three frames are approximately 40/60 ms. These are acceptance targets to measure, not results already achieved or guarantees for every conceivable workload.
 
-Se la latenza non rientra, profilare prima di aggiungere complessità. Priorità di intervento: ridurre lavoro inutile, migliorare località, ridurre syscall troppo fini, tarare i pezzi nativi; solo dopo valutare nuove politiche del dispatcher o uso dei margini orizzontali.
+If latency exceeds the targets, profile before adding complexity. Prioritize eliminating unnecessary work, improving locality, reducing overly fine-grained syscalls, and tuning native chunks; only then consider new dispatcher policies or use of the horizontal margins.
 
-## 17 Test di accettazione
+## 17 Acceptance tests
 
-### 17.1 Memoria e ISA
+### 17.1 Memory and ISA
 
-- Letture/scritture a 8, 16 e 24 bit, allineate e non allineate.
-- Attraversamento di linea cache e confine $xxFFFF/$yy0000.
-- LD8 all'ultimo byte REU valido; rifiuto di un accesso multibyte che oltrepassa $FFFFFF.
-- Protezione della riserva kernel, delle altre arene e del codice.
-- Overflow/underflow dei puntatori, senza wrap silenzioso.
-- Branch presi/non presi, signed/unsigned, PC fuori codice o non allineato.
-- Chiamate annidate e salvataggio del PC a 24 bit.
-- Stack pieno/vuoto e SETSP fuori limiti.
-- STORE/PUSH/CALL con miss: un solo effetto e una sola contabilizzazione.
-- Opcode e campi riservati malformati: fault confinato all'app.
-- Manifest con sezioni dati/BSS vuote; rifiuto di arene disallineate, ID duplicati e heap/stack vuoti; pack con zero app avviabile.
+- Aligned and unaligned 8-, 16-, and 24-bit reads/writes.
+- Cache-line crossings and the $xxFFFF/$yy0000 boundary.
+- LD8 at the last valid REU byte; rejection of a multibyte access extending past $FFFFFF.
+- Protection of the kernel reserve, other arenas, and code.
+- Pointer overflow/underflow, with no silent wrapping.
+- Taken/not-taken branches, signed/unsigned comparisons, PC outside code or unaligned.
+- Nested calls and saving the 24-bit PC.
+- Full/empty stack and out-of-bounds SETSP.
+- STORE/PUSH/CALL with misses: exactly one effect and one accounting entry.
+- Malformed opcodes and reserved fields: fault confined to the app.
+- Manifests with empty data/BSS sections; rejection of misaligned arenas, duplicate IDs, and empty heaps/stacks; a pack with zero apps can boot.
 
-### 17.2 Fuel e ripresa
+### 17.2 Fuel and resumption
 
-Con quantum di test piccolo, per esempio tre istruzioni, confrontare gli stati host e 6510 dopo ogni slice. Il conteggio riguarda istruzioni ritirate, non tentativi di fetch.
+With a small test quantum, for example three instructions, compare host and 6510 states after each slice. Count retired instructions, not fetch attempts.
 
-Eseguire loop senza syscall e senza yield; verificare preemption e progresso degli altri processi. Ripetere con miss continui, dirty eviction, attese di eventi e copie native lunghe.
+Run loops with no syscalls and no yields; verify preemption and progress of other processes. Repeat with continuous misses, dirty evictions, event waits, and long native copies.
 
-Un processo non deve ottenere quantum gratuiti per cache miss o lavori CPU nativi. Una syscall sospesa non deve essere eseguita due volte. Verificare progresso simultaneo di una coda VM sempre piena e una coda nativa sempre piena, anche attraverso scadenze raster. Il caricamento dei registri del processo successivo deve essere indipendente dallo stato lasciato dal precedente.
+A process must not receive free quanta for cache misses or native CPU jobs. A suspended syscall must not execute twice. Verify simultaneous progress of an always-full VM queue and an always-full native queue, including across raster deadlines. Loading the next process's registers must be independent of the state left by the previous process.
 
-### 17.3 REU e coerenza
+### 17.3 REU and coherence
 
-Verificare zero-length, overlap avanti/indietro, byte finali, annullamento di un lavoro, write-back seguito da lettura nativa, scrittura nativa seguita da LOAD VM e riutilizzo dello slot del processo.
+Verify zero length, forward/backward overlap, final bytes, job cancellation, write-back followed by a native read, a native write followed by a VM LOAD, and process-slot reuse.
 
-Confrontare checksum e contenuti attesi. Un test che controlla soltanto i registri scritti al DMA non dimostra la correttezza dei dati restituiti.
+Compare checksums and expected contents. A test that checks only the registers written to the DMA controller does not demonstrate the correctness of returned data.
 
-Verificare anche le scritture VM e native verso campioni audio protetti, la visibilità delle ultime STORE prima di PLAY e la cessazione delle letture hardware prima di liberare/riusare il campione.
+Also verify VM and native writes to protected audio samples, visibility of the latest STOREs before PLAY, and cessation of hardware reads before releasing/reusing the sample.
 
 ### 17.4 UI
 
-- Raster reale 320×200 e tutti i pixel di bordo presenti.
-- Pixel della shell limitati agli indici 0, 1, 11, 12, 15.
-- Cella 32×32: tutte le 60 posizioni valide, margini corretti.
-- Spostamento di app e widget fra celle, anche non adiacenti.
-- Cella occupata, drop fuori area, annullamento, tastiera e drag veloce.
-- Nessuna posizione desktop intermedia a passi di 8 pixel.
-- Focus, ordine Z, “Mostra desktop”, ripristino e chiusura.
-- Ripristino di una finestra la cui app non risponde.
-- Cursore su bordi, X dispari e regioni ridisegnate, senza scie.
-- Overflow degli eventi senza pulsanti/tasti logicamente bloccati.
-- Perdita/riacquisto rapido del focus, reset fuori dal ring, rilascio del puntatore fuori client e handle scaduti senza consumo di eventi della nuova finestra.
-- Desktop interamente usabile da tastiera, con 0–4 launcher; selezione di un processo vivo senza finestra tramite il monitor.
-- Memoria della superficie e clipping con coordinate negative e rettangoli parzialmente visibili.
-- Batch grafico con campi inutilizzati nonzero respinto con EINVAL prima di ogni effetto; FRAME_RECT clippato senza bordi artificiali.
-- INPUT_STATE dopo BLUR durante una pressione non riattiva pulsanti della vecchia finestra; rilascio fuori client e successivo focus restano coerenti.
+- Actual 320×200 raster with every edge pixel present.
+- Shell pixels limited to indices 0, 1, 11, 12, 15.
+- 32×32 cell: all 60 positions valid, correct margins.
+- Moving apps and widgets between cells, including nonadjacent cells.
+- Occupied cells, drops outside the area, cancellation, keyboard operation, and fast dragging.
+- No intermediate desktop positions in 8-pixel steps.
+- Focus, Z order, “Show desktop,” restoration, and closing.
+- Restoring a window whose app is unresponsive.
+- Cursor at edges, odd X coordinates, and redrawn regions, with no trails.
+- Event overflow without logically stuck buttons/keys.
+- Rapid focus loss/regain, reset outside the ring, pointer release outside the client area, and expired handles without consuming events from the new window.
+- Desktop fully usable by keyboard, with 0–4 launchers; selection of a live process with no window through the monitor.
+- Surface memory and clipping with negative coordinates and partially visible rectangles.
+- Graphics batches with nonzero unused fields rejected with EINVAL before any effect; clipped FRAME_RECT with no artificial borders.
+- INPUT_STATE after BLUR during a press does not reactivate buttons in the old window; release outside the client area and subsequent focus remain consistent.
 
-Il controllo della palette va eseguito sugli indici del framebuffer; fotografie e screenshot servono a documentare il risultato visivo.
+Check the palette using framebuffer indices; photographs and screenshots document the visual result.
 
-### 17.5 Carico integrato
+### 17.5 Integrated workload
 
-Per almeno dieci minuti:
+For at least ten minutes:
 
-1. App A in loop aritmetico infinito.
-2. App B con letture/scritture oltre 64 KiB e miss ripetuti.
-3. App C che aggiorna piccoli rettangoli.
-4. Input continuo sulla shell: puntatore, spostamenti di icone, cambio focus e finestre.
-5. Inserimento di fault e terminazione forzata di un'app.
-6. Controllo di frame, latenza, memoria, avanzamento dei processi e correttezza dei dati.
+1. App A in an infinite arithmetic loop.
+2. App B reading/writing beyond 64 KiB with repeated misses.
+3. App C updating small rectangles.
+4. Continuous shell input: pointer movement, icon moves, focus changes, and window interaction.
+5. Fault injection and forced termination of an app.
+6. Checks of frames, latency, memory, process progress, and data correctness.
 
-Conservare configurazione, hash degli artefatti, manifest, map, output numerici e acquisizioni. Indicare separatamente risultati dell'emulatore e del dispositivo fisico.
+Retain the configuration, artifact hashes, manifest, map, numeric outputs, and captures. Report emulator and physical-device results separately.
 
-### 17.6 Linguaggio e SDK
+### 17.6 Language and SDK
 
-Superare i test descritti negli allegati: esempi C-Script compilabili, indici oltre 64 KiB, aritmetica intera 16/32 bit e float24/float32, errori di tipo e bounds; due app che usano file differenti senza contaminarsi; directory/stat e mutazioni entro root; storage assente/scollegato e generazioni superate; cache RTC valida/scaduta con scheduling monotono; timeout UCI senza blocco del raster; pulizia SID/PCM alla terminazione; BLIT8 coerente con l'array sorgente. Ripetere il carico integrato con letture/scritture file, scansioni directory, calcolo float senza yield e riproduzione PCM in corso.
+Pass the tests described in the companion documents: compilable C-Script examples, indices beyond 64 KiB, 16/32-bit integer and float24/float32 arithmetic, type and bounds errors; two apps using different files without interfering with each other; directory/stat and mutations within the root; absent/disconnected storage and obsolete generations; valid/expired RTC cache with monotonic scheduling; UCI timeouts without blocking the raster; SID/PCM cleanup on termination; BLIT8 consistent with the source array. Repeat the integrated workload with file reads/writes, directory scans, float calculations without yield, and PCM playback in progress.
 
-## 18 Sequenza di implementazione
+## 18 Implementation sequence
 
-| Fase | Consegna | Condizione di completamento |
+| Phase | Deliverable | Completion criterion |
 |---|---|---|
-| M0 Hardware e budget | Probe turbo/REU, renderer 320, map file, misure DMA e primo bilancio residente | Geometria verificata nel backend disponibile; timing esplicito; ingombri misurati distinti dalle riserve stimate |
-| M1 VM host | ISA, assembler, disassembler, reference VM | Test semantici e generazione di app minime |
-| M2 VM 6510 | Dispatcher, puntatori, cache e stack | Confronto degli stati con il reference su confini e miss; budget cumulativo aggiornato prima di ampliare SDK/UI |
-| M3 Scheduler | Fuel, PCB, attese e lavori REU limitati | Due loop senza yield convivono con il raster |
-| M4a C-Script | Compilatore host, libreria minima, ABI di chiamata e source map | Esempi e test del linguaggio eseguiti sulla VM; loop senza yield preemptibili |
-| M4b Numeri frazionari | Float24/float32, NUM_OP, conversioni numeriche/testuali e modello host | Corpus bit-exact, isolamento scratch, budget e timing dei due formati verificati |
-| M5 Grafica e input | Primitive, superfici, BLIT8, compositor, cursore ed eventi | Clipping, coerenza, ripristino e input verificati |
-| M6a Storage e tempo | UCI incrementale, file/directory/stat, mutazioni, scoperta storage, RTC e binding | Concorrenza I/O, snapshot, scollegamento, timeout e cache del clock verificati |
-| M6b Audio Ultimate | SID, PCM e binding C-Script | Lease, coerenza campioni e cleanup verificati; budget completo RAM/REU aggiornato |
-| M7 Desktop e app | Stile C, griglia 32×32, persistenza ed esempi in C-Script | Interazione completa con carico concorrente |
-| M8 Qualificazione MVP | Stress, profili e documentazione riproducibile | Criteri di accettazione misurati, limiti residui dichiarati |
+| M0 Hardware and budget | Turbo/REU probes, 320 renderer, map file, DMA measurements, and initial resident-memory budget | Geometry verified on the available backend; explicit timing; measured sizes distinguished from estimated reserves |
+| M1 Host VM | ISA, assembler, disassembler, reference VM | Semantic tests and generation of minimal apps |
+| M2 6510 VM | Dispatcher, pointers, cache, and stack | State comparison with the reference at boundaries and on misses; cumulative budget updated before expanding the SDK/UI |
+| M3 Scheduler | Fuel, PCBs, waits, and bounded REU jobs | Two loops without yield coexist with the raster |
+| M4a C-Script | Host compiler, minimum library, calling ABI, and source map | Language examples and tests run on the VM; loops without yield remain preemptible |
+| M4b Fractional numbers | Float24/float32, NUM_OP, numeric/text conversions, and host model | Bit-exact corpus, scratch isolation, budget, and timing verified for both formats |
+| M5 Graphics and input | Primitives, surfaces, BLIT8, compositor, cursor, and events | Clipping, coherence, restoration, and input verified |
+| M6a Storage and time | Incremental UCI, files/directories/stat, mutations, storage discovery, RTC, and bindings | I/O concurrency, snapshots, disconnection, timeouts, and clock cache verified |
+| M6b Ultimate audio | SID, PCM, and C-Script bindings | Leases, sample coherence, and cleanup verified; complete RAM/REU budget updated |
+| M7 Desktop and apps | Style C, 32×32 grid, persistence, and C-Script examples | Complete interaction under concurrent load |
+| M8 MVP qualification | Stress tests, profiles, and reproducible documentation | Acceptance criteria measured, remaining limitations stated |
 
-La numerazione identifica le consegne, non impone una catena artificiale: M1 può procedere mentre si qualifica M0; M2 integra modello host e vincoli hardware, poi M3 verifica lo scheduling. Dopo M3, M4a e i servizi M5/M6a/M6b possono avanzare con piccoli programmi assembler di prova; M4a aggiunge progressivamente i binding. M4b usa M4a/M3, ma **non blocca M5 né una prima demo del desktop**. M7 integra gradualmente questi rami; M8 richiede tutte le consegne, compresi entrambi i float e i servizi previsti. Evitare stub permissivi che facciano apparire completato un servizio mancante.
+The numbering identifies deliverables; it does not impose an artificial chain: M1 may proceed while M0 is being qualified; M2 integrates the host model and hardware constraints, then M3 verifies scheduling. After M3, M4a and the M5/M6a/M6b services may advance using small assembler test programs; M4a progressively adds bindings. M4b uses M4a/M3 but **does not block M5 or an initial desktop demo**. M7 gradually integrates these branches; M8 requires every deliverable, including both float types and the planned services. Avoid permissive stubs that make a missing service appear complete.
 
-Il budget residente è un gate continuo, non una verifica da rimandare a M6b. Già in M0/M2 riportare separatamente codice assemblato, tabelle, ZP, stack/scratch, cache e riserve per moduli ancora da realizzare; includere appena disponibile un candidato numerico assemblato. L'obiettivo di 4 KiB per i due float è parte del budget nativo esistente, non memoria aggiuntiva. Una stima non prova che tutto entrerà: ogni milestone aggiorna la mappa e segnala subito un superamento. Prima di ampliare la UI risolvere gli sforamenti già misurati riducendo codice o rivedendo motivatamente il layout; overlay, nuovi scheduler e formati alternativi non sono prerequisiti da costruire preventivamente.
+The resident-memory budget is a continuous gate, not a check to defer until M6b. Starting in M0/M2, report assembled code, tables, ZP, stack/scratch, caches, and reserves for modules still to be implemented separately; include an assembled numeric candidate as soon as one is available. The 4 KiB target for both float types is part of the existing native budget, not additional memory. An estimate does not prove everything will fit: every milestone updates the map and reports any overrun immediately. Before expanding the UI, resolve measured overruns by reducing code or revising the layout with justification; overlays, new schedulers, and alternative formats are not prerequisites to build in advance.
 
-Le estensioni N1 (TCP/UDP) e N2 (HTTP/JSON) sono successive a M8. Entrambe riusano il motore UCI; HTTP delegato al firmware non richiede prima uno stack HTTP userspace su TCP. I loro gate e contratti preliminari sono nell'allegato SDK §10.
+Extensions N1 (TCP/UDP) and N2 (HTTP/JSON) follow M8. Both reuse the UCI engine; HTTP delegated to the firmware does not first require a userspace HTTP stack over TCP. Their gates and preliminary contracts are in the SDK companion document §10.
 
-Avanzare per risultati eseguibili. Non costruire prima un grande SDK o un desktop completo sopra una VM non verificata.
+Advance through executable results. Do not first build a large SDK or a complete desktop on top of an unverified VM.
 
-Se il C64 Ultimate fisico non è disponibile, completare le verifiche emulabili e consegnare una procedura hardware precisa. Lo stato finale deve distinguere “MVP verificato in emulazione” da “timing qualificato su hardware”; non attendere indefinitamente un dispositivo e non inventare la qualificazione.
+If a physical C64 Ultimate is unavailable, complete the checks that can be emulated and deliver a precise hardware procedure. The final status must distinguish “MVP verified in emulation” from “timing qualified on hardware”; do not wait indefinitely for a device or invent qualification results.
 
-## 19 Parametri da decidere tramite misure
+## 19 Parameters to determine through measurement
 
-| Parametro | Valore iniziale | Motivo per cambiarlo |
+| Parameter | Initial value | Reason to change it |
 |---|---|---|
-| Quantum VM | 128 opcode | Overhead di switch o latenza |
-| Linea cache | 128 byte | Rapporto setup DMA/località |
-| Cache codice | 2 linee per processo | Miss e traffico del codice |
-| Cache dati | 8 linee globali | Thrashing fra heap e stack |
-| DMA ordinario | Fino a 128 byte | Limiti temporali misurati |
-| Guard time | Almeno il margine qualificato, prova iniziale di 2 righe | Worst case reale e fase del renderer |
-| Dirty list | 16 rettangoli | RAM disponibile e frequenza di overflow |
-| Event queue | 8 eventi per app | Overflow e costo di servizio |
-| Snapshot directory | 2 × 16 KiB REU, massimo 256 voci ciascuna | Dimensione dei nomi, limiti delle directory e riserva REU |
-| Elenco storage | Massimo 5 supporti | Profili hardware qualificati |
-| Cache RTC | Refresh ogni 50 frame, scadenza dopo 100 | Carico UCI e qualità del dato disponibile |
-| Nucleo numerico | Obiettivo ≤4 KiB residente per entrambi i formati, bridge e cast numerici | Dimensione reale, ZP/scratch, costi REU e vantaggio float24/float32 |
-| Finestra nativa residente | Mappa proposta | Dimensione del codice effettivamente assemblato |
+| VM quantum | 128 opcodes | Switch overhead or latency |
+| Cache line | 128 bytes | DMA setup/locality tradeoff |
+| Code cache | 2 lines per process | Misses and code traffic |
+| Data cache | 8 global lines | Thrashing between heap and stack |
+| Ordinary DMA | Up to 128 bytes | Measured timing limits |
+| Guard time | At least the qualified margin, initial trial of 2 lines | Actual worst case and renderer phase |
+| Dirty list | 16 rectangles | Available RAM and overflow frequency |
+| Event queue | 8 events per app | Overflow and service cost |
+| Directory snapshots | 2 × 16 KiB REU, at most 256 entries each | Name lengths, directory limits, and REU reserve |
+| Storage list | At most 5 devices | Qualified hardware profiles |
+| RTC cache | Refresh every 50 frames, expires after 100 | UCI load and quality of available data |
+| Numeric core | Target ≤4 KiB resident for both formats, bridge, and numeric casts | Actual size, ZP/scratch, REU costs, and float24/float32 benefits |
+| Native resident-memory area | Proposed map | Size of the code actually assembled |
 
-Non sono parametri da cambiare per nascondere un problema: palette della shell, griglia a celle intere, protezione fra app, indirizzi oltre 64 KiB, preemption obbligatoria e proprietà esclusiva del video/REU da parte del kernel.
+The following are not parameters to change to conceal a problem: shell palette, whole-cell grid, isolation between apps, addresses beyond 64 KiB, mandatory preemption, and the kernel's exclusive ownership of video/REU.
 
-## 20 Evoluzioni successive
+## 20 Later developments
 
-Dopo l'MVP:
+After the MVP:
 
-- ridimensionamento delle finestre e più controlli;
-- mapping di un framebuffer logico lineare per il userspace, con acquire/present/release e coerenza esplicita;
-- evoluzioni di C-Script solo quando richieste da app reali;
-- eventuale float16, fixed point e funzioni matematiche avanzate, con misure e contratti espliciti;
-- loader di pacchetti, allocazione dinamica delle arene e più app installate;
-- widget userspace con gli stessi limiti delle app;
-- uso qualificato dei margini orizzontali per lavori nativi;
-- formato di bytecode più compatto, superistruzioni o fuel per blocchi, soltanto se il profiling li giustifica;
-- eventuale framebuffer più compatto, senza perdere il controllo del timing;
-- N1: client TCP/UDP con timeout, handle e verifica della latenza imposta agli altri servizi UCI;
-- N2: HTTP/JSON nel firmware, con gestione degli handle e verifica separata di HTTPS;
-- fullscreen dedicato, palette, streaming audio avanzato, file picker e gestione di immagini disco/SoftIEC.
+- window resizing and more controls;
+- mapping a linear logical framebuffer into userspace, with acquire/present/release and explicit coherence;
+- C-Script extensions only when required by real apps;
+- possible float16, fixed point, and advanced mathematical functions, with measurements and explicit contracts;
+- package loader, dynamic arena allocation, and more installed apps;
+- userspace widgets subject to the same limits as apps;
+- qualified use of horizontal margins for native jobs;
+- a more compact bytecode format, superinstructions, or block-level fuel, only if profiling justifies them;
+- a possible more compact framebuffer, without losing timing control;
+- N1: TCP/UDP clients with timeouts, handles, and verification of latency imposed on other UCI services;
+- N2: HTTP/JSON in the firmware, with handle management and separate HTTPS verification;
+- dedicated fullscreen mode, palettes, advanced audio streaming, file picker, and disk-image/SoftIEC management.
 
-Queste estensioni non devono diventare prerequisiti della prima versione.
+These extensions must not become prerequisites for the first version.
 
-## 21 Progetti di riferimento
+## 21 Reference projects
 
-I progetti studiati sono fonti di idee, non dipendenze obbligatorie:
+The projects studied are sources of ideas, not mandatory dependencies:
 
-| Progetto | Spunto da esaminare |
+| Project | Idea to examine |
 |---|---|
-| [Acheron](https://www.white-flame.com/acheron/) | Registri virtuali, dispatcher piccolo, punti di trap |
-| [BBC VM e compilatore](https://github.com/TheEnbyperor/bbc-c) | Toolchain host e VM su 6502 con memoria estesa |
-| [semu-c64](https://github.com/onnokort/semu-c64) | Accesso alla REU e stato di una CPU emulata; evitare il costo di un'intera macchina RISC-V per il nostro ABI |
-| [Hopper](https://github.com/sillycowvalley/Hopper) | Separazione runtime/linguaggio e organizzazione del bytecode; verificare le dipendenze da 65C02 |
-| [ChibiVM](https://www.chibiakumas.com/chibivm/) | Istruzioni e portabilità dell'interprete |
-| [6o6](https://github.com/classilla/6o6) | Separazione fra esecuzione virtuale e backend della memoria |
-| [PLASMA](https://github.com/dschmenk/PLASMA) | Ambiente e compilazione per macchine 6502 |
-| [EightBall](https://github.com/bobbimanners/EightBall) | Linguaggio e VM compatti su C64 |
-| [SWEET16 per C64](https://github.com/Silverune/Sweet16) | Dimensione minima e aritmetica virtuale a registri |
-| [QuakeC originale](https://github.com/id-Software/Quake-Tools/tree/master/qcc) | Tabella operatori/tipi, contratto condiviso compiler/runtime e profiling; analisi in NUMERICS.md |
-| [XC-BASIC](https://github.com/neilsf/xc-basic3) e [LLVM-MOS](https://github.com/llvm-mos/llvm-mos/tree/main/compiler-rt/lib/builtins/mos) | Float software e convivenza con tipi interi; confronto dei candidati in NUMERICS.md |
+| [Acheron](https://www.white-flame.com/acheron/) | Virtual registers, small dispatcher, trap points |
+| [BBC VM and compiler](https://github.com/TheEnbyperor/bbc-c) | Host toolchain and VM on a 6502 with extended memory |
+| [semu-c64](https://github.com/onnokort/semu-c64) | REU access and emulated CPU state; avoid the cost of a whole RISC-V machine for our ABI |
+| [Hopper](https://github.com/sillycowvalley/Hopper) | Runtime/language separation and bytecode organization; check for 65C02 dependencies |
+| [ChibiVM](https://www.chibiakumas.com/chibivm/) | Instructions and interpreter portability |
+| [6o6](https://github.com/classilla/6o6) | Separation of virtual execution and memory backend |
+| [PLASMA](https://github.com/dschmenk/PLASMA) | Environment and compilation for 6502 machines |
+| [EightBall](https://github.com/bobbimanners/EightBall) | Compact language and VM on the C64 |
+| [SWEET16 for C64](https://github.com/Silverune/Sweet16) | Minimal size and virtual register arithmetic |
+| [Original QuakeC](https://github.com/id-Software/Quake-Tools/tree/master/qcc) | Operator/type table, shared compiler/runtime contract, and profiling; analysis in NUMERICS.md |
+| [XC-BASIC](https://github.com/neilsf/xc-basic3) and [LLVM-MOS](https://github.com/llvm-mos/llvm-mos/tree/main/compiler-rt/lib/builtins/mos) | Software floats and coexistence with integer types; candidate comparison in NUMERICS.md |
 
-Lua e WAMR non sono runtime del primo MVP. C-Script compila verso C-OS; cambiare allocatore a un interprete esistente non basta a rendere lineare la REU.
+Lua and WAMR are not runtimes for the first MVP. C-Script compiles to C-OS; changing an existing interpreter's allocator is not enough to make REU memory linear.
 
-Riferimenti nel workspace C64 originale, esterni a questa repository:
+References in the original C64 workspace, outside this repository:
 
-- Renderer UPIC di riferimento: `poc/upic384.asm`.
-- Esperimento UPIC 1.3 a 360 pixel e lavoro nei margini: `experiments/mupic/research/fp-raster-work/player_360_dict13.asm`.
-- Wrapper di assemblaggio: `tools/assemble.py`.
-- Palette del renderer emulato: `UE2-C64U-WebRust/vendor/trx64-core/src/render.rs`.
+- Reference UPIC renderer: `poc/upic384.asm`.
+- UPIC 1.3 experiment at 360 pixels with work in the margins: `experiments/mupic/research/fp-raster-work/player_360_dict13.asm`.
+- Assembly wrapper: `tools/assemble.py`.
+- Emulated renderer palette: `UE2-C64U-WebRust/vendor/trx64-core/src/render.rs`.
 
-Questi riferimenti locali documentano il lavoro preliminare; non sono dipendenze disponibili in un clone di C-OS. I riferimenti pubblici sopra permettono di studiare i backend senza il workspace originale.
+These local references document the preliminary work; they are not dependencies available in a C-OS clone. The public references above allow the backends to be studied without the original workspace.
 
-Il renderer locale di riferimento riporta una licenza GPL-3.0-only. Prima di integrare sorgenti esterni, registrare provenienza, revisione e licenza, conservandone gli avvisi. Icone e font per la build devono avere sorgenti e provenienza definiti.
+The local reference renderer declares a GPL-3.0-only license. Before integrating external source code, record its provenance, revision, and license, retaining its notices. Icons and fonts for the build must have defined sources and provenance.
 
-## 22 Istruzioni di consegna al dev agent
+## 22 Handoff instructions for the dev agent
 
-Implementare C-OS seguendo M0–M8 nella **root della repository C-OS**. Le specifiche sono raccolte in `specs/`: usare questo documento insieme a LANGUAGE.md, ULTIMATE-API.md e NUMERICS.md; la UI approvata è C, con celle 32×32 coincidenti con le icone. Comandi di build e path degli artefatti sono relativi alla root della repository.
+Implement C-OS following M0–M8 in the **C-OS repository root**. Specifications are collected in `specs/`: use this document together with LANGUAGE.md, ULTIMATE-API.md, and NUMERICS.md; the approved UI is C, with 32×32 cells matching the icons. Build commands and artifact paths are relative to the repository root.
 
-La struttura può iniziare piccola: sorgenti nativi, strumenti host, app, test e output di build. Non generare impalcature o interfacce per estensioni non necessarie all'MVP.
+The structure can start small: native sources, host tools, apps, tests, and build output. Do not generate scaffolding or interfaces for extensions that the MVP does not need.
 
-Usare i progetti esistenti come riferimenti e mantenere sorgenti, build e launcher di C-OS nella propria repository. Gli script di sviluppo non devono sostituire launcher o modificare configurazioni di altri progetti nel workspace.
+Use existing projects as references, and keep C-OS sources, builds, and launchers in its own repository. Development scripts must not replace launchers or modify configurations of other projects in the workspace.
 
-A ogni milestone consegnare:
+Deliver at every milestone:
 
-1. Artefatto avviabile o test host riproducibile.
-2. Comando esatto per costruire ed eseguire.
-3. Mappa della memoria e dimensioni effettive.
-4. Risultati dei test pertinenti e delle misure necessarie.
-5. Divergenze motivate dai parametri iniziali e limiti ancora aperti.
+1. A bootable artifact or reproducible host test.
+2. The exact command to build and run it.
+3. A memory map and actual sizes.
+4. Relevant test results and required measurements.
+5. Justified deviations from the initial parameters and remaining limitations.
 
-La prima consegna tecnica deve verificare renderer 320×200, RAM residente e durata del DMA prima di impegnarsi in un'implementazione grafica estesa. Il tooling host consigliato è Rust, secondo §15.3 e LANGUAGE.md; può progredire anche mentre si attende la qualifica hardware.
+The first technical delivery must verify the 320×200 renderer, resident RAM, and DMA duration before committing to an extensive graphics implementation. The recommended host tooling language is Rust, as described in §15.3 and LANGUAGE.md; it can progress while hardware qualification is pending.
 
-Il risultato finale dell'MVP include bootstrap PRG, pack REU, manifest e map file, sorgenti, compilatore C-Script, SDK Ultimate, toolchain del bytecode, reference VM, applicazioni dimostrative, test e rapporto di qualificazione. La normale build non deve scaricare dipendenze casuali né dipendere da percorsi di artefatti temporanei.
+The final MVP includes the bootstrap PRG, REU pack, manifest and map file, sources, C-Script compiler, Ultimate SDK, bytecode toolchain, reference VM, demo apps, tests, and qualification report. The normal build must not download arbitrary dependencies or depend on paths to temporary artifacts.
 
-Non dichiarare completato il requisito di multitasking se le app devono fare yield; non dichiarare memoria lineare se l'app deve selezionare un banco; non dichiarare UI reattiva usando soltanto una schermata statica.
+Do not declare multitasking complete if apps must yield; do not claim linear memory if the app must select a bank; do not claim a responsive UI using only a static screen.

@@ -1,18 +1,18 @@
-# C-Script: linguaggio userspace di C-OS
+# C-Script: the C-OS userspace language
 
-Specifica 0.1, revisione 4 — 10 ottobre 2026. Allegato normativo a [SPEC.md](SPEC.md). Nome di progetto: **C-Script**; estensione sorgente `.cos`.
+Specification 0.1, revision 4 — 10 October 2026. Normative companion to [SPEC.md](SPEC.md). Project name: **C-Script**; source extension `.cos`.
 
-L'obiettivo è la semplicità di un piccolo BASIC, con funzioni, variabili locali, blocchi e sintassi familiare a chi conosce JavaScript o Lua. C-Script viene compilato sul computer di sviluppo direttamente nel bytecode C-OS. Sul C64 gira soltanto la VM assembly: niente parser, interprete del linguaggio, JIT o runtime dinamico aggiuntivo.
+The goal is the simplicity of a small BASIC, with functions, local variables, blocks, and syntax familiar to JavaScript or Lua users. C-Script is compiled on the development computer directly into C-OS bytecode. Only the assembly VM runs on the C64: no parser, language interpreter, JIT, or additional dynamic runtime.
 
-## 1 Perimetro della prima versione
+## 1 First-version scope
 
-Inclusi: variabili con inferenza locale, interi 8/16/32 bit, float24 e float32, booleani, funzioni, condizioni, cicli, array di byte lineari, viste su testo/buffer e moduli SDK. Il compilatore è parte dell'MVP, anche se viene dopo i test fondamentali della VM. [NUMERICS.md](NUMERICS.md) definisce formati, arrotondamento, conversioni, backend e test numerici.
+Included: variables with local type inference, 8/16/32-bit integers, float24 and float32, booleans, functions, conditionals, loops, linear byte arrays, text/buffer views, and SDK modules. The compiler is part of the MVP, although it follows the basic VM tests. [NUMERICS.md](NUMERICS.md) defines formats, rounding, conversions, backends, and numeric tests.
 
-Esclusi: oggetti dinamici, classi, metatable, closure, coroutine del linguaggio, eccezioni, eval, generics, float16, double, garbage collection, caricamento dinamico di moduli e compilazione sul dispositivo. Non promettere compatibilità sorgente con JS, Lua, Python o Ruby.
+Excluded: dynamic objects, classes, metatables, closures, language coroutines, exceptions, eval, generics, float16, double, garbage collection, dynamic module loading, and on-device compilation. Do not promise source compatibility with JS, Lua, Python, or Ruby.
 
-Un ciclo senza yield resta preemptibile. Il compilatore non deve inserire punti di cooperazione come unica difesa contro il monopolio della CPU: il dispatcher VM consuma fuel per ogni opcode eseguito, anche dentro le librerie generate.
+A loop without yield remains preemptible. The compiler must not rely on inserted cooperation points as the sole defense against CPU monopolization: the VM dispatcher consumes fuel for every executed opcode, including those inside generated libraries.
 
-## 2 Aspetto del linguaggio
+## 2 Language overview
 
 ```text
 import ui
@@ -20,7 +20,7 @@ import system
 import text
 
 fn main() {
-    let win, err = ui.open("Contatore", 240, 152)
+    let win, err = ui.open("Counter", 240, 152)
     if err != 0 { return }
 
     let count: long = 0
@@ -42,104 +42,104 @@ fn main() {
 }
 ```
 
-Il sorgente è un esempio normativo per sintassi e binding da realizzare; non è codice già compilato. Ogni passaggio del ciclo ridisegna un'area piccola. `ui.wait` e `ui.present` possono sospendere questo processo senza sospendere gli altri. Il buffer viene allocato una sola volta.
+This source is a normative example of the syntax and bindings to implement; it is not code that has already been compiled. Each loop iteration redraws a small area. `ui.wait` and `ui.present` can suspend this process without suspending the others. The buffer is allocated only once.
 
-## 3 Lessico e blocchi
+## 3 Lexical rules and blocks
 
-- File UTF-8; identificatori ASCII, case sensitive: lettere, cifre e underscore, senza cifra iniziale.
-- Commenti `//` fino a fine riga. Nessuna necessità di commenti annidati.
-- Blocchi fra `{` e `}`; niente indentazione significativa.
-- Un newline termina una semplice istruzione, salvo dentro `()`/`[]` o dopo un operatore che richiede un operando. Il punto e virgola è un separatore esplicito alternativo.
-- Interi decimali e `0x` esadecimali; underscore solo fra cifre. Letterali frazionari come `0.5`, `1.0`, `1e-3`, massimo 128 byte per token; quando il punto è presente richiede cifre su entrambi i lati. `1..10` resta un intervallo intero.
-- Stringhe fra doppi apici; escape `\n`, `\r`, `\t`, `\"`, `\\`, `\xNN`.
-- I byte di testo fuori ASCII devono essere scritti con escape espliciti nella versione 0.1. La UI visualizza solo i glifi previsti dalla specifica principale.
-- Parole riservate: `import`, `fn`, `let`, `const`, `if`, `else`, `while`, `for`, `in`, `break`, `continue`, `return`, `true`, `false` e i nomi dei tipi primitivi.
+- UTF-8 files; case-sensitive ASCII identifiers: letters, digits, and underscores, with no leading digit.
+- `//` comments run to the end of the line. Nested comments are not required.
+- Blocks use `{` and `}`; indentation is not significant.
+- A newline terminates a simple statement, except inside `()`/`[]` or after an operator that requires an operand. A semicolon is an alternative explicit separator.
+- Decimal and `0x` hexadecimal integers; underscores only between digits. Fractional literals such as `0.5`, `1.0`, and `1e-3`, at most 128 bytes per token; a decimal point, when present, requires digits on both sides. `1..10` remains an integer range.
+- Double-quoted strings; escapes `\n`, `\r`, `\t`, `\"`, `\\`, `\xNN`.
+- Non-ASCII text bytes must use explicit escapes in version 0.1. The UI displays only the glyphs specified in the main specification.
+- Reserved words: `import`, `fn`, `let`, `const`, `if`, `else`, `while`, `for`, `in`, `break`, `continue`, `return`, `true`, `false`, and primitive type names.
 
-Le chiamate sono espressioni. Una chiamata usata come istruzione può ignorare i risultati; il compilatore segnala un warning per risultati d'errore ignorati dei servizi I/O. Nei sorgenti di accettazione, tutti gli errori che possono perdere dati devono essere gestiti.
+Calls are expressions. A call used as a statement may discard its results; the compiler warns about ignored error results from I/O services. Acceptance-test sources must handle every error that could cause data loss.
 
-## 4 Tipi e rappresentazione
+## 4 Types and representation
 
-| Tipo | Rappresentazione | Impiego |
+| Type | Representation | Use |
 |---|---|---|
-| `bool` | Un byte, solo 0/1 | Condizioni |
-| `byte` | u8 | Pixel, dati, registri SID |
-| `word` | u16 | Conteggi piccoli, flag, codici d'errore |
-| `int` | i16 | Intero normale, coordinate |
-| `dword` | u32 | Dimensioni, indici grandi, posizioni file |
-| `long` | i32 | Calcoli interi più grandi |
-| `float24` | 3 byte, 16 bit significativi | Calcoli e dati frazionari compatti, circa 4–5 cifre |
-| `float32`, `float` | 4 byte, 24 bit significativi | Calcoli frazionari con circa 6–7 cifre; float è un alias |
-| `bytes` | Puntatore u24 + lunghezza u32, 7 byte | Vista modificabile di byte |
-| `str` | Puntatore u24 + lunghezza u32, 7 byte | Vista di testo in sola lettura |
-| `Window`, `File`, `Dir`, `SID`, `PCM` | Handle u16, tipi distinti | Risorse del kernel |
-| Record SDK | Campi fissi e layout dichiarato | InputState 8 byte; Event/DateTime/StorageInfo 16 byte; FileInfo 32 byte |
+| `bool` | One byte, 0/1 only | Conditions |
+| `byte` | u8 | Pixels, data, SID registers |
+| `word` | u16 | Small counts, flags, error codes |
+| `int` | i16 | Default integer, coordinates |
+| `dword` | u32 | Sizes, large indices, file positions |
+| `long` | i32 | Larger integer calculations |
+| `float24` | 3 bytes, 16 significant bits | Compact fractional calculations and data, about 4–5 digits |
+| `float32`, `float` | 4 bytes, 24 significant bits | Fractional calculations with about 6–7 digits; float is an alias |
+| `bytes` | u24 pointer + u32 length, 7 bytes | Mutable byte view |
+| `str` | u24 pointer + u32 length, 7 bytes | Read-only text view |
+| `Window`, `File`, `Dir`, `SID`, `PCM` | u16 handles, distinct types | Kernel resources |
+| SDK records | Fixed fields and declared layout | InputState 8 bytes; Event/DateTime/StorageInfo 16 bytes; FileInfo 32 bytes |
 
-Tutti i campi multibyte in memoria guest sono little endian e packed; nessun padding implicito. L'ABI hardware dei driver può essere diverso ed è responsabilità del kernel convertirlo.
+All multibyte fields in guest memory are little endian and packed; there is no implicit padding. A driver's hardware ABI may differ, and the kernel is responsible for conversion.
 
-I record SDK sono valori con campi leggibili, anche annidati, per esempio `info.modified.year`; non si modificano passando puntatori ai campi interni. Risultati multipli come `(FileInfo, bool, word)` stanno nel blocco risultati statico del chiamante e non richiedono allocazioni heap. Il nome di una voce directory viene scritto in un buffer fornito dall'app e non è un puntatore temporaneo dentro FileInfo.
+SDK records are values with readable fields, including nested fields such as `info.modified.year`; they cannot be modified by passing pointers to their internal fields. Multiple results such as `(FileInfo, bool, word)` reside in the caller's static result block and require no heap allocations. A directory entry's name is written into an app-supplied buffer and is not a temporary pointer inside FileInfo.
 
-In Event, `arg0` e `arg1` hanno tipo `int`: le coordinate client negative sono leggibili direttamente, senza cast da word. `arg2` resta word. InputState e il binding `ui.input_state` sono definiti nell'SDK; il record permette di rileggere lo stato dopo INPUT_RESET senza introdurre handle o allocazioni.
+In Event, `arg0` and `arg1` have type `int`: negative client coordinates can be read directly, without a cast from word. `arg2` remains word. InputState and the `ui.input_state` binding are defined in the SDK; the record allows the state to be read again after INPUT_RESET without introducing handles or allocations.
 
-Gli handle non si sommano e non si convertono in puntatori. Il valore zero indica un handle invalido negli output d'errore. I tipi opachi non possono essere costruiti da un intero nel linguaggio; la VM controlla comunque proprietario e validità per il bytecode scritto a mano.
+Handles cannot be added or converted to pointers. Zero denotes an invalid handle in error outputs. Opaque types cannot be constructed from an integer in the language; the VM still checks ownership and validity for hand-written bytecode.
 
-Il linguaggio non espone puntatori nativi, indirizzi dei registri o `peek/poke`. Le viste su buffer usano i puntatori lineari a 24 bit della VM. Lunghezze e indici a 32 bit impediscono di troncare un buffer a 64 KiB.
+The language exposes no native pointers, register addresses, or `peek/poke`. Buffer views use the VM's linear 24-bit pointers. 32-bit lengths and indices prevent buffers from being truncated at 64 KiB.
 
-### 4.1 Inferenza e conversioni
+### 4.1 Inference and conversions
 
-`let x = 12` crea un `int` modificabile. `let x: word = 12` dà un tipo esplicito. `const` richiede un'espressione valutabile a compilazione e non consente riassegnazione. Il tipo di una variabile non cambia dopo l'inizializzazione; niente variabili non inizializzate.
+`let x = 12` creates a mutable `int`. `let x: word = 12` specifies an explicit type. `const` requires an expression that can be evaluated at compile time and does not allow reassignment. A variable's type does not change after initialization; uninitialized variables are not allowed.
 
-L'inferenza procede dal basso verso l'alto nell'albero delle espressioni. È un **letterale diretto** un token numerico, anche racchiuso soltanto da parentesi e meno unario; il valore esatto include il segno prima del controllo del range. Nomi di costanti, cast e sottoespressioni con operatori binari sono già tipizzati e non sono letterali diretti. Un contesto esterno non modifica i tipi delle loro parti.
+Inference proceeds from the bottom up through the expression tree. A **direct literal** is a numeric token, optionally enclosed only by parentheses and unary minus; its exact value includes the sign before range checking. Constant names, casts, and subexpressions with binary operators are already typed and are not direct literals. An outer context does not change the types of their parts.
 
-Una dichiarazione, assegnazione, parametro o risultato atteso può dare il tipo a un letterale diretto; lo stesso vale per un cast applicato direttamente al letterale. Un letterale intero richiesto come intero deve essere rappresentabile. Senza contesto è `int` se possibile, altrimenti `long`, altrimenti `dword`; un valore che non entra in questi tipi è errore. Questo include correttamente −32.768 e −2.147.483.648 e rifiuta i negativi inferiori al minimo long. I letterali frazionari senza contesto sono float32; un contesto float24 li arrotonda direttamente a quel formato secondo NUMERICS.md §3. Un letterale frazionario non assume implicitamente un tipo intero.
+A declaration, assignment, parameter, or expected result may supply a type for a direct literal; the same applies to a cast applied directly to the literal. An integer literal required as an integer must be representable. With no context, its type is `int` if possible, otherwise `long`, otherwise `dword`; a value that fits none of these types is an error. This correctly includes −32,768 and −2,147,483,648 and rejects negative values below the minimum long value. Fractional literals without a context are float32; a float24 context rounds them directly to that format according to NUMERICS.md §3. A fractional literal does not implicitly acquire an integer type.
 
-Per un operatore binario, tipizzare prima gli operandi che non sono letterali diretti. Se uno solo è un letterale diretto e l'altro è un numero tipizzato, provare il tipo dell'altro: un intero lo adotta se rappresentabile; un formato float accetta il letterale numerico con il proprio arrotondamento. Altrimenti il letterale prende il tipo senza contesto e si cercano le conversioni ordinarie. Se entrambi sono letterali diretti, entrambi prendono il tipo senza contesto. Questa regola vale anche per gli estremi del for; gli shift seguono la regola separata sotto. Il tipo atteso all'esterno dell'operatore non viene propagato ai suoi operandi.
+For a binary operator, first type the operands that are not direct literals. If exactly one operand is a direct literal and the other is a typed number, try the other's type: an integer adopts it if representable; a float format accepts the numeric literal with its own rounding. Otherwise, the literal takes its type without context, and ordinary conversions are considered. If both are direct literals, both take their types without context. This rule also applies to for-loop bounds; shifts follow the separate rule below. The expected type outside the operator is not propagated into its operands.
 
-Conversioni implicite solo quando preservano tutti i valori: byte→word/dword/int/long, word→dword/long, int→long; inoltre byte/word/int→float24/float32 e float24→float32. Il tipo comune di due interi è il tipo intero con intervallo minimo che contiene tutti i valori di entrambi i tipi. Se non esiste, l'operazione richiede un cast esplicito; non scegliere un float come ripiego. La regola è unica per i cinque tipi interi: byte+byte produce byte, byte+int produce int, byte+word produce word, int+word produce long, word+dword produce dword; int+dword e long+dword sono errori. Long/dword→float e float32→float24 richiedono un cast.
+Implicit conversions are allowed only when they preserve all values: byte→word/dword/int/long, word→dword/long, int→long; also byte/word/int→float24/float32 and float24→float32. The common type of two integers is the integer type with the smallest range that contains all values of both types. If none exists, the operation requires an explicit cast; do not choose a float as a fallback. The rule is the same for all five integer types: byte+byte produces byte, byte+int produces int, byte+word produces word, int+word produces long, word+dword produces dword; int+dword and long+dword are errors. Long/dword→float and float32→float24 require a cast.
 
-I cast `byte(x)`, `word(x)`, `int(x)`, `dword(x)`, `long(x)` sono controllati: costante fuori range = errore di compilazione; valore runtime fuori range = fault `RANGE`. Se applicato a un letterale frazionario diretto, un cast intero tipizza prima il letterale come float32, poi applica la conversione; non interpreta il decimale come un intero né salta l'arrotondamento float32. Per conservare solo i bit bassi, mascherare esplicitamente prima del cast. Gli handle e le viste non ammettono questi cast.
+The casts `byte(x)`, `word(x)`, `int(x)`, `dword(x)`, and `long(x)` are checked: an out-of-range constant is a compile-time error; an out-of-range runtime value causes a `RANGE` fault. When applied to a direct fractional literal, an integer cast first types the literal as float32, then performs the conversion; it neither interprets the decimal as an integer nor skips float32 rounding. To retain only the low bits, explicitly mask before casting. Handles and views do not support these casts.
 
-Da float a integer troncare verso zero, poi verificare il range; `int(-3.75)` vale −3. I cast `float24(x)`, `float32(x)` e `float(x)` applicano RNE al formato destinazione. Non riassegnano il tipo degli operandi di un'espressione già tipizzata. Regole complete, inclusi overflow e underflow, in NUMERICS.md.
+Float-to-integer conversions truncate toward zero, then check the range; `int(-3.75)` is −3. The casts `float24(x)`, `float32(x)`, and `float(x)` apply RNE to the destination format. They do not retype the operands of an already typed expression. Full rules, including overflow and underflow, are in NUMERICS.md.
 
-Un contesto float non trasforma un'espressione di soli interi: `float24(1 / 2)` e `let x: float24 = 1 / 2` valgono zero. Può invece fissare il formato di un letterale diretto, come `let x: float24 = (-0.5)` o `let x: float24 = 2`. Le altre conseguenze sono normative:
+A float context does not transform an integer-only expression: `float24(1 / 2)` and `let x: float24 = 1 / 2` are zero. It can, however, determine the format of a direct literal, as in `let x: float24 = (-0.5)` or `let x: float24 = 2`. The following consequences are normative:
 
-| Espressione, con `a24: float24` | Tipo e comportamento |
+| Expression, with `a24: float24` | Type and behavior |
 |---|---|
-| `let x: float24 = 1.0 + 2.0` | Errore: la somma è float32 e richiede un cast di restringimento |
-| `float24(1.0 + 2.0)` | Somma float32, poi conversione RNE a float24 |
-| `a24 + (1.0 + 2.0)` | Somma interna float32; risultato esterno float32 |
-| `a24 + 1.0` | Il letterale diretto assume float24; somma float24 |
-| `float24(1.0) + 2.0` | Primo operando già float24; somma float24 |
+| `let x: float24 = 1.0 + 2.0` | Error: the sum is float32 and requires a narrowing cast |
+| `float24(1.0 + 2.0)` | float32 sum, followed by RNE conversion to float24 |
+| `a24 + (1.0 + 2.0)` | Inner sum is float32; outer result is float32 |
+| `a24 + 1.0` | The direct literal takes type float24; float24 sum |
+| `float24(1.0) + 2.0` | First operand is already float24; float24 sum |
 
-### 4.2 Operatori
+### 4.2 Operators
 
-Ordine di precedenza, dal più debole: `||`, `&&`, `|`, `^`, `&`, `== !=`, `< <= > >=`, `<< >>`, `+ -`, `* / %`, unari `! ~ -`, chiamata/indice/campo. Gli operatori binari sono associativi a sinistra; l'assegnazione è un'istruzione, non un'espressione. Non includere `++`, `--` o assegnamenti composti nell'MVP.
+Precedence order, from lowest to highest: `||`, `&&`, `|`, `^`, `&`, `== !=`, `< <= > >=`, `<< >>`, `+ -`, `* / %`, unary `! ~ -`, call/index/field. Binary operators are left-associative; assignment is a statement, not an expression. Do not include `++`, `--`, or compound assignments in the MVP.
 
-`&&` e `||` valutano da sinistra e interrompono la valutazione appena il risultato è noto. Le condizioni richiedono `bool`; usare `x != 0`, non conversioni implicite di stringhe o handle in truthy/falsy.
+`&&` and `||` evaluate from the left and stop as soon as the result is known. Conditions require `bool`; use `x != 0`, not implicit truthy/falsy conversions of strings or handles.
 
-Gli operandi di tutte le espressioni vengono valutati da sinistra a destra, salvo la valutazione abbreviata appena descritta. Per un'assegnazione a indice, valutare vista e indice, verificare i bounds, quindi valutare il valore da scrivere; ogni espressione viene valutata una sola volta.
+The operands of all expressions are evaluated from left to right, except for the short-circuit evaluation just described. For an indexed assignment, evaluate the view and index, check the bounds, then evaluate the value to write; each expression is evaluated exactly once.
 
-| Operatori | Tipi ammessi e risultato |
+| Operators | Allowed types and result |
 |---|---|
-| `+ - * /`, meno unario | Interi o float; operazioni binarie nel tipo comune, unarie nel tipo dell'operando |
-| `%`, `&`, `|`, `^`, `~` | Soltanto interi; tipo comune per i binari, tipo dell'operando per `~` |
-| `<< >>` | Operando sinistro intero; conteggio intero indipendente; risultato del tipo sinistro |
-| `< <= > >=` | Soltanto numeri convertibili a un tipo comune; risultato bool |
-| `== !=` | Numeri con tipo comune, due bool, oppure due handle dello stesso tipo nominale; risultato bool |
-| `!`, `&&`, `||` | Soltanto bool; risultato bool |
+| `+ - * /`, unary minus | Integers or floats; binary operations use the common type, unary operations use the operand's type |
+| `%`, `&`, `|`, `^`, `~` | Integers only; common type for binary operators, operand's type for `~` |
+| `<< >>` | Integer left operand; independent integer count; result has the left operand's type |
+| `< <= > >=` | Only numbers convertible to a common type; bool result |
+| `== !=` | Numbers with a common type, two bools, or two handles of the same nominal type; bool result |
+| `!`, `&&`, `||` | bool only; bool result |
 
-Viste str/bytes e record non hanno uguaglianza implicita né operatori aritmetici. Per gli handle non sono ammessi confronti d'ordine o con interi. Nei confronti numerici il tipo comune riguarda gli operandi, mentre il risultato è sempre bool. Gli shift non promuovono il lato sinistro al tipo del conteggio; controllare il conteggio nel suo tipo prima di restringerlo.
+str/bytes views and records have neither implicit equality nor arithmetic operators. Handles do not support ordering comparisons or comparisons with integers. In numeric comparisons, the common type applies to the operands, while the result is always bool. Shifts do not promote the left operand to the count's type; check the count in its own type before narrowing it.
 
-Aritmetica intera a larghezza fissa, wrap modulo 2^N per somma, sottrazione, prodotto e negazione. La divisione signed tronca verso zero; il resto ha il segno del dividendo. Divisione per zero genera fault; MIN / -1 restituisce MIN per coerenza col wrap. Shift ammessi solo con conteggio 0…N−1; altrimenti fault. `>>` è aritmetico sui signed, logico sugli unsigned.
+Integer arithmetic has fixed width, wrapping modulo 2^N for addition, subtraction, multiplication, and negation. Signed division truncates toward zero; the remainder has the dividend's sign. Division by zero causes a fault; MIN / -1 returns MIN for consistency with wrapping. Shifts accept only counts 0…N−1; otherwise, they fault. `>>` is arithmetic for signed types and logical for unsigned types.
 
-Il compilatore abbassa prodotti/divisioni e operazioni a 32 bit in sequenze VM o piccole routine bytecode. Queste routine sono soggette a fuel; nessuna moltiplicazione software deve diventare un lavoro nativo di durata illimitata. Il caso a 16 bit usa direttamente R quando possibile.
+The compiler lowers multiplication/division and 32-bit operations to VM sequences or small bytecode routines. These routines consume fuel; no software multiplication may become an unbounded native job. The 16-bit case uses R directly where possible.
 
-Questa regola riguarda gli interi. L'aritmetica float usa NUM_OP, il servizio nativo limitato descritto in NUMERICS.md. Float24 e float32 supportano `+ - * /`, negazione e confronti booleani; `%`, bitwise e shift restano interi. `1 / 2` vale zero, `1.0 / 2.0` vale 0,5. Le operazioni miste fra i due float producono float32; ogni operazione arrotonda al proprio tipo risultato. Un letterale senza tipo fissato adiacente a un operando float24 adotta float24, evitando promozioni involontarie.
+This rule applies to integers. Float arithmetic uses NUM_OP, the bounded native service described in NUMERICS.md. Float24 and float32 support `+ - * /`, negation, and boolean comparisons; `%`, bitwise operators, and shifts remain integer-only. `1 / 2` is zero, `1.0 / 2.0` is 0.5. Mixed operations between the two float types produce float32; each operation rounds to its own result type. A literal with no fixed type next to a float24 operand adopts float24, avoiding unintended promotion.
 
-I controlli di dimensione, allocazione, bounds e indirizzo usano aritmetica larga con rilevamento dell'overflow: **non** ereditano il wrap dell'aritmetica numerica dell'app.
+Size, allocation, bounds, and address checks use wide arithmetic with overflow detection: they do **not** inherit the wrapping behavior of the app's numeric arithmetic.
 
-## 5 Variabili e controllo del flusso
+## 5 Variables and control flow
 
-Scope lessicale per blocco, senza variabili globali modificabili nella 0.1. Costanti globali consentite. Una dichiarazione duplicata nello stesso scope è errore; segnalare lo shadowing per evitare errori semplici.
+Block lexical scope, with no mutable global variables in 0.1. Global constants are allowed. A duplicate declaration in the same scope is an error; warn about shadowing to prevent simple mistakes.
 
 ```text
 const LIMIT = 100
@@ -153,39 +153,39 @@ fn sum_to(limit: int) -> int {
 }
 ```
 
-`for name in start..end` esclude `end`, valuta gli estremi una volta e avanza di uno. La variabile di iterazione è locale e non assegnabile nel corpo. Estremi dello stesso tipo intero dopo conversione; `end <= start` dà zero iterazioni. Il controllo di fine ciclo precede un incremento che potrebbe traboccare. Per passi diversi si usa `while`.
+`for name in start..end` excludes `end`, evaluates the bounds once, and advances by one. The iteration variable is local and cannot be assigned within the body. Bounds have the same integer type after conversion; `end <= start` gives zero iterations. The loop termination check precedes any increment that could overflow. Use `while` for other step sizes.
 
-`break` e `continue` riguardano il ciclo più interno. `if/else if/else` e `while` richiedono blocchi. Nessun `goto` nel linguaggio sorgente.
+`break` and `continue` apply to the innermost loop. `if/else if/else` and `while` require blocks. There is no `goto` in the source language.
 
-## 6 Funzioni e risultati
+## 6 Functions and results
 
-Parametri sempre tipizzati; risultato omesso significa nessun risultato. Esempi: `fn twice(x: int) -> int`, `fn divide(a: int, b: int) -> (int, word)`.
+Parameters are always typed; an omitted result means no result. Examples: `fn twice(x: int) -> int`, `fn divide(a: int, b: int) -> (int, word)`.
 
-Il numero e i tipi dei risultati sono statici. `return a, b` e `let value, err = call()` non creano un oggetto tuple sull'heap. Usare `_` per ignorare esplicitamente un risultato. Un valore singolo non può ricevere implicitamente il primo elemento di un risultato multiplo.
+The number and types of results are static. `return a, b` and `let value, err = call()` do not create a tuple object on the heap. Use `_` to explicitly discard a result. A single value cannot implicitly receive the first element of a multiple result.
 
-Argomenti valutati da sinistra a destra prima della chiamata. Passaggio per valore; passare una vista copia i suoi sette byte, non il buffer. I risultati devono essere definiti su ogni percorso di una funzione che restituisce valori. Le chiamate in avanti sono risolte a compilazione.
+Arguments are evaluated from left to right before the call. Parameters are passed by value; passing a view copies its seven bytes, not the buffer. Results must be defined on every path through a function that returns values. Forward calls are resolved at compile time.
 
-Ricorsione e chiamate annidate ammesse con firme esplicite e stack limitato dell'app; overflow di stack = fault del processo. Nessuna ricorsione implicita nel kernel e nessuna promessa di tail-call optimization. Ogni app ha un solo `fn main()` senza argomenti/risultati nel modulo entry dichiarato al compilatore; il suo ritorno termina il processo con codice zero. I moduli libreria importati non dichiarano main e non introducono altre entry.
+Recursion and nested calls are allowed with explicit signatures and a bounded app stack; stack overflow is a process fault. There is no implicit recursion in the kernel and no promise of tail-call optimization. Each app has exactly one `fn main()` with no arguments or results in the entry module declared to the compiler; its return terminates the process with code zero. Imported library modules do not declare main or introduce other entry points.
 
-### 6.1 ABI di chiamata C-Script
+### 6.1 C-Script calling ABI
 
-È una convenzione del compilatore sopra CALL/RET della VM, distinta dalle syscall:
+This is a compiler convention over the VM's CALL/RET, distinct from syscalls:
 
-1. Il chiamante prepara argomenti packed e spazio per risultati nel proprio frame sullo stack guest.
-2. P0 punta al blocco argomenti, P1 al blocco risultati; zero se il rispettivo blocco è vuoto. P2 conserva il frame pointer del chiamante.
-3. CALL salva il PC di ritorno secondo l'ISA. Il prologo salva il vecchio P2 con PUSHP, riserva un frame di dimensione statica con controllo dei limiti e imposta P2 al suo primo byte.
-4. I puntatori ai blocchi di argomenti/risultati sono salvati nel frame prima di riusare P0/P1. I frame del chiamante restano vivi per tutta la chiamata.
-5. Il callee scrive i risultati nel blocco predisposto. L'epilogo libera il proprio frame, ripristina P2 e usa RET. SP torna esattamente al valore precedente la CALL.
+1. The caller prepares packed arguments and space for results in its own frame on the guest stack.
+2. P0 points to the argument block, P1 to the result block; zero if the respective block is empty. P2 holds the caller's frame pointer.
+3. CALL saves the return PC according to the ISA. The prologue saves the old P2 with PUSHP, reserves a statically sized frame with bounds checking, and sets P2 to its first byte.
+4. The pointers to the argument/result blocks are saved in the frame before P0/P1 are reused. The caller's frames remain live throughout the call.
+5. The callee writes results into the prepared block. The epilogue releases its own frame, restores P2, and uses RET. SP returns to exactly its value before CALL.
 
-R0–R7, P0/P1/P3 sono caller-saved. P2 è preservato dalla convenzione C-Script, non da CALL stesso. I live value vanno salvati nei frame; non contarli come registri preservati per caso dal callee.
+R0–R7 and P0/P1/P3 are caller-saved. P2 is preserved by the C-Script convention, not by CALL itself. Live values must be saved in frames; do not rely on registers that a callee happens to leave unchanged.
 
-Limiti iniziali di compilazione: frame ≤4.096 byte, blocco argomenti ≤255 byte, risultati ≤64 byte. Record grandi e array si passano mediante viste. Il compilatore produce la dimensione di ogni frame; il manifest assegna uno stack separato, inizialmente 16 KiB per app, da includere nel budget dell'arena.
+Initial compilation limits: frame ≤4,096 bytes, argument block ≤255 bytes, results ≤64 bytes. Large records and arrays are passed through views. The compiler reports each frame's size; the manifest assigns a separate stack, initially 16 KiB per app, included in the arena budget.
 
-Le syscall preservano i registri secondo SPEC.md; i wrapper SDK traducono risultati e stato nel contratto del linguaggio. Ogni wrapper preserva P2 secondo l'ABI C-Script anche quando una syscall, come MEM_INFO, lo usa per un output: salva il frame pointer prima dell'invocazione, copia gli output e lo ripristina prima del ritorno. Gli helper bytecode seguono l'ABI C-Script, senza ingressi assembly app-specifici.
+Syscalls preserve registers according to SPEC.md; SDK wrappers translate results and status into the language contract. Every wrapper preserves P2 according to the C-Script ABI even when a syscall, such as MEM_INFO, uses it for an output: save the frame pointer before invocation, copy the outputs, and restore it before returning. Bytecode helpers follow the C-Script ABI, with no app-specific assembly entry points.
 
-Il compilatore genera `_cos_start`: conserva i limiti iniziali in dati runtime privati dell'app, inizializza l'allocatore, prepara P0/P1/P2 per una chiamata senza argomenti, chiama `main` e infine PROC_EXIT(0). Non chiamare direttamente `main` con la convenzione d'ingresso del kernel, che ha significati diversi per P0…P3. I dati runtime non introducono variabili globali modificabili nel linguaggio sorgente.
+The compiler generates `_cos_start`: it saves the initial bounds in private app runtime data, initializes the allocator, prepares P0/P1/P2 for a call with no arguments, calls `main`, and finally invokes PROC_EXIT(0). Do not call `main` directly using the kernel entry convention, which assigns different meanings to P0…P3. Runtime data does not introduce mutable global variables into the source language.
 
-## 7 Buffer lineari e memoria
+## 7 Linear buffers and memory
 
 ```text
 fn main() {
@@ -199,53 +199,53 @@ fn main() {
 }
 ```
 
-Questo programma deve funzionare senza banco e con indici oltre 65.535. `.len` è sempre `dword`, anche quando il buffer è piccolo. L'indicizzazione accetta interi non negativi; prima della somma al puntatore controlla `index < len`. Gli indici signed negativi sono fault `BOUNDS`.
+This program must work without bank switching and with indices beyond 65,535. `.len` is always `dword`, even for a small buffer. Indexing accepts nonnegative integers; before adding to the pointer, it checks `index < len`. Negative signed indices cause a `BOUNDS` fault.
 
-`bytes(n)` usa il bump allocator dell'app e restituisce un buffer azzerato. L'azzeramento viene effettuato tramite MEM_FILL a pezzi limitati. Niente differenza osservabile fra build diagnostica e normale; l'heap grezzo non inizializzato resta un dettaglio della VM. Lunghezza zero è ammessa; non deve causare alcun accesso REU.
+`bytes(n)` uses the app's bump allocator and returns a zeroed buffer. Zeroing uses MEM_FILL in bounded chunks. There must be no observable difference between diagnostic and normal builds; raw uninitialized heap memory remains a VM detail. Zero length is allowed and must cause no REU access.
 
-Allocazione fuori heap o overflow = fault `OUT_OF_MEMORY`. Nessuna crescita automatica dell'arena. Non c'è `free`: allocare i buffer di lavoro all'avvio e riusarli. Il compilatore segnala le allocazioni dentro cicli come possibile problema, senza vietarle. Il monitor mostra high-water mark dell'heap.
+An allocation beyond the heap or an overflow causes an `OUT_OF_MEMORY` fault. Arenas do not grow automatically. There is no `free`: allocate working buffers at startup and reuse them. The compiler warns about allocations inside loops as a potential issue, without forbidding them. The monitor shows the heap high-water mark.
 
-L'allocatore conserva anche i byte residui a 32 bit. Quando consuma l'ultimo byte a $FFFFFF, marca l'heap esaurito senza dover rappresentare $1000000 in un puntatore. Il caso vuoto può usare la vista canonica `{ptr=0, len=0}`; nessuna sua operazione dereferenzia zero.
+The allocator also tracks remaining bytes with a 32-bit value. When it consumes the last byte at $FFFFFF, it marks the heap as exhausted without needing to represent $1000000 in a pointer. The empty case may use the canonical view `{ptr=0, len=0}`; none of its operations dereference zero.
 
-`data.slice(start, length)` crea una vista, senza copiare o allocare. Controlla con aritmetica larga `start <= data.len` e `length <= data.len - start`; una slice vuota non richiede di rappresentare il puntatore un byte oltre $FFFFFF. Non esporre un'operazione che trasformi la vista in un intero/puntatore arbitrario.
+`data.slice(start, length)` creates a view without copying or allocating. It checks `start <= data.len` and `length <= data.len - start` using wide arithmetic; an empty slice does not require representing the pointer one byte past $FFFFFF. Do not expose an operation that converts the view into an arbitrary integer/pointer.
 
-I buffer sono byte array nella 0.1. Array generici e strutture definite dall'utente possono arrivare dopo; i record fissi dell'SDK sono sufficienti per gli eventi. Non introdurre contenitori dinamici per ogni accesso al file o al video.
+Buffers are byte arrays in 0.1. Generic arrays and user-defined structures may come later; the SDK's fixed records are sufficient for events. Do not introduce dynamic containers for every file or video access.
 
-## 8 Testo
+## 8 Text
 
-`str` è una vista read-only, non un oggetto con reference counting. Le stringhe letterali vivono nei dati statici dell'app. La 0.1 non include un operatore di concatenazione, neppure per stringhe costanti; il testo si compone esplicitamente in un buffer riusabile mediante text.copy e slice, poi si espone con text.view.
+`str` is a read-only view, not a reference-counted object. String literals reside in the app's static data. Version 0.1 includes no concatenation operator, even for constant strings; text is assembled explicitly in a reusable buffer using text.copy and slices, then exposed with text.view.
 
-`text.view(buffer, length)` produce una vista sui primi byte del buffer, verificando i bounds; se il buffer cambia, cambia il testo osservato dalla vista. La sua durata non supera quella del processo. Non deve restituire riferimenti a temporanei dello stack.
+`text.view(buffer, length)` produces a view of the buffer's first bytes, with bounds checking; if the buffer changes, the text observed through the view changes. Its lifetime does not exceed that of the process. It must not return references to stack temporaries.
 
-Una str espone `.len: dword`, lettura `value[index] -> byte` e `value.slice(start, length) -> str`. Indici, bounds, aritmetica larga e slice vuote seguono le stesse regole di bytes; gli indici signed negativi causano BOUNDS. Nessuna di queste operazioni alloca o richiede nuove syscall. L'assegnazione a un indice str è un errore di compilazione, anche quando la vista è stata creata da un buffer modificabile.
+A str exposes `.len: dword`, indexed reads `value[index] -> byte`, and `value.slice(start, length) -> str`. Indices, bounds, wide arithmetic, and empty slices follow the same rules as bytes; negative signed indices cause BOUNDS. None of these operations allocate or require new syscalls. Assignment to a str index is a compile-time error, even when the view was created from a mutable buffer.
 
-Helper minimi:
+Minimum helpers:
 
-| Funzione | Contratto |
+| Function | Contract |
 |---|---|
-| `text.view(src: bytes, length: dword) -> str` | Vista controllata, nessuna copia |
-| `text.decimal(dst: bytes, value: long) -> str` | Decimale signed, dst ≥12 byte; BOUNDS prima di scrivere se insufficiente |
-| `text.decimal(dst: bytes, value: dword) -> str` | Decimale unsigned completo 0…4.294.967.295, dst ≥12 byte; stesso controllo BOUNDS |
-| `text.copy(dst: bytes, src: str) -> dword` | Copia tutti i byte, bounds fault se non entrano; lunghezza restituita |
-| `text.real(dst: bytes, value: float24/float32, digits: byte) -> (str, word)` | 1…9 cifre significative; dst ≥24 byte; sovraccarico statico, nessuna allocazione |
-| `text.parse_float(src: str) -> (float32, word)` | Conversione controllata da ASCII, massimo 63 byte |
-| `text.parse_float24(src: str) -> (float24, word)` | Conversione diretta al formato compatto |
+| `text.view(src: bytes, length: dword) -> str` | Checked view, no copy |
+| `text.decimal(dst: bytes, value: long) -> str` | Signed decimal, dst ≥12 bytes; BOUNDS before writing if too small |
+| `text.decimal(dst: bytes, value: dword) -> str` | Full unsigned decimal 0…4,294,967,295, dst ≥12 bytes; same BOUNDS check |
+| `text.copy(dst: bytes, src: str) -> dword` | Copies all bytes, bounds fault if they do not fit; returns length |
+| `text.real(dst: bytes, value: float24/float32, digits: byte) -> (str, word)` | 1…9 significant digits; dst ≥24 bytes; static overload, no allocation |
+| `text.parse_float(src: str) -> (float32, word)` | Checked conversion from ASCII, at most 63 bytes |
+| `text.parse_float24(src: str) -> (float24, word)` | Direct conversion to the compact format |
 
-I due sovraccarichi text.decimal si risolvono a compilazione: byte/word/dword usano quello unsigned, int/long quello signed; un letterale diretto senza altro tipo viene prima tipizzato con le regole ordinarie. Nessuna conversione intera→float per formattare interi. Non allocano, non scrivono un NUL e restituiscono una vista dei soli byte prodotti; zero è `0`, nessun segno `+` o zero iniziale. La verifica della capacità precede ogni modifica a dst.
+The two text.decimal overloads are resolved at compile time: byte/word/dword use the unsigned one, int/long the signed one; a direct literal with no other type is first typed using the ordinary rules. No integer→float conversion is used to format integers. They do not allocate or write a NUL, and return a view of only the bytes produced; zero is `0`, with no `+` sign or leading zero. Capacity is checked before any change to dst.
 
-Le stringhe sono length-delimited, non NUL-terminated. Il driver file valida e converte i path nel formato del firmware. I testi UI devono rispettare la lunghezza massima del servizio; la libreria può dividerli in segmenti solo rispettando clipping e coordinate. La 0.1 non promette impaginazione o Unicode completo.
+Strings are length-delimited, not NUL-terminated. The file driver validates paths and converts them to the firmware's format. UI text must respect the service's maximum length; the library may split it into segments only while preserving clipping and coordinates. Version 0.1 promises neither text layout nor full Unicode.
 
-La grammatica, gli errori, la scelta fra forma fissa/scientifica e il round-trip numerico sono definiti in NUMERICS.md §4. I convertitori testuali sono libreria bytecode soggetta al fuel; il loro workspace deve comparire nel report dei frame.
+The grammar, errors, choice between fixed/scientific notation, and numeric round-trip are defined in NUMERICS.md §4. Text converters are a bytecode library subject to fuel; their workspace must appear in the frame report.
 
-## 9 Moduli e SDK
+## 9 Modules and SDK
 
-`import` abilita un modulo risolto dal compilatore e dal manifest di build; non carica file durante l'esecuzione. Moduli standard MVP: `system`, `ui`, `video`, `fs`, `storage`, `clock`, `sid`, `audio`, `ultimate`, `text`, `math`. Math contiene abs/min/max/trunc/floor/ceil per i due float; trigonometria e funzioni trascendenti sono successive. `net` e `http` appartengono alle milestone successive e nell'MVP generano un errore di importazione esplicito.
+`import` enables a module resolved by the compiler and build manifest; it does not load files at runtime. Standard MVP modules: `system`, `ui`, `video`, `fs`, `storage`, `clock`, `sid`, `audio`, `ultimate`, `text`, `math`. Math contains abs/min/max/trunc/floor/ceil for both float types; trigonometry and transcendental functions come later. `net` and `http` belong to later milestones and produce an explicit import error in the MVP.
 
-Le firme normative sono in [ULTIMATE-API.md](ULTIMATE-API.md). I moduli applicativi possono importare altri sorgenti del progetto mediante nomi statici; il bundler risolve un grafo aciclico. `import util` rende disponibili funzioni e costanti esportate dal modulo con nomi qualificati, come `util.funzione(...)` e `util.LIMIT`. Nella 0.1 tutte le funzioni e costanti di un modulo sono visibili mediante tale qualificazione; non introdurre sintassi export o import non qualificati. Ogni modulo ha il proprio spazio di nomi e l'app ha soltanto la entry definita nel §6. Nessun codice eseguito implicitamente all'importazione; niente wildcard o ricerca in directory globali non dichiarate.
+Normative signatures are in [ULTIMATE-API.md](ULTIMATE-API.md). App modules may import other project sources through static names; the bundler resolves an acyclic graph. `import util` makes the module's exported functions and constants available through qualified names, such as `util.helper(...)` and `util.LIMIT`. In 0.1, all functions and constants in a module are visible through this qualification; do not introduce export syntax or unqualified imports. Each module has its own namespace, and the app has only the entry point defined in §6. No code runs implicitly on import; no wildcards or searches in undeclared global directories.
 
-I wrapper fanno controlli semplici, preparano i descrittori e invocano syscall. Il kernel resta responsabile dell'isolamento anche per bytecode non prodotto dal compilatore. Non affidare al type checker la protezione di REU, file handle o dispositivi.
+Wrappers perform simple checks, prepare descriptors, and invoke syscalls. The kernel remains responsible for isolation even for bytecode not produced by the compiler. Do not rely on the type checker to protect REU memory, file handles, or devices.
 
-### 9.1 Esempio di I/O
+### 9.1 I/O example
 
 ```text
 import fs
@@ -277,9 +277,9 @@ fn main() {
 }
 ```
 
-L'apertura con troncamento è una scelta esplicita del programma. Il driver non deve troncare nuovamente il file quando riapre il backend per alternare le operazioni di più app. L'esempio gestisce risultati parziali; `close` non può garantire la sopravvivenza a un'improvvisa perdita di alimentazione se il firmware/storage non la garantiscono.
+Opening with truncation is an explicit choice by the program. The driver must not truncate the file again when reopening the backend to interleave operations from multiple apps. The example handles partial results; `close` cannot guarantee survival of a sudden power loss if the firmware/storage provide no such guarantee.
 
-### 9.2 Esempio di pixel personalizzati
+### 9.2 Custom-pixel example
 
 ```text
 import ui
@@ -304,9 +304,9 @@ fn main() {
 }
 ```
 
-`pixels` è memoria dell'app, non un mapping della superficie o del framebuffer. Nessun dettaglio UPIC compare nel programma.
+`pixels` is app memory, not a mapping of the surface or framebuffer. No UPIC details appear in the program.
 
-### 9.3 Elenco directory e orologio
+### 9.3 Directory listing and clock
 
 ```text
 import fs
@@ -333,7 +333,7 @@ fn main() {
             let filename = text.view(name, dword(info.name_len))
             let details, stat_error = fs.stat(filename)
             if stat_error == 0 && (details.valid & fs.SIZE_VALID) != 0 {
-                // details.size e' disponibile, anche per file oltre 64 KiB
+                // details.size is available, including for files larger than 64 KiB
             }
         }
     }
@@ -343,18 +343,18 @@ fn main() {
     let now, time_error = clock.now()
     if time_error == 0 {
         let year = now.year
-        // now.month/day/hour/minute/second sono la data civile osservata
+        // now.month/day/hour/minute/second are the observed civil date and time
     }
 }
 ```
 
-È un esempio di binding e controllo degli errori, da affiancare alla demo grafica prevista in SPEC.md. `name` viene riusato: una vista sul suo contenuto cambia alla successiva fs.next. Se l'app vuole conservare un nome, lo copia in un proprio buffer. Stat può fallire se il file è cambiato dopo la snapshot, senza rendere invalida la lettura della voce precedente.
+This is an example of bindings and error handling, to accompany the graphical demo required by SPEC.md. `name` is reused: a view of its contents changes on the next fs.next. If the app wants to retain a name, it copies it into its own buffer. Stat may fail if the file has changed since the snapshot, without invalidating the previously read entry.
 
-`clock.now` può restituire EAGAIN mentre il kernel aggiorna la cache. Per attese e intervalli usare sempre system.frame/system.sleep; un cambio dell'ora civile non deve modificare il comportamento dei timer dell'app.
+`clock.now` may return EAGAIN while the kernel refreshes the cache. Always use system.frame/system.sleep for waits and intervals; a change in civil time must not change the behavior of app timers.
 
-## 10 Grammatica essenziale
+## 10 Essential grammar
 
-La seguente EBNF riassume la struttura; precedenza, newline e regole di tipo sono definiti sopra. `sep` è newline significativo o `;`; i separatori dopo un blocco sono facoltativi.
+The following EBNF summarizes the structure; precedence, newlines, and type rules are defined above. `sep` is a significant newline or `;`; separators after a block are optional.
 
 ```text
 module     = { import_decl | const_decl | function | sep } ;
@@ -377,25 +377,25 @@ return_stmt= "return", [expression, {",", expression}] ;
 lvalue     = identifier | expression, "[", expression, "]" ;
 ```
 
-Le produzioni semplici richiedono un separatore o la chiusura del blocco. La grammatica completa dei test deve respingere costrutti non supportati, anziché accettarli e ignorarli.
+Simple productions require a separator or the closing of the block. The complete grammar used by the tests must reject unsupported constructs rather than accepting and ignoring them.
 
-## 11 Compilatore host e formati
+## 11 Host compiler and formats
 
-Implementazione host consigliata: **Rust**, per compilatore, assembler/disassembler, bundler e reference VM. Iniziare con un piccolo workspace Cargo che condivida definizioni di tipi, ISA e ABI fra i tool; non suddividerlo anticipatamente in molte crate o imporre un framework. Preferire la libreria standard dove pratico; una dipendenza mirata per aritmetica esatta o verifica indipendente è preferibile a risultati numerici approssimati. Pipeline: lexer → parser → risoluzione simboli e tipi → IR semplice → allocazione registri → bytecode/relocazioni → bundler.
+Recommended host implementation: **Rust**, for the compiler, assembler/disassembler, bundler, and reference VM. Start with a small Cargo workspace sharing type, ISA, and ABI definitions across tools; do not split it prematurely into many crates or impose a framework. Prefer the standard library where practical; a focused dependency for exact arithmetic or independent verification is preferable to approximate numeric results. Pipeline: lexer → parser → symbol and type resolution → simple IR → register allocation → bytecode/relocations → bundler.
 
-Un piccolo parser ricorsivo con precedenze esplicite basta. Non costruire un framework multi-backend. Le ottimizzazioni iniziali sono constant folding, eliminazione di temporanei e mantenimento di contatori/variabili locali in R quando possibile. Il caso semplice non deve rileggere dallo stack REU tutte le variabili a ogni opcode.
+A small recursive parser with explicit precedences is sufficient. Do not build a multi-backend framework. Initial optimizations are constant folding, temporary elimination, and keeping counters/local variables in R where possible. The simple case must not reread every variable from the REU stack on every opcode.
 
-Seguire lo spunto QuakeC di una tabella host di operatori, tipi, conversioni e lowering; risolvere gli overload math/text a compilazione. Uno schema condiviso piccolo genera costanti ABI e firme per compiler, reference e kernel. Le costanti float si deduplicano per tipo e bit target; il folding usa COS-NUM-1 dopo ogni operazione, senza aritmetica double host implicita o doppio arrotondamento float32→float24.
+Borrow QuakeC's approach of a host-side table of operators, types, conversions, and lowering; resolve math/text overloads at compile time. A small shared schema generates ABI constants and signatures for the compiler, reference implementation, and kernel. Float constants are deduplicated by type and target bits; folding uses COS-NUM-1 after every operation, with no implicit host double arithmetic or float32→float24 double rounding.
 
-Per i sovraccarichi float di math e text.real, il formato viene dal tipo dell'argomento numerico, con i letterali diretti senza formato ancora fissato tipizzati secondo le regole ordinarie. Math.min/max applicano la stessa scelta del tipo comune di un operatore binario. Il tipo selezionato deve essere float24 o float32: gli argomenti soltanto interi richiedono un cast esplicito per questi helper, evitando la scelta ambigua fra due conversioni esatte. Per esempio `math.abs(1)` è errore, `math.abs(1.0)` restituisce float32 e `math.min(a24, 1.0)` restituisce float24. Questa regola riguarda la selezione degli overload; una funzione con un singolo parametro float già dichiarato continua ad ammettere le conversioni implicite esatte.
+For the float overloads of math and text.real, the format comes from the numeric argument's type, with direct literals that have no fixed format yet typed according to the ordinary rules. Math.min/max use the same common-type selection as a binary operator. The selected type must be float24 or float32: integer-only arguments require an explicit cast for these helpers, avoiding an ambiguous choice between two exact conversions. For example, `math.abs(1)` is an error, `math.abs(1.0)` returns float32, and `math.min(a24, 1.0)` returns float24. This rule concerns overload selection; a function with a single already-declared float parameter continues to accept exact implicit conversions.
 
-L'ISA iniziale non ha frame-relative addressing: usare P2 più offset per i load/store nel frame. Int a 32 bit usa coppie di R16 o quattro byte in spill. Gli argomenti delle syscall vengono preparati soltanto alla chiamata, non mantenuti globalmente nei registri riservati.
+The initial ISA has no frame-relative addressing: use P2 plus an offset for frame loads/stores. 32-bit integers use pairs of R16 registers or four bytes in spill storage. Syscall arguments are prepared only at the call, not kept globally in reserved registers.
 
-Float24 occupa tre byte packed, float32 quattro; entrambi possono usare coppie di R16 temporanee. Non riservare un banco di registri float persistente. Il sorgente non può reinterpretare un float24 come puntatore soltanto perché hanno uguale dimensione.
+Float24 occupies three packed bytes, float32 four; both may use temporary pairs of R16 registers. Do not reserve a persistent float register bank. Source code cannot reinterpret a float24 as a pointer merely because they have the same size.
 
-Non eliminare un ciclo infinito solo perché non produce scritture osservabili: il suo avanzamento e il suo consumo di fuel hanno significato per C-OS. Non cambiare i risultati di wrap, cast o bounds con ottimizzazioni aggressive.
+Do not eliminate an infinite loop just because it produces no observable writes: its progress and fuel consumption have meaning in C-OS. Do not change wrapping, cast, or bounds results through aggressive optimization.
 
-Comandi attesi, nomi proposti da rendere reali:
+Expected commands, with proposed names to implement:
 
 ```text
 cargo build --release
@@ -406,37 +406,37 @@ cargo run --release --bin cospack -- manifests/desktop.json --out build/desktop
 cargo run --release --bin cosrun -- build/desktop.manifest.json --app counter
 ```
 
-Sono interfacce di consegna da implementare, non comandi già disponibili. La scelta di Rust riguarda il tooling host; il bytecode C-OS e il kernel 6510 mantengono i propri contratti. Fissare toolchain e dipendenze nei file di build per rendere riproducibili output e test.
+These are delivery interfaces to implement, not commands that are already available. The Rust choice applies to host tooling; C-OS bytecode and the 6510 kernel retain their own contracts. Pin the toolchain and dependencies in build files to make outputs and tests reproducible.
 
-Il primo formato `.cobj` può essere JSON host-only: `format="COSOBJ1"`, ABI/versione del compilatore, array di byte per `code` e `data`, `bss_size`, simboli di sezione, entry e relocazioni. Niente parsing JSON sul C64.
+The first `.cobj` format may be host-only JSON: `format="COSOBJ1"`, ABI/compiler version, byte arrays for `code` and `data`, `bss_size`, section symbols, entry point, and relocations. No JSON parsing on the C64.
 
-Includere anche `numeric_profile="COS-NUM-1"`; il bundler verifica che oggetti, costanti e kernel concordino sul contratto dei due formati.
+Also include `numeric_profile="COS-NUM-1"`; the bundler checks that objects, constants, and kernel agree on the contract of both formats.
 
-Relocazioni minime: ABS24 con sezione/offset target e addend; REL16_INSN con origine e destinazione allineate; riferimenti di sezioni per costanti e viste. Verificare overflow, indirizzi fuori arena e branch non allineati al link. Non assegnare puntatori fisici finali durante il parsing del sorgente.
+Minimum relocations: ABS24 with target section/offset and addend; REL16_INSN with aligned source and destination; section references for constants and views. Check for overflow, addresses outside the arena, and unaligned branches at link time. Do not assign final physical pointers during source parsing.
 
-Il bundler conosce le basi delle arene e produce codice finale, seed per i dati inizializzati, manifest e simboli. Se i seed non entrano nella riserva iniziale del sistema, il build fallisce con un report preciso: non sovrascrivere altri dati del pack.
+The bundler knows the arena bases and produces final code, initialized-data seeds, manifest, and symbols. If the seeds do not fit in the system's initial reserve, the build fails with a precise report: do not overwrite other pack data.
 
-Output indispensabili: listing, mappa indirizzo→file/riga/colonna, dimensione codice/dati/BSS, frame di ogni funzione, stack assegnato, heap disponibile, moduli inclusi e import SDK. In caso di fault, la diagnostica host traduce PID/PC in funzione/riga usando lo stesso build tag.
+Required outputs: listing, address→file/line/column map, code/data/BSS size, each function's frame, assigned stack, available heap, included modules, and SDK imports. On a fault, host diagnostics translate PID/PC into function/line using the same build tag.
 
-Le routine di controllo del linguaggio usano TRAP con codici stabili: $1001 RANGE, $1002 BOUNDS, $1003 DIVIDE_BY_ZERO, $1004 OUT_OF_MEMORY, $1005 SHIFT_RANGE, $1006 NUMERIC_INVALID, $1007 FLOAT_OVERFLOW. Sono payload di TRAP, distinti dalle cause native della VM e dagli errori ritornabili delle syscall. NUMERICS.md definisce la traduzione degli errori del servizio numerico.
+Language checking routines use TRAP with stable codes: $1001 RANGE, $1002 BOUNDS, $1003 DIVIDE_BY_ZERO, $1004 OUT_OF_MEMORY, $1005 SHIFT_RANGE, $1006 NUMERIC_INVALID, $1007 FLOAT_OVERFLOW. These are TRAP payloads, distinct from native VM fault causes and errors that syscalls can return. NUMERICS.md defines how numeric-service errors are translated.
 
-## 12 Verifica e completamento
+## 12 Verification and completion
 
-- Test lessicali e di precedenza, newline e parsing degli esempi completi.
-- Errori di tipo precisi con file/riga/colonna; rifiuto di handle, campi e funzioni inesistenti.
-- Aritmetica signed/unsigned ai limiti, cast, divisioni, shift e ordine di valutazione.
-- Tipo comune intero, matrice degli operatori e ordine sinistra→destra anche con chiamate negli operandi; rifiuto di uguaglianza su viste/record e di confronti fra handle di tipi diversi.
-- Float24/float32: letterali, promozioni, RNE, zero, overflow/underflow, conversioni, testo e corpus bit-exact di NUMERICS.md; nessun doppio arrotondamento involontario.
-- Esempi normativi del contesto dei letterali diretti: parentesi/meno unario, narrowing esplicito e assenza di propagazione nelle sottoespressioni.
-- Array >64 KiB, ultimo byte valido, slice vuote, indici negativi e overflow.
-- str.len, lettura indicizzata e slice senza allocazione; scrittura respinta. Text.decimal ai limiti long/dword, buffer corto senza scritture e valori unsigned oltre 2^31−1.
-- Chiamate annidate/ricorsive, risultati multipli e SP identico prima/dopo la chiamata.
-- Unico main nel modulo entry, import qualificati e conservazione di P2 nei wrapper che usano MEM_INFO.
-- Allocazione azzerata, OOM isolato, buffer riusati senza crescita in un event loop.
-- Confronto reference VM/VM 6510 per bytecode generato, includendo cache miss e quantum piccoli.
-- Due app C-Script in loop senza yield: entrambe avanzano, input e raster restano serviti.
-- Compilazione ed esecuzione degli esempi di UI, pixel, I/O, SID e PCM.
-- Binding di Dir/FileInfo/StorageInfo/DateTime/InputState, risultati multipli senza allocazione, coordinate Event negative, campi annidati e riuso del buffer nome; import net/http respinti finché il relativo profilo SDK non è disponibile.
-- Build riproducibile a input e versioni fissati; un errore non deve pubblicare un artefatto parziale.
+- Lexical and precedence tests, newlines, and parsing of the complete examples.
+- Precise type errors with file/line/column; rejection of nonexistent handles, fields, and functions.
+- Signed/unsigned arithmetic at the limits, casts, divisions, shifts, and evaluation order.
+- Common integer type, operator matrix, and left→right order even with calls in operands; rejection of equality on views/records and comparisons between handles of different types.
+- Float24/float32: literals, promotions, RNE, zero, overflow/underflow, conversions, text, and the bit-exact corpus from NUMERICS.md; no unintended double rounding.
+- Normative examples of direct-literal context: parentheses/unary minus, explicit narrowing, and no propagation into subexpressions.
+- Arrays >64 KiB, last valid byte, empty slices, negative indices, and overflow.
+- str.len, indexed reads, and slices without allocation; writes rejected. Text.decimal at long/dword limits, short buffers with no writes, and unsigned values above 2^31−1.
+- Nested/recursive calls, multiple results, and identical SP before/after the call.
+- Exactly one main in the entry module, qualified imports, and P2 preservation in wrappers that use MEM_INFO.
+- Zeroed allocation, isolated OOM, buffers reused without growth in an event loop.
+- Reference VM/6510 VM comparison for generated bytecode, including cache misses and small quanta.
+- Two C-Script apps looping without yield: both make progress, and input and raster remain serviced.
+- Compilation and execution of UI, pixel, I/O, SID, and PCM examples.
+- Dir/FileInfo/StorageInfo/DateTime/InputState bindings, multiple results without allocation, negative Event coordinates, nested fields, and name-buffer reuse; net/http imports rejected until the corresponding SDK profile is available.
+- Reproducible builds with fixed inputs and versions; an error must not publish a partial artifact.
 
-Il linguaggio è completato per l'MVP quando le app dimostrative sono scritte in C-Script e usano l'SDK, senza appoggiarsi a routine native private per aggirare limiti della VM.
+The language is complete for the MVP when the demo apps are written in C-Script and use the SDK, without relying on private native routines to bypass VM limitations.
