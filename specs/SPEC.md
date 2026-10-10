@@ -1,7 +1,7 @@
 # C-OS Commodore OS
 ## Specification for the first implementation
 
-Version 0.1, revision 5 — October 10, 2026. Target: C64 Ultimate, PAL, nominal 64 MHz turbo, 16 MiB REU, 320×200 UPIC video.
+Version 0.1, revision 6 — October 10, 2026. Target: C64 Ultimate, PAL, nominal 64 MHz turbo, 16 MiB REU, 320×200 UPIC video.
 
 Initial numeric ABI version: 1, identical in the REU header, SYS_INFO, and SDK descriptors. Document versions and ABI versions use separate numbering.
 
@@ -14,6 +14,8 @@ This specification defines the behavior to implement. Values marked **initial** 
 [C-Script: language and compiler](LANGUAGE.md), [SDK and Ultimate services](ULTIMATE-API.md), and [fractional numbers](NUMERICS.md) are also part of the specification. This document defines the VM, memory, scheduling, and shell; the companion documents define application source code, APIs, and the numeric profile. These are contracts to implement, not documentation of existing functionality.
 
 For the development agent: start with section 22 and the milestone dependencies in §18. The tables in this document are normative for the ISA and core syscalls; ULTIMATE-API.md covers bindings, SDK records, events, and device services; NUMERICS.md covers numeric representation and semantics; LANGUAGE.md covers typing and the function ABI. Update cross-references together when changing a shared contract. This specification defines UI dimensions and behavior. Revision 5 adds preparation for optional native work in UPIC horizontal margins, disabled until timing qualification, without changing ABI 1, bytecode, or COS-NUM-1. See the [M2 implementation supplement](M2-UPIC-MARGINS.md).
+
+Revision 6 adds the [real-workload performance contract](PERFORMANCE.md) and an autonomous workload baseline to M3. The goal is greater than 1× native original-C64 throughput, with 2× or better as the stretch goal; neither is an achieved result. ABI 1, bytecode, numeric semantics, and the default-disabled UPIC margin policy remain unchanged.
 
 ## 1 Decisions and scope
 
@@ -941,6 +943,8 @@ On PAL, two/three frames are approximately 40/60 ms. These are acceptance target
 
 If latency exceeds the targets, profile before adding complexity. Prioritize eliminating unnecessary work, improving locality, reducing overly fine-grained syscalls, and tuning native chunks. The disabled margin hook is prepared in M2, but enabling it still requires the measured benefit and timing qualification of §10.4; a new dispatcher policy is not a prerequisite.
 
+Application throughput is measured on complete, equivalent workloads, following [PERFORMANCE.md](PERFORMANCE.md): Mandelbrot first, then a small ray tracer and a simple 3D rasterizer as their dependencies become available. Target greater than 1× an original PAL C64 running native 6510 code, with 2× or better as the stretch goal. Keep UPIC active in the primary C-OS measurement. Report each workload separately, validate its output, and include cache, scheduling, and native-service costs. Opcode rates and clock ratios are diagnostic evidence, not substitutes for these results. M3 establishes the first honest baseline; missing the throughput goal does not justify weakening isolation, preemption, output quality, or video timing.
+
 ## 17 Acceptance tests
 
 ### 17.1 Memory and ISA
@@ -1031,7 +1035,7 @@ Report emulation and physical-device qualification separately. An unavailable de
 | M0 Hardware and budget | Turbo/REU probes, 320 renderer, map file, DMA measurements, and initial resident-memory budget | Geometry verified on the available backend; explicit timing; measured sizes distinguished from estimated reserves |
 | M1 Host VM | ISA, assembler, disassembler, reference VM | Semantic tests and generation of minimal apps |
 | M2 6510 VM | Dispatcher, pointers, cache, stack, and disabled UPIC margin hook/contract | State comparison with the reference at boundaries and on misses; cumulative budget updated before expanding the SDK/UI; default renderer unchanged; margin activation not required |
-| M3 Scheduler | Fuel, PCBs, waits, and bounded REU jobs | Two loops without yield coexist with the raster |
+| M3 Scheduler | Fuel, PCBs, waits, bounded REU jobs, and autonomous workload measurement | Two loops without yield coexist with the raster; fairness and cancellation verified; a real workload has a validated output and native-C64 timing baseline |
 | M4a C-Script | Host compiler, minimum library, calling ABI, and source map | Language examples and tests run on the VM; loops without yield remain preemptible |
 | M4b Fractional numbers | Float24/float32, NUM_OP, numeric/text conversions, and host model | Bit-exact corpus, scratch isolation, budget, and timing verified for both formats |
 | M5 Graphics and input | Primitives, surfaces, BLIT8, compositor, cursor, and events | Clipping, coherence, restoration, and input verified |
