@@ -1,0 +1,173 @@
+{
+  "format": "COSM2REVIEW1",
+  "date": "2026-10-10",
+  "disposition": "Original M2 P1 reproduced; targeted correction verified; M3 integration checks remain with the developer",
+  "targeted_fix": {
+    "cache_source_sha256": "dd6e3283a424924036ddea8c06e0bc9a29e671e1d56bf82aa2cbb4e03ecc6444",
+    "independent_probe_cases": 4,
+    "physical_sentinel_preserved_cases": 4,
+    "observations": "cancel-chain-fixed.json",
+    "scope": "The four original corruption probes only; the full original suite below was run on the frozen pre-fix delivery"
+  },
+  "original_cache_source_sha256": "6e32186aa5c8410ff1b89ca5c40d8cd63d186e693a97d77dc6a40759dff9a7bb",
+  "source_manifest_sha256": "19e62d6a9ced64660310ee86203c4755cf8bae351d59e2b790f77139fd9887ac",
+  "existing_regression_components": "pass after resuming an ENOSPC-interrupted verification command",
+  "rust_pass_counts_in_initial_log": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    8,
+    30,
+    15,
+    0
+  ],
+  "rust_tests": 53,
+  "python_tests": 12,
+  "fmt": "pass",
+  "clippy": "pass",
+  "m1_reproducible": true,
+  "m0_profiles": [
+    {
+      "case": "pal64-reu16",
+      "status": 1,
+      "reu_banks": 256,
+      "fast_cpu_loop_count": 704,
+      "restored": true
+    },
+    {
+      "case": "reu128",
+      "status": 227,
+      "reu_banks": 2,
+      "fast_cpu_loop_count": 704,
+      "restored": true
+    },
+    {
+      "case": "reu512",
+      "status": 227,
+      "reu_banks": 8,
+      "fast_cpu_loop_count": 704,
+      "restored": true
+    },
+    {
+      "case": "reu2m",
+      "status": 227,
+      "reu_banks": 32,
+      "fast_cpu_loop_count": 704,
+      "restored": true
+    },
+    {
+      "case": "reu8m",
+      "status": 227,
+      "reu_banks": 128,
+      "fast_cpu_loop_count": 704,
+      "restored": true
+    },
+    {
+      "case": "reu-absent",
+      "status": 227,
+      "reu_banks": 1,
+      "fast_cpu_loop_count": 704,
+      "restored": true
+    },
+    {
+      "case": "turbo32",
+      "status": 226,
+      "reu_banks": 0,
+      "fast_cpu_loop_count": 368,
+      "restored": true
+    },
+    {
+      "case": "turbo48",
+      "status": 226,
+      "reu_banks": 0,
+      "fast_cpu_loop_count": 528,
+      "restored": true
+    },
+    {
+      "case": "ntsc",
+      "status": 225,
+      "reu_banks": 0,
+      "fast_cpu_loop_count": 0,
+      "restored": true
+    },
+    {
+      "case": "bad-pack",
+      "status": 228,
+      "reu_banks": 256,
+      "fast_cpu_loop_count": 704,
+      "restored": true
+    }
+  ],
+  "margin_lifecycle_assertions": 66,
+  "native": [
+    {
+      "cases": 609,
+      "actions": 1594,
+      "waits": 752,
+      "service_directions": 782,
+      "missed_syncs": 0,
+      "active_dma_violations": 0,
+      "nmi_count": 1,
+      "nmi_recoveries": 1,
+      "observed_hardware_stack_bytes": 12,
+      "vm_opcode_maximum_phi2_ticks": 65,
+      "cache_service_maximum_phi2_ticks": 141,
+      "artifact_sha256": {
+        "m2.manifest.json": "218088abaaca43a3326ec1ea5eec7c702b6d8417e35c3deeaae686be65f36168",
+        "m2.prg": "8018a9a6358e254406b97997fe7e3d06d0bca42886e0b4dbf00fc76d856652fe",
+        "m2.reu": "e7daede08a259c677272ed1004fc94344cb1aaeaef384852dc726147ce6bb64a",
+        "native.bin": "dde59a2bc446c4d76451bc26b5a1c52cb130247de5bce7514b1df9c43e6d361c",
+        "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+        "renderer.prg": "e78c014bfc840438660982ca37321bebc83466ce957136e3fa48f10431d9ea1f"
+      },
+      "backend_executable_sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+      "config_sha256": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+      "settings_sha256": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961",
+      "actual_cia2_nmi_preserved_state_and_caches": true,
+      "video_enabled": true,
+      "cache_line": 128,
+      "build_tag": "CFBED205",
+      "report_sha256": "d1fa0350a8f5b9bd4a63f6aec09cddbdb6c6341dd28e5932509a2140eea2a937",
+      "artifact_hashes_match_original_delivery": true
+    },
+    {
+      "cases": 609,
+      "actions": 1594,
+      "waits": 777,
+      "service_directions": 817,
+      "missed_syncs": 0,
+      "active_dma_violations": 0,
+      "nmi_count": 1,
+      "nmi_recoveries": 1,
+      "observed_hardware_stack_bytes": 12,
+      "vm_opcode_maximum_phi2_ticks": 66,
+      "cache_service_maximum_phi2_ticks": 77,
+      "artifact_sha256": {
+        "m2.manifest.json": "f8ec0eae07fb96c46b9adb6c16ca70099d8049cb6a302a41b34bf016aab5bd22",
+        "m2.prg": "75861d8139e1712315a7ec69ae057501516a2dd8df36013ff5d2529a81a52b74",
+        "m2.reu": "ebf44381ef5ccee1853dc8c070c5f8f22f29b6da69ecdd8e52f6327e6a376115",
+        "native.bin": "c30c34271c725b33c29ee79b268cadc9aaa9f5674a6dbeea1cd5734b8e95469e",
+        "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+        "renderer.prg": "e78c014bfc840438660982ca37321bebc83466ce957136e3fa48f10431d9ea1f"
+      },
+      "backend_executable_sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+      "config_sha256": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+      "settings_sha256": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961",
+      "actual_cia2_nmi_preserved_state_and_caches": true,
+      "video_enabled": true,
+      "cache_line": 64,
+      "build_tag": "06A147B0",
+      "report_sha256": "20075a3604f02c3e4fb6acae0ce529cf17ad087328d4693188013c8935c4bf37",
+      "artifact_hashes_match_original_delivery": true
+    }
+  ],
+  "additional_cancel_probe_cases": 4,
+  "additional_cancel_probe_cases_reproducing_defect": 4,
+  "physical_qualification": "pending",
+  "margin_execution": "disabled",
+  "verification_log_sha256": "30ed55ffec720632742cd2490bc3014dcad4d5fb9187a2039ed3352263f018fb",
+  "margin_log_sha256": "df85f5f56c748284929c86e149c9a4ea8dbb7687bd17fce79f4e22fd5ed6dbc4"
+}

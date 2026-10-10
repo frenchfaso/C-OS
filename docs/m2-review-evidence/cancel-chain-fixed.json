@@ -1,0 +1,42 @@
+[
+  {
+    "cache_line": 128,
+    "cancellation": "explicit",
+    "state_bytes": "01 02 04 00 00 02 09 55",
+    "expected_reu_byte": 165,
+    "observed_reu_byte": 165,
+    "revoked_bytes_written_back": false,
+    "cache_source_sha256": "dd6e3283a424924036ddea8c06e0bc9a29e671e1d56bf82aa2cbb4e03ecc6444",
+    "prg_sha256": "e13ab1ed0aa2f54c34000a88207b3c964c7ad12c0200cf7c8096ffc04e70232e"
+  },
+  {
+    "cache_line": 128,
+    "cancellation": "generation-change",
+    "state_bytes": "01 02 04 00 00 02 09 55",
+    "expected_reu_byte": 165,
+    "observed_reu_byte": 165,
+    "revoked_bytes_written_back": false,
+    "cache_source_sha256": "dd6e3283a424924036ddea8c06e0bc9a29e671e1d56bf82aa2cbb4e03ecc6444",
+    "prg_sha256": "6431e2a68b551eb320a4af519fb6bb9d69b04c89900e7129ba4eedd5ec756699"
+  },
+  {
+    "cache_line": 64,
+    "cancellation": "explicit",
+    "state_bytes": "01 02 04 00 00 02 09 55",
+    "expected_reu_byte": 165,
+    "observed_reu_byte": 165,
+    "revoked_bytes_written_back": false,
+    "cache_source_sha256": "dd6e3283a424924036ddea8c06e0bc9a29e671e1d56bf82aa2cbb4e03ecc6444",
+    "prg_sha256": "9b5b70586f42695246e100c7570a3d65f004f28d6cd6b804eb596cc5777c4b7a"
+  },
+  {
+    "cache_line": 64,
+    "cancellation": "generation-change",
+    "state_bytes": "01 02 04 00 00 02 09 55",
+    "expected_reu_byte": 165,
+    "observed_reu_byte": 165,
+    "revoked_bytes_written_back": false,
+    "cache_source_sha256": "dd6e3283a424924036ddea8c06e0bc9a29e671e1d56bf82aa2cbb4e03ecc6444",
+    "prg_sha256": "a46404acb188a0b4dd008569906713ba84a569905a36209c6f0acdd25d32c870"
+  }
+]
