@@ -1,0 +1,13 @@
+--- a/apps/mandelbrot.casm
++++ b/apps/mandelbrot.casm
+@@ -107,8 +107,8 @@
+     LDI R7, 0
+     LDI R1, 16
+ multiply_bit:
+-    MOV R0, R6
+-    SHL R0, 15
++    LDI R0, 1
++    AND R0, R6
+     BEQ R0, R7, no_add
+     ADD R2, R4
+     BGEU R2, R4, no_carry

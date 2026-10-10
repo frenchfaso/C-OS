@@ -1,0 +1,119 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.45s
+     Running unittests src/lib.rs (target/debug/deps/cos_tools-beb47215c345e449)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/cosasm.rs (target/debug/deps/cosasm-cb84f74a8f1f214e)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/cosbench.rs (target/debug/deps/cosbench-d112940fa879af35)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/cosdis.rs (target/debug/deps/cosdis-475c176fd4cee7c0)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/cosfixtures.rs (target/debug/deps/cosfixtures-9646d7210c062824)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/cospack.rs (target/debug/deps/cospack-1a9ad1e013fd92ee)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/cosrun.rs (target/debug/deps/cosrun-3b6b602e326d837b)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/harness.rs (target/debug/deps/harness-513120a11a3a5ed7)
+
+running 8 tests
+test bounded_fill_preserves_fuel_and_waiting_line_has_no_effect ... ok
+test empty_copy_does_not_dereference_both_pointers ... ok
+test memmove_matches_snapshot_for_both_overlap_directions_and_identity ... ok
+test equal_tokens_from_other_processes_or_incarnations_cannot_reassign_a_job ... ok
+test unavailable_services_report_explicit_errors_without_memory_effects ... ok
+test full_range_is_validated_before_progressive_job_effects ... ok
+test invocation_and_completion_are_exactly_once ... ok
+test sleep_uses_wrapping_monotonic_frames_and_only_real_wait_refills ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/semantics.rs (target/debug/deps/semantics-4bcb51c4b53b2d2b)
+
+running 30 tests
+test entry_state_matches_the_loader_abi_with_and_without_data ... ok
+test encoding_and_decoding_match_independent_known_bytes ... ok
+test fuel_three_preempts_and_resumes_a_loop_without_yield ... ok
+test invalid_syscall_result_is_rejected_atomically_while_valid_outputs_preserve_others ... ok
+test full_and_empty_stacks_fail_before_any_effect ... ok
+test call_checks_both_target_and_future_return_address_before_push ... ok
+test invalid_fallthrough_is_rejected_before_register_memory_or_stack_effects ... ok
+test integer_operations_have_explicit_fixed_width_results ... ok
+test nested_calls_save_24bit_return_addresses_and_restore_sp_exactly ... ok
+test arena_and_24bit_end_bounds_are_checked_without_partial_writes ... ok
+test each_integer_and_pointer_branch_selects_the_expected_pc ... ok
+test memory_waits_preserve_pc_fuel_registers_and_multiline_writes ... ok
+test multibyte_loads_and_stores_cross_64k_and_cache_line_boundaries ... ok
+test out_of_arena_pointers_remain_valid_values_until_dereferenced ... ok
+test pc_alignment_and_relative_branch_overflow_never_wrap ... ok
+test only_the_selected_branch_destination_must_be_valid ... ok
+test ret_validates_saved_target_before_changing_sp_or_pc ... ok
+test pointer_overflow_and_underflow_leave_registers_unchanged ... ok
+test pointer_construction_arithmetic_and_extraction_are_linear ... ok
+test returning_syscall_needs_resume_pc_but_terminal_instructions_do_not ... ok
+test push_pop_and_get_set_sp_follow_the_descending_packed_stack ... ok
+test step_one_and_run_preserve_a_split_store_until_all_lines_are_available ... ok
+test step_one_matches_run_for_pending_syscall_priority_and_completion ... ok
+test step_one_and_run_keep_faults_and_exits_terminal_after_refueling ... ok
+test valid_encodings_cover_every_defined_opcode ... ok
+test syscall_acceptance_and_completion_happen_exactly_once ... ok
+test suspended_load_pop_and_ret_publish_no_partial_results ... ok
+test step_one_retires_one_opcode_and_reaches_the_same_fuel_boundary_as_run ... ok
+test writes_into_code_are_rejected_but_reading_code_is_allowed ... ok
+test invalid_registers_shift_counts_and_reserved_fields_are_rejected ... ok
+
+test result: ok. 30 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+     Running tests/toolchain.rs (target/debug/deps/toolchain-b6c8dceccf1e3907)
+
+running 15 tests
+test independent_instruction_vectors ... ok
+test complete_opcode_table_is_the_normative_table ... ok
+test direct_linker_rejects_invalid_layout_without_panicking ... ok
+test assembler_errors_have_file_line_column ... ok
+test empty_pack_header_and_shared_reservation ... ok
+test malformed_operands_and_reserved_fields_are_rejected ... ok
+test assembly_relocations_have_independent_expected_linked_bytes ... ok
+test objects_reject_unknown_json_fields_and_malformed_relocations ... ok
+test repeated_numeric_signs_are_rejected_instead_of_silently_changed ... ok
+test arena_validation_rejects_overlaps_ids_alignment_and_profile ... ok
+test static_control_flow_overflow_and_alignment_are_rejected ... ok
+test serialized_manifest_bounds_are_revalidated ... ok
+test relative_relocation_range_and_addend_alignment_are_checked ... ok
+test complete_assembly_samples_link_deterministically ... ok
+test seed_capacity_is_bounded_and_bss_does_not_consume_it ... ok
+
+test result: ok. 15 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+   Doc-tests cos_tools
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s

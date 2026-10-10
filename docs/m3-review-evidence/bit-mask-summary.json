@@ -1,0 +1,10 @@
+{
+  "baseline_frames": 8938,
+  "experiment_frames": 8816,
+  "relative_speedup": 1.0138384754990926,
+  "target_speedup": 0.015481619610476234,
+  "unchanged_retired": 693194,
+  "native_runtime_identical": true,
+  "full_image_identical": true,
+  "scope": "Private review experiment; not applied to the delivered application"
+}

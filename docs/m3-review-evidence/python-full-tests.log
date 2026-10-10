@@ -1,0 +1,25 @@
+test_independent_pixel_machine_bytes (test_m0.AssembledContract.test_independent_pixel_machine_bytes) ... ok
+test_map_covers_64k_and_never_claims_io_as_ram (test_m0.AssembledContract.test_map_covers_64k_and_never_claims_io_as_ram) ... ok
+test_pack_and_bootstrap_safe_ranges (test_m0.AssembledContract.test_pack_and_bootstrap_safe_ranges) ... ok
+test_literal_geometry_edges_and_nibble_order (test_m0.PatternContract.test_literal_geometry_edges_and_nibble_order) ... ok
+test_publish_failure_restores_previous_complete_set (test_m0.PublicationContract.test_publish_failure_restores_previous_complete_set) ... ok
+test_cumulative_map_includes_all_caches_and_future_numeric_reserve (test_m2_artifacts.NativeBootArtifacts.test_cumulative_map_includes_all_caches_and_future_numeric_reserve) ... ok
+test_pairing_images_and_nonoverlapping_system_ranges (test_m2_artifacts.NativeBootArtifacts.test_pairing_images_and_nonoverlapping_system_ranges) ... ok
+test_overflow_fault_retains_the_fourth_address_byte (test_m2_compare.NativeSuspension.test_overflow_fault_retains_the_fourth_address_byte) ... ok
+test_wait_preserves_effects_fuel_and_pending_identity (test_m2_compare.NativeSuspension.test_wait_preserves_effects_fuel_and_pending_identity) ... ok
+test_clean_and_invalid_lines_cannot_mask_a_bad_physical_byte (test_m2_compare.NativeVisibility.test_clean_and_invalid_lines_cannot_mask_a_bad_physical_byte) ... ok
+test_duplicate_dirty_ownership_is_a_failure (test_m2_compare.NativeVisibility.test_duplicate_dirty_ownership_is_a_failure) ... ok
+test_two_dirty_lines_overlay_without_flushing_physical_memory (test_m2_compare.NativeVisibility.test_two_dirty_lines_overlay_without_flushing_physical_memory) ... ok
+test_bootstrap_and_resident_destinations_are_disjoint (test_m3_artifacts.NormalM3Artifacts.test_bootstrap_and_resident_destinations_are_disjoint) ... ok
+test_default_pixel_stream_retains_m0_geometry_and_cadence (test_m3_artifacts.NormalM3Artifacts.test_default_pixel_stream_retains_m0_geometry_and_cadence) ... ok
+test_normal_profile_preserves_numeric_and_future_fixed_reserves (test_m3_artifacts.NormalM3Artifacts.test_normal_profile_preserves_numeric_and_future_fixed_reserves) ... ok
+test_pack_and_descriptors_match_linked_apps (test_m3_artifacts.NormalM3Artifacts.test_pack_and_descriptors_match_linked_apps) ... ok
+test_both_origins_and_diagnostic_profiles (test_native_bounds.NativeBounds.test_both_origins_and_diagnostic_profiles) ... ok
+test_rejects_artifact_tampering (test_native_bounds.NativeBounds.test_rejects_artifact_tampering) ... ok
+test_rejects_new_unbounded_cycle (test_native_bounds.NativeBounds.test_rejects_new_unbounded_cycle) ... ok
+test_rejects_unrecognized_opcode (test_native_bounds.NativeBounds.test_rejects_unrecognized_opcode) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.314s
+
+OK

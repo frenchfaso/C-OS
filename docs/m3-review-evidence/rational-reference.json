@@ -1,0 +1,14 @@
+{
+  "oracle": "Exact rational coordinates, Q8.8 quantization after each product",
+  "pixels": 192,
+  "iterations": 964,
+  "sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+  "negative_nonintegral_cross_products": 170,
+  "truncation_changed_pixels": 2,
+  "checked": [
+    "cos-128.bin",
+    "cos-64.bin",
+    "native-128.bin",
+    "native-64.bin"
+  ]
+}
