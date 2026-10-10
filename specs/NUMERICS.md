@@ -1,6 +1,6 @@
 # Fractional numbers in C-Script
 
-Specification 0.1, revision 5 — October 10, 2026. Normative companion to [SPEC.md](SPEC.md) and [LANGUAGE.md](LANGUAGE.md). Initial numeric profile: `COS-NUM-1`.
+Specification 0.1, revision 7 — October 10, 2026. Normative companion to [SPEC.md](SPEC.md) and [LANGUAGE.md](LANGUAGE.md). Application ABI 2; unchanged numeric profile: `COS-NUM-1`.
 
 C-Script provides two fractional formats: **float24**, for compact data and calculations with a short significand, and **float32**, for greater precision. `float` is an alias for float32. The chosen type determines representation and rounding; the assembly backend must produce the same results as the host model. Any float24 speed advantage must be measured, including REU access and call overhead.
 
@@ -202,6 +202,6 @@ The benchmark reports +, −, ×, ÷, comparison, casts and text separately: lin
 
 ## 10 Deliverables
 
-M4a produces the compiler and calling ABI already specified. M4b adds both floats, NUM_OP, text helpers and the host/6510 corpus before full qualification. The manifest and every host object declare `numeric_profile="COS-NUM-1"`; the bundler rejects incompatible combinations. Initial ABI 1 remains the contract for a first implementation that has not yet shipped; future incompatible numeric changes require a new profile and corresponding verification.
+M4a produces the compiler and calling ABI already specified. M4b adds both floats, NUM_OP, text helpers and the host/6510 corpus before full qualification. The manifest and every host object declare `numeric_profile="COS-NUM-1"`; the bundler rejects incompatible combinations. Application ABI 2 adds bounded integer MULU/MULS but does not change this numeric profile, its service layout, float rounding or conversions. A later numeric backend may share a native multiplication algorithm only with its own complete timing/scratch proof; integer multiplication does not implement NUM_OP or replace its rounding rules. Future incompatible numeric changes require a new profile and corresponding verification.
 
 Delivery includes pinned sources, licenses, reproducible tests and size/timing reports. Numeric support is complete when both formats work in C-Script apps and under concurrent load, with published limits.

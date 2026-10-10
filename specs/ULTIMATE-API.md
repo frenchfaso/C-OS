@@ -1,6 +1,6 @@
 # Ultimate SDK and services for C-OS
 
-Specification 0.1, revision 5 — October 10, 2026. Normative companion to [SPEC.md](SPEC.md) and [LANGUAGE.md](LANGUAGE.md). Initial ABI 1; no previous implementation to migrate.
+Specification 0.1, revision 7 — October 10, 2026. Normative companion to [SPEC.md](SPEC.md) and [LANGUAGE.md](LANGUAGE.md). Current application ABI 2; SDK descriptors carrying an ABI field report 2. The integer ISA extension changes no service ID, descriptor layout or capability bit. Historical ABI 1 packs must be rebuilt, not silently relabeled.
 
 Apps must be able to use video, files and directories, storage, the clock, SID and Ultimate Audio with a small number of calls. The APIs hide UCI, device addresses, DMA, synchronization and firmware differences. Every operation respects kernel isolation and scheduling; the device is never assigned to an app as a directly writable I/O range.
 

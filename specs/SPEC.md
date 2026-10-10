@@ -1,9 +1,9 @@
 # C-OS Commodore OS
 ## Specification for the first implementation
 
-Version 0.1, revision 6 — October 10, 2026. Target: C64 Ultimate, PAL, nominal 64 MHz turbo, 16 MiB REU, 320×200 UPIC video.
+Version 0.1, revision 7 — October 10, 2026. Target: C64 Ultimate, PAL, nominal 64 MHz turbo, 16 MiB REU, 320×200 UPIC video.
 
-Initial numeric ABI version: 1, identical in the REU header, SYS_INFO, and SDK descriptors. Document versions and ABI versions use separate numbering.
+Application ABI version: **2**, identical in host objects/manifests, the REU header, entry R1, SYS_INFO, and SDK descriptors. The fractional numeric profile remains **COS-NUM-1**. Document revisions, application ABI versions and numeric profiles use separate numbering.
 
 C-OS is a small graphical operating system with a kernel and interpreter written in 6510 assembly. Applications execute bytecode and access the REU through linear 24-bit addresses. The kernel controls video, memory, input, and CPU time allocation; no application has to cooperate for the others to keep running.
 
@@ -15,7 +15,9 @@ This specification defines the behavior to implement. Values marked **initial** 
 
 For the development agent: start with section 22 and the milestone dependencies in §18. The tables in this document are normative for the ISA and core syscalls; ULTIMATE-API.md covers bindings, SDK records, events, and device services; NUMERICS.md covers numeric representation and semantics; LANGUAGE.md covers typing and the function ABI. Update cross-references together when changing a shared contract. This specification defines UI dimensions and behavior. Revision 5 adds preparation for optional native work in UPIC horizontal margins, disabled until timing qualification, without changing ABI 1, bytecode, or COS-NUM-1. See the [M2 implementation supplement](M2-UPIC-MARGINS.md).
 
-Revision 6 adds the [real-workload performance contract](PERFORMANCE.md) and an autonomous workload baseline to M3. The goal is greater than 1× native original-C64 throughput, with 2× or better as the stretch goal; neither is an achieved result. ABI 1, bytecode, numeric semantics, and the default-disabled UPIC margin policy remain unchanged.
+Revision 6 added the [real-workload performance contract](PERFORMANCE.md) and an autonomous workload baseline to M3 without changing ABI 1. Revision 7 adds the authorized [M3 performance step](M3-PERFORMANCE.md) before M4 and two bounded full-product integer multiply instructions. This ISA extension uses ABI 2; existing instruction encodings, syscall IDs, COS-NUM-1 and the default-disabled UPIC margin policy are unchanged. The goal remains greater than 1× native original-C64 throughput, with 2× or better as the stretch goal; these are targets, not achieved results.
+
+Rebuild applications and packs for ABI 2. The ABI 2 toolchain and kernel must reject ABI 1 objects/packs or mixed ABI inputs explicitly; a compatibility interpreter is not required. COSOBJ1, COSPACK1 and COSREU01 keep their existing container layout/magic and carry the new ABI field. Preserve historical ABI 1 sources, artifacts and benchmark receipts as historical evidence rather than relabeling them.
 
 ## 1 Decisions and scope
 
@@ -320,7 +322,7 @@ When an instruction continues, validate the actual next PC selected before apply
 
 ### 8.3 Initial instruction set
 
-All valid opcodes cost one fuel unit in version 0.1. Native operations are accounted for separately.
+All valid opcodes cost one fuel unit in version 0.1. Native service jobs are accounted for separately. MULU/MULS are bounded VM instructions, not jobs or syscalls; their complete execution cost belongs in the VM admission bound and per-owner VM timing/profile.
 
 | Hex | Instruction | Operands | Semantics |
 |---|---|---|---|
@@ -374,8 +376,14 @@ All valid opcodes cost one fuel unit in version 0.1. Native operations are accou
 | 36 | SYSCALL | b1=id | Invoke a kernel service |
 | 37 | YIELD | zero | Voluntarily end the slice |
 | 38 | TRAP | b1=0, u16 | Explicit application fault |
+| 39 | MULU | zero | Unsigned R0 × R1; full 32-bit result in R0=low16, R1=high16 |
+| 3A | MULS | zero | Signed R0 × R1; full two's-complement 32-bit result in R0=low16, R1=high16 |
 
-Multiplication, division, and 32-bit integer operations start as bytecode libraries. Do not add an opcode with arbitrarily long work to accelerate them. Floats use the NUM_OP service with bounded and accounted native work, as specified in NUMERICS.md; the ISA does not gain F registers or monolithic floating-point opcodes.
+MULU and MULS read both original 16-bit operands before publishing either result half. They preserve R2–R7, P0–P3 and SP, advance PC by four, and retire exactly once with one fuel credit. All b1/b2/b3 fields are zero; a nonzero field faults without multiplication effects. Every 16-bit input pair has an exact representable 32-bit product; there is no overflow error or rounding. Signed operands use two's complement, including -32768. For example, $FFFF × $FFFF produces $FFFE0001 under MULU and $00000001 under MULS; $8000 × $8000 under MULS produces $40000000.
+
+Validate the selected next PC, code availability and the complete execution-time bound before retirement. A fetch miss, exhausted fuel or insufficient video time publishes no partial result and consumes no additional credit on retry. The product commits as one architectural instruction. The finite native routine, its scratch and complete dispatcher/return path must fit a qualified ordinary execution window; a finite loop alone is not timing qualification. It cannot perform REU/device access, wait for external work or execute inside the active display. Scratch must not alias live guest registers or renderer state except the two specified result registers at commit. If the current window is too short, defer to a window that fits; no multiply-specific scheduler or persistent hardware call frame is introduced.
+
+Integer division and wider operations remain VM sequences or bytecode helpers. Such helpers may compose full-product MULU/MULS instructions; low-width wrapping multiplication retains the required low result bits. Do not add an opcode with arbitrarily long work. Floats continue to use NUM_OP with bounded and accounted native work, as specified in NUMERICS.md; the ISA gains neither F registers nor monolithic floating-point opcodes.
 
 ### 8.4 Stack and calls
 
@@ -862,7 +870,7 @@ The bundler input manifest may remain small. Example pack with a single app, usi
 ```json
 {
   "format": "COSPACK1",
-  "abi": 1,
+  "abi": 2,
   "numeric_profile": "COS-NUM-1",
   "target": "c64u-pal-upic320",
   "storage": { "mode": "discover", "directory": "cos", "marker": ".cos-volume" },
@@ -1036,6 +1044,7 @@ Report emulation and physical-device qualification separately. An unavailable de
 | M1 Host VM | ISA, assembler, disassembler, reference VM | Semantic tests and generation of minimal apps |
 | M2 6510 VM | Dispatcher, pointers, cache, stack, and disabled UPIC margin hook/contract | State comparison with the reference at boundaries and on misses; cumulative budget updated before expanding the SDK/UI; default renderer unchanged; margin activation not required |
 | M3 Scheduler | Fuel, PCBs, waits, bounded REU jobs, and autonomous workload measurement | Two loops without yield coexist with the raster; fairness and cancellation verified; a real workload has a validated output and native-C64 timing baseline |
+| M3-P Performance | Target profiling, ABI 2 full-product multiply, and measured VM/cache/scheduling optimizations | Reproducible equivalent-image comparison, complete bounds/budget and regression evidence; pursue >1× and state any remaining gap explicitly |
 | M4a C-Script | Host compiler, minimum library, calling ABI, and source map | Language examples and tests run on the VM; loops without yield remain preemptible |
 | M4b Fractional numbers | Float24/float32, NUM_OP, numeric/text conversions, and host model | Bit-exact corpus, scratch isolation, budget, and timing verified for both formats |
 | M5 Graphics and input | Primitives, surfaces, BLIT8, compositor, cursor, and events | Clipping, coherence, restoration, and input verified |
@@ -1044,7 +1053,7 @@ Report emulation and physical-device qualification separately. An unavailable de
 | M7 Desktop and apps | Style C, 32×32 grid, persistence, and C-Script examples | Complete interaction under concurrent load |
 | M8 MVP qualification | Stress tests, profiles, and reproducible documentation | Acceptance criteria measured, remaining limitations stated |
 
-The numbering identifies deliverables; it does not impose an artificial chain: M1 may proceed while M0 is being qualified; M2 integrates the host model and hardware constraints, then M3 verifies scheduling. After M3, M4a and the M5/M6a/M6b services may advance using small assembler test programs; M4a progressively adds bindings. M4b uses M4a/M3 but **does not block M5 or an initial desktop demo**. M7 gradually integrates these branches; M8 requires every deliverable, including both float types and the planned services. Avoid permissive stubs that make a missing service appear complete.
+The numbering identifies deliverables; it does not impose an artificial chain: M1 may proceed while M0 is being qualified; M2 integrates the host model and hardware constraints, then M3 verifies scheduling. The current development priority is M3-P before starting M4 or additional feature milestones. After the performance review, M4a and the M5/M6a/M6b services may advance using small assembler test programs; M4a progressively adds bindings. M4b uses M4a/M3 but **does not block M5 or an initial desktop demo**. M7 gradually integrates these branches; M8 requires every deliverable, including both float types and the planned services. Avoid permissive stubs that make a missing service appear complete.
 
 The [M2 UPIC supplement](M2-UPIC-MARGINS.md) narrows margin work to preparation of the disabled hook, handoff, and scratch contract. M3 owns integration with ordinary native-job fairness and accounting. Experimental or supported activation is a separate qualification under §§10.4 and 17.7, may follow when evidence is available, and is not required by M8. Do not split every service or numeric routine merely to fill horizontal margins.
 

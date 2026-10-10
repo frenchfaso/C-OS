@@ -2,6 +2,10 @@
 
 Specification 0.1, revision 5 — October 10, 2026. Implementation handoff for the existing M2 milestone. [SPEC.md](SPEC.md) §§9.3, 10.4, 17.7, and 18 are normative; this checklist does not replace the rest of M2 or change ABI 1/COS-NUM-1.
 
+Historical version note: this M2 handoff targeted ABI 1. SPEC revision 7 later
+introduces application ABI 2 for integer multiplication; the margin preparation,
+default-disabled policy and qualification requirements below remain unchanged.
+
 ## Deliver in M2
 
 - Prepare one optional native execution hook after the final pixel of a line, excluded from normal execution by a default-disabled build switch. Preserve baseline pixel cadence, geometry, phase, and synchronization when disabled.

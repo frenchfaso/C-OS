@@ -1,6 +1,7 @@
 # Real-workload performance contract
 
-October 10, 2026. Companion to SPEC.md revision 6. No ISA or application ABI change.
+October 10, 2026. Companion to SPEC.md revision 7. The measurement contract
+continues to apply to the frozen ABI 1 baseline and the ABI 2 performance work.
 
 ## Goal and scope
 
@@ -80,13 +81,15 @@ not the intended final utilization of all non-display time. Widen it only with
 revised opcode/service bounds, wrap-safe deadline admission and video evidence.
 Do not infer a safe budget from nominal 64 MHz alone.
 
-The current ISA lowers integer multiplication, division and 32-bit arithmetic
-to bytecode routines. Profile their contribution before making claims about
-Mandelbrot, ray tracing or 3D performance. A future general-purpose bounded
-native arithmetic primitive is a possible evidence-driven design change; it is
-not authorized as an undocumented ABI extension by this contract. Any adopted
-change must update shared specifications, host model, assembler/compiler and
-target tests together, preserving fuel, native accounting and preemption.
+The ABI 1 M3 baseline lowers multiplication to bytecode. ABI 2 now specifies
+general full-product MULU/MULS instructions in SPEC §8.3; integer division and
+remaining wide arithmetic continue as VM sequences or bytecode routines.
+Implement the specified operations consistently across host model, assembler,
+disassembler, kernel, pack/version checks and compiler lowering when available.
+Preserve fuel, fault atomicity and bounded execution. Profile actual target
+costs before attributing elapsed-time gains to arithmetic or making claims
+about Mandelbrot, ray tracing or 3D. No further implicit ISA extension is
+authorized merely by a benchmark result.
 
 Ordinary specified native services are part of C-OS and may be used, with their
 time and call counts reported. Do not add a Mandelbrot/ray-tracing/frame-render
@@ -98,3 +101,21 @@ it need not already reach 1× or 2×. If a target is missed, publish the result 
 the smallest justified next optimization. Preserve isolation, exact resumption,
 fairness, the memory budget and raster safety. Do not introduce a JIT, a second
 scheduler or alternate bytecode format merely to meet an unmeasured estimate.
+
+## Current priority: M3-P before M4
+
+The [independent M3 review](../docs/m3-review.md) reproduced only
+0.0152703x/0.0145787x native-C64 throughput on the 128/64-byte profiles. This is
+the starting measurement, not an expected ceiling. The user has authorized a
+focused optimization step, including general native multiplication, before M4.
+Follow [M3-PERFORMANCE.md](M3-PERFORMANCE.md) for profiling, safe optimization,
+ABI migration and delivery requirements. Keep the old result and its inputs;
+never overwrite it with a new build using the same evidence identity.
+
+Pursue greater than 1x through measured iterations, not just an instruction-rate
+improvement or the first faster run. Confirm a result above 1x with independent
+reruns and a larger equivalent workload. If the goal remains unmet, identify
+the measured residual costs and the next concrete architectural choice, then
+report the remaining gap for review before beginning feature work. Missing
+the goal never permits changing the image, precision, baseline, timing scope,
+preemption or active-video requirement to manufacture a pass.

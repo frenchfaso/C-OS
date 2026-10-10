@@ -1,6 +1,6 @@
 # C-Script: the C-OS userspace language
 
-Specification 0.1, revision 5 — 10 October 2026. Normative companion to [SPEC.md](SPEC.md). Project name: **C-Script**; source extension `.cos`.
+Specification 0.1, revision 7 — 10 October 2026. Normative companion to [SPEC.md](SPEC.md). Application ABI 2. Project name: **C-Script**; source extension `.cos`.
 
 The goal is the simplicity of a small BASIC, with functions, local variables, blocks, and syntax familiar to JavaScript or Lua users. C-Script is compiled on the development computer directly into C-OS bytecode. Only the assembly VM runs on the C64: no parser, language interpreter, JIT, or additional dynamic runtime.
 
@@ -133,7 +133,7 @@ str/bytes views and records have neither implicit equality nor arithmetic operat
 
 Integer arithmetic has fixed width, wrapping modulo 2^N for addition, subtraction, multiplication, and negation. Signed division truncates toward zero; the remainder has the dividend's sign. Division by zero causes a fault; MIN / -1 returns MIN for consistency with wrapping. Shifts accept only counts 0…N−1; otherwise, they fault. `>>` is arithmetic for signed types and logical for unsigned types.
 
-The compiler lowers multiplication/division and 32-bit operations to VM sequences or small bytecode routines. These routines consume fuel; no software multiplication may become an unbounded native job. The 16-bit case uses R directly where possible.
+For ABI 2, the compiler uses the bounded full-product MULU/MULS instructions from SPEC §8.3 when useful. It places both 16-bit inputs in R0/R1 and consumes the result pair there; all other R/P registers and SP are preserved by the instruction. Keep live R0/R1 values elsewhere before the multiply, with no permanent register reservation outside that operation. Retaining the low 8/16 bits implements the existing wrapping multiplication semantics; wider products may compose partial products and bytecode additions. Division and other 32-bit operations remain VM sequences or small bytecode routines. Every emitted instruction consumes fuel; no lowering may introduce an unbounded native job or change source-level signedness, wrapping, casts or rounding.
 
 This rule applies to integers. Float arithmetic uses NUM_OP, the bounded native service described in NUMERICS.md. Float24 and float32 support `+ - * /`, negation, and boolean comparisons; `%`, bitwise operators, and shifts remain integer-only. `1 / 2` is zero, `1.0 / 2.0` is 0.5. Mixed operations between the two float types produce float32; each operation rounds to its own result type. A literal with no fixed type next to a float24 operand adopts float24, avoiding unintended promotion.
 
@@ -410,7 +410,7 @@ cargo run --release --bin cosrun -- build/desktop.manifest.json --app counter
 
 These are delivery interfaces to implement, not commands that are already available. The Rust choice applies to host tooling; C-OS bytecode and the 6510 kernel retain their own contracts. Pin the toolchain and dependencies in build files to make outputs and tests reproducible.
 
-The first `.cobj` format may be host-only JSON: `format="COSOBJ1"`, ABI/compiler version, byte arrays for `code` and `data`, `bss_size`, section symbols, entry point, and relocations. No JSON parsing on the C64.
+The first `.cobj` format may be host-only JSON: `format="COSOBJ1"`, ABI/compiler version, byte arrays for `code` and `data`, `bss_size`, section symbols, entry point, and relocations. Current objects declare `abi=2`, matching the kernel and pack; reject old or mixed ABI inputs explicitly. The container layout is unchanged. No JSON parsing on the C64.
 
 Also include `numeric_profile="COS-NUM-1"`; the bundler checks that objects, constants, and kernel agree on the contract of both formats.
 
