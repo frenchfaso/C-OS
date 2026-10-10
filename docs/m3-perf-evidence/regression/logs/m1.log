@@ -1,0 +1,2 @@
+M1 pipeline passed: Linear=0xABCD, Calls=42 with restored SP, Spin=18 opcodes/9 increments.
+Repeated objects, linked image, manifest, constants and map are byte-identical.

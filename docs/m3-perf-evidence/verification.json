@@ -1,0 +1,81 @@
+{
+  "active_raster_reporting_vectors": 1648,
+  "all_commands_succeeded": true,
+  "all_external_inputs_and_host_binaries_unchanged": true,
+  "application_abi": 2,
+  "autonomous_packs": 6,
+  "benchmarks": {
+    "benchmark-larger-128": {
+      "conservative_lower": 1.4618940555624629,
+      "frames": 382,
+      "output_sha256": "83c6af3119bdd417f7429627c04198faa2732a05d03f65ce62cff704278cb69a",
+      "result_sha256": "1e53b8279c5e5b14eb257307f5ba9399cf1b79317850fd1c0024f93b93795bf9",
+      "speedup": 1.4657295269206263
+    },
+    "benchmark-larger-64": {
+      "conservative_lower": 0.5378534325460358,
+      "frames": 1040,
+      "output_sha256": "83c6af3119bdd417f7429627c04198faa2732a05d03f65ce62cff704278cb69a",
+      "result_sha256": "23c622d566a3c7cd43c900e06208bfe5b738883f8bfd57d4885bd596a9e8b3fa",
+      "speedup": 0.5383737300804609
+    },
+    "benchmark-primary-128": {
+      "conservative_lower": 1.421694817528151,
+      "frames": 95,
+      "output_sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+      "result_sha256": "26180bcf99d0d8accb9a7a75a6748926a3e8778d6528dfd37862fe40e15f6fa9",
+      "speedup": 1.4366942998521945
+    },
+    "benchmark-primary-128-repeat": {
+      "conservative_lower": 1.421694817528151,
+      "frames": 95,
+      "output_sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+      "result_sha256": "9f9683c3e1aa86e3507fbd7118476d6a2455c44f74933fd96f21f479ce538eb8",
+      "speedup": 1.4366942998521945
+    },
+    "benchmark-primary-64": {
+      "conservative_lower": 0.5290027228011724,
+      "frames": 257,
+      "output_sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+      "result_sha256": "2f63aad6f6b8db135a18b29814ba9fb7a356a1d5ceb29fc572aa79b2d9dfbf36",
+      "speedup": 0.531073768427854
+    },
+    "benchmark-primary-64-repeat": {
+      "conservative_lower": 0.5290027228011724,
+      "frames": 257,
+      "output_sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+      "result_sha256": "257d3dc88f6c911c7a35a6df9285d54a4fb5246edc46887e09682ad39530246d",
+      "speedup": 0.531073768427854
+    }
+  },
+  "coherent_admission_vectors": 3296,
+  "complete_regression_commands": 50,
+  "complete_regression_sha256": "97d3f1f30114ca3e082a969e286fc69e50fc5936d26383f179ea77ab9281cd8b",
+  "completed_at": "2026-10-10T18:13:32.932747+00:00",
+  "current_and_staged_sources_match": true,
+  "current_pc_invariant_paired_cases": 148,
+  "format": "COSM3PERFDELIVERY1",
+  "host_tests": 62,
+  "m4_started": false,
+  "native_differential_cases_per_profile": 654,
+  "native_m3_assertions": 252,
+  "normal_and_regression_native_images_identical": {
+    "128": "50cae5a9d3d495d056c064cbee9fdae9780c611660dbb942a39c96ecbf075171",
+    "64": "6e24d4672a168f983060343ab1a2a8f28d660dca26ef1a57b7e6a288f316f0ea"
+  },
+  "numeric_reserve_bytes": 4096,
+  "physical_rollback_scenarios": 512,
+  "preserved_abi1_canonical_artifact_files": 16,
+  "preserved_abi1_delivery_files": 43,
+  "preserved_abi1_delivery_inventory_sha256": "a98e3da87c4497b550b37aadd266ecf7fd0d30a529127527fd51ea64df80ced0",
+  "preserved_abi1_review_files": 26,
+  "preserved_abi1_review_verification_sha256": "c70896f7c6c4c713872e792c613e1cd71ecfcac28fb9787b20e8b7c52f2e3309",
+  "qualification": "Functional and conditional timing emulation; physical Ultimate timing pending.",
+  "resident_bytes": 7525,
+  "resident_headroom_bytes": 155,
+  "source_files": 95,
+  "source_inventory_sha256": "6cc2533e45c5c99d0c566d1d541d59b13c2ea33c293709fc1704b4987c7184f7",
+  "status": "pass",
+  "two_times_stretch_met": false,
+  "unchanged_primary_native_source_sha256": "db97bb32af94906134b4c327cb83458d92f3fe6372712df6336ec5c07205b4d8"
+}

@@ -1,0 +1,6 @@
+; This loop never yields and relies exclusively on dispatcher fuel.
+.entry loop
+.code
+loop:
+    ADDI R2, 1
+    JMP loop

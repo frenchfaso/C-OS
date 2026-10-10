@@ -1,0 +1,117 @@
+{
+  "format": "COSM1RESULT1",
+  "qualification": "Host semantic verification only",
+  "artifact_sha256": {
+    "linear.cobj": "d7317b9ef36347865c346dc01dd9c0de8608630dc7420216e3847d1d6a97d740",
+    "calls.cobj": "cb75e19219531322e09707b48c9127cdc1e43a32b6a96c8fa1d4340858bae66b",
+    "spin.cobj": "c7db2504be170e9198cdb8a71541f570f2ea8906964d868b2afa29a55029870e",
+    "m1.reu": "b512d28c3099cf579eeddfe7f91495b75b59ab06d0177c93a193ee073439673b",
+    "m1.manifest.json": "4f5c7c92cc76f36d968f9f7deb5d87eefdca01d00f3bb2914a68315b10079119",
+    "m1.asm": "b2e4f193a70910c7c859df7957109bf578ad0f61f1a792c08db2f74f73bf8eab",
+    "m1.map.txt": "e6eaac6f25eca49846826f7e9eab7c904eaacb42ed36892b4a112d2e9adb9990"
+  },
+  "reproducible": true,
+  "programs": {
+    "Linear": {
+      "app": "Linear",
+      "build_tag": 475400773,
+      "context": {
+        "fuel": 1,
+        "p": [
+          262272,
+          327679,
+          262272,
+          393215
+        ],
+        "pc": 262172,
+        "r": [
+          0,
+          1,
+          43981,
+          43981,
+          4,
+          0,
+          0,
+          0
+        ],
+        "retired": 8,
+        "sp": 393215
+      },
+      "model_frames": 0,
+      "native_chunks": 0,
+      "outcome": {
+        "Stopped": {
+          "code": 0
+        }
+      },
+      "pid": 1,
+      "syscalls": 1
+    },
+    "Calls": {
+      "app": "Calls",
+      "build_tag": 475400773,
+      "context": {
+        "fuel": 1,
+        "p": [
+          397311,
+          397311,
+          0,
+          397311
+        ],
+        "pc": 393240,
+        "r": [
+          0,
+          1,
+          42,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "retired": 14,
+        "sp": 397311
+      },
+      "model_frames": 0,
+      "native_chunks": 0,
+      "outcome": {
+        "Stopped": {
+          "code": 0
+        }
+      },
+      "pid": 2,
+      "syscalls": 1
+    },
+    "Spin": {
+      "app": "Spin",
+      "build_tag": 475400773,
+      "context": {
+        "fuel": 3,
+        "p": [
+          397440,
+          400383,
+          0,
+          401407
+        ],
+        "pc": 397312,
+        "r": [
+          3,
+          1,
+          9,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "retired": 18,
+        "sp": 401407
+      },
+      "model_frames": 0,
+      "native_chunks": 0,
+      "outcome": "SliceLimit",
+      "pid": 3,
+      "syscalls": 0
+    }
+  }
+}

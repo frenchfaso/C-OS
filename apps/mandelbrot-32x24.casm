@@ -1,0 +1,81 @@
+; Autonomous fixed-point Mandelbrot: 32x24, step32, limit16, signed Q8.8.
+; Same viewport extents, escape order and floor rounding as the primary image.
+; General MULS preserves R2..R7: cx,yy,zx,zy,count,xx stay in registers.
+; Row-constant cy lives in unused P3; PGETLO captures its wrapping low16.
+; P3 is never dereferenced. Real SP and timestamp scratch P2 remain unchanged.
+; Output: one iteration-count byte per pixel at the initial heap address P0.
+.const WIDTH = 32
+.const HEIGHT = 24
+.const STEP = 32
+.const LIMIT = 16
+.const CX_END = 512 ; -512 + WIDTH*STEP
+.const CY_END = 384 ; -384 + HEIGHT*STEP
+.entry start
+.code
+start:
+    SYSCALL 2
+    ST16 R1, P2, 20
+    ST16 R2, P2, 22
+    PLI3 65152
+next_row:
+    LDI R2, 65024
+next_pixel:
+    LDI R0, 0
+    LDI R4, 0
+    LDI R5, 0
+    LDI R6, 0
+iterate:
+    ; R0 retains zx from the preceding update (zero at pixel start).
+    MOV R1, R4
+    MULS
+    SHR R0, 8
+    SHL R1, 8
+    OR R0, R1
+    MOV R7, R0
+    MOV R0, R5
+    MOV R1, R5
+    MULS
+    SHR R0, 8
+    SHL R1, 8
+    OR R0, R1
+    MOV R3, R0
+    ADD R0, R7
+    LDI R1, 1024
+    BGEU R0, R1, write_pixel
+    MOV R0, R4
+    MOV R1, R5
+    MULS
+    SHR R0, 8
+    SHL R1, 8
+    OR R0, R1
+    SHL R0, 1
+    PGETLO R1, P3
+    ADD R0, R1
+    MOV R5, R0
+    MOV R0, R7
+    SUB R0, R3
+    ADD R0, R2
+    MOV R4, R0
+    ADDI R6, 1
+    LDI R1, LIMIT
+    BLTU R6, R1, iterate
+write_pixel:
+    ST8 R6, P0, 0
+    LDI R0, 1
+    PADD P0, R0
+    ADDI R2, STEP
+    LDI R0, CX_END
+    BNE R2, R0, next_pixel
+    LDI R0, STEP
+    PADD P3, R0
+    PGETLO R0, P3
+    LDI R1, CY_END
+    BNE R0, R1, next_row
+    SYSCALL 2
+    ST16 R1, P2, 24
+    ST16 R2, P2, 26
+    LDI R0, 0
+    SYSCALL 0
+.data
+scratch:
+    .space 28

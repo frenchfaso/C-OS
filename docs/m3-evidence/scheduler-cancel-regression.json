@@ -1,0 +1,92 @@
+{
+  "format": "COSM3CANCELREGRESSION1",
+  "regression": "Cancelling the single driver requester releases unrelated WAIT_REU owners before removing the cancelled owner.",
+  "construction": "The independent native harness creates a real pending code fetch through cache_fetch_code, places owners0 and1 in WAIT_REU, then calls scheduler_cancel_current for owner0. Owner1 must rejoin the queue with fuel9 and refill0.",
+  "before": {
+    "report_hex": "4d 53 33 01 01 76 00 01 00 00 00 00 00 00 00 00",
+    "passing_assertions_before_failure": 118,
+    "failures": 1,
+    "failed_comparison": {
+      "observed": 0,
+      "expected": 1
+    },
+    "pending_driver_phase": 0,
+    "ready_count": 0,
+    "unrelated_owner1_state": 2,
+    "unrelated_owner1_fuel": 9,
+    "unrelated_owner1_refill": 0,
+    "scheduler_sha256": "5d108a2ff7730f9c99a064b26754a96d608e4b081e9d49e34e0c5a428a21e8df",
+    "prg_sha256": "3925277697ca6c141da833a02ff9d35de33c03dda900d464d30d1f1ef2aa9ea2",
+    "assembled_source_sha256": "b3cf1a284087d6e028d04c98e50bc7830da34d99a6b52ef64c46eaea775aa149",
+    "source_sha256": {
+      "build_profile.inc": "ff649ca477cbbc21981b2bdd2b3f0da84a72b399a149d8d32203bc0c85a6bed2",
+      "cache.asm": "e9ba035f3dd210b47dbf9f392de1425b2ececce4096356dda9c28d19c1488fa5",
+      "jobs.asm": "aa3e4fc5117971f53ec661304371c1e88d9da0588fac2b536c6dbafffab7b5b9",
+      "m2_abi.inc": "167f98fca6ae969293157bdd5a32b659731c75de6384662fe85e5a977ed7bdc4",
+      "m3_scheduler.asm": "347f5926dfe5c78207dd3d1680bda23055024cf4e5ebb6efad996c902181750c",
+      "scheduler.asm": "5d108a2ff7730f9c99a064b26754a96d608e4b081e9d49e34e0c5a428a21e8df",
+      "scheduler.inc": "926c09b70cdebda487f5d311e24e33cfa113736f01d7ebb54ed200736c703e19",
+      "vm.asm": "00779a3148f27b21818763402559af8fc86ea53787e772b5284a3f171bf4abf4"
+    },
+    "precise_failed_case": "SCHED_COUNT must be1 after cancelling owner0 real pending code fetch while owner1 waits behind the same driver; actual0 strands owner1 in WAIT_REU."
+  },
+  "after": [
+    {
+      "format": "COSM3SCHEDULER1",
+      "native_assertions": 126,
+      "failures": 0,
+      "cache_line_bytes": 64,
+      "autonomous": true,
+      "host_opcode_commands": 0,
+      "qualification": "Native contract emulation; raster integration tested separately",
+      "backend_executable_sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+      "assembler_sha256": "9592a39336e73a1db8b4a7749256d62d29b113b1c7f0f6c86ea43870ebd9ae1f",
+      "source_sha256": "cdd6693dcbc7351e22f5c656ffe7c5a99b1f50f04a68320e7744e7d24ed4b79a",
+      "prg_sha256": "e34e3e05b8cf59e79524d0ce21dedd81b3c973bea0ccddb1a7df5becf76476d9",
+      "scheduler_bytes": 1267,
+      "jobs_bytes": 1395,
+      "ready_count": 1,
+      "ready_head": 1,
+      "unrelated_owner1_state": 1,
+      "unrelated_owner1_fuel": 9,
+      "unrelated_owner1_refill": 0
+    },
+    {
+      "format": "COSM3SCHEDULER1",
+      "native_assertions": 126,
+      "failures": 0,
+      "cache_line_bytes": 128,
+      "autonomous": true,
+      "host_opcode_commands": 0,
+      "qualification": "Native contract emulation; raster integration tested separately",
+      "backend_executable_sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+      "assembler_sha256": "9592a39336e73a1db8b4a7749256d62d29b113b1c7f0f6c86ea43870ebd9ae1f",
+      "source_sha256": "cdd6693dcbc7351e22f5c656ffe7c5a99b1f50f04a68320e7744e7d24ed4b79a",
+      "prg_sha256": "1d11ca34da87d960de46bb10bfa81e42f8be7e431927b7ae79c71b2953575ae3",
+      "scheduler_bytes": 1267,
+      "jobs_bytes": 1395,
+      "ready_count": 1,
+      "ready_head": 1,
+      "unrelated_owner1_state": 1,
+      "unrelated_owner1_fuel": 9,
+      "unrelated_owner1_refill": 0
+    }
+  ],
+  "fix": "After cache_invalidate_owner, call scheduler_wake_reu only if cache_pending_phase is zero; then remove the cancelled owner from the queue.",
+  "fix_bytes": 8,
+  "normal_stack_static_bound": 18,
+  "with_one_irq_and_nmi_static_bound": 30,
+  "qualification": "Native functional emulation. Final autonomous/NMI target results are bound separately to retagged artifacts.",
+  "fixture_sha256": "347f5926dfe5c78207dd3d1680bda23055024cf4e5ebb6efad996c902181750c",
+  "current_core_sha256": {
+    "scheduler.asm": "d13b7b63b437c218167111065c7c2c86634d6b01d9d3649c5ca857acd58358cc",
+    "scheduler.inc": "926c09b70cdebda487f5d311e24e33cfa113736f01d7ebb54ed200736c703e19",
+    "jobs.asm": "aa3e4fc5117971f53ec661304371c1e88d9da0588fac2b536c6dbafffab7b5b9",
+    "vm.asm": "00779a3148f27b21818763402559af8fc86ea53787e772b5284a3f171bf4abf4",
+    "cache.asm": "e9ba035f3dd210b47dbf9f392de1425b2ececce4096356dda9c28d19c1488fa5",
+    "m2_abi.inc": "167f98fca6ae969293157bdd5a32b659731c75de6384662fe85e5a977ed7bdc4",
+    "build_profile.inc": "ff649ca477cbbc21981b2bdd2b3f0da84a72b399a149d8d32203bc0c85a6bed2"
+  },
+  "negative_control_reconstruction": "For an exact old-source replay, remove the following inserted block once from current scheduler.asm, retain the same126-assertion fixture, assemble with extendedDiagnostics=1/cacheLine=128, and execute the standalone native contract.",
+  "inserted_block": "    // Revoking the requester/victim can release the single driver directly.\n    // Other owners waiting behind it must not depend on a future service call.\n    lda cache_pending_phase\n    bne !+\n    jsr scheduler_wake_reu\n!:\n"
+}

@@ -1,0 +1,119 @@
+{
+  "format": "COSM3PUBLISHED1",
+  "status": "pass",
+  "qualification": "Complete functional emulation; physical Ultimate timing pending",
+  "execution_entry_sha256": "8f20f4e0282fac8f4a347cf994437b68957334a35830fce9f70a5c0cb49ea3cc",
+  "complete_result_sha256": "ed556d2cd6dcecc643f91127a93b71b1d5d4addab4d6357a97bad8bba05ef142",
+  "evidence_sha256": {
+    "README.md": "2c41aee3a320da531ef6101d97c9a0786ee66b331f46b8b7f3c5c3426e089113",
+    "autonomous-128.json": "d3b9195b382f6b44666a2593959a40cbe003d20b6bc818b535c96119f95dcfee",
+    "autonomous-64.json": "16ec54d4250674c0a993a48ef8e2b97df2ba3b160b58eae144e8708307f974c8",
+    "baseline-128.bin": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+    "baseline-64.bin": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+    "baseline-protocol-128.log": "48a867753ba3338bdb00b6a8e1bb9869770251f1043fb34b8587a560c8c7058f",
+    "baseline-protocol-64.log": "855696213c51d891c00e5a819c20fd00dd8dbdbf0760701aaf76257c29b63946",
+    "benchmark-128.bin": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+    "benchmark-128.json": "58919fa8489476919a04f523b7dbaa409836d9a1cbd17d863de361e5824052e8",
+    "benchmark-64.bin": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+    "benchmark-64.json": "a57554e6dc09aad334c96444cd27204d03fa566a9e19fb91a9a81221382e2725",
+    "benchmark-protocol-128.log": "59bfb997af22ea821f96ab1697eed60bd4f5d791a801a70c57b7ca4ca9ce6417",
+    "benchmark-protocol-64.log": "6e179fb3e2ffec0085897c13886c29b1c4c5498500d7b12605ab86f08cc63627",
+    "benchmark-scanout-128.png": "70cefe5734301e9fd1c7c80055b428be57bc32435beedc5119bb7aab70977dfb",
+    "benchmark-scanout-64.png": "70cefe5734301e9fd1c7c80055b428be57bc32435beedc5119bb7aab70977dfb",
+    "cache-bounds-128-extended-m2.json": "329d562dca246c1bd154514c162acf4c70c401304c00a608e6f0165b5c7ee860",
+    "cache-bounds-128-normal.json": "2242e0eee9a884a3c164c4f03e24e89a2ae510c2f7202f6dd2ce5cb36a787d91",
+    "cache-bounds-64-extended-m2.json": "092cf85cf75335a6ecaf0df125e71165878bfd64d90c2de32acb29bfd5974838",
+    "cache-bounds-64-normal.json": "1dc1af2d0299a79b25afba080f912d95fb62c9c6911df74fe36a120afe1038b4",
+    "cache-lifecycle-128.json": "11878da2a5295c6236ae7ff675f0c8ff1150b9b6264569c43de1951c4fbca066",
+    "cache-lifecycle-64.json": "58a8b9377620ff9f0092eeb02a744bd247ed109525f8d7f9be7c3d1974285bc1",
+    "cache-rollback-128-extended.json": "cf5907e4551b97742295d6d446ac7c48b3573f10fda1e4cc458065f28cd8558f",
+    "cache-rollback-128-normal.json": "65f2400335e8ee88973eaf8f37aaa93e1c0d1ba0ae2798c28ae336fc6b8ea5b0",
+    "cache-rollback-64-extended.json": "d16228bf5f383d0ffdec80ac5d60e512db481f2968bc7635fa218b439b8a02c9",
+    "cache-rollback-64-normal.json": "41be4351ff3b2f176f4ac7e5c3c7135b64279daa0d726b7cfe01c717c242cd2b",
+    "cache-rollback-baseline-128-extended.json": "2190e4ec1a88a5f66966a2e576e071bf21bf1b709eb91744ddaf6959a2e2e3c3",
+    "cache-verification.json": "78e4b902eaf0220ed08bc7f2c4fda5e4b4728774200472e3136876c6268bb880",
+    "host-profile.json": "2aef7521b23b25e3ed9ea05a9e840bc04d1d41a7483cb1ca1344feed4ff54aef",
+    "m0-m2-complete-check.log": "ffcfba7e1e848a8d57b95e426ef04217e174bfbd45990700076c599d253e2208",
+    "m3-complete-check.log": "e6e79800fe519667d1a409ce8fca1c7d8e5e296169cc1715ced345bfe4123902",
+    "manifest-128.json": "dcde82a9ab448c1449d0b2b56b92102afe9ca84d5f31da19123475a63a9aeaf9",
+    "manifest-64.json": "8e95db8a45341c2009409474fb0d306c3e9c688781437894ff2752051c77b217",
+    "map-128.json": "f930d60416501548861c16cfddb246bd8fb1de05033e73bd2e14a57a3417ea6a",
+    "map-128.txt": "c016f9008fac8537e059d4675683796ac3d07c9eff73837eb13dc499d114c0d2",
+    "map-64.json": "17dc23d152c58b41f2a66e66eecbb41a99c48155e41b875ab8c4251bd2ffe299",
+    "map-64.txt": "e710e0df2e1bfc635ab960390cb38781dbd327e481c10257707ec260f13fbc37",
+    "native-contract-128.json": "340725857d9a7d3ad4302399ca670cc32e0b92fea76a67eccb030e3247cd35ff",
+    "native-contract-64.json": "1d6195f74cbd90174960ab56c22c8e233070e3adceddcfdec621b0d093389531",
+    "reference.bin": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+    "reference.json": "b72aba778bf29e19ee1aff59f0c2b4ebd1a555258b2423d888a7420aea356852",
+    "reproducibility.json": "e5da2d6f4ab7b4aa682eeff1b7346ecd1efaf27752694d1b4fc6aea1e5054475",
+    "scheduler-cancel-regression.json": "33c50064ae76ca49ec6fb92b81cb0c20dc98ca59f3705f13dcd3de97ad0fc145",
+    "verification.json": "ed556d2cd6dcecc643f91127a93b71b1d5d4addab4d6357a97bad8bba05ef142"
+  },
+  "external_inputs": {
+    "emulator": {
+      "path": "/Users/frenchfaso/Documents/Code/C64/UE2-C64U-Emulator/target/release/ue2emu",
+      "sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225"
+    },
+    "config": {
+      "path": "/Users/frenchfaso/Documents/Code/C64/runtime/c64u.toml",
+      "sha256": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048"
+    },
+    "flash": {
+      "path": "/Users/frenchfaso/Documents/Code/C64/runtime/flash.bin",
+      "sha256": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be"
+    },
+    "settings": {
+      "path": "/Users/frenchfaso/Documents/Code/C64/runtime/ultimate.cfg",
+      "sha256": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961"
+    },
+    "kickass": {
+      "path": "/Users/frenchfaso/Documents/Code/C64/toolchain/kickassembler/KickAss.jar",
+      "sha256": "9592a39336e73a1db8b4a7749256d62d29b113b1c7f0f6c86ea43870ebd9ae1f"
+    },
+    "java": {
+      "path": "/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java",
+      "sha256": "83c9c5310d044e7c4262432854eb1bc5f49763d7c1e9971777a646c91b96c06d"
+    }
+  },
+  "reused_m2_evidence": {
+    "path": "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m2-results.json",
+    "sha256": "5df1ede5e24c3a221b7524e6a12593eb967fea3d866e61b7cd66a0fae327ba47",
+    "reason": "M3 scheduler-only correction; all M2 pack inputs and artifacts revalidated"
+  },
+  "source_files_unchanged": 73,
+  "canonical_artifacts": [
+    {
+      "cache_line": 128,
+      "artifact_sha256": {
+        "m3.prg": "94f6755f29c69e54615de1c7bf918241ace60244a5735ecfeaa5345eedc467a8",
+        "m3.reu": "47839f69275efa588e3ba98b168a121cd1a2600988a210e46cda1b93f14884a9",
+        "m3.manifest.json": "dcde82a9ab448c1449d0b2b56b92102afe9ca84d5f31da19123475a63a9aeaf9",
+        "native.bin": "d806ab584547ef2568f6f43c8b88c5c42e4676bf3bf060089770331eb5c0a136",
+        "renderer.prg": "5858b9691af7965b54c4f0ca5e96a314c2105293c291f91c72dd8246ad02adb2",
+        "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+        "map.json": "f930d60416501548861c16cfddb246bd8fb1de05033e73bd2e14a57a3417ea6a",
+        "map.txt": "c016f9008fac8537e059d4675683796ac3d07c9eff73837eb13dc499d114c0d2"
+      }
+    },
+    {
+      "cache_line": 64,
+      "artifact_sha256": {
+        "m3.prg": "fb2fe2f2df18bce3e57d2cd5bfb08f6378a783f5c163d31472a228a44faecb4d",
+        "m3.reu": "5bba7654eb9ba25a81910a664e3396a3e4e2b30f7c242b6bbf50035b57c321b7",
+        "m3.manifest.json": "8e95db8a45341c2009409474fb0d306c3e9c688781437894ff2752051c77b217",
+        "native.bin": "ae020a109dc76479d388fd60e81021158c919c50022a15e53c349fbe486e5324",
+        "renderer.prg": "5858b9691af7965b54c4f0ca5e96a314c2105293c291f91c72dd8246ad02adb2",
+        "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+        "map.json": "17dc23d152c58b41f2a66e66eecbb41a99c48155e41b875ab8c4251bd2ffe299",
+        "map.txt": "e710e0df2e1bfc635ab960390cb38781dbd327e481c10257707ec260f13fbc37"
+      }
+    }
+  ],
+  "scope": "Complete M3 functional emulation, with bound current M0\u2013M2 receipt; no physical qualification or >=1x throughput claim",
+  "documents_sha256": {
+    "README.md": "940099e4af8db1126aaae30b520171b00a124d3c9fd29745e967979841b6e514",
+    "docs/m3.md": "d581af5546457973aa144d0bb76c9fdb5e9fbb2605274aeae0aa83f3ad3d7974",
+    "docs/m3-memory.md": "1969ca905875221306b6d23f955ed2ffb8af82bdb7b9ee7ec77c66b848d22315",
+    "docs/m3-scheduler.md": "a23f9a3f64aa0f82c4a6ce20f9ee38e20458167fdd9e06dd28d48800993c541c"
+  }
+}

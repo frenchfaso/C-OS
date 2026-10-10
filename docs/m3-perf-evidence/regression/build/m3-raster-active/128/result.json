@@ -1,0 +1,164 @@
+{
+  "format": "COSM3RASTERACTIVE1",
+  "status": "pass",
+  "failures": 0,
+  "stable_pal_lines": 312,
+  "torn_high_bit_vectors": 512,
+  "native_cases": 824,
+  "active_interval": {
+    "first_line": 60,
+    "last_line": 259
+  },
+  "torn_zero_to_high_active": true,
+  "torn_high_to_zero_inactive": true,
+  "x_y_preserved": true,
+  "hardware_stack_unwound": true,
+  "a_and_noncarry_flags": "scratch",
+  "native_image_sha256": "50cae5a9d3d495d056c064cbee9fdae9780c611660dbb942a39c96ecbf075171",
+  "map_sha256": "f6fba5e786be780a74603e827223cdabd9642ec231f90091c3430a84930c9baa",
+  "input_vectors_sha256": "90f7abe9cc8307f9e0c82802f31ef5ebf39cfe7dad2a75549bffd21f07db0bfe",
+  "actual_results_sha256": "958880257da7066679bf5acbd20ecccd0bbe1b7bd03d0e171e732f74cb727717",
+  "original_classifier_sha256": "fc0cfedb2361b68d2e7d5baed9fce5b6cd23a2a75bde933ab31a844f84a706a1",
+  "original_classifier": [
+    44,
+    17,
+    208,
+    48,
+    14,
+    173,
+    18,
+    208,
+    201,
+    60,
+    44,
+    17,
+    208,
+    48,
+    18,
+    144,
+    14,
+    56,
+    96,
+    173,
+    18,
+    208,
+    201,
+    4,
+    44,
+    17,
+    208,
+    16,
+    2,
+    144,
+    2,
+    24,
+    96,
+    56,
+    96
+  ],
+  "fixture_classifier": [
+    44,
+    0,
+    3,
+    48,
+    14,
+    173,
+    1,
+    3,
+    201,
+    60,
+    44,
+    2,
+    3,
+    48,
+    18,
+    144,
+    14,
+    56,
+    96,
+    173,
+    1,
+    3,
+    201,
+    4,
+    44,
+    2,
+    3,
+    16,
+    2,
+    144,
+    2,
+    24,
+    96,
+    56,
+    96
+  ],
+  "mapped_io_operands": [
+    {
+      "offset": 1,
+      "original_operand": [
+        17,
+        208
+      ],
+      "fixture_operand": [
+        0,
+        3
+      ]
+    },
+    {
+      "offset": 6,
+      "original_operand": [
+        18,
+        208
+      ],
+      "fixture_operand": [
+        1,
+        3
+      ]
+    },
+    {
+      "offset": 11,
+      "original_operand": [
+        17,
+        208
+      ],
+      "fixture_operand": [
+        2,
+        3
+      ]
+    },
+    {
+      "offset": 20,
+      "original_operand": [
+        18,
+        208
+      ],
+      "fixture_operand": [
+        1,
+        3
+      ]
+    },
+    {
+      "offset": 25,
+      "original_operand": [
+        17,
+        208
+      ],
+      "fixture_operand": [
+        2,
+        3
+      ]
+    }
+  ],
+  "only_modified_fields": "Absolute I/O operands mapped to fixture RAM",
+  "original_opcodes_and_branch_displacements_retained": true,
+  "prg_sha256": "9eda7df6948170258cc224c1bcf8a0276b59dc5031faf969b1b46d8563cfbadc",
+  "supplied_input_sha256": {
+    "emulator": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+    "config": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+    "flash": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be",
+    "settings": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961"
+  },
+  "runner_sha256": "c57a79eb54d6f360c63e9bcd4b23b075325259dade6974163fdefc8c61e9d8c4",
+  "qualification": "Assembled native branch behavior with scripted stable/torn inputs; live timing and any live event require separate evidence"
+}

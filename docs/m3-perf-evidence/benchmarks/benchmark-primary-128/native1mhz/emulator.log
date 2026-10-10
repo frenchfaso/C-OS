@@ -1,0 +1,201 @@
+config: loaded /Users/frenchfaso/Documents/Code/C64/runtime/c64u.toml (7 keys)
+c64-roms: KERNAL: /flash/roms/kernal.bin (the name C64 and Cartridge Settings selects): already holds /Users/frenchfaso/Documents/Code/C64/runtime/roms/kernal.901227-03.bin; unchanged
+c64-roms: BASIC: /flash/roms/basic.bin (the name C64 and Cartridge Settings selects): already holds /Users/frenchfaso/Documents/Code/C64/runtime/roms/basic.901226-01.bin; unchanged
+c64-roms: CHAR: /flash/roms/characters.bin (the name C64 and Cartridge Settings selects): already holds /Users/frenchfaso/Documents/Code/C64/runtime/roms/characters.901225-01.bin; unchanged
+c64-roms: flash image /Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final-candidate/benchmark-primary-128/native1mhz/isolated-flash.bin unchanged
+c64: cartridge ROM at 0x00f00000, 1 MB (firmware before 3.15)
+settings: [C64 and Cartridge Settings] Kernal ROM=kernal.bin
+settings: [C64 and Cartridge Settings] Basic ROM=basic.bin
+settings: [C64 and Cartridge Settings] Char ROM=characters.bin
+settings: [C64 and Cartridge Settings] REU Size=16 MB
+settings: [C64 and Cartridge Settings] Command Interface=Enabled
+settings: [U64 Specific Settings] Turbo Control=C64U Turbo Registers
+settings: [U64 Specific Settings] CPU Speed=64
+settings: [U64 Specific Settings] Badline Timing=Enabled
+settings: [C64 and Cartridge Settings] REU Preload=Disabled
+settings: [C64 and Cartridge Settings] RAM Expansion Unit=Disabled
+/Users/frenchfaso/Documents/Code/C64/runtime/firmware/c64u_v1.1.0.ue2: Ue2 { app_offset: 23ffbc } image, entry 0x00030000: no symbols, logs show raw addresses and fault hooks are off
+usb-dir: /Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final-candidate/benchmark-primary-128/native1mhz/usb: volume USB, 256 MiB, 0 files (0 MiB) and 0 directories imported, 0 skipped
+usb-dir: /Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final-candidate/benchmark-primary-128/native1mhz/usb is USB0 on hub port 1; image /Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final-candidate/benchmark-primary-128/native1mhz/run/usb-dir/usb-79083cf3c9/image-1.img
+control: listening on 127.0.0.1:50954
+No ACIA found in the FPGA.
+-- Custom Hardware Init --
+NAU8822 initialization...
+NAU8822 initialization complete.
+Configuring USB2513.
+USB Hub successfully configured.
+-- Start Scheduler --
+*** C64 Ultimate (V1.01) 1.1.0 ***
+*** FPGA Capabilities: 34E40226 ***
+
+Executing init functions.
+----> Initializing SID Cart (0)...
+8087 bytes copied into sid_cart.
+7553 bytes copied into mus_cart.
+----> Initializing Boot Cart (0)...
+1272 bytes copied into boot_cart.
+----> Initializing U64 Config (1)...
+ConfigManager opened flash: 0013188C
+Returning 1 partition
+*** WARNING: The C64 should be stopped at this time for the SID Detection to work!
+*** Init U64 Configurator
+FPGASID Detection: 00 00
+FPGASID Detection: 00 00
+ARMSID Detect: 00 00
+ARMSID Detect: 00 00
+$$ SID1 = 0. SID2 = 0
+Key at U64 Config: 0
+USERPORT_EN = 3
+Speed regs: 01 8F
+config doing plls...
+--> Requested video frequency = 31.528
+Range P: 3..6
+VCO: 94.58 - 189.17
+0000: 43 08 00 00 42 01 00 00 05 00 00 00 00 24 74 3D C...B........$t=
+0010: C8 A3 1D 43 01 00 00 00                         H#.C....
+N/M = 2115/322. P=5. VCO=157.640 Err=0.05960
+P: 2, N': 8460, Q: 26, R: 88
+0000: 00 00 00 00 57 00 05 05 84 32 C3 4A 00 00 00 00 ....W....2CJ....
+Written 88 to I2C
+Resulting address map: Slot1: 40/C0 (Disabled) Slot2: 40/C0 (Disabled) SlotSplit: 00.  Emu1: 40/C0  Emu2: 40/C0  Emu Split: 00
+*** U64 Configurator Done
+----> Initializing RAM Disk (1)...
+----> Initializing U64 Palette (9)...
+----> Initializing SoftIEC Drive (11)...
+IEC Processor found: Version = 25. Loading code...
+Partition command. CD to '/USB0/'
+Registered IEC Drive to slot 0.
+----> Initializing Printer (12)...
+Registered Printer Emulation to slot 1.
+----> Initializing UltiCopy (13)...
+----> Initializing Network Config (20)...
+----> Initializing Assembly 64 FS (30)...
+----> Initializing LwIP Networking (50)...
+----> Initializing RMII Interface (51)...
+----> Initializing WiFi Application (52)...
+SetBaudRate to 5000000 bps => 19 => actual = 5000000
+Uart IRQ enable!
+Setting module control to (05) 0 05
+SetBaudRate to 5000000 bps => 19 => actual = 5000000
+Uart IRQ enable!
+Get ident...----> Initializing Tape Playback Controller (60)...
+----> Initializing Tape Recording Controller (61)...
+----> Initializing LED Strip (61)...
+NIdentify: ESP32 WiFi Bridge V1.14
+## LED MODEL 1
+----> Initializing Bling Board (62)...
+NResult get voltages: 0 12000 12000 5000 3300 1800 1000 5000
+----> Initializing C1541/71/81 Init (65)...
+NNInit C1541. Cfg = 006A9F20
+Init WD177x...
+Effectuate 1541 settings:
+Init C1541. Cfg = 006B5950
+Init WD177x...
+Effectuate 1541 settings:
+----> Initializing Data Streamer (70)...
+----> Initializing REU Preloader (98)...
+----> Initializing Telnet Server (100)...
+Starting Telnet Server
+----> Initializing FTP Daemon (101)...
+----> Initializing Raw Socket 64 (102)...
+----> Initializing HTTP Daemon (103)...
+<http_listen_task>
+----> Initializing Modem (105)...
+---> All Init functions called.
+Saturday October 10, 2026 17:51:12
+Sampler found in FPGA... IO map: disabled.
+Cartridge registers:
+10040000: 00 00 02 01 00 00 00 00 00 07 00 00 00 00 00 00 ................
+Cartridge definition:
+Name: None
+Type: 0
+Custom: 00000000 (Length: 0)
+Required: 0000
+Prohibited: 0000
+Sampler found in FPGA... IO map: disabled.
+Cartridge registers:
+10040000: 04 00 02 11 00 00 00 00 00 07 00 00 00 00 00 00 ................
+Begin of cart init: Type: 00. REU: 00. REU_SZ: 07, UCI: 01 (DF18), Mode: 04, Sampler: 00
+End of cart init: Type: 00. REU: 00. REU_SZ: 07, UCI: 01 (DF18), Mode: 04, Sampler: 00
+U64 reset handler. Resetting Settings
+USERPORT_EN = 3
+Speed regs: 01 8F
+Nano CPU based USB Controller: 1422 bytes loaded from 000F4FCA. First DW: 83EF0A9D
+Queue = 007EAC98. Creating USB task. This = 00131C78
+USB input task is now running. this = 00131C78
+All linked modules have been initialized and are now running.
+Written 88 to I2C
+Resulting address map: Slot1: 40/C0 (Disabled) Slot2: 40/C0 (Disabled) SlotSplit: 00.  Emu1: 40/C0  Emu2: 40/C0  Emu Split: 00
+U-II Main      	X	0	966	4
+IDLE           	R	0	1558	5
+Bling Controlle	B	3	1506	14
+IEC Server     	B	1	1532	9
+U64 Reset Task 	B	3	1468	8
+HPD Monitor    	B	1	1548	7
+SD Card Manager	B	0	1560	1
+tcpip_thread   	B	2	1970	11
+USB Task       	B	1	1488	22
+Drive A        	B	1	1536	15
+Drive B        	B	1	1546	16
+Socket Gui List	B	1	1526	17
+FTP Listener   	B	1	1536	18
+DMA Load Task  	B	1	1536	19
+UDP Ident Task 	B	1	1430	20
+HTTP Listener  	B	1	1560	21
+USB Input Event	B	1	1508	23
+LedStrip Contro	B	3	1466	13
+Virtual Printer	B	0	1540	10
+WiFi Command Ta	B	1	1456	12
+UCI Reset Serve	B	1	1542	3
+UCI Server     	B	1	1536	2
+Tmr Svc        	B	3	1548	6
+
+USB Other IRQ. Status = 01
+Attach root!!
+Reset status: 03 Speed: 02
+Installing USB Parent = 00000000, ParentPort = 0
+This device has a valid maxPacketSize of 64 for the control pipe.
+Vendor/Product: 0424 2513
+Setting address to 1: 
+Get configuration 0: 
+bConfigurationValue = 01
+Interface descriptor #00:00, with 1 endpoints. Class = 9:0:0
+Number of interfaces found: 1.
+** USB HUB Found! **
+Installing ' '
+Setting configuration 1.
+Found a hub with 3 ports.
+The power-good time is 100 ms, and the hub draws 1 mA.
+Turning on power for each port..
+-- Install Complete.. HUB on address 1.. --
+Assigned 'USB|1' to pipe. Split = 0000
+Poll installed on irq_transaction 1
+HUB 1 IRQ data: 02
+Port 1 of hub on addr 1 status:0501 0001  Port in reset: 0
+Issuing reset on port 1.
+HUB 1 IRQ data: 02
+Port 1 of hub on addr 1 status:0503 0010  Port in reset: 1
+* RESET CHANGE 1 *
+Port reset to high speed
+Installing USB0 Parent = 007F0060, ParentPort = 0
+This device has a valid maxPacketSize of 64 for the control pipe.
+Vendor/Product: 1209 0001
+Setting address to 2: 
+Manufacturer: UE2EMU
+Product: USB Disk Image
+Serial #: UE2EMU0001
+Get configuration 0: 
+bConfigurationValue = 01
+Interface descriptor #00:00, with 2 endpoints. Class = 8:6:80
+Number of interfaces found: 1.
+Installing 'UE2EMU USB Disk Image'
+Setting configuration 1.
+Setting interface 0 to alternate setting 0.
+Set Configuration result:-4
+Assigned 'USB0|1' to pipe. Split = 0000
+Assigned 'USB0|2' to pipe. Split = 0000
+Device: UE2EMU  USB Disk Image  1.00 (Removable)
+Sense code: 00, (00.00) - 70 00 00 00 00 00 00 0A 00 00 00 00 00 00 00 00 00 00 )
+Path Dev 007F037C 007F05F0. Current lun 0. BS = 512. CAP = 524288
+32227268 instructions, 209270726 skipped idle, 9.784 s emulated, 2006 IRQs taken, pc 0x00035ccc
+1 MIPS, 258 % of realtime (last interval)

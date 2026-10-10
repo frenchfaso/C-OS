@@ -1,0 +1,87 @@
+{
+  "abi": 2,
+  "binaries": {
+    "cosasm": "80aaa1c9d1e8a2275c40ab426876952a4fee06394d0062bcc85cdf69906b4b8d",
+    "cosbench": "73ca68a128b03726ab1d1a42b643780f3d64ea10b34be625ee1b745d5478135b",
+    "cosdis": "b484777265a88705372e5547c14a4c80c3d0263304463829baaf73c3b2cbd8b6",
+    "cosfixtures": "bdad691082acd785b6c612dfb49a10915cf7d3f01b56f27189d340e656be86df",
+    "cospack": "eaa442502624a08d36c4bf2585779535bd4366b9b559b011da59a9ee050be91f",
+    "cosrun": "b56147e203a5b40dd45dc949671a84d09ef1a07703556ed89bf0c9e6050aca70"
+  },
+  "clippy_warnings": 0,
+  "commands": [
+    {
+      "command": [
+        "cargo",
+        "fmt",
+        "--all",
+        "--",
+        "--check"
+      ],
+      "cwd": "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final-v2/source",
+      "finished_at": "2026-10-10T17:53:00.169032+00:00",
+      "log": "logs/host-fmt.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "name": "host-fmt",
+      "returncode": 0,
+      "started_at": "2026-10-10T17:52:59.723441+00:00"
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--offline"
+      ],
+      "cwd": "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final-v2/source",
+      "finished_at": "2026-10-10T17:53:18.404478+00:00",
+      "log": "logs/host-test.log",
+      "log_sha256": "1023180e026d5785c38c53b91f7d881c6354f92160f645cd3fe3f894d2fc118b",
+      "name": "host-test",
+      "returncode": 0,
+      "started_at": "2026-10-10T17:53:00.169472+00:00"
+    },
+    {
+      "command": [
+        "cargo",
+        "clippy",
+        "--locked",
+        "--offline",
+        "--all-targets",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "cwd": "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final-v2/source",
+      "finished_at": "2026-10-10T17:53:19.512644+00:00",
+      "log": "logs/host-clippy.log",
+      "log_sha256": "4f7f5de10e6ef4c406cc2f4f699c77cf32144f39994e8452e19ba3cd84dd8e8d",
+      "name": "host-clippy",
+      "returncode": 0,
+      "started_at": "2026-10-10T17:53:18.405123+00:00"
+    },
+    {
+      "command": [
+        "cargo",
+        "build",
+        "--locked",
+        "--release",
+        "--bins",
+        "--offline"
+      ],
+      "cwd": "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final-v2/source",
+      "finished_at": "2026-10-10T17:53:24.681689+00:00",
+      "log": "logs/host-release.log",
+      "log_sha256": "33b68327c6915f9132723a6c8ddd79a99e448ec6d877cb6549cfde9ad961365a",
+      "name": "host-release",
+      "returncode": 0,
+      "started_at": "2026-10-10T17:53:19.513043+00:00"
+    }
+  ],
+  "fmt": true,
+  "tests_passed": 62,
+  "tool_versions": {
+    "cargo": "cargo 1.93.0 (083ac5135 2025-12-15)",
+    "rustc": "rustc 1.93.0 (254b59607 2026-01-19)"
+  }
+}

@@ -1,0 +1,23 @@
+[
+  {
+    "format": "COSCACHEROLLBACK1",
+    "status": "pass",
+    "cache_line": 128,
+    "extended_diagnostics": false,
+    "scenarios": 128,
+    "failures": 0,
+    "completed": true,
+    "cache_source_sha256": "291ff44a8011f0397115a7b1c7d7f5884b24763d93dfba503d4f38749157aa5b",
+    "fixture_source_sha256": "09c4f1cf76a6aa92dff289477c1c8d5f010641992c6957df7ea113d21ded478b",
+    "abi_source_sha256": "bed2621718697a09099310b7fd432e0711943966f8cc18b8f8435c92d6be0ff5",
+    "profile_source_sha256": "b237847dd566e2c4bdad78b6b8c03a73529bc5be076fb83c72473b4b22412570",
+    "prg_sha256": "57a094e360e1e3efd6fe7f7cc512bbbce7cc5d05188817b75670e4eccc20df7c",
+    "rows_sha256": "135e26bc4418daf44e320417f818300d57669b42d19adecf157f7ed43750c4b6",
+    "physical_a_sha256": "b1088ccf8733ef5d8f3c59f19cc61a046233d7d59bdff0335c0601091f113e36",
+    "physical_b_sha256": "e755c415eba1d77c6a3b6de6b486ae16f1a2270d794fc12a1773e18e1ff94b94",
+    "supplied_config_sha256": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+    "supplied_flash_sha256": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be",
+    "supplied_settings_sha256": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961",
+    "emulator_path": "/Users/frenchfaso/Documents/Code/C64/UE2-C64U-Emulator/target/release/ue2emu"
+  }
+]

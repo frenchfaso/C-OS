@@ -1,0 +1,460 @@
+{
+  "format": "COSM3COLLECTIONBOUND1",
+  "status": "conditional-applicable",
+  "assumptions": [
+    "Sole live owner, stable generation and no unrelated native jobs",
+    "GET_FRAME fixed accepts create no asynchronous jobs",
+    "P2 remains its initial aligned scratch address; offsets20,22,24,26 stay within either line size",
+    "No cancellation, stale pending request, NMI/recovery, DMA failure, external pause or monitor halt during the measured interval",
+    "Continued PAL IRQ and the next complete260-299 safe window",
+    "Conditional CPU48/I/O7/DMA511 model; physical Ultimate timing pending",
+    "Qualified admitted continuations return before IRQ58; no missed raster synchronization. A resumed top scheduler polling refusal is conservatively charged24 PHI2 before the fresh first unit."
+  ],
+  "scope": "Same 64-frame conservative collection ceiling across final primary/larger 128/64 packs; includes timestamp work outside the measured interval, with no subtraction. This is a conditional structural bound, distinct from live benchmark qualification.",
+  "variants": [
+    {
+      "variant": "128",
+      "cache_line": 128,
+      "build_tag": 3321962373,
+      "timestamp_words": [
+        {
+          "address": 262144,
+          "bytes": [
+            54,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "address": 262148,
+          "bytes": [
+            19,
+            33,
+            20,
+            0
+          ]
+        },
+        {
+          "address": 262152,
+          "bytes": [
+            19,
+            34,
+            22,
+            0
+          ]
+        },
+        {
+          "address": 262356,
+          "bytes": [
+            54,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "address": 262360,
+          "bytes": [
+            19,
+            33,
+            24,
+            0
+          ]
+        },
+        {
+          "address": 262364,
+          "bytes": [
+            19,
+            34,
+            26,
+            0
+          ]
+        }
+      ],
+      "data_start": 262400,
+      "data_length": 28,
+      "code_first": 262144,
+      "code_last": 262375,
+      "frame_ceiling": 64,
+      "phi2_ceiling": 1257984,
+      "retirements": 6,
+      "code_miss_attempts_max": 6,
+      "data_miss_attempts_max": 4,
+      "dma_phases_max": 14,
+      "fuel_rotations_max": 2,
+      "progressing_units_max": 32,
+      "complete_window_lines": [
+        260,
+        299
+      ],
+      "complete_window_phi2": 2520,
+      "scheduler_first_unit_upper_phi2": 2046,
+      "outer_bridge_allowance_phi2": 1,
+      "complete_first_unit_upper_phi2": 2071,
+      "complete_window_slack_phi2": 449,
+      "next_irq_guards": {
+        "vm": 441,
+        "scheduler": 2331,
+        "dma": 2331
+      },
+      "late_vm_tail_phi2": 371,
+      "artifact_sha256": {
+        "native.bin": "50cae5a9d3d495d056c064cbee9fdae9780c611660dbb942a39c96ecbf075171",
+        "map.json": "6aec6f96fe90032b6fe4ed7d959d28e23c41173b5d8384c72797abf7f888f572",
+        "bounds.json": "d45564d9454fa079cb51eb60999113169aef06bf5cd56565ab4a1c54c3046ab3",
+        "m3.manifest.json": "2fab8aa53c16455f19df74541cea04b1d52e366d07542f88a5570fcefc2e858f",
+        "m3.reu": "49c6280a4dcd2724af93eb57fc7c8da6320b9904d1e3176d0881636338c664c1"
+      },
+      "checker_sha256": "eb8c82462525641ecd46603d06fbc92c277806d3393a4c8cd296ff4392d263a1",
+      "coherent_active_reporter": {
+        "active_first_line": 60,
+        "active_last_line": 259,
+        "coherent_high_low_high": true,
+        "retries": 0,
+        "low_to_high_transition_active": true,
+        "high_to_low_transition_inactive": true,
+        "maximum_io_reads_per_call": 3,
+        "x_y_and_ram_scratch_preserved": true,
+        "transition_separation_min_phi2": 3528,
+        "qualification": "DMA caller masks IRQ through the completion observation; no NMI/recovery; two high-bit transitions cannot occur within the bounded read triplet"
+      },
+      "aligned_new_tick_upper_phi2": 2047,
+      "window_entry_polling_residual_phi2_allowance": 24
+    },
+    {
+      "variant": "64",
+      "cache_line": 64,
+      "build_tag": 1139196794,
+      "timestamp_words": [
+        {
+          "address": 262144,
+          "bytes": [
+            54,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "address": 262148,
+          "bytes": [
+            19,
+            33,
+            20,
+            0
+          ]
+        },
+        {
+          "address": 262152,
+          "bytes": [
+            19,
+            34,
+            22,
+            0
+          ]
+        },
+        {
+          "address": 262356,
+          "bytes": [
+            54,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "address": 262360,
+          "bytes": [
+            19,
+            33,
+            24,
+            0
+          ]
+        },
+        {
+          "address": 262364,
+          "bytes": [
+            19,
+            34,
+            26,
+            0
+          ]
+        }
+      ],
+      "data_start": 262400,
+      "data_length": 28,
+      "code_first": 262144,
+      "code_last": 262375,
+      "frame_ceiling": 64,
+      "phi2_ceiling": 1257984,
+      "retirements": 6,
+      "code_miss_attempts_max": 6,
+      "data_miss_attempts_max": 4,
+      "dma_phases_max": 14,
+      "fuel_rotations_max": 2,
+      "progressing_units_max": 32,
+      "complete_window_lines": [
+        260,
+        299
+      ],
+      "complete_window_phi2": 2520,
+      "scheduler_first_unit_upper_phi2": 2046,
+      "outer_bridge_allowance_phi2": 1,
+      "complete_first_unit_upper_phi2": 2071,
+      "complete_window_slack_phi2": 449,
+      "next_irq_guards": {
+        "vm": 441,
+        "scheduler": 2331,
+        "dma": 2331
+      },
+      "late_vm_tail_phi2": 371,
+      "artifact_sha256": {
+        "native.bin": "6e24d4672a168f983060343ab1a2a8f28d660dca26ef1a57b7e6a288f316f0ea",
+        "map.json": "b676216bbe81d4b4bc6e8cbc8f36f32a1113a03575a51cd2b44c4beb33ddc60b",
+        "bounds.json": "b8dd76d9888688536e48fdc9ab6db44370a27ce50cb5b5a81145855e6f37f143",
+        "m3.manifest.json": "27472719b142d4b97df12ea296a44b2e9f29567bd52a6b6e88e39bd36d29457c",
+        "m3.reu": "2a43f57633e9ae66ea9fc9614942d1065c96475146379cbc0505d77f2e0a12e1"
+      },
+      "checker_sha256": "eb8c82462525641ecd46603d06fbc92c277806d3393a4c8cd296ff4392d263a1",
+      "coherent_active_reporter": {
+        "active_first_line": 60,
+        "active_last_line": 259,
+        "coherent_high_low_high": true,
+        "retries": 0,
+        "low_to_high_transition_active": true,
+        "high_to_low_transition_inactive": true,
+        "maximum_io_reads_per_call": 3,
+        "x_y_and_ram_scratch_preserved": true,
+        "transition_separation_min_phi2": 3528,
+        "qualification": "DMA caller masks IRQ through the completion observation; no NMI/recovery; two high-bit transitions cannot occur within the bounded read triplet"
+      },
+      "aligned_new_tick_upper_phi2": 2047,
+      "window_entry_polling_residual_phi2_allowance": 24
+    },
+    {
+      "variant": "larger-128",
+      "cache_line": 128,
+      "build_tag": 3408217008,
+      "timestamp_words": [
+        {
+          "address": 262144,
+          "bytes": [
+            54,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "address": 262148,
+          "bytes": [
+            19,
+            33,
+            20,
+            0
+          ]
+        },
+        {
+          "address": 262152,
+          "bytes": [
+            19,
+            34,
+            22,
+            0
+          ]
+        },
+        {
+          "address": 262356,
+          "bytes": [
+            54,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "address": 262360,
+          "bytes": [
+            19,
+            33,
+            24,
+            0
+          ]
+        },
+        {
+          "address": 262364,
+          "bytes": [
+            19,
+            34,
+            26,
+            0
+          ]
+        }
+      ],
+      "data_start": 262400,
+      "data_length": 28,
+      "code_first": 262144,
+      "code_last": 262375,
+      "frame_ceiling": 64,
+      "phi2_ceiling": 1257984,
+      "retirements": 6,
+      "code_miss_attempts_max": 6,
+      "data_miss_attempts_max": 4,
+      "dma_phases_max": 14,
+      "fuel_rotations_max": 2,
+      "progressing_units_max": 32,
+      "complete_window_lines": [
+        260,
+        299
+      ],
+      "complete_window_phi2": 2520,
+      "scheduler_first_unit_upper_phi2": 2046,
+      "outer_bridge_allowance_phi2": 1,
+      "complete_first_unit_upper_phi2": 2071,
+      "complete_window_slack_phi2": 449,
+      "next_irq_guards": {
+        "vm": 441,
+        "scheduler": 2331,
+        "dma": 2331
+      },
+      "late_vm_tail_phi2": 371,
+      "artifact_sha256": {
+        "native.bin": "50cae5a9d3d495d056c064cbee9fdae9780c611660dbb942a39c96ecbf075171",
+        "map.json": "3ebc8104f412044904043a8adb010702304199935d47d1f26233c4eb8f519e3e",
+        "bounds.json": "d4e58709347269e558b13d3f1c97bd83f4fbb007e279e0405f13ad34ae7d02b0",
+        "m3.manifest.json": "7d28db388ad8650ccb951b714ccd30a5bf92d417c450e13448b4f0583c6cb89a",
+        "m3.reu": "be77ffaa3178b8eb77d9fe3961f51a2da286272c55923b0786896317382b9e42"
+      },
+      "checker_sha256": "eb8c82462525641ecd46603d06fbc92c277806d3393a4c8cd296ff4392d263a1",
+      "coherent_active_reporter": {
+        "active_first_line": 60,
+        "active_last_line": 259,
+        "coherent_high_low_high": true,
+        "retries": 0,
+        "low_to_high_transition_active": true,
+        "high_to_low_transition_inactive": true,
+        "maximum_io_reads_per_call": 3,
+        "x_y_and_ram_scratch_preserved": true,
+        "transition_separation_min_phi2": 3528,
+        "qualification": "DMA caller masks IRQ through the completion observation; no NMI/recovery; two high-bit transitions cannot occur within the bounded read triplet"
+      },
+      "aligned_new_tick_upper_phi2": 2047,
+      "window_entry_polling_residual_phi2_allowance": 24
+    },
+    {
+      "variant": "larger-64",
+      "cache_line": 64,
+      "build_tag": 3686561909,
+      "timestamp_words": [
+        {
+          "address": 262144,
+          "bytes": [
+            54,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "address": 262148,
+          "bytes": [
+            19,
+            33,
+            20,
+            0
+          ]
+        },
+        {
+          "address": 262152,
+          "bytes": [
+            19,
+            34,
+            22,
+            0
+          ]
+        },
+        {
+          "address": 262356,
+          "bytes": [
+            54,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "address": 262360,
+          "bytes": [
+            19,
+            33,
+            24,
+            0
+          ]
+        },
+        {
+          "address": 262364,
+          "bytes": [
+            19,
+            34,
+            26,
+            0
+          ]
+        }
+      ],
+      "data_start": 262400,
+      "data_length": 28,
+      "code_first": 262144,
+      "code_last": 262375,
+      "frame_ceiling": 64,
+      "phi2_ceiling": 1257984,
+      "retirements": 6,
+      "code_miss_attempts_max": 6,
+      "data_miss_attempts_max": 4,
+      "dma_phases_max": 14,
+      "fuel_rotations_max": 2,
+      "progressing_units_max": 32,
+      "complete_window_lines": [
+        260,
+        299
+      ],
+      "complete_window_phi2": 2520,
+      "scheduler_first_unit_upper_phi2": 2046,
+      "outer_bridge_allowance_phi2": 1,
+      "complete_first_unit_upper_phi2": 2071,
+      "complete_window_slack_phi2": 449,
+      "next_irq_guards": {
+        "vm": 441,
+        "scheduler": 2331,
+        "dma": 2331
+      },
+      "late_vm_tail_phi2": 371,
+      "artifact_sha256": {
+        "native.bin": "6e24d4672a168f983060343ab1a2a8f28d660dca26ef1a57b7e6a288f316f0ea",
+        "map.json": "f7c12c644134fc08f40c56a2b4b1061c7902a79ac2704fe0d3292d304a7b02b0",
+        "bounds.json": "0d7e51c58cbbcffa5ea146c6554468721261ace1d6506b59045d654171756acc",
+        "m3.manifest.json": "705f5f66cace4a3dde14dbfe2b3215a7aa9f8649ddff51e9cd1b5fef15e39ec8",
+        "m3.reu": "29226d5572ea69753895dbd3eb65455c61178674aa8a8af4c0bb977b99d09323"
+      },
+      "checker_sha256": "eb8c82462525641ecd46603d06fbc92c277806d3393a4c8cd296ff4392d263a1",
+      "coherent_active_reporter": {
+        "active_first_line": 60,
+        "active_last_line": 259,
+        "coherent_high_low_high": true,
+        "retries": 0,
+        "low_to_high_transition_active": true,
+        "high_to_low_transition_inactive": true,
+        "maximum_io_reads_per_call": 3,
+        "x_y_and_ram_scratch_preserved": true,
+        "transition_separation_min_phi2": 3528,
+        "qualification": "DMA caller masks IRQ through the completion observation; no NMI/recovery; two high-bit transitions cannot occur within the bounded read triplet"
+      },
+      "aligned_new_tick_upper_phi2": 2047,
+      "window_entry_polling_residual_phi2_allowance": 24
+    }
+  ],
+  "polling_residual_evidence": {
+    "check_collection_residual.py": "47ec55443e50936695284bb97838b4bced0fc2528826a70982ff0c5178745c6a",
+    "collection-residual.json": "5cbc222b737c53bbc8bf51ec04361e4dd1544df9c4b7036ba1166383a61b43ed"
+  }
+}

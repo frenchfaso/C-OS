@@ -1,0 +1,416 @@
+[
+  {
+    "command": [
+      "cargo",
+      "fmt",
+      "--all",
+      "--",
+      "--check"
+    ],
+    "cwd": "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source",
+    "finished_at": "2026-10-10T17:51:00.906185+00:00",
+    "log": "logs/host-fmt.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "name": "host-fmt",
+    "returncode": 0,
+    "started_at": "2026-10-10T17:51:00.517642+00:00"
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "--locked",
+      "--offline"
+    ],
+    "cwd": "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source",
+    "finished_at": "2026-10-10T17:51:05.229313+00:00",
+    "log": "logs/host-test.log",
+    "log_sha256": "147e17ba0501a88bb6985f09c6750b876a8660e3aaee6433418abaa4bc282f26",
+    "name": "host-test",
+    "returncode": 0,
+    "started_at": "2026-10-10T17:51:00.906568+00:00"
+  },
+  {
+    "command": [
+      "cargo",
+      "clippy",
+      "--locked",
+      "--offline",
+      "--all-targets",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "cwd": "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source",
+    "finished_at": "2026-10-10T17:51:06.274725+00:00",
+    "log": "logs/host-clippy.log",
+    "log_sha256": "5a96ba83b2ae58eb99f494ff63f387c7b1275d6b9b927d94e9a41315ace8504b",
+    "name": "host-clippy",
+    "returncode": 0,
+    "started_at": "2026-10-10T17:51:05.229967+00:00"
+  },
+  {
+    "command": [
+      "cargo",
+      "build",
+      "--locked",
+      "--release",
+      "--bins",
+      "--offline"
+    ],
+    "cwd": "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source",
+    "finished_at": "2026-10-10T17:51:09.498277+00:00",
+    "log": "logs/host-release.log",
+    "log_sha256": "2850f137051fdd1bb6f6365525d9db19831f02ad3df8dcf505fd05e9b1773c07",
+    "name": "host-release",
+    "returncode": 0,
+    "started_at": "2026-10-10T17:51:06.275080+00:00"
+  },
+  {
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "scripts/check_m1.py",
+      "--offline"
+    ],
+    "cwd": "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source",
+    "finished_at": "2026-10-10T17:51:10.723481+00:00",
+    "log": "logs/m1.log",
+    "log_sha256": "3ffc0f74c67d45bfd7696303de8d8b1a0b60bd2a7276248046d45c2439184e1a",
+    "name": "m1",
+    "returncode": 0,
+    "started_at": "2026-10-10T17:51:09.570268+00:00"
+  },
+  {
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "scripts/m0.py",
+      "--kickass",
+      "/Users/frenchfaso/Documents/Code/C64/toolchain/kickassembler/KickAss.jar",
+      "--java",
+      "/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java"
+    ],
+    "cwd": "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source",
+    "finished_at": "2026-10-10T17:51:11.107934+00:00",
+    "log": "logs/m0-build.log",
+    "log_sha256": "bcb6c6e6f17f48f0f5c6bc92b9f6be729b4ecc0a3f5ad4f82e21309623845f4e",
+    "name": "m0-build",
+    "returncode": 0,
+    "started_at": "2026-10-10T17:51:10.723911+00:00"
+  },
+  {
+    "command": [
+      "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source/target/release/cosasm",
+      "apps/mandelbrot.casm",
+      "-o",
+      "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source/build/mandelbrot.cobj"
+    ],
+    "cwd": "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source",
+    "finished_at": "2026-10-10T17:51:11.112259+00:00",
+    "log": "logs/workload-object.log",
+    "log_sha256": "95438b1b71b067be47e10b0ee51e20706dc2d8c319d2002450d7cce8f882b5a3",
+    "name": "workload-object",
+    "returncode": 0,
+    "started_at": "2026-10-10T17:51:11.108364+00:00"
+  },
+  {
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "scripts/m3.py",
+      "--manifest",
+      "manifests/m3.json",
+      "--cache-line",
+      "128",
+      "--out",
+      "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source/build/m3/128",
+      "--skip-host-build",
+      "--kickass",
+      "/Users/frenchfaso/Documents/Code/C64/toolchain/kickassembler/KickAss.jar",
+      "--java",
+      "/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java"
+    ],
+    "cwd": "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source",
+    "finished_at": "2026-10-10T17:51:11.593761+00:00",
+    "log": "logs/m3-128-build.log",
+    "log_sha256": "dda4fdbf9ee7274a20180e89bb0afdfaa799519e906eed50428f0dae51c89742",
+    "name": "m3-128-build",
+    "returncode": 0,
+    "started_at": "2026-10-10T17:51:11.112619+00:00"
+  },
+  {
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "scripts/m3.py",
+      "--manifest",
+      "manifests/m3.json",
+      "--cache-line",
+      "128",
+      "--out",
+      "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source/build/m3/128",
+      "--skip-host-build",
+      "--kickass",
+      "/Users/frenchfaso/Documents/Code/C64/toolchain/kickassembler/KickAss.jar",
+      "--java",
+      "/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java"
+    ],
+    "cwd": "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source",
+    "finished_at": "2026-10-10T17:51:12.128196+00:00",
+    "log": "logs/m3-128-repeat.log",
+    "log_sha256": "dda4fdbf9ee7274a20180e89bb0afdfaa799519e906eed50428f0dae51c89742",
+    "name": "m3-128-repeat",
+    "returncode": 0,
+    "started_at": "2026-10-10T17:51:11.601615+00:00"
+  },
+  {
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "scripts/m2_bounds.py",
+      "--build",
+      "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source/build/m3/128",
+      "--out",
+      "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source/build/m3/128/bounds.json",
+      "--cpu-core",
+      "/Users/frenchfaso/Documents/Code/C64/UE2-C64U-Emulator/vendor/trx64-core/src"
+    ],
+    "cwd": "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source",
+    "finished_at": "2026-10-10T17:51:12.250594+00:00",
+    "log": "logs/m3-128-bounds.log",
+    "log_sha256": "7196ff48bc42f6e77875489873db936e786771d9f06927c172a28a7736d9dff3",
+    "name": "m3-128-bounds",
+    "returncode": 0,
+    "started_at": "2026-10-10T17:51:12.136430+00:00"
+  },
+  {
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "scripts/m3.py",
+      "--manifest",
+      "manifests/m3.json",
+      "--cache-line",
+      "64",
+      "--out",
+      "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source/build/m3/64",
+      "--skip-host-build",
+      "--kickass",
+      "/Users/frenchfaso/Documents/Code/C64/toolchain/kickassembler/KickAss.jar",
+      "--java",
+      "/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java"
+    ],
+    "cwd": "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source",
+    "finished_at": "2026-10-10T17:51:12.762847+00:00",
+    "log": "logs/m3-64-build.log",
+    "log_sha256": "270e20dc0cf609861da830220ebfd681e6362897cfb2e6335c7fd6e0aedbff32",
+    "name": "m3-64-build",
+    "returncode": 0,
+    "started_at": "2026-10-10T17:51:12.251101+00:00"
+  },
+  {
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "scripts/m3.py",
+      "--manifest",
+      "manifests/m3.json",
+      "--cache-line",
+      "64",
+      "--out",
+      "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source/build/m3/64",
+      "--skip-host-build",
+      "--kickass",
+      "/Users/frenchfaso/Documents/Code/C64/toolchain/kickassembler/KickAss.jar",
+      "--java",
+      "/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java"
+    ],
+    "cwd": "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source",
+    "finished_at": "2026-10-10T17:51:13.269575+00:00",
+    "log": "logs/m3-64-repeat.log",
+    "log_sha256": "270e20dc0cf609861da830220ebfd681e6362897cfb2e6335c7fd6e0aedbff32",
+    "name": "m3-64-repeat",
+    "returncode": 0,
+    "started_at": "2026-10-10T17:51:12.770835+00:00"
+  },
+  {
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "scripts/m2_bounds.py",
+      "--build",
+      "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source/build/m3/64",
+      "--out",
+      "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source/build/m3/64/bounds.json",
+      "--cpu-core",
+      "/Users/frenchfaso/Documents/Code/C64/UE2-C64U-Emulator/vendor/trx64-core/src"
+    ],
+    "cwd": "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source",
+    "finished_at": "2026-10-10T17:51:13.390821+00:00",
+    "log": "logs/m3-64-bounds.log",
+    "log_sha256": "9ad497f5b088371b00b5d5aecac57a84c9dad9f37d7993e6d3a5a75b48170720",
+    "name": "m3-64-bounds",
+    "returncode": 0,
+    "started_at": "2026-10-10T17:51:13.277849+00:00"
+  },
+  {
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "scripts/m2.py",
+      "--manifest",
+      "manifests/m1.json",
+      "--cache-line",
+      "128",
+      "--out",
+      "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source/build/m2/128",
+      "--skip-host-build",
+      "--kickass",
+      "/Users/frenchfaso/Documents/Code/C64/toolchain/kickassembler/KickAss.jar",
+      "--java",
+      "/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java"
+    ],
+    "cwd": "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source",
+    "finished_at": "2026-10-10T17:51:13.907944+00:00",
+    "log": "logs/m2-128-build.log",
+    "log_sha256": "646c4467a233ddd77255241b3f5e13ebade0d82716b97404a628f21e479d2c68",
+    "name": "m2-128-build",
+    "returncode": 0,
+    "started_at": "2026-10-10T17:51:13.391246+00:00"
+  },
+  {
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "scripts/m2.py",
+      "--manifest",
+      "manifests/m1.json",
+      "--cache-line",
+      "128",
+      "--out",
+      "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source/build/m2/128",
+      "--skip-host-build",
+      "--kickass",
+      "/Users/frenchfaso/Documents/Code/C64/toolchain/kickassembler/KickAss.jar",
+      "--java",
+      "/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java"
+    ],
+    "cwd": "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source",
+    "finished_at": "2026-10-10T17:51:14.492062+00:00",
+    "log": "logs/m2-128-repeat.log",
+    "log_sha256": "646c4467a233ddd77255241b3f5e13ebade0d82716b97404a628f21e479d2c68",
+    "name": "m2-128-repeat",
+    "returncode": 0,
+    "started_at": "2026-10-10T17:51:13.915802+00:00"
+  },
+  {
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "scripts/m2_bounds.py",
+      "--build",
+      "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source/build/m2/128",
+      "--out",
+      "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source/build/m2/128/bounds.json",
+      "--cpu-core",
+      "/Users/frenchfaso/Documents/Code/C64/UE2-C64U-Emulator/vendor/trx64-core/src"
+    ],
+    "cwd": "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source",
+    "finished_at": "2026-10-10T17:51:14.572156+00:00",
+    "log": "logs/m2-128-bounds.log",
+    "log_sha256": "eb788a2dc6acc1c866615101a2d1a96d79096c2205b08e47641db8e64cf6b561",
+    "name": "m2-128-bounds",
+    "returncode": 0,
+    "started_at": "2026-10-10T17:51:14.500215+00:00"
+  },
+  {
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "scripts/m2.py",
+      "--manifest",
+      "manifests/m1.json",
+      "--cache-line",
+      "64",
+      "--out",
+      "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source/build/m2/64",
+      "--skip-host-build",
+      "--kickass",
+      "/Users/frenchfaso/Documents/Code/C64/toolchain/kickassembler/KickAss.jar",
+      "--java",
+      "/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java"
+    ],
+    "cwd": "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source",
+    "finished_at": "2026-10-10T17:51:15.101207+00:00",
+    "log": "logs/m2-64-build.log",
+    "log_sha256": "6a3145195eb9d33e0b02e914219c8a6444a4130660d659bb623c1e30dc7e6f02",
+    "name": "m2-64-build",
+    "returncode": 0,
+    "started_at": "2026-10-10T17:51:14.572566+00:00"
+  },
+  {
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "scripts/m2.py",
+      "--manifest",
+      "manifests/m1.json",
+      "--cache-line",
+      "64",
+      "--out",
+      "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source/build/m2/64",
+      "--skip-host-build",
+      "--kickass",
+      "/Users/frenchfaso/Documents/Code/C64/toolchain/kickassembler/KickAss.jar",
+      "--java",
+      "/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java"
+    ],
+    "cwd": "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source",
+    "finished_at": "2026-10-10T17:51:15.659169+00:00",
+    "log": "logs/m2-64-repeat.log",
+    "log_sha256": "6a3145195eb9d33e0b02e914219c8a6444a4130660d659bb623c1e30dc7e6f02",
+    "name": "m2-64-repeat",
+    "returncode": 0,
+    "started_at": "2026-10-10T17:51:15.109149+00:00"
+  },
+  {
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "scripts/m2_bounds.py",
+      "--build",
+      "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source/build/m2/64",
+      "--out",
+      "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source/build/m2/64/bounds.json",
+      "--cpu-core",
+      "/Users/frenchfaso/Documents/Code/C64/UE2-C64U-Emulator/vendor/trx64-core/src"
+    ],
+    "cwd": "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source",
+    "finished_at": "2026-10-10T17:51:15.739913+00:00",
+    "log": "logs/m2-64-bounds.log",
+    "log_sha256": "e0bc690c965b12b713b8a94160466d8823ab5f6efda0483e499c1f92f6f69da7",
+    "name": "m2-64-bounds",
+    "returncode": 0,
+    "started_at": "2026-10-10T17:51:15.668344+00:00"
+  },
+  {
+    "command": [
+      "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source/target/release/cosfixtures",
+      "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source/build/m2-fixtures.json",
+      "--manifest",
+      "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source/build/m1.manifest.json"
+    ],
+    "cwd": "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source",
+    "finished_at": "2026-10-10T17:51:16.155562+00:00",
+    "log": "logs/fixtures.log",
+    "log_sha256": "11196f12bb03d400914378dcb3b85a5d1d3eaaf80c911e229f4481f7e796deac",
+    "name": "fixtures",
+    "returncode": 0,
+    "started_at": "2026-10-10T17:51:15.740332+00:00"
+  },
+  {
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests/native",
+      "-v"
+    ],
+    "cwd": "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final/source",
+    "finished_at": "2026-10-10T17:51:16.813053+00:00",
+    "log": "logs/python-tests.log",
+    "log_sha256": "deb72b4bc56a1611c0264128f18e166563f2b62c0bcae9323226b5ac65c64857",
+    "name": "python-tests",
+    "returncode": 1,
+    "started_at": "2026-10-10T17:51:16.178406+00:00"
+  }
+]

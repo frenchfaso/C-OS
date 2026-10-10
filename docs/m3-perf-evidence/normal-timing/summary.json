@@ -1,0 +1,19 @@
+{
+  "all_primary_frame_counts_repeat": true,
+  "complete_regression": "pass",
+  "complete_regression_result_sha256": "97d3f1f30114ca3e082a969e286fc69e50fc5936d26383f179ea77ab9281cd8b",
+  "current_sources_match_inventory": true,
+  "normal_resident_bytes": 7525,
+  "numeric_reserve_bytes": 4096,
+  "resident_headroom_bytes": 155,
+  "results": {
+    "benchmark-larger-128/result.json": "1e53b8279c5e5b14eb257307f5ba9399cf1b79317850fd1c0024f93b93795bf9",
+    "benchmark-larger-64/result.json": "23c622d566a3c7cd43c900e06208bfe5b738883f8bfd57d4885bd596a9e8b3fa",
+    "benchmark-primary-128-repeat/result.json": "9f9683c3e1aa86e3507fbd7118476d6a2455c44f74933fd96f21f479ce538eb8",
+    "benchmark-primary-128/result.json": "26180bcf99d0d8accb9a7a75a6748926a3e8778d6528dfd37862fe40e15f6fa9",
+    "benchmark-primary-64-repeat/result.json": "257d3dc88f6c911c7a35a6df9285d54a4fb5246edc46887e09682ad39530246d",
+    "benchmark-primary-64/result.json": "2f63aad6f6b8db135a18b29814ba9fb7a356a1d5ceb29fc572aa79b2d9dfbf36"
+  },
+  "source_inventory_sha256": "6cc2533e45c5c99d0c566d1d541d59b13c2ea33c293709fc1704b4987c7184f7",
+  "status": "pass"
+}

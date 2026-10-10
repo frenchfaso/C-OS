@@ -1,0 +1,12 @@
+{
+  "format": "COSPACK1",
+  "abi": 2,
+  "numeric_profile": "COS-NUM-1",
+  "target": "c64u-pal-upic320",
+  "storage": {"mode": "discover", "directory": "cos", "marker": ".cos-volume"},
+  "apps": [
+    {"id": 1, "name": "Linear", "object": "build/linear.cobj", "arena_start": 262144, "arena_size": 131072, "stack_size": 1024, "heap_min": 128},
+    {"id": 2, "name": "Calls", "object": "build/calls.cobj", "arena_start": 393216, "arena_size": 4096, "stack_size": 1024, "heap_min": 128},
+    {"id": 3, "name": "Spin", "object": "build/spin.cobj", "arena_start": 397312, "arena_size": 4096, "stack_size": 1024, "heap_min": 128}
+  ]
+}

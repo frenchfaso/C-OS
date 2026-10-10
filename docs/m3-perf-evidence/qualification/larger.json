@@ -1,0 +1,22 @@
+{
+  "format": "COSPACK1",
+  "abi": 2,
+  "numeric_profile": "COS-NUM-1",
+  "target": "c64u-pal-upic320",
+  "storage": {
+    "mode": "discover",
+    "directory": "cos",
+    "marker": ".cos-volume"
+  },
+  "apps": [
+    {
+      "id": 1,
+      "name": "Mandelbrot",
+      "object": "build/m3-perf/apps/32x24.cobj",
+      "arena_start": 262144,
+      "arena_size": 16384,
+      "stack_size": 1024,
+      "heap_min": 1024
+    }
+  ]
+}

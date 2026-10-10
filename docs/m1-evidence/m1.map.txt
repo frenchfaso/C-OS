@@ -1,0 +1,31 @@
+C-OS M1 static REU map
+Build tag: $1C560A45; ABI 1; COS-NUM-1
+Physical REU: 16777216 bytes shared
+System reservation: $000000..$03FFFF (262144 bytes)
+Applications: $040000..$FFFFFF (16515072 bytes total available)
+Header: $000000..$00000F; seed area allocated through $0000FF
+This host-only M1 pack has no resident native kernel images or boot assets.
+App 1 Linear ARENA: $040000..$05FFFF (131072 bytes)
+App 1 Linear CODE: $040000..$04001F (32 bytes)
+App 1 Linear HEAP: $051280..$05FBFF (59776 bytes)
+App 1 Linear STACK: $05FC00..$05FFFF (1024 bytes)
+App 1 DATA: start=$040080, length=3
+App 1 BSS: start=$040100, length=70000
+App 1 DATA_SEED: start=$000080, length=3
+App 1 entry: $040000; no compiler frames or SDK imports (hand assembly)
+App 2 Calls ARENA: $060000..$060FFF (4096 bytes)
+App 2 Calls CODE: $060000..$060037 (56 bytes)
+App 2 Calls HEAP: $060080..$060BFF (2944 bytes)
+App 2 Calls STACK: $060C00..$060FFF (1024 bytes)
+App 2 DATA: start=$060080, length=0
+App 2 BSS: start=$060080, length=0
+App 2 DATA_SEED: start=$000100, length=0
+App 2 entry: $060000; no compiler frames or SDK imports (hand assembly)
+App 3 Spin ARENA: $061000..$061FFF (4096 bytes)
+App 3 Spin CODE: $061000..$061007 (8 bytes)
+App 3 Spin HEAP: $061080..$061BFF (2944 bytes)
+App 3 Spin STACK: $061C00..$061FFF (1024 bytes)
+App 3 DATA: start=$061080, length=0
+App 3 BSS: start=$061080, length=0
+App 3 DATA_SEED: start=$000100, length=0
+App 3 entry: $061000; no compiler frames or SDK imports (hand assembly)

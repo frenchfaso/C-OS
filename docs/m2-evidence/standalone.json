@@ -1,0 +1,453 @@
+{
+  "format": "COSM2STANDALONE1",
+  "status": "pass",
+  "verified_at_utc": "2026-10-10T14:08:19.753812+00:00",
+  "qualification": "Independent source-copy build and host/static checks; full backend execution is separately reported by the workspace integration runner; physical Ultimate timing remains pending.",
+  "copy_route": {
+    "workspace": "/Users/frenchfaso/Documents/Code/C64/C-OS",
+    "copy": "/private/tmp/c-os-m2-standalone-qe8f455_/source",
+    "excluded": [
+      ".DS_Store",
+      ".git",
+      "__pycache__",
+      "build",
+      "cache",
+      "target"
+    ],
+    "files": 76,
+    "external_java": "/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java",
+    "external_kickassembler": "/Users/frenchfaso/Documents/Code/C64/toolchain/kickassembler/KickAss.jar",
+    "refreshes_after_final_freeze": [
+      {
+        "path": "scripts/m0.py",
+        "old_sha256": "bdab1673e868972bffa7b5f9f1ae7e9bc58615e9c4c811e14d8ce0038f7e60ef",
+        "sha256": "958859e435ce93a786db3d4a8c9752bfacef6ead83eeb45caa9b6df8c669160b",
+        "reason": "Parent announced final M0 standalone KickAssembler symbol staging correction before builds."
+      },
+      {
+        "path": "native/m2_boot.asm",
+        "old_sha256": "75fac9b706eeaf68b0cf281cd1b269d6cb20b44164303de8f44ee21777414f0c",
+        "sha256": "6a9952246e6181b611ae3fede4585acf1db39d57d0d611b60d96d4c4492a3434",
+        "reason": "Parent announced final finite admission hooks and explicit resource/diagnostic map metadata."
+      },
+      {
+        "path": "scripts/m2.py",
+        "old_sha256": "c0db9266f70c0837053865cd9dd32abbd542866000fe9479c7a322a2bd57f3f8",
+        "sha256": "9e4d0476c246db46274d3bec12caacbf8d9ff062253356e7190dbfb8feed6094",
+        "reason": "Parent announced final finite admission hooks and explicit resource/diagnostic map metadata."
+      },
+      {
+        "path": "scripts/m2_compare.py",
+        "old_sha256": "f2b0ffe1fce00e870032e3086e641f47c74bebd4a82e02aa95b394a1f5971632",
+        "sha256": "dc5e9c57dbec6a8ed389677140bfa09f54cef0afc1082f352c79774e97682139",
+        "reason": "Parent announced final finite admission hooks and explicit resource/diagnostic map metadata."
+      },
+      {
+        "path": "scripts/m2_ue2.py",
+        "old_sha256": "b38a38aa2c74624cd2cb065a90ce549c8a616b32e9eead347e074ed4db283f88",
+        "sha256": "08f3a804d6958d109a97b65cd97dee5ef1d274cc3253e4d17e5ac3cf3d5edda9",
+        "reason": "Parent announced final finite admission hooks and explicit resource/diagnostic map metadata."
+      },
+      {
+        "path": "scripts/check_m2.py",
+        "old_sha256": "dc1f541cd7912154ab794f493529a6cca1f3d9bed2fa5aefdb562bea4f1097d4",
+        "sha256": "dc1f541cd7912154ab794f493529a6cca1f3d9bed2fa5aefdb562bea4f1097d4",
+        "reason": "Parent announced final finite admission hooks and explicit resource/diagnostic map metadata."
+      },
+      {
+        "path": "tests/native/test_m2_artifacts.py",
+        "old_sha256": "b86d12a8bb67af7ef7b9c89d4f0b82a86e0ece1469467f01a321a8ff35819d91",
+        "sha256": "9fb1ccf851f4c83d05399257ca07e2b4714db9fcbf9702f0dd73bdf51fd59d12",
+        "reason": "Parent announced final finite admission hooks and explicit resource/diagnostic map metadata."
+      }
+    ],
+    "final_runtime_snapshot_utc": "2026-10-10T14:06:57.666892+00:00"
+  },
+  "autonomous_execution": true,
+  "adjacent_repository_sources_used": false,
+  "initial_build_and_target_caches_copied": false,
+  "pinned_cargo_dependency_cache_used_offline": true,
+  "tools": {
+    "versions": {
+      "cargo": "cargo 1.93.0 (083ac5135 2025-12-15)",
+      "rustc": "rustc 1.93.0 (254b59607 2026-01-19)",
+      "python": "Python 3.14.8",
+      "java": "openjdk version \"25.0.4.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Temurin-25.0.4.1+1 (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Temurin-25.0.4.1+1 (build 25.0.4.1+1-LTS, mixed mode, sharing)"
+    },
+    "kickassembler_jar": "/Users/frenchfaso/Documents/Code/C64/toolchain/kickassembler/KickAss.jar",
+    "kickassembler_sha256": "9592a39336e73a1db8b4a7749256d62d29b113b1c7f0f6c86ea43870ebd9ae1f"
+  },
+  "copied_runtime_source_sha256": {
+    "Cargo.lock": "2e6cc0ef714b97fc90deb7f5c107933dccf1201e8f0af5275ffe3aa41b1a9c3f",
+    "Cargo.toml": "44ae290af59148805c65910078f25b8d1c8db36d4e1ddab3520c47a0e27653c1",
+    "apps/calls.casm": "3b5a948399d9d45a9510988567458d4090768161ed7acd2ab3eb53705d2e54a4",
+    "apps/linear.casm": "6ccf119865f4318321ad9b9560c923a62a7110f3cf92b9efa24b1d248d9e1f61",
+    "apps/spin.casm": "fd175ad51533c02f9bc02f97d9d570e11a07db351676a1dc9cccaf2afbec1907",
+    "manifests/empty.json": "7ea7b1189670dc6654531df2ca74eec6b2fa7bbe29daec2c0c2a0c82da678a5e",
+    "manifests/m1.json": "0aa91baf915f552163830a501521720142335668871eea71baa843b9f73024b6",
+    "native/cache.asm": "6e32186aa5c8410ff1b89ca5c40d8cd63d186e693a97d77dc6a40759dff9a7bb",
+    "native/hardware.inc": "0a47f188995e81c99c9650f02ffe16d489d43b8af470e0db87d644e8661d7686",
+    "native/m2_abi.inc": "64c77fc3ab117480574751f84d12ac2cb703917e109ce0febf8a05f69d9d5c59",
+    "native/m2_boot.asm": "6a9952246e6181b611ae3fede4585acf1db39d57d0d611b60d96d4c4492a3434",
+    "native/margins.asm": "b564aa9241381685be41866a3e4d00aaae2680e7af923e853c90a3fa0cb4485f",
+    "native/probe.asm": "acb8457ec1aa23814cf8ff7faa9ec2e034b4a7a776ff893c3582d0dc3ce15e8e",
+    "native/renderer.asm": "c0a5a1918ebf5fb0caf7ac699c70d2b8a77b856c4126f19bdc471d6804326024",
+    "native/vm.asm": "00779a3148f27b21818763402559af8fc86ea53787e772b5284a3f171bf4abf4",
+    "rust-toolchain.toml": "4c2b49f5f849a8c7e2dd6e782dc0c1e3979f6aadfcb2f6ab75128ade28774fc8",
+    "scripts/check_m1.py": "135eb509549ad4e7d571099751a7a89c62ead519ca4cefff8215894ee86a32b2",
+    "scripts/check_m2.py": "dc1f541cd7912154ab794f493529a6cca1f3d9bed2fa5aefdb562bea4f1097d4",
+    "scripts/m0.py": "958859e435ce93a786db3d4a8c9752bfacef6ead83eeb45caa9b6df8c669160b",
+    "scripts/m0_ue2.py": "eb8784e2c57a6b07fffbb40ad79f57c80ce59b6b2d69c7a8964e057227725034",
+    "scripts/m2.py": "9e4d0476c246db46274d3bec12caacbf8d9ff062253356e7190dbfb8feed6094",
+    "scripts/m2_bounds.py": "bb5ccfd22a5c65c0b792b86e6c355cd71d81343300968dce2ee41544e981de03",
+    "scripts/m2_compare.py": "dc5e9c57dbec6a8ed389677140bfa09f54cef0afc1082f352c79774e97682139",
+    "scripts/m2_margins.py": "a3e5bfbb397c49b4f7e6e99b781fc645f2b1d2f30f8f59bcaba2c3a377f461c8",
+    "scripts/m2_ue2.py": "08f3a804d6958d109a97b65cd97dee5ef1d274cc3253e4d17e5ac3cf3d5edda9",
+    "scripts/png_rgb.py": "85a22198005dbb8bfe7f3d953bcd0afede51b49c4a1815618323581e53103393",
+    "src/assembler.rs": "614fadf2b0843a65d8e78e19d1c02f2fdf5b57c4af9f821aea7c2bfbe58457cd",
+    "src/bin/cosasm.rs": "9bff4ef6da22794c64f5a7595202beeca6f64b6e73ab0a66abf0869b92ffa449",
+    "src/bin/cosdis.rs": "d4afc905b677912c39f87245e86b20fb2d392f8f79c74fb9ddd14e368d75004b",
+    "src/bin/cosfixtures.rs": "4e0af91a35c14c87157a8669c86a614537f6bbb2011a43cfa76475f6d42ed8d2",
+    "src/bin/cospack.rs": "f30b2479e00321c70370163b5f87ad0d50601ab9e491cd73cfdd5bff1a8e5c96",
+    "src/bin/cosrun.rs": "d4ae7d63fef0bac3b442be190d98314b47fd73ee1ee557287804598def6ee93f",
+    "src/harness.rs": "665c34d6e8e19fff731323ece70a701bd53266ff72b15582a2fb51a2206f50f2",
+    "src/isa.rs": "25dad99bb6fe778837d5df1c1185046bb771b0c8eff9a2fcce446c04139313d5",
+    "src/lib.rs": "7b54f97bd8081a78dc0d3dc8ac6b18876d053c873dfdccbaebc4a16668882193",
+    "src/object.rs": "df524d62c36ed3514b63218a031834d092e8401b6163945efc5ebece50a7627c",
+    "src/pack.rs": "c4276c7804028e784655ecf01f70d4129e36fcb5b41c60857da6390629c21fc4",
+    "src/vm.rs": "e6d47b77df479a555f68ac0555c4ca057286a13ac2f96967cd46af7e101eab2a",
+    "tests/harness.rs": "4ee6ae20de7820e3f451059b2472cf8f590dd11d29d8a4ecff89f1bcabb4848b",
+    "tests/native/cache_cancel.asm": "792efe6836dacb3fc3a0696bcf8221be6ebb787e5be83a263f2633979c575b88",
+    "tests/native/check_cache_cancel.py": "b50d80805cbfda0512e1c919e679b070eb1c7adde50dcfd6be3a9012c527e93d",
+    "tests/native/margins.asm": "7337f0ba92e7b970d67ae08da010830992c6e19de6e0898c73e5713b64e2d8ec",
+    "tests/native/test_m0.py": "b45e58d7bc5d2ceb0a42711849268fca9a6939fc2775551591a025e2813e6512",
+    "tests/native/test_m2_artifacts.py": "9fb1ccf851f4c83d05399257ca07e2b4714db9fcbf9702f0dd73bdf51fd59d12",
+    "tests/native/test_m2_compare.py": "2a54ed7cdd1b24c24895c825229e88e99d0307002342e52be0b0e6dd817b9863",
+    "tests/semantics.rs": "e404e7826eb95b00e1799b879af30a385b8af7529b21ec8bbb1f22ac78783bb8",
+    "tests/toolchain.rs": "bdcc22816700ee3a1b6834d7f3e9e9564280944146b1fa11b923ffd7166c93b8"
+  },
+  "runtime_sources_identical_to_final_workspace": true,
+  "checks": {
+    "rust_tests": 53,
+    "native_python_tests": 12,
+    "native_python_skipped": 0,
+    "fixture_cases": 609,
+    "cargo_fmt": true,
+    "cargo_clippy_warnings_denied": true,
+    "cargo_locked_offline": true,
+    "m1_pipeline": true,
+    "m0_build": true,
+    "m2_build_cache_lines": [
+      128,
+      64
+    ],
+    "static_bounds_cache_lines": [
+      128,
+      64
+    ],
+    "python_compile": true,
+    "full_backend_suite_rerun_in_copy": false
+  },
+  "commands": [
+    {
+      "argv": [
+        "cargo",
+        "fmt",
+        "--all",
+        "--",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log": "/private/tmp/c-os-m2-standalone-qe8f455_/01.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--locked",
+        "--offline"
+      ],
+      "exit_code": 0,
+      "log": "/private/tmp/c-os-m2-standalone-qe8f455_/02.log",
+      "log_sha256": "bd0d74f5853fca1890c9baa17b04106053b26df2a0a611471fe5f72705f04cec"
+    },
+    {
+      "argv": [
+        "cargo",
+        "clippy",
+        "--locked",
+        "--offline",
+        "--all-targets",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "exit_code": 0,
+      "log": "/private/tmp/c-os-m2-standalone-qe8f455_/03.log",
+      "log_sha256": "921a3cf7323e77f639e7c1d86fddcef0e0347839f31d6eae7dffbcf2ed46fcf2"
+    },
+    {
+      "argv": [
+        "cargo",
+        "build",
+        "--locked",
+        "--release",
+        "--offline"
+      ],
+      "exit_code": 0,
+      "log": "/private/tmp/c-os-m2-standalone-qe8f455_/04.log",
+      "log_sha256": "c4eb56b1808dc876efa2bcdc3b2c4b08f82cf1473e9a3297821f916112d1b539"
+    },
+    {
+      "argv": [
+        "python3",
+        "scripts/check_m1.py",
+        "--offline"
+      ],
+      "exit_code": 0,
+      "log": "/private/tmp/c-os-m2-standalone-qe8f455_/05.log",
+      "log_sha256": "3ffc0f74c67d45bfd7696303de8d8b1a0b60bd2a7276248046d45c2439184e1a"
+    },
+    {
+      "argv": [
+        "python3",
+        "scripts/m0.py",
+        "--kickass",
+        "/Users/frenchfaso/Documents/Code/C64/toolchain/kickassembler/KickAss.jar",
+        "--java",
+        "/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java"
+      ],
+      "exit_code": 0,
+      "log": "/private/tmp/c-os-m2-standalone-qe8f455_/06.log",
+      "log_sha256": "4a7693862b274c9fc8b5dbbb0f1c22f8802ca36b9fddb886fd0a9060cb727ecc"
+    },
+    {
+      "argv": [
+        "python3",
+        "scripts/m2.py",
+        "--cache-line",
+        "128",
+        "--out",
+        "build/m2/128",
+        "--skip-host-build",
+        "--kickass",
+        "/Users/frenchfaso/Documents/Code/C64/toolchain/kickassembler/KickAss.jar",
+        "--java",
+        "/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java"
+      ],
+      "exit_code": 0,
+      "log": "/private/tmp/c-os-m2-standalone-qe8f455_/final-07.log",
+      "log_sha256": "58120d4f667c540103d5974778017cbddc4f2d372839de30117a07ded379ae4d"
+    },
+    {
+      "argv": [
+        "python3",
+        "scripts/m2_bounds.py",
+        "--build",
+        "build/m2/128",
+        "--out",
+        "build/m2/128/bounds.json"
+      ],
+      "exit_code": 0,
+      "log": "/private/tmp/c-os-m2-standalone-qe8f455_/final-08.log",
+      "log_sha256": "7787ea6f4f4124827e14822e636d66dc7bc80208d3f3e2feeaaff17e7eccb289"
+    },
+    {
+      "argv": [
+        "python3",
+        "scripts/m2.py",
+        "--cache-line",
+        "64",
+        "--out",
+        "build/m2/64",
+        "--skip-host-build",
+        "--kickass",
+        "/Users/frenchfaso/Documents/Code/C64/toolchain/kickassembler/KickAss.jar",
+        "--java",
+        "/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java"
+      ],
+      "exit_code": 0,
+      "log": "/private/tmp/c-os-m2-standalone-qe8f455_/final-09.log",
+      "log_sha256": "c2668d040c08a8ec31332cea512fb3be9160b8fad692d668d602114d3a6b83b8"
+    },
+    {
+      "argv": [
+        "python3",
+        "scripts/m2_bounds.py",
+        "--build",
+        "build/m2/64",
+        "--out",
+        "build/m2/64/bounds.json"
+      ],
+      "exit_code": 0,
+      "log": "/private/tmp/c-os-m2-standalone-qe8f455_/final-10.log",
+      "log_sha256": "5cb126083288f0f80873f0d9494f69a55eda21c480b3bf8e08fe5f45c6b596ae"
+    },
+    {
+      "argv": [
+        "target/release/cosfixtures",
+        "build/m2-fixtures.json",
+        "--manifest",
+        "build/m1.manifest.json"
+      ],
+      "exit_code": 0,
+      "log": "/private/tmp/c-os-m2-standalone-qe8f455_/final-11.log",
+      "log_sha256": "3f2cd3d0e577102c54905a44b4d3dd80edca0a688cf263fbf43ab013dca214c5"
+    },
+    {
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/native",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log": "/private/tmp/c-os-m2-standalone-qe8f455_/final-12.log",
+      "log_sha256": "5c63379ccae2d47da6f518917a20f11e5b7c45bd96def195db892e1245f69495"
+    },
+    {
+      "argv": [
+        "python3",
+        "-m",
+        "py_compile",
+        "scripts/check_m1.py",
+        "scripts/check_m2.py",
+        "scripts/m0.py",
+        "scripts/m0_ue2.py",
+        "scripts/m2.py",
+        "scripts/m2_bounds.py",
+        "scripts/m2_compare.py",
+        "scripts/m2_margins.py",
+        "scripts/m2_ue2.py",
+        "scripts/png_rgb.py",
+        "tests/native/check_cache_cancel.py",
+        "tests/native/test_m0.py",
+        "tests/native/test_m2_artifacts.py",
+        "tests/native/test_m2_compare.py"
+      ],
+      "exit_code": 0,
+      "log": "/private/tmp/c-os-m2-standalone-qe8f455_/final-13.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "artifact_comparison": {
+    "method": "Complete byte equality and independent SHA-256 of original and copied artifacts",
+    "primary_m0_m1_count": 13,
+    "primary_m2_count": 16,
+    "additional_bounds_and_fixture_count": 3,
+    "total_files": 32,
+    "all_byte_identical": true,
+    "original_sha256": {
+      "build/linear.cobj": "d7317b9ef36347865c346dc01dd9c0de8608630dc7420216e3847d1d6a97d740",
+      "build/calls.cobj": "cb75e19219531322e09707b48c9127cdc1e43a32b6a96c8fa1d4340858bae66b",
+      "build/spin.cobj": "c7db2504be170e9198cdb8a71541f570f2ea8906964d868b2afa29a55029870e",
+      "build/m1.reu": "b512d28c3099cf579eeddfe7f91495b75b59ab06d0177c93a193ee073439673b",
+      "build/m1.manifest.json": "4f5c7c92cc76f36d968f9f7deb5d87eefdca01d00f3bb2914a68315b10079119",
+      "build/m1.asm": "b2e4f193a70910c7c859df7957109bf578ad0f61f1a792c08db2f74f73bf8eab",
+      "build/m1.map.txt": "e6eaac6f25eca49846826f7e9eab7c904eaacb42ed36892b4a112d2e9adb9990",
+      "build/m0/probe.prg": "b43a9ecf6067259b04d45e25442e1afc3c1d303233bf0e8e34c18319a78deba9",
+      "build/m0/renderer.prg": "e78c014bfc840438660982ca37321bebc83466ce957136e3fa48f10431d9ea1f",
+      "build/m0/diagnostic.reu": "5311f95561adfe703685108a7e4d720f0954aed984bbea90ca7ccf09b5646a00",
+      "build/m0/pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+      "build/m0/map.json": "36788970b0d6a3a59fdca724cc0e31065df8b13f3e7062028a335e8cc132de7a",
+      "build/m0/map.txt": "c1c8a29c298f995ea43cedbb3843c9bb4bcb6f03ec6c374e30ea561b6f54c8f5",
+      "build/m2/128/m2.prg": "8018a9a6358e254406b97997fe7e3d06d0bca42886e0b4dbf00fc76d856652fe",
+      "build/m2/128/m2.reu": "e7daede08a259c677272ed1004fc94344cb1aaeaef384852dc726147ce6bb64a",
+      "build/m2/128/native.bin": "dde59a2bc446c4d76451bc26b5a1c52cb130247de5bce7514b1df9c43e6d361c",
+      "build/m2/128/renderer.prg": "e78c014bfc840438660982ca37321bebc83466ce957136e3fa48f10431d9ea1f",
+      "build/m2/128/pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+      "build/m2/128/m2.manifest.json": "218088abaaca43a3326ec1ea5eec7c702b6d8417e35c3deeaae686be65f36168",
+      "build/m2/128/map.json": "24b1fce4ebfcff99ea98b945b408f1da473cd3a95953599c875a1760264b94bb",
+      "build/m2/128/map.txt": "b9abc6e5c093cd74d1d5a400a2567d7f70cc40281d700bee008fdd9bb17f0641",
+      "build/m2/128/bounds.json": "7787ea6f4f4124827e14822e636d66dc7bc80208d3f3e2feeaaff17e7eccb289",
+      "build/m2/64/m2.prg": "75861d8139e1712315a7ec69ae057501516a2dd8df36013ff5d2529a81a52b74",
+      "build/m2/64/m2.reu": "ebf44381ef5ccee1853dc8c070c5f8f22f29b6da69ecdd8e52f6327e6a376115",
+      "build/m2/64/native.bin": "c30c34271c725b33c29ee79b268cadc9aaa9f5674a6dbeea1cd5734b8e95469e",
+      "build/m2/64/renderer.prg": "e78c014bfc840438660982ca37321bebc83466ce957136e3fa48f10431d9ea1f",
+      "build/m2/64/pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+      "build/m2/64/m2.manifest.json": "f8ec0eae07fb96c46b9adb6c16ca70099d8049cb6a302a41b34bf016aab5bd22",
+      "build/m2/64/map.json": "51c4403ab6c4a284f733b1beb5dfcc8bcbe4d5dd40e5b505242ee7d42c343f1a",
+      "build/m2/64/map.txt": "97f911faca06894aa170dcd1dd5dc5d95752878ff526118b7df72a50024b8d56",
+      "build/m2/64/bounds.json": "5cb126083288f0f80873f0d9494f69a55eda21c480b3bf8e08fe5f45c6b596ae",
+      "build/m2-fixtures.json": "bc6c409726980626eddc48e1bfc86cd0eb54d2ca29d09ef798d2709018d20c38"
+    }
+  },
+  "final_build_tags": {
+    "128": "CFBED205",
+    "64": "06A147B0"
+  },
+  "static_bounds": {
+    "128": {
+      "vm_step": {
+        "instruction_visits": 3082,
+        "cpu_cycle_upper_bound": 21581,
+        "io_access_upper_bound": 2,
+        "cpu_io_phi2_upper_bound": 464,
+        "dma_phi2_allowance": 0,
+        "conditional_total_phi2_upper_bound": 464
+      },
+      "cache_service": {
+        "instruction_visits": 283,
+        "cpu_cycle_upper_bound": 1988,
+        "io_access_upper_bound": 16,
+        "cpu_io_phi2_upper_bound": 154,
+        "dma_phi2_allowance": 511,
+        "conditional_total_phi2_upper_bound": 665
+      },
+      "cache_native_read": {
+        "instruction_visits": 2263,
+        "cpu_cycle_upper_bound": 15848,
+        "io_access_upper_bound": 16,
+        "cpu_io_phi2_upper_bound": 443,
+        "dma_phi2_allowance": 511,
+        "conditional_total_phi2_upper_bound": 954
+      },
+      "cache_native_write": {
+        "instruction_visits": 2262,
+        "cpu_cycle_upper_bound": 15841,
+        "io_access_upper_bound": 16,
+        "cpu_io_phi2_upper_bound": 443,
+        "dma_phi2_allowance": 511,
+        "conditional_total_phi2_upper_bound": 954
+      }
+    },
+    "64": {
+      "vm_step": {
+        "instruction_visits": 3124,
+        "cpu_cycle_upper_bound": 21875,
+        "io_access_upper_bound": 2,
+        "cpu_io_phi2_upper_bound": 470,
+        "dma_phi2_allowance": 0,
+        "conditional_total_phi2_upper_bound": 470
+      },
+      "cache_service": {
+        "instruction_visits": 289,
+        "cpu_cycle_upper_bound": 2030,
+        "io_access_upper_bound": 16,
+        "cpu_io_phi2_upper_bound": 155,
+        "dma_phi2_allowance": 511,
+        "conditional_total_phi2_upper_bound": 666
+      },
+      "cache_native_read": {
+        "instruction_visits": 2263,
+        "cpu_cycle_upper_bound": 15848,
+        "io_access_upper_bound": 16,
+        "cpu_io_phi2_upper_bound": 443,
+        "dma_phi2_allowance": 511,
+        "conditional_total_phi2_upper_bound": 954
+      },
+      "cache_native_write": {
+        "instruction_visits": 2262,
+        "cpu_cycle_upper_bound": 15841,
+        "io_access_upper_bound": 16,
+        "cpu_io_phi2_upper_bound": 443,
+        "dma_phi2_allowance": 511,
+        "conditional_total_phi2_upper_bound": 954
+      }
+    }
+  }
+}

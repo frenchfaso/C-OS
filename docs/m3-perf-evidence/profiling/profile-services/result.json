@@ -1,0 +1,715 @@
+{
+  "format": "COSM3PERFPROFILE1",
+  "status": "pass",
+  "baseline_receipt": {
+    "format": "COSM3PERFBASELINE1",
+    "verification_sha256": "ed556d2cd6dcecc643f91127a93b71b1d5d4addab4d6357a97bad8bba05ef142",
+    "source_sha256": {
+      "apps/calls.casm": "3b5a948399d9d45a9510988567458d4090768161ed7acd2ab3eb53705d2e54a4",
+      "apps/linear.casm": "6ccf119865f4318321ad9b9560c923a62a7110f3cf92b9efa24b1d248d9e1f61",
+      "apps/mandelbrot.casm": "c4010519b54ad2323e05ba7b77d43c7071c7739559436fb00da3036cabdb5620",
+      "apps/spin.casm": "fd175ad51533c02f9bc02f97d9d570e11a07db351676a1dc9cccaf2afbec1907",
+      "build/mandelbrot-host-profile.json": "2aef7521b23b25e3ed9ea05a9e840bc04d1d41a7483cb1ca1344feed4ff54aef",
+      "build/mandelbrot.cobj": "8aec33c47e6a8bff613203dcb7749ff1e6f2f6481476a870ee821d037082e7cf",
+      "manifests/empty.json": "7ea7b1189670dc6654531df2ca74eec6b2fa7bbe29daec2c0c2a0c82da678a5e",
+      "manifests/m1.json": "0aa91baf915f552163830a501521720142335668871eea71baa843b9f73024b6",
+      "manifests/m3.json": "378680c54b2a223d803900e1156d63043c0d95176216da9dbd5cbd4772cc75eb",
+      "native/build_profile.inc": "ff649ca477cbbc21981b2bdd2b3f0da84a72b399a149d8d32203bc0c85a6bed2",
+      "native/cache.asm": "e9ba035f3dd210b47dbf9f392de1425b2ececce4096356dda9c28d19c1488fa5",
+      "native/hardware.inc": "9dfe1e1e864b1615f1cd61a1f3bf77949c48ad436ccce6787f449ead492061ac",
+      "native/jobs.asm": "aa3e4fc5117971f53ec661304371c1e88d9da0588fac2b536c6dbafffab7b5b9",
+      "native/m2_abi.inc": "167f98fca6ae969293157bdd5a32b659731c75de6384662fe85e5a977ed7bdc4",
+      "native/m2_boot.asm": "6a9952246e6181b611ae3fede4585acf1db39d57d0d611b60d96d4c4492a3434",
+      "native/m3_boot.asm": "d90497a54c56f120ac6ea78d2b591b9b1a20efd3358faf6e96398216d47d3c3a",
+      "native/m3_kernel.asm": "2543ec72df5c7389b8635712780375b0f748d888a8010fd98a1bf6169731639a",
+      "native/margins.asm": "b564aa9241381685be41866a3e4d00aaae2680e7af923e853c90a3fa0cb4485f",
+      "native/probe.asm": "193b6c006db5584c7ffab7a599c895a04ce180da95d61a9cce991b015e6756bb",
+      "native/renderer.asm": "c6e5265423603fd8a9a68c50c34fa0c0c40fc85a80b085fa597468534712a759",
+      "native/scheduler.asm": "d13b7b63b437c218167111065c7c2c86634d6b01d9d3649c5ca857acd58358cc",
+      "native/scheduler.inc": "926c09b70cdebda487f5d311e24e33cfa113736f01d7ebb54ed200736c703e19",
+      "native/vm.asm": "00779a3148f27b21818763402559af8fc86ea53787e772b5284a3f171bf4abf4",
+      "scripts/check_m1.py": "135eb509549ad4e7d571099751a7a89c62ead519ca4cefff8215894ee86a32b2",
+      "scripts/check_m2.py": "dc1f541cd7912154ab794f493529a6cca1f3d9bed2fa5aefdb562bea4f1097d4",
+      "scripts/check_m3.py": "8f20f4e0282fac8f4a347cf994437b68957334a35830fce9f70a5c0cb49ea3cc",
+      "scripts/m0.py": "5a005d6f79f4b38ec30011d54191796f847b434d139cc4cdc1f61a95b32f30c0",
+      "scripts/m0_ue2.py": "eb8784e2c57a6b07fffbb40ad79f57c80ce59b6b2d69c7a8964e057227725034",
+      "scripts/m2.py": "a289e80dcaec8f2d901588c322a4d6e12af4c4032b143cd7443645a4ff9ea35b",
+      "scripts/m2_bounds.py": "fa0b2afc47d16e355ccbdec8057787e572459d472504fc0a059f24d4bc0f1f59",
+      "scripts/m2_compare.py": "dc5e9c57dbec6a8ed389677140bfa09f54cef0afc1082f352c79774e97682139",
+      "scripts/m2_margins.py": "a3e5bfbb397c49b4f7e6e99b781fc645f2b1d2f30f8f59bcaba2c3a377f461c8",
+      "scripts/m2_ue2.py": "08f3a804d6958d109a97b65cd97dee5ef1d274cc3253e4d17e5ac3cf3d5edda9",
+      "scripts/m3.py": "8f98391eae11822d9bb825db8b96a99b99601684af2982dec9497beadc00c011",
+      "scripts/m3_benchmark.py": "672c29c85b0e512d7d59ca73091f54932cbecc01a9b694d71ca413fb926c0c6f",
+      "scripts/m3_ue2.py": "e9417a3c8ea0a89edea7c0a30cb710a92e73b66e933834b0bee25583d8967ebd",
+      "scripts/mandelbrot_reference.py": "a00aee6febf2f3fa717168ef702fda656a53dfcfc5d271fea76fea5c26b2812f",
+      "scripts/png_rgb.py": "85a22198005dbb8bfe7f3d953bcd0afede51b49c4a1815618323581e53103393"
+    },
+    "reviewed_frames": {
+      "128": 8938,
+      "64": 9362
+    },
+    "host_tool_sha256": {
+      "cospack": "a3140f566f06b109aaa71385d391805e8e120cebe523b1df503d357d6d5b7337"
+    }
+  },
+  "generated_substitutions": {
+    "m3_kernel.asm:scheduler_tick": 1,
+    "vm.asm:vm_video_admit": 1,
+    "cache.asm:vm_dma_admit": 2,
+    "scheduler.asm:scheduler_native_phase": 2,
+    "scheduler.asm:cache_service": 1,
+    "scheduler.asm:vm_video_admit": 1
+  },
+  "profiler_script_sha256": "e4d5dfed89702c73e971054b7ba898bdb522026f4b5a528779954235d8d86a63",
+  "profiler_source_sha256": "aaae28744e8dd6180c2cd414f45efb4457181d1cad6bf61530091d74e0e1daa8",
+  "profile_ram_first": 64000,
+  "profile_ram_bytes": 576,
+  "categories_are_inclusive": true,
+  "variants": [
+    {
+      "cache_line": 128,
+      "baseline": {
+        "elapsed_frames": 8938,
+        "elapsed_phi2_ticks_estimate": 175685328,
+        "frame_quantization_phi2_ticks": 19656,
+        "retired": 693194,
+        "image_sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+        "profile": null,
+        "build_tag": 2441396846,
+        "artifact_sha256": {
+          "m3.prg": "94f6755f29c69e54615de1c7bf918241ace60244a5735ecfeaa5345eedc467a8",
+          "m3.reu": "47839f69275efa588e3ba98b168a121cd1a2600988a210e46cda1b93f14884a9",
+          "native.bin": "d806ab584547ef2568f6f43c8b88c5c42e4676bf3bf060089770331eb5c0a136",
+          "renderer.prg": "5858b9691af7965b54c4f0ca5e96a314c2105293c291f91c72dd8246ad02adb2",
+          "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+          "m3.manifest.json": "dcde82a9ab448c1449d0b2b56b92102afe9ca84d5f31da19123475a63a9aeaf9"
+        },
+        "map_sha256": "835260f3707798d7626f1a799d8672a94688b7860a5509b8558a6d42295ce61c",
+        "report": [
+          77,
+          48,
+          82,
+          49,
+          1,
+          56,
+          1,
+          16,
+          0,
+          192,
+          2,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          35,
+          0,
+          0,
+          0,
+          0,
+          5,
+          79,
+          84,
+          0,
+          0,
+          0,
+          0,
+          29,
+          0,
+          0,
+          2,
+          0,
+          2,
+          0,
+          0,
+          0,
+          1,
+          0,
+          3,
+          0,
+          3,
+          0,
+          18,
+          0,
+          18,
+          0,
+          66,
+          0,
+          66,
+          0,
+          130,
+          0,
+          130,
+          0,
+          2,
+          1,
+          2,
+          1,
+          3,
+          0,
+          3,
+          0,
+          18,
+          0,
+          18,
+          0,
+          66,
+          0,
+          66,
+          0,
+          130,
+          0,
+          130,
+          0,
+          2,
+          1,
+          2,
+          1
+        ],
+        "supplied_input_sha256": {
+          "emulator": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+          "config": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+          "flash": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be",
+          "settings": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961"
+        },
+        "private_reu_sha256": "47839f69275efa588e3ba98b168a121cd1a2600988a210e46cda1b93f14884a9",
+        "private_settings_sha256": "d299fc10d9f1e2328adfadc5705c72651688413204585c631f829a8741d65f36",
+        "scanout": {
+          "source_width": 320,
+          "source_height": 200,
+          "output_width": 720,
+          "output_height": 576,
+          "output_rectangle": [
+            12,
+            104,
+            601,
+            400
+          ],
+          "separately_visible_stripe_pixels": 320,
+          "all_64000_pixels_and_both_output_rows_match": true,
+          "palette_rgb": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              247,
+              247,
+              247
+            ],
+            [
+              141,
+              47,
+              52
+            ],
+            [
+              106,
+              212,
+              205
+            ],
+            [
+              152,
+              53,
+              164
+            ],
+            [
+              76,
+              180,
+              66
+            ],
+            [
+              44,
+              41,
+              177
+            ],
+            [
+              239,
+              239,
+              93
+            ],
+            [
+              152,
+              78,
+              32
+            ],
+            [
+              91,
+              56,
+              0
+            ],
+            [
+              209,
+              103,
+              109
+            ],
+            [
+              74,
+              74,
+              74
+            ],
+            [
+              123,
+              123,
+              123
+            ],
+            [
+              159,
+              239,
+              147
+            ],
+            [
+              109,
+              106,
+              239
+            ],
+            [
+              178,
+              178,
+              178
+            ]
+          ],
+          "first_and_last_pixels_visible": true,
+          "even_low_odd_high": true
+        }
+      },
+      "instrumented": {
+        "elapsed_frames": 10375,
+        "elapsed_phi2_ticks_estimate": 203931000,
+        "frame_quantization_phi2_ticks": 19656,
+        "retired": 693194,
+        "image_sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+        "profile": {
+          "vm_step": {
+            "routine": "vm_step",
+            "inclusive_phi2_ticks": 0,
+            "calls": 0,
+            "minimum_phi2_ticks": 4294967295,
+            "maximum_phi2_ticks": 0,
+            "carry_set_phi2_ticks": 0,
+            "carry_set_calls": 0,
+            "body_excess_vs_empty_interval_phi2_ticks": [
+              0,
+              0
+            ]
+          },
+          "code_fetch": {
+            "routine": "cache_fetch_code",
+            "inclusive_phi2_ticks": 0,
+            "calls": 0,
+            "minimum_phi2_ticks": 4294967295,
+            "maximum_phi2_ticks": 0,
+            "carry_set_phi2_ticks": 0,
+            "carry_set_calls": 0,
+            "body_excess_vs_empty_interval_phi2_ticks": [
+              0,
+              0
+            ]
+          },
+          "pc_bounds": {
+            "routine": "vm_check_pc",
+            "inclusive_phi2_ticks": 0,
+            "calls": 0,
+            "minimum_phi2_ticks": 4294967295,
+            "maximum_phi2_ticks": 0,
+            "carry_set_phi2_ticks": 0,
+            "carry_set_calls": 0,
+            "body_excess_vs_empty_interval_phi2_ticks": [
+              0,
+              0
+            ]
+          },
+          "decode": {
+            "routine": "vm_decode_operands",
+            "inclusive_phi2_ticks": 0,
+            "calls": 0,
+            "minimum_phi2_ticks": 4294967295,
+            "maximum_phi2_ticks": 0,
+            "carry_set_phi2_ticks": 0,
+            "carry_set_calls": 0,
+            "body_excess_vs_empty_interval_phi2_ticks": [
+              0,
+              0
+            ]
+          },
+          "preflight": {
+            "routine": "vm_preflight",
+            "inclusive_phi2_ticks": 0,
+            "calls": 0,
+            "minimum_phi2_ticks": 4294967295,
+            "maximum_phi2_ticks": 0,
+            "carry_set_phi2_ticks": 0,
+            "carry_set_calls": 0,
+            "body_excess_vs_empty_interval_phi2_ticks": [
+              0,
+              0
+            ]
+          },
+          "execute": {
+            "routine": "vm_execute",
+            "inclusive_phi2_ticks": 0,
+            "calls": 0,
+            "minimum_phi2_ticks": 4294967295,
+            "maximum_phi2_ticks": 0,
+            "carry_set_phi2_ticks": 0,
+            "carry_set_calls": 0,
+            "body_excess_vs_empty_interval_phi2_ticks": [
+              0,
+              0
+            ]
+          },
+          "cache_unpin": {
+            "routine": "cache_unpin",
+            "inclusive_phi2_ticks": 0,
+            "calls": 0,
+            "minimum_phi2_ticks": 4294967295,
+            "maximum_phi2_ticks": 0,
+            "carry_set_phi2_ticks": 0,
+            "carry_set_calls": 0,
+            "body_excess_vs_empty_interval_phi2_ticks": [
+              0,
+              0
+            ]
+          },
+          "data_read": {
+            "routine": "cache_read_prepared",
+            "inclusive_phi2_ticks": 0,
+            "calls": 0,
+            "minimum_phi2_ticks": 4294967295,
+            "maximum_phi2_ticks": 0,
+            "carry_set_phi2_ticks": 0,
+            "carry_set_calls": 0,
+            "body_excess_vs_empty_interval_phi2_ticks": [
+              0,
+              0
+            ]
+          },
+          "data_write": {
+            "routine": "cache_write_prepared",
+            "inclusive_phi2_ticks": 0,
+            "calls": 0,
+            "minimum_phi2_ticks": 4294967295,
+            "maximum_phi2_ticks": 0,
+            "carry_set_phi2_ticks": 0,
+            "carry_set_calls": 0,
+            "body_excess_vs_empty_interval_phi2_ticks": [
+              0,
+              0
+            ]
+          },
+          "scheduler_tick": {
+            "routine": "scheduler_tick",
+            "inclusive_phi2_ticks": 2146855,
+            "calls": 123522,
+            "minimum_phi2_ticks": 4,
+            "maximum_phi2_ticks": 12729,
+            "carry_set_phi2_ticks": 2015773,
+            "carry_set_calls": 123273,
+            "body_excess_vs_empty_interval_phi2_ticks": [
+              1776289,
+              1899811
+            ]
+          },
+          "native_phase": {
+            "routine": "scheduler_native_phase",
+            "inclusive_phi2_ticks": 36995,
+            "calls": 201,
+            "minimum_phi2_ticks": 15,
+            "maximum_phi2_ticks": 243,
+            "carry_set_phi2_ticks": 19274,
+            "carry_set_calls": 105,
+            "body_excess_vs_empty_interval_phi2_ticks": [
+              36392,
+              36593
+            ]
+          },
+          "cache_service": {
+            "routine": "cache_service",
+            "inclusive_phi2_ticks": 11804,
+            "calls": 85,
+            "minimum_phi2_ticks": 9,
+            "maximum_phi2_ticks": 142,
+            "carry_set_phi2_ticks": 18,
+            "carry_set_calls": 2,
+            "body_excess_vs_empty_interval_phi2_ticks": [
+              11549,
+              11634
+            ]
+          },
+          "video_admission": {
+            "routine": "vm_video_admit",
+            "inclusive_phi2_ticks": 1417123,
+            "calls": 129092,
+            "minimum_phi2_ticks": 2,
+            "maximum_phi2_ticks": 12720,
+            "carry_set_phi2_ticks": 1399337,
+            "carry_set_calls": 123359,
+            "body_excess_vs_empty_interval_phi2_ticks": [
+              1029847,
+              1158939
+            ]
+          },
+          "dma_admission": {
+            "routine": "vm_dma_admit",
+            "inclusive_phi2_ticks": 571,
+            "calls": 169,
+            "minimum_phi2_ticks": 3,
+            "maximum_phi2_ticks": 4,
+            "carry_set_phi2_ticks": 6,
+            "carry_set_calls": 2,
+            "body_excess_vs_empty_interval_phi2_ticks": [
+              64,
+              233
+            ]
+          },
+          "fixed_syscall": {
+            "routine": "jobs_accept",
+            "inclusive_phi2_ticks": 0,
+            "calls": 0,
+            "minimum_phi2_ticks": 4294967295,
+            "maximum_phi2_ticks": 0,
+            "carry_set_phi2_ticks": 0,
+            "carry_set_calls": 0,
+            "body_excess_vs_empty_interval_phi2_ticks": [
+              0,
+              0
+            ]
+          },
+          "empty_probe": {
+            "routine": "profile_nop",
+            "inclusive_phi2_ticks": 665,
+            "calls": 256,
+            "minimum_phi2_ticks": 2,
+            "maximum_phi2_ticks": 3,
+            "carry_set_phi2_ticks": 0,
+            "carry_set_calls": 0,
+            "body_excess_vs_empty_interval_phi2_ticks": [
+              0,
+              153
+            ]
+          }
+        },
+        "profile_timer_interval_bits": 16,
+        "profile_interval_wraps_modulo_65536": 58,
+        "build_tag": 4280071132,
+        "artifact_sha256": {
+          "m3.prg": "cb7f1c85f8b1c3ea1f30a760f92f65e764092a92bff3bab157862af3bad3fec8",
+          "m3.reu": "8a5fc5dea93fcc67285b648ed1158edee0790d654deb182424603bb9283e399c",
+          "native.bin": "11718a9e75c4d1bcf24686da4535194a7b3fb539d1b61833a87a9502addf5801",
+          "renderer.prg": "5858b9691af7965b54c4f0ca5e96a314c2105293c291f91c72dd8246ad02adb2",
+          "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+          "m3.manifest.json": "37720f68c1717b7c5d54c6238fd0859ebf580e5c95d75ac28d19cd842f169b34"
+        },
+        "map_sha256": "12117e0824acf62541f7c4f9c5878f291faed8eec4d92c2d98f0ebbce5a39ee7",
+        "report": [
+          77,
+          48,
+          82,
+          49,
+          1,
+          56,
+          1,
+          16,
+          0,
+          192,
+          2,
+          0,
+          0,
+          1,
+          0,
+          0,
+          180,
+          40,
+          0,
+          0,
+          0,
+          0,
+          142,
+          213,
+          111,
+          0,
+          0,
+          0,
+          0,
+          29,
+          0,
+          0,
+          2,
+          0,
+          2,
+          0,
+          0,
+          0,
+          1,
+          0,
+          3,
+          0,
+          3,
+          0,
+          18,
+          0,
+          18,
+          0,
+          66,
+          0,
+          66,
+          0,
+          130,
+          0,
+          130,
+          0,
+          2,
+          1,
+          2,
+          1,
+          3,
+          0,
+          3,
+          0,
+          18,
+          0,
+          18,
+          0,
+          66,
+          0,
+          66,
+          0,
+          130,
+          0,
+          130,
+          0,
+          2,
+          1,
+          2,
+          1
+        ],
+        "supplied_input_sha256": {
+          "emulator": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+          "config": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+          "flash": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be",
+          "settings": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961"
+        },
+        "private_reu_sha256": "8a5fc5dea93fcc67285b648ed1158edee0790d654deb182424603bb9283e399c",
+        "private_settings_sha256": "d299fc10d9f1e2328adfadc5705c72651688413204585c631f829a8741d65f36",
+        "scanout": {
+          "source_width": 320,
+          "source_height": 200,
+          "output_width": 720,
+          "output_height": 576,
+          "output_rectangle": [
+            12,
+            104,
+            601,
+            400
+          ],
+          "separately_visible_stripe_pixels": 320,
+          "all_64000_pixels_and_both_output_rows_match": true,
+          "palette_rgb": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              247,
+              247,
+              247
+            ],
+            [
+              141,
+              47,
+              52
+            ],
+            [
+              106,
+              212,
+              205
+            ],
+            [
+              152,
+              53,
+              164
+            ],
+            [
+              76,
+              180,
+              66
+            ],
+            [
+              44,
+              41,
+              177
+            ],
+            [
+              239,
+              239,
+              93
+            ],
+            [
+              152,
+              78,
+              32
+            ],
+            [
+              91,
+              56,
+              0
+            ],
+            [
+              209,
+              103,
+              109
+            ],
+            [
+              74,
+              74,
+              74
+            ],
+            [
+              123,
+              123,
+              123
+            ],
+            [
+              159,
+              239,
+              147
+            ],
+            [
+              109,
+              106,
+              239
+            ],
+            [
+              178,
+              178,
+              178
+            ]
+          ],
+          "first_and_last_pixels_visible": true,
+          "even_low_odd_high": true
+        }
+      },
+      "reviewed_baseline_frames": 8938,
+      "observed_instrumentation_elapsed_frames": 1437,
+      "observed_instrumentation_phi2_ticks_estimate": 28245672,
+      "instrumentation_code_bytes": 1514,
+      "selected_categories": [
+        "cache_service",
+        "dma_admission",
+        "native_phase",
+        "scheduler_tick",
+        "video_admission"
+      ],
+      "bounds_sha256": "52c76b2a03ef3ebb897ee3122293e2e3b1cb054f720cb48bd3d693bf70fa0f38",
+      "sample_factor": 128,
+      "baseline_reused_from": "build/m3-perf/profile-core/runs/128/baseline/result.json",
+      "instrumented_last_admission_line": 295,
+      "conservative_instrumented_tail_phi2_bound": 4609
+    }
+  ],
+  "measurement_model": "Coherent live CIA2A PHI2 16-bit interval; every measured call below65536PHI2 including interrupt. Accumulated32-bit totals. Empty probes calibrated before IRQ enable. Nested samples inclusive, not disjoint percentages. Sparse samples are systematically selected and not lifetime-exact totals.",
+  "cost_interval_scope": "Body excess versus empty wrapper; retains nested probe costs and any interrupt time. Paired total elapsed overhead is observed independently; no opcode-frequency Amdahl inference.",
+  "qualification": "Autonomous target execution in the existing functional emulator; physical Ultimate timing pending"
+}

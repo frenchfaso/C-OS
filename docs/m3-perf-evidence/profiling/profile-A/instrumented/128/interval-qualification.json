@@ -1,0 +1,19 @@
+{
+  "format": "COSM3PROFILEINTERVALQUAL1",
+  "status": "pass",
+  "primary_bounds_sha256": "8970fc480a4e893f832e8b4ddedbbff02d3c18a83be8d1b6bd35fba674dd2687",
+  "artifact_sha256": {
+    "m3.prg": "9fad19f9e46cee93c4a7375238e23e79b9a2841dfb63259776a2982c4639522f",
+    "m3.reu": "4de85f0b65e773d80d05a440f676ffba88fb5abc2df5227d06563cfe90b1f7eb",
+    "native.bin": "0a39f292e208bffb1ae42bbf6e61f2fb8f8db9689d93566c9818736264bf3864",
+    "renderer.prg": "5858b9691af7965b54c4f0ca5e96a314c2105293c291f91c72dd8246ad02adb2",
+    "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+    "m3.manifest.json": "18341dd4eed4983a9be57f81ae5c891f969d17e93565a3390e0f66db7f9e445e"
+  },
+  "one_irq_upper_phi2": 19656,
+  "preceding_admitted_window_phi2": 2520,
+  "final_admitted_tail_phi2": 4141,
+  "interval_upper_phi2": 26317,
+  "limit_phi2": 65536,
+  "basis": "One complete PAL period covers one qualified raster IRQ. Preceding re-admitted work is limited by window rejection, followed by full admitted final opcode+tail. No NMI, external pause, reprogramming or unbounded job. Post-run arithmetic qualification; no instructions or original bounds altered."
+}

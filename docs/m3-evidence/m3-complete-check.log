@@ -1,0 +1,1332 @@
++ cargo build --locked --release --bins --offline
+    Finished `release` profile [optimized] target(s) in 0.46s
++ /Users/frenchfaso/Documents/Code/C64/C-OS/target/release/cosasm apps/mandelbrot.casm -o /Users/frenchfaso/Documents/Code/C64/C-OS/build/mandelbrot.cobj
+/Users/frenchfaso/Documents/Code/C64/C-OS/build/mandelbrot.cobj: code=468 data=28 BSS=0 relocations=14
++ /opt/homebrew/opt/python@3.14/bin/python3.14 scripts/mandelbrot_reference.py --out /Users/frenchfaso/Documents/Code/C64/C-OS/build/mandelbrot-reference.bin
++ /Users/frenchfaso/Documents/Code/C64/C-OS/target/release/cospack manifests/m3.json --root /Users/frenchfaso/Documents/Code/C64/C-OS --out /Users/frenchfaso/Documents/Code/C64/C-OS/build/mandelbrot-host --build-tag 3
+/Users/frenchfaso/Documents/Code/C64/C-OS/build/mandelbrot-host.reu: 16777216-byte shared REU image, 1 apps, build tag $00000003
+C-OS M1 static REU map
+Build tag: $00000003; ABI 1; COS-NUM-1
+Physical REU: 16777216 bytes shared
+System reservation: $000000..$03FFFF (262144 bytes)
+Applications: $040000..$FFFFFF (16515072 bytes total available)
+Header: $000000..$00000F; seed area allocated through $0000FF
+This host-only M1 pack has no resident native kernel images or boot assets.
+App 1 Mandelbrot ARENA: $040000..$043FFF (16384 bytes)
+App 1 Mandelbrot CODE: $040000..$0401D3 (468 bytes)
+App 1 Mandelbrot HEAP: $040280..$043BFF (14720 bytes)
+App 1 Mandelbrot STACK: $043C00..$043FFF (1024 bytes)
+App 1 DATA: start=$040200, length=28
+App 1 BSS: start=$040280, length=0
+App 1 DATA_SEED: start=$000080, length=28
+App 1 entry: $040000; no compiler frames or SDK imports (hand assembly)
+
++ /Users/frenchfaso/Documents/Code/C64/C-OS/target/release/cosbench /Users/frenchfaso/Documents/Code/C64/C-OS/build/mandelbrot-host.manifest.json --app Mandelbrot --bytes 192 --out /Users/frenchfaso/Documents/Code/C64/C-OS/build/mandelbrot-host.bin --expected /Users/frenchfaso/Documents/Code/C64/C-OS/build/mandelbrot-reference.bin
++ /opt/homebrew/opt/python@3.14/bin/python3.14 scripts/m3.py --manifest manifests/m3.json --cache-line 128 --out /Users/frenchfaso/Documents/Code/C64/C-OS/build/m3/128 --skip-host-build --kickass /Users/frenchfaso/Documents/Code/C64/toolchain/kickassembler/KickAss.jar --java /Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java
+M3 128-byte cache: resident=7271, VM=2645, cache=1702, diagnostics=0; numeric shortfall=0; tag=$9184c26e
++ /opt/homebrew/opt/python@3.14/bin/python3.14 scripts/m3.py --manifest manifests/m3.json --cache-line 128 --out /Users/frenchfaso/Documents/Code/C64/C-OS/build/m3/128 --skip-host-build --kickass /Users/frenchfaso/Documents/Code/C64/toolchain/kickassembler/KickAss.jar --java /Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java
+M3 128-byte cache: resident=7271, VM=2645, cache=1702, diagnostics=0; numeric shortfall=0; tag=$9184c26e
++ /opt/homebrew/opt/python@3.14/bin/python3.14 scripts/m2_bounds.py --build /Users/frenchfaso/Documents/Code/C64/C-OS/build/m3/128 --out /Users/frenchfaso/Documents/Code/C64/C-OS/build/m3/128/bounds.json
+{
+  "format": "COSM3STATICBOUND1",
+  "build_format": "COSM3MAP1",
+  "native_ram_first": 4608,
+  "extended_diagnostics": false,
+  "build_tag": 2441396846,
+  "cache_line_bytes": 128,
+  "artifact_sha256": {
+    "m3.manifest.json": "dcde82a9ab448c1449d0b2b56b92102afe9ca84d5f31da19123475a63a9aeaf9",
+    "m3.prg": "94f6755f29c69e54615de1c7bf918241ace60244a5735ecfeaa5345eedc467a8",
+    "m3.reu": "47839f69275efa588e3ba98b168a121cd1a2600988a210e46cda1b93f14884a9",
+    "native.bin": "d806ab584547ef2568f6f43c8b88c5c42e4676bf3bf060089770331eb5c0a136",
+    "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+    "renderer.prg": "5858b9691af7965b54c4f0ca5e96a314c2105293c291f91c72dd8246ad02adb2"
+  },
+  "map_sha256": "f930d60416501548861c16cfddb246bd8fb1de05033e73bd2e14a57a3417ea6a",
+  "checker_sha256": "fa0b2afc47d16e355ccbdec8057787e572459d472504fc0a059f24d4bc0f1f59",
+  "uniform_cycles_per_instruction": 7,
+  "qualified_model_fast_cycles_per_phi2": 48,
+  "extra_phi2_per_io_access": 7,
+  "pal_admission_windows": {
+    "vm_video_admit": {
+      "first_line": 260,
+      "last_line": 299
+    },
+    "vm_dma_admit": {
+      "first_line": 260,
+      "last_line": 299
+    }
+  },
+  "pal_lines_per_frame": 312,
+  "pal_phi2_per_line": 63,
+  "next_raster_irq_line": 58,
+  "latest_admission_guard_phi2": 4410,
+  "loops": {
+    "vm_retire": 7,
+    "vm_e_shl_loop": 14,
+    "vm_e_shr_loop": 14,
+    "vm_e_sar_loop": 14,
+    "vm_e_token_increment": 7,
+    "cache_unpin": 15,
+    "cache_require_data": 7,
+    "cache_clock_scan": 15,
+    "cache_code_hit": 3,
+    "cache_read_byte": 2,
+    "cache_write_byte": 2,
+    "cache_native_begin": 2,
+    "cache_native_transfer": 2,
+    "cache_native_dma": 2,
+    "cache_native_find_dirty": 7,
+    "cache_native_write_done": 15,
+    "cache_invalidate_scan": 15,
+    "vm_save_loop": 95,
+    "vm_load_loop": 95,
+    "scheduler_enqueue": 4,
+    "scheduler_dequeue": 2,
+    "scheduler_has_job": 3,
+    "scheduler_native_scan": 3,
+    "scheduler_remove_scan": 4,
+    "scheduler_remove_shift": 3,
+    "scheduler_wake_reu": 3,
+    "scheduler_wake_timed_scan": 3,
+    "jobs_memory_ready": 2,
+    "jobs_overlap_order": 2,
+    "jobs_validate": 2,
+    "jobs_validate_last": 2,
+    "jobs_validate_code": 2,
+    "jobs_validate_code_end": 2,
+    "jobs_error_outputs": 15,
+    "jobs_clear_outputs": 7
+  },
+  "conditional_loops": {
+    "scheduler_timer_read": 1
+  },
+  "backedges": {
+    "1d6b": {
+      "target": 7522,
+      "label": "cache_unpin",
+      "taken_edge_cap": 15,
+      "basis": "structural loop"
+    },
+    "1e20": {
+      "target": 7704,
+      "label": "cache_code_hit",
+      "taken_edge_cap": 3,
+      "basis": "structural loop"
+    },
+    "1ec0": {
+      "target": 7830,
+      "label": "cache_clock_scan",
+      "taken_edge_cap": 15,
+      "basis": "structural loop"
+    },
+    "1e8b": {
+      "target": 7811,
+      "label": "cache_require_data",
+      "taken_edge_cap": 7,
+      "basis": "structural loop"
+    },
+    "1f48": {
+      "target": 7990,
+      "label": "cache_read_byte",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "1a36": {
+      "target": 6704,
+      "label": "vm_e_shl_loop",
+      "taken_edge_cap": 14,
+      "basis": "structural loop"
+    },
+    "1a45": {
+      "target": 6719,
+      "label": "vm_e_shr_loop",
+      "taken_edge_cap": 14,
+      "basis": "structural loop"
+    },
+    "1a58": {
+      "target": 6734,
+      "label": "vm_e_sar_loop",
+      "taken_edge_cap": 14,
+      "basis": "structural loop"
+    },
+    "1f61": {
+      "target": 8015,
+      "label": "cache_write_byte",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "1b8f": {
+      "target": 7048,
+      "label": "vm_e_token_increment",
+      "taken_edge_cap": 7,
+      "basis": "structural loop"
+    },
+    "140f": {
+      "target": 5128,
+      "label": "vm_retire",
+      "taken_edge_cap": 7,
+      "basis": "structural loop"
+    },
+    "2352": {
+      "target": 9025,
+      "label": "cache_native_find_dirty",
+      "taken_edge_cap": 7,
+      "basis": "structural loop"
+    },
+    "2322": {
+      "target": 8985,
+      "label": "cache_native_dma",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "2336": {
+      "target": 9001,
+      "label": "cache_native_write_done",
+      "taken_edge_cap": 15,
+      "basis": "structural loop"
+    },
+    "22fd": {
+      "target": 8950,
+      "label": "cache_native_transfer",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "22e0": {
+      "target": 8922,
+      "label": "cache_native_transfer",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "2286": {
+      "target": 8827,
+      "label": "cache_native_begin",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "24c3": {
+      "target": 9400,
+      "label": "scheduler_enqueue",
+      "taken_edge_cap": 4,
+      "basis": "structural loop"
+    },
+    "274a": {
+      "target": 10046,
+      "label": "scheduler_remove_shift",
+      "taken_edge_cap": 3,
+      "basis": "structural loop"
+    },
+    "2739": {
+      "target": 10027,
+      "label": "scheduler_remove_scan",
+      "taken_edge_cap": 4,
+      "basis": "structural loop"
+    },
+    "2bc3": {
+      "target": 11196,
+      "label": "jobs_validate_code_end",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "2bb4": {
+      "target": 11181,
+      "label": "jobs_validate_code",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "2ba1": {
+      "target": 11162,
+      "label": "jobs_validate_last",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "2b92": {
+      "target": 11147,
+      "label": "jobs_validate",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "2b16": {
+      "target": 11023,
+      "label": "jobs_memory_ready",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "2b26": {
+      "target": 11039,
+      "label": "jobs_overlap_order",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "2e26": {
+      "target": 11804,
+      "label": "jobs_error_outputs",
+      "taken_edge_cap": 15,
+      "basis": "structural loop"
+    },
+    "2e40": {
+      "target": 11826,
+      "label": "jobs_clear_outputs",
+      "taken_edge_cap": 7,
+      "basis": "structural loop"
+    },
+    "1bc3": {
+      "target": 7099,
+      "label": "vm_save_loop",
+      "taken_edge_cap": 95,
+      "basis": "structural loop"
+    },
+    "1bd5": {
+      "target": 7117,
+      "label": "vm_load_loop",
+      "taken_edge_cap": 95,
+      "basis": "structural loop"
+    },
+    "286b": {
+      "target": 10332,
+      "label": "scheduler_timer_read",
+      "taken_edge_cap": 1,
+      "basis": "conditional timer rollover"
+    },
+    "27bb": {
+      "target": 10140,
+      "label": "scheduler_wake_reu",
+      "taken_edge_cap": 3,
+      "basis": "structural loop"
+    },
+    "26a2": {
+      "target": 9862,
+      "label": "scheduler_native_scan",
+      "taken_edge_cap": 3,
+      "basis": "structural loop"
+    },
+    "222e": {
+      "target": 8716,
+      "label": "cache_invalidate_scan",
+      "taken_edge_cap": 15,
+      "basis": "structural loop"
+    },
+    "2840": {
+      "target": 10181,
+      "label": "scheduler_wake_timed_scan",
+      "taken_edge_cap": 3,
+      "basis": "structural loop"
+    },
+    "24e9": {
+      "target": 9440,
+      "label": "scheduler_dequeue",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "263a": {
+      "target": 9765,
+      "label": "scheduler_has_job",
+      "taken_edge_cap": 3,
+      "basis": "structural loop"
+    }
+  },
+  "results": {
+    "vm_step": {
+      "instruction_visits": 2773,
+      "cpu_cycle_upper_bound": 19418,
+      "io_access_upper_bound": 2,
+      "cpu_io_phi2_upper_bound": 419,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 419
+    },
+    "cache_service": {
+      "instruction_visits": 261,
+      "cpu_cycle_upper_bound": 1834,
+      "io_access_upper_bound": 16,
+      "cpu_io_phi2_upper_bound": 151,
+      "dma_phi2_allowance": 511,
+      "conditional_total_phi2_upper_bound": 662
+    },
+    "cache_native_read": {
+      "instruction_visits": 1970,
+      "cpu_cycle_upper_bound": 13797,
+      "io_access_upper_bound": 16,
+      "cpu_io_phi2_upper_bound": 400,
+      "dma_phi2_allowance": 511,
+      "conditional_total_phi2_upper_bound": 911
+    },
+    "cache_native_write": {
+      "instruction_visits": 1969,
+      "cpu_cycle_upper_bound": 13790,
+      "io_access_upper_bound": 16,
+      "cpu_io_phi2_upper_bound": 400,
+      "dma_phi2_allowance": 511,
+      "conditional_total_phi2_upper_bound": 911
+    }
+  },
+  "separately_bounded_helpers": {
+    "jobs_step": {
+      "instruction_visits": 2194,
+      "cpu_cycle_upper_bound": 15365,
+      "io_access_upper_bound": 16,
+      "cpu_io_phi2_upper_bound": 433,
+      "dma_phi2_allowance": 511,
+      "conditional_total_phi2_upper_bound": 944
+    },
+    "jobs_accept": {
+      "instruction_visits": 388,
+      "cpu_cycle_upper_bound": 2723,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 57,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 57
+    },
+    "jobs_validate": {
+      "instruction_visits": 100,
+      "cpu_cycle_upper_bound": 707,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 15,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 15
+    },
+    "jobs_complete": {
+      "instruction_visits": 89,
+      "cpu_cycle_upper_bound": 630,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 14,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 14
+    },
+    "scheduler_native_phase": {
+      "instruction_visits": 7778,
+      "cpu_cycle_upper_bound": 54453,
+      "io_access_upper_bound": 28,
+      "cpu_io_phi2_upper_bound": 1331,
+      "dma_phi2_allowance": 511,
+      "conditional_total_phi2_upper_bound": 1842
+    },
+    "scheduler_select": {
+      "instruction_visits": 1209,
+      "cpu_cycle_upper_bound": 8470,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 177,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 177
+    },
+    "scheduler_cancel_current": {
+      "instruction_visits": 635,
+      "cpu_cycle_upper_bound": 4452,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 93,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 93
+    },
+    "scheduler_wake_reu": {
+      "instruction_visits": 271,
+      "cpu_cycle_upper_bound": 1904,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 40,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 40
+    },
+    "scheduler_wake_timed": {
+      "instruction_visits": 5503,
+      "cpu_cycle_upper_bound": 38528,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 803,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 803
+    },
+    "scheduler_frame_tick": {
+      "instruction_visits": 8,
+      "cpu_cycle_upper_bound": 63,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 2,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 2
+    },
+    "scheduler_enqueue": {
+      "instruction_visits": 37,
+      "cpu_cycle_upper_bound": 266,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 6,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 6
+    },
+    "scheduler_dequeue": {
+      "instruction_visits": 24,
+      "cpu_cycle_upper_bound": 175,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 4,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 4
+    },
+    "scheduler_has_job": {
+      "instruction_visits": 109,
+      "cpu_cycle_upper_bound": 770,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 17,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 17
+    },
+    "scheduler_timer_read": {
+      "instruction_visits": 15,
+      "cpu_cycle_upper_bound": 112,
+      "io_access_upper_bound": 6,
+      "cpu_io_phi2_upper_bound": 45,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 45
+    },
+    "scheduler_account_native": {
+      "instruction_visits": 67,
+      "cpu_cycle_upper_bound": 476,
+      "io_access_upper_bound": 6,
+      "cpu_io_phi2_upper_bound": 52,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 52
+    },
+    "cache_invalidate_owner": {
+      "instruction_visits": 265,
+      "cpu_cycle_upper_bound": 1862,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 39,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 39
+    }
+  },
+  "last_opcode_admission_audit": {
+    "scheduler_vm_result": {
+      "instruction_visits": 1253,
+      "cpu_cycle_upper_bound": 8778,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 183,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 183
+    },
+    "scheduler_vm_phase": {
+      "instruction_visits": 5413,
+      "cpu_cycle_upper_bound": 37898,
+      "io_access_upper_bound": 2,
+      "cpu_io_phi2_upper_bound": 804,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 804
+    },
+    "scheduler_tick": {
+      "instruction_visits": 20575,
+      "cpu_cycle_upper_bound": 144032,
+      "io_access_upper_bound": 32,
+      "cpu_io_phi2_upper_bound": 3225,
+      "dma_phi2_allowance": 511,
+      "conditional_total_phi2_upper_bound": 3736
+    },
+    "qualification": "These overapproximations summarize vm_run as its final re-admitted opcode only; preceding opcode time is excluded. They are not whole-quantum execution bounds. The VM result tail includes fixed syscall acceptance and context saving."
+  },
+  "timer_read_model": {
+    "read_triplet_instruction_visits": 7,
+    "read_triplet_io_accesses": 3,
+    "read_triplet_phi2_upper_bound": 23,
+    "low_byte_rollover_period_phi2": 256,
+    "retry_taken_edge_cap": 1,
+    "assumptions": "Continuous CIA timer, no external reprogramming; no IRQ or repeated NMI interruption spanning a 256-PHI2 period during the read"
+  },
+  "structural_preconditions": "VM contexts are 96 bytes; at most four process slots and four runnable queue entries; scalar width 1..3; cache has 16 entries",
+  "qualification": "Conditional fixed emulated turbo profile; physical memory/I/O/DMA stall bounds pending",
+  "scope": "Admitted results cover one vm_step or one service/native call. M3 helper results are separate call bounds, not an admission guarantee for scheduler_tick or vm_run; vm_run rechecks admission before every opcode. Initialization, outer recovery polling, IRQ and NMI time are excluded"
+}
++ /opt/homebrew/opt/python@3.14/bin/python3.14 scripts/m3.py --manifest manifests/m3.json --cache-line 64 --out /Users/frenchfaso/Documents/Code/C64/C-OS/build/m3/64 --skip-host-build --kickass /Users/frenchfaso/Documents/Code/C64/toolchain/kickassembler/KickAss.jar --java /Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java
+M3 64-byte cache: resident=7277, VM=2645, cache=1708, diagnostics=0; numeric shortfall=0; tag=$4de78353
++ /opt/homebrew/opt/python@3.14/bin/python3.14 scripts/m3.py --manifest manifests/m3.json --cache-line 64 --out /Users/frenchfaso/Documents/Code/C64/C-OS/build/m3/64 --skip-host-build --kickass /Users/frenchfaso/Documents/Code/C64/toolchain/kickassembler/KickAss.jar --java /Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java
+M3 64-byte cache: resident=7277, VM=2645, cache=1708, diagnostics=0; numeric shortfall=0; tag=$4de78353
++ /opt/homebrew/opt/python@3.14/bin/python3.14 scripts/m2_bounds.py --build /Users/frenchfaso/Documents/Code/C64/C-OS/build/m3/64 --out /Users/frenchfaso/Documents/Code/C64/C-OS/build/m3/64/bounds.json
+{
+  "format": "COSM3STATICBOUND1",
+  "build_format": "COSM3MAP1",
+  "native_ram_first": 4608,
+  "extended_diagnostics": false,
+  "build_tag": 1307018067,
+  "cache_line_bytes": 64,
+  "artifact_sha256": {
+    "m3.manifest.json": "8e95db8a45341c2009409474fb0d306c3e9c688781437894ff2752051c77b217",
+    "m3.prg": "fb2fe2f2df18bce3e57d2cd5bfb08f6378a783f5c163d31472a228a44faecb4d",
+    "m3.reu": "5bba7654eb9ba25a81910a664e3396a3e4e2b30f7c242b6bbf50035b57c321b7",
+    "native.bin": "ae020a109dc76479d388fd60e81021158c919c50022a15e53c349fbe486e5324",
+    "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+    "renderer.prg": "5858b9691af7965b54c4f0ca5e96a314c2105293c291f91c72dd8246ad02adb2"
+  },
+  "map_sha256": "17dc23d152c58b41f2a66e66eecbb41a99c48155e41b875ab8c4251bd2ffe299",
+  "checker_sha256": "fa0b2afc47d16e355ccbdec8057787e572459d472504fc0a059f24d4bc0f1f59",
+  "uniform_cycles_per_instruction": 7,
+  "qualified_model_fast_cycles_per_phi2": 48,
+  "extra_phi2_per_io_access": 7,
+  "pal_admission_windows": {
+    "vm_video_admit": {
+      "first_line": 260,
+      "last_line": 299
+    },
+    "vm_dma_admit": {
+      "first_line": 260,
+      "last_line": 299
+    }
+  },
+  "pal_lines_per_frame": 312,
+  "pal_phi2_per_line": 63,
+  "next_raster_irq_line": 58,
+  "latest_admission_guard_phi2": 4410,
+  "loops": {
+    "vm_retire": 7,
+    "vm_e_shl_loop": 14,
+    "vm_e_shr_loop": 14,
+    "vm_e_sar_loop": 14,
+    "vm_e_token_increment": 7,
+    "cache_unpin": 15,
+    "cache_require_data": 7,
+    "cache_clock_scan": 15,
+    "cache_code_hit": 3,
+    "cache_read_byte": 2,
+    "cache_write_byte": 2,
+    "cache_native_begin": 2,
+    "cache_native_transfer": 2,
+    "cache_native_dma": 2,
+    "cache_native_find_dirty": 7,
+    "cache_native_write_done": 15,
+    "cache_invalidate_scan": 15,
+    "vm_save_loop": 95,
+    "vm_load_loop": 95,
+    "scheduler_enqueue": 4,
+    "scheduler_dequeue": 2,
+    "scheduler_has_job": 3,
+    "scheduler_native_scan": 3,
+    "scheduler_remove_scan": 4,
+    "scheduler_remove_shift": 3,
+    "scheduler_wake_reu": 3,
+    "scheduler_wake_timed_scan": 3,
+    "jobs_memory_ready": 2,
+    "jobs_overlap_order": 2,
+    "jobs_validate": 2,
+    "jobs_validate_last": 2,
+    "jobs_validate_code": 2,
+    "jobs_validate_code_end": 2,
+    "jobs_error_outputs": 15,
+    "jobs_clear_outputs": 7
+  },
+  "conditional_loops": {
+    "scheduler_timer_read": 1
+  },
+  "backedges": {
+    "1d6b": {
+      "target": 7522,
+      "label": "cache_unpin",
+      "taken_edge_cap": 15,
+      "basis": "structural loop"
+    },
+    "1e26": {
+      "target": 7710,
+      "label": "cache_code_hit",
+      "taken_edge_cap": 3,
+      "basis": "structural loop"
+    },
+    "1ec6": {
+      "target": 7836,
+      "label": "cache_clock_scan",
+      "taken_edge_cap": 15,
+      "basis": "structural loop"
+    },
+    "1e91": {
+      "target": 7817,
+      "label": "cache_require_data",
+      "taken_edge_cap": 7,
+      "basis": "structural loop"
+    },
+    "1f4e": {
+      "target": 7996,
+      "label": "cache_read_byte",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "1a36": {
+      "target": 6704,
+      "label": "vm_e_shl_loop",
+      "taken_edge_cap": 14,
+      "basis": "structural loop"
+    },
+    "1a45": {
+      "target": 6719,
+      "label": "vm_e_shr_loop",
+      "taken_edge_cap": 14,
+      "basis": "structural loop"
+    },
+    "1a58": {
+      "target": 6734,
+      "label": "vm_e_sar_loop",
+      "taken_edge_cap": 14,
+      "basis": "structural loop"
+    },
+    "1f67": {
+      "target": 8021,
+      "label": "cache_write_byte",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "1b8f": {
+      "target": 7048,
+      "label": "vm_e_token_increment",
+      "taken_edge_cap": 7,
+      "basis": "structural loop"
+    },
+    "140f": {
+      "target": 5128,
+      "label": "vm_retire",
+      "taken_edge_cap": 7,
+      "basis": "structural loop"
+    },
+    "2358": {
+      "target": 9031,
+      "label": "cache_native_find_dirty",
+      "taken_edge_cap": 7,
+      "basis": "structural loop"
+    },
+    "2328": {
+      "target": 8991,
+      "label": "cache_native_dma",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "233c": {
+      "target": 9007,
+      "label": "cache_native_write_done",
+      "taken_edge_cap": 15,
+      "basis": "structural loop"
+    },
+    "2303": {
+      "target": 8956,
+      "label": "cache_native_transfer",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "22e6": {
+      "target": 8928,
+      "label": "cache_native_transfer",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "228c": {
+      "target": 8833,
+      "label": "cache_native_begin",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "24c9": {
+      "target": 9406,
+      "label": "scheduler_enqueue",
+      "taken_edge_cap": 4,
+      "basis": "structural loop"
+    },
+    "2750": {
+      "target": 10052,
+      "label": "scheduler_remove_shift",
+      "taken_edge_cap": 3,
+      "basis": "structural loop"
+    },
+    "273f": {
+      "target": 10033,
+      "label": "scheduler_remove_scan",
+      "taken_edge_cap": 4,
+      "basis": "structural loop"
+    },
+    "2bc9": {
+      "target": 11202,
+      "label": "jobs_validate_code_end",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "2bba": {
+      "target": 11187,
+      "label": "jobs_validate_code",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "2ba7": {
+      "target": 11168,
+      "label": "jobs_validate_last",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "2b98": {
+      "target": 11153,
+      "label": "jobs_validate",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "2b1c": {
+      "target": 11029,
+      "label": "jobs_memory_ready",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "2b2c": {
+      "target": 11045,
+      "label": "jobs_overlap_order",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "2e2c": {
+      "target": 11810,
+      "label": "jobs_error_outputs",
+      "taken_edge_cap": 15,
+      "basis": "structural loop"
+    },
+    "2e46": {
+      "target": 11832,
+      "label": "jobs_clear_outputs",
+      "taken_edge_cap": 7,
+      "basis": "structural loop"
+    },
+    "1bc3": {
+      "target": 7099,
+      "label": "vm_save_loop",
+      "taken_edge_cap": 95,
+      "basis": "structural loop"
+    },
+    "1bd5": {
+      "target": 7117,
+      "label": "vm_load_loop",
+      "taken_edge_cap": 95,
+      "basis": "structural loop"
+    },
+    "2871": {
+      "target": 10338,
+      "label": "scheduler_timer_read",
+      "taken_edge_cap": 1,
+      "basis": "conditional timer rollover"
+    },
+    "27c1": {
+      "target": 10146,
+      "label": "scheduler_wake_reu",
+      "taken_edge_cap": 3,
+      "basis": "structural loop"
+    },
+    "26a8": {
+      "target": 9868,
+      "label": "scheduler_native_scan",
+      "taken_edge_cap": 3,
+      "basis": "structural loop"
+    },
+    "2234": {
+      "target": 8722,
+      "label": "cache_invalidate_scan",
+      "taken_edge_cap": 15,
+      "basis": "structural loop"
+    },
+    "2846": {
+      "target": 10187,
+      "label": "scheduler_wake_timed_scan",
+      "taken_edge_cap": 3,
+      "basis": "structural loop"
+    },
+    "24ef": {
+      "target": 9446,
+      "label": "scheduler_dequeue",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "2640": {
+      "target": 9771,
+      "label": "scheduler_has_job",
+      "taken_edge_cap": 3,
+      "basis": "structural loop"
+    }
+  },
+  "results": {
+    "vm_step": {
+      "instruction_visits": 2815,
+      "cpu_cycle_upper_bound": 19712,
+      "io_access_upper_bound": 2,
+      "cpu_io_phi2_upper_bound": 425,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 425
+    },
+    "cache_service": {
+      "instruction_visits": 267,
+      "cpu_cycle_upper_bound": 1876,
+      "io_access_upper_bound": 16,
+      "cpu_io_phi2_upper_bound": 152,
+      "dma_phi2_allowance": 511,
+      "conditional_total_phi2_upper_bound": 663
+    },
+    "cache_native_read": {
+      "instruction_visits": 1970,
+      "cpu_cycle_upper_bound": 13797,
+      "io_access_upper_bound": 16,
+      "cpu_io_phi2_upper_bound": 400,
+      "dma_phi2_allowance": 511,
+      "conditional_total_phi2_upper_bound": 911
+    },
+    "cache_native_write": {
+      "instruction_visits": 1969,
+      "cpu_cycle_upper_bound": 13790,
+      "io_access_upper_bound": 16,
+      "cpu_io_phi2_upper_bound": 400,
+      "dma_phi2_allowance": 511,
+      "conditional_total_phi2_upper_bound": 911
+    }
+  },
+  "separately_bounded_helpers": {
+    "jobs_step": {
+      "instruction_visits": 2194,
+      "cpu_cycle_upper_bound": 15365,
+      "io_access_upper_bound": 16,
+      "cpu_io_phi2_upper_bound": 433,
+      "dma_phi2_allowance": 511,
+      "conditional_total_phi2_upper_bound": 944
+    },
+    "jobs_accept": {
+      "instruction_visits": 388,
+      "cpu_cycle_upper_bound": 2723,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 57,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 57
+    },
+    "jobs_validate": {
+      "instruction_visits": 100,
+      "cpu_cycle_upper_bound": 707,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 15,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 15
+    },
+    "jobs_complete": {
+      "instruction_visits": 89,
+      "cpu_cycle_upper_bound": 630,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 14,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 14
+    },
+    "scheduler_native_phase": {
+      "instruction_visits": 7778,
+      "cpu_cycle_upper_bound": 54453,
+      "io_access_upper_bound": 28,
+      "cpu_io_phi2_upper_bound": 1331,
+      "dma_phi2_allowance": 511,
+      "conditional_total_phi2_upper_bound": 1842
+    },
+    "scheduler_select": {
+      "instruction_visits": 1209,
+      "cpu_cycle_upper_bound": 8470,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 177,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 177
+    },
+    "scheduler_cancel_current": {
+      "instruction_visits": 635,
+      "cpu_cycle_upper_bound": 4452,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 93,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 93
+    },
+    "scheduler_wake_reu": {
+      "instruction_visits": 271,
+      "cpu_cycle_upper_bound": 1904,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 40,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 40
+    },
+    "scheduler_wake_timed": {
+      "instruction_visits": 5503,
+      "cpu_cycle_upper_bound": 38528,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 803,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 803
+    },
+    "scheduler_frame_tick": {
+      "instruction_visits": 8,
+      "cpu_cycle_upper_bound": 63,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 2,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 2
+    },
+    "scheduler_enqueue": {
+      "instruction_visits": 37,
+      "cpu_cycle_upper_bound": 266,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 6,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 6
+    },
+    "scheduler_dequeue": {
+      "instruction_visits": 24,
+      "cpu_cycle_upper_bound": 175,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 4,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 4
+    },
+    "scheduler_has_job": {
+      "instruction_visits": 109,
+      "cpu_cycle_upper_bound": 770,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 17,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 17
+    },
+    "scheduler_timer_read": {
+      "instruction_visits": 15,
+      "cpu_cycle_upper_bound": 112,
+      "io_access_upper_bound": 6,
+      "cpu_io_phi2_upper_bound": 45,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 45
+    },
+    "scheduler_account_native": {
+      "instruction_visits": 67,
+      "cpu_cycle_upper_bound": 476,
+      "io_access_upper_bound": 6,
+      "cpu_io_phi2_upper_bound": 52,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 52
+    },
+    "cache_invalidate_owner": {
+      "instruction_visits": 265,
+      "cpu_cycle_upper_bound": 1862,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 39,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 39
+    }
+  },
+  "last_opcode_admission_audit": {
+    "scheduler_vm_result": {
+      "instruction_visits": 1253,
+      "cpu_cycle_upper_bound": 8778,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 183,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 183
+    },
+    "scheduler_vm_phase": {
+      "instruction_visits": 5455,
+      "cpu_cycle_upper_bound": 38192,
+      "io_access_upper_bound": 2,
+      "cpu_io_phi2_upper_bound": 810,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 810
+    },
+    "scheduler_tick": {
+      "instruction_visits": 20617,
+      "cpu_cycle_upper_bound": 144326,
+      "io_access_upper_bound": 32,
+      "cpu_io_phi2_upper_bound": 3231,
+      "dma_phi2_allowance": 511,
+      "conditional_total_phi2_upper_bound": 3742
+    },
+    "qualification": "These overapproximations summarize vm_run as its final re-admitted opcode only; preceding opcode time is excluded. They are not whole-quantum execution bounds. The VM result tail includes fixed syscall acceptance and context saving."
+  },
+  "timer_read_model": {
+    "read_triplet_instruction_visits": 7,
+    "read_triplet_io_accesses": 3,
+    "read_triplet_phi2_upper_bound": 23,
+    "low_byte_rollover_period_phi2": 256,
+    "retry_taken_edge_cap": 1,
+    "assumptions": "Continuous CIA timer, no external reprogramming; no IRQ or repeated NMI interruption spanning a 256-PHI2 period during the read"
+  },
+  "structural_preconditions": "VM contexts are 96 bytes; at most four process slots and four runnable queue entries; scalar width 1..3; cache has 16 entries",
+  "qualification": "Conditional fixed emulated turbo profile; physical memory/I/O/DMA stall bounds pending",
+  "scope": "Admitted results cover one vm_step or one service/native call. M3 helper results are separate call bounds, not an admission guarantee for scheduler_tick or vm_run; vm_run rechecks admission before every opcode. Initialization, outer recovery polling, IRQ and NMI time are excluded"
+}
++ cargo fmt --all -- --check
++ cargo test --locked --offline
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.02s
+     Running unittests src/lib.rs (target/debug/deps/cos_tools-beb47215c345e449)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/cosasm.rs (target/debug/deps/cosasm-cb84f74a8f1f214e)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/cosbench.rs (target/debug/deps/cosbench-d112940fa879af35)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/cosdis.rs (target/debug/deps/cosdis-475c176fd4cee7c0)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/cosfixtures.rs (target/debug/deps/cosfixtures-9646d7210c062824)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/cospack.rs (target/debug/deps/cospack-1a9ad1e013fd92ee)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/cosrun.rs (target/debug/deps/cosrun-3b6b602e326d837b)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/harness.rs (target/debug/deps/harness-513120a11a3a5ed7)
+
+running 8 tests
+test empty_copy_does_not_dereference_both_pointers ... ok
+test invocation_and_completion_are_exactly_once ... ok
+test sleep_uses_wrapping_monotonic_frames_and_only_real_wait_refills ... ok
+test bounded_fill_preserves_fuel_and_waiting_line_has_no_effect ... ok
+test equal_tokens_from_other_processes_or_incarnations_cannot_reassign_a_job ... ok
+test memmove_matches_snapshot_for_both_overlap_directions_and_identity ... ok
+test full_range_is_validated_before_progressive_job_effects ... ok
+test unavailable_services_report_explicit_errors_without_memory_effects ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/semantics.rs (target/debug/deps/semantics-4bcb51c4b53b2d2b)
+
+running 30 tests
+test entry_state_matches_the_loader_abi_with_and_without_data ... ok
+test encoding_and_decoding_match_independent_known_bytes ... ok
+test fuel_three_preempts_and_resumes_a_loop_without_yield ... ok
+test invalid_syscall_result_is_rejected_atomically_while_valid_outputs_preserve_others ... ok
+test call_checks_both_target_and_future_return_address_before_push ... ok
+test full_and_empty_stacks_fail_before_any_effect ... ok
+test nested_calls_save_24bit_return_addresses_and_restore_sp_exactly ... ok
+test memory_waits_preserve_pc_fuel_registers_and_multiline_writes ... ok
+test out_of_arena_pointers_remain_valid_values_until_dereferenced ... ok
+test only_the_selected_branch_destination_must_be_valid ... ok
+test invalid_fallthrough_is_rejected_before_register_memory_or_stack_effects ... ok
+test arena_and_24bit_end_bounds_are_checked_without_partial_writes ... ok
+test pointer_overflow_and_underflow_leave_registers_unchanged ... ok
+test pc_alignment_and_relative_branch_overflow_never_wrap ... ok
+test push_pop_and_get_set_sp_follow_the_descending_packed_stack ... ok
+test ret_validates_saved_target_before_changing_sp_or_pc ... ok
+test integer_operations_have_explicit_fixed_width_results ... ok
+test multibyte_loads_and_stores_cross_64k_and_cache_line_boundaries ... ok
+test step_one_and_run_preserve_a_split_store_until_all_lines_are_available ... ok
+test step_one_matches_run_for_pending_syscall_priority_and_completion ... ok
+test pointer_construction_arithmetic_and_extraction_are_linear ... ok
+test step_one_and_run_keep_faults_and_exits_terminal_after_refueling ... ok
+test valid_encodings_cover_every_defined_opcode ... ok
+test step_one_retires_one_opcode_and_reaches_the_same_fuel_boundary_as_run ... ok
+test syscall_acceptance_and_completion_happen_exactly_once ... ok
+test returning_syscall_needs_resume_pc_but_terminal_instructions_do_not ... ok
+test each_integer_and_pointer_branch_selects_the_expected_pc ... ok
+test suspended_load_pop_and_ret_publish_no_partial_results ... ok
+test writes_into_code_are_rejected_but_reading_code_is_allowed ... ok
+test invalid_registers_shift_counts_and_reserved_fields_are_rejected ... ok
+
+test result: ok. 30 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+     Running tests/toolchain.rs (target/debug/deps/toolchain-b6c8dceccf1e3907)
+
+running 15 tests
+test independent_instruction_vectors ... ok
+test complete_opcode_table_is_the_normative_table ... ok
+test malformed_operands_and_reserved_fields_are_rejected ... ok
+test assembly_relocations_have_independent_expected_linked_bytes ... ok
+test objects_reject_unknown_json_fields_and_malformed_relocations ... ok
+test assembler_errors_have_file_line_column ... ok
+test direct_linker_rejects_invalid_layout_without_panicking ... ok
+test repeated_numeric_signs_are_rejected_instead_of_silently_changed ... ok
+test empty_pack_header_and_shared_reservation ... ok
+test static_control_flow_overflow_and_alignment_are_rejected ... ok
+test serialized_manifest_bounds_are_revalidated ... ok
+test arena_validation_rejects_overlaps_ids_alignment_and_profile ... ok
+test complete_assembly_samples_link_deterministically ... ok
+test relative_relocation_range_and_addend_alignment_are_checked ... ok
+test seed_capacity_is_bounded_and_bss_does_not_consume_it ... ok
+
+test result: ok. 15 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+   Doc-tests cos_tools
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
++ cargo clippy --locked --offline --all-targets -- -D warnings
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.05s
++ /opt/homebrew/opt/python@3.14/bin/python3.14 -m unittest discover -s tests/native -v
+test_independent_pixel_machine_bytes (test_m0.AssembledContract.test_independent_pixel_machine_bytes) ... ok
+test_map_covers_64k_and_never_claims_io_as_ram (test_m0.AssembledContract.test_map_covers_64k_and_never_claims_io_as_ram) ... ok
+test_pack_and_bootstrap_safe_ranges (test_m0.AssembledContract.test_pack_and_bootstrap_safe_ranges) ... ok
+test_literal_geometry_edges_and_nibble_order (test_m0.PatternContract.test_literal_geometry_edges_and_nibble_order) ... ok
+test_publish_failure_restores_previous_complete_set (test_m0.PublicationContract.test_publish_failure_restores_previous_complete_set) ... ok
+test_cumulative_map_includes_all_caches_and_future_numeric_reserve (test_m2_artifacts.NativeBootArtifacts.test_cumulative_map_includes_all_caches_and_future_numeric_reserve) ... ok
+test_pairing_images_and_nonoverlapping_system_ranges (test_m2_artifacts.NativeBootArtifacts.test_pairing_images_and_nonoverlapping_system_ranges) ... ok
+test_overflow_fault_retains_the_fourth_address_byte (test_m2_compare.NativeSuspension.test_overflow_fault_retains_the_fourth_address_byte) ... ok
+test_wait_preserves_effects_fuel_and_pending_identity (test_m2_compare.NativeSuspension.test_wait_preserves_effects_fuel_and_pending_identity) ... ok
+test_clean_and_invalid_lines_cannot_mask_a_bad_physical_byte (test_m2_compare.NativeVisibility.test_clean_and_invalid_lines_cannot_mask_a_bad_physical_byte) ... ok
+test_duplicate_dirty_ownership_is_a_failure (test_m2_compare.NativeVisibility.test_duplicate_dirty_ownership_is_a_failure) ... ok
+test_two_dirty_lines_overlay_without_flushing_physical_memory (test_m2_compare.NativeVisibility.test_two_dirty_lines_overlay_without_flushing_physical_memory) ... ok
+test_bootstrap_and_resident_destinations_are_disjoint (test_m3_artifacts.NormalM3Artifacts.test_bootstrap_and_resident_destinations_are_disjoint) ... ok
+test_default_pixel_stream_retains_m0_geometry_and_cadence (test_m3_artifacts.NormalM3Artifacts.test_default_pixel_stream_retains_m0_geometry_and_cadence) ... ok
+test_normal_profile_preserves_numeric_and_future_fixed_reserves (test_m3_artifacts.NormalM3Artifacts.test_normal_profile_preserves_numeric_and_future_fixed_reserves) ... ok
+test_pack_and_descriptors_match_linked_apps (test_m3_artifacts.NormalM3Artifacts.test_pack_and_descriptors_match_linked_apps) ... ok
+test_both_origins_and_diagnostic_profiles (test_native_bounds.NativeBounds.test_both_origins_and_diagnostic_profiles) ... ok
+test_rejects_artifact_tampering (test_native_bounds.NativeBounds.test_rejects_artifact_tampering) ... ok
+test_rejects_new_unbounded_cycle (test_native_bounds.NativeBounds.test_rejects_new_unbounded_cycle) ... ok
+test_rejects_unrecognized_opcode (test_native_bounds.NativeBounds.test_rejects_unrecognized_opcode) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.225s
+
+OK
++ /opt/homebrew/opt/python@3.14/bin/python3.14 tests/native/check_cache_rollback.py --emulator /Users/frenchfaso/Documents/Code/C64/UE2-C64U-Emulator/target/release/ue2emu --config /Users/frenchfaso/Documents/Code/C64/runtime/c64u.toml --flash /Users/frenchfaso/Documents/Code/C64/runtime/flash.bin --settings /Users/frenchfaso/Documents/Code/C64/runtime/ultimate.cfg --kickassembler /Users/frenchfaso/Documents/Code/C64/toolchain/kickassembler/KickAss.jar --java /Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java
+[
+  {
+    "format": "COSCACHEROLLBACK1",
+    "status": "pass",
+    "cache_line": 128,
+    "extended_diagnostics": true,
+    "scenarios": 128,
+    "failures": 0,
+    "completed": true,
+    "cache_source_sha256": "e9ba035f3dd210b47dbf9f392de1425b2ececce4096356dda9c28d19c1488fa5",
+    "fixture_source_sha256": "09c4f1cf76a6aa92dff289477c1c8d5f010641992c6957df7ea113d21ded478b",
+    "abi_source_sha256": "167f98fca6ae969293157bdd5a32b659731c75de6384662fe85e5a977ed7bdc4",
+    "profile_source_sha256": "ff649ca477cbbc21981b2bdd2b3f0da84a72b399a149d8d32203bc0c85a6bed2",
+    "prg_sha256": "a9e5b94cb74aee2eb1b6dd3db11795b947a6adea50a253c5ef5fd6dcbcd71065",
+    "rows_sha256": "135e26bc4418daf44e320417f818300d57669b42d19adecf157f7ed43750c4b6",
+    "physical_a_sha256": "b1088ccf8733ef5d8f3c59f19cc61a046233d7d59bdff0335c0601091f113e36",
+    "physical_b_sha256": "e755c415eba1d77c6a3b6de6b486ae16f1a2270d794fc12a1773e18e1ff94b94",
+    "supplied_config_sha256": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+    "supplied_flash_sha256": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be",
+    "supplied_settings_sha256": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961",
+    "emulator_path": "/Users/frenchfaso/Documents/Code/C64/UE2-C64U-Emulator/target/release/ue2emu"
+  },
+  {
+    "format": "COSCACHEROLLBACK1",
+    "status": "pass",
+    "cache_line": 128,
+    "extended_diagnostics": false,
+    "scenarios": 128,
+    "failures": 0,
+    "completed": true,
+    "cache_source_sha256": "e9ba035f3dd210b47dbf9f392de1425b2ececce4096356dda9c28d19c1488fa5",
+    "fixture_source_sha256": "09c4f1cf76a6aa92dff289477c1c8d5f010641992c6957df7ea113d21ded478b",
+    "abi_source_sha256": "167f98fca6ae969293157bdd5a32b659731c75de6384662fe85e5a977ed7bdc4",
+    "profile_source_sha256": "ff649ca477cbbc21981b2bdd2b3f0da84a72b399a149d8d32203bc0c85a6bed2",
+    "prg_sha256": "6b1d23068e1eb4e4c1373479312a1d2e484bace38e240f5a74970d6129c05c8a",
+    "rows_sha256": "135e26bc4418daf44e320417f818300d57669b42d19adecf157f7ed43750c4b6",
+    "physical_a_sha256": "b1088ccf8733ef5d8f3c59f19cc61a046233d7d59bdff0335c0601091f113e36",
+    "physical_b_sha256": "e755c415eba1d77c6a3b6de6b486ae16f1a2270d794fc12a1773e18e1ff94b94",
+    "supplied_config_sha256": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+    "supplied_flash_sha256": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be",
+    "supplied_settings_sha256": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961",
+    "emulator_path": "/Users/frenchfaso/Documents/Code/C64/UE2-C64U-Emulator/target/release/ue2emu"
+  },
+  {
+    "format": "COSCACHEROLLBACK1",
+    "status": "pass",
+    "cache_line": 64,
+    "extended_diagnostics": true,
+    "scenarios": 128,
+    "failures": 0,
+    "completed": true,
+    "cache_source_sha256": "e9ba035f3dd210b47dbf9f392de1425b2ececce4096356dda9c28d19c1488fa5",
+    "fixture_source_sha256": "09c4f1cf76a6aa92dff289477c1c8d5f010641992c6957df7ea113d21ded478b",
+    "abi_source_sha256": "167f98fca6ae969293157bdd5a32b659731c75de6384662fe85e5a977ed7bdc4",
+    "profile_source_sha256": "ff649ca477cbbc21981b2bdd2b3f0da84a72b399a149d8d32203bc0c85a6bed2",
+    "prg_sha256": "3683667a48c7cfae9ea15b3315c8decb6d9de466f530662bd1a5343c44b5e1bc",
+    "rows_sha256": "0087117e48deb4431bf8b8bed4a310d15ecf53b0e26666e64d7befa312cdc729",
+    "physical_a_sha256": "a0853a6db541f204246ab47002491c8015a3098cd7918d0aa49ea8b88f0210e6",
+    "physical_b_sha256": "e755c415eba1d77c6a3b6de6b486ae16f1a2270d794fc12a1773e18e1ff94b94",
+    "supplied_config_sha256": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+    "supplied_flash_sha256": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be",
+    "supplied_settings_sha256": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961",
+    "emulator_path": "/Users/frenchfaso/Documents/Code/C64/UE2-C64U-Emulator/target/release/ue2emu"
+  },
+  {
+    "format": "COSCACHEROLLBACK1",
+    "status": "pass",
+    "cache_line": 64,
+    "extended_diagnostics": false,
+    "scenarios": 128,
+    "failures": 0,
+    "completed": true,
+    "cache_source_sha256": "e9ba035f3dd210b47dbf9f392de1425b2ececce4096356dda9c28d19c1488fa5",
+    "fixture_source_sha256": "09c4f1cf76a6aa92dff289477c1c8d5f010641992c6957df7ea113d21ded478b",
+    "abi_source_sha256": "167f98fca6ae969293157bdd5a32b659731c75de6384662fe85e5a977ed7bdc4",
+    "profile_source_sha256": "ff649ca477cbbc21981b2bdd2b3f0da84a72b399a149d8d32203bc0c85a6bed2",
+    "prg_sha256": "89bff51909fec8bd317f71e7f3224ab396a384da30a95985b126af7565e8164c",
+    "rows_sha256": "0087117e48deb4431bf8b8bed4a310d15ecf53b0e26666e64d7befa312cdc729",
+    "physical_a_sha256": "a0853a6db541f204246ab47002491c8015a3098cd7918d0aa49ea8b88f0210e6",
+    "physical_b_sha256": "e755c415eba1d77c6a3b6de6b486ae16f1a2270d794fc12a1773e18e1ff94b94",
+    "supplied_config_sha256": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+    "supplied_flash_sha256": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be",
+    "supplied_settings_sha256": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961",
+    "emulator_path": "/Users/frenchfaso/Documents/Code/C64/UE2-C64U-Emulator/target/release/ue2emu"
+  }
+]
++ /opt/homebrew/opt/python@3.14/bin/python3.14 scripts/m3_ue2.py --native-contract --cache-line 128 --out /Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-contract/128 --timeout 90 --emulator /Users/frenchfaso/Documents/Code/C64/UE2-C64U-Emulator/target/release/ue2emu --config /Users/frenchfaso/Documents/Code/C64/runtime/c64u.toml --flash /Users/frenchfaso/Documents/Code/C64/runtime/flash.bin --settings /Users/frenchfaso/Documents/Code/C64/runtime/ultimate.cfg --kickass /Users/frenchfaso/Documents/Code/C64/toolchain/kickassembler/KickAss.jar --java /Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java
+{
+  "format": "COSM3SCHEDULER1",
+  "native_assertions": 126,
+  "failures": 0,
+  "cache_line_bytes": 128,
+  "autonomous": true,
+  "host_opcode_commands": 0,
+  "qualification": "Native contract emulation; raster integration tested separately",
+  "backend_executable_sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+  "assembler_sha256": "9592a39336e73a1db8b4a7749256d62d29b113b1c7f0f6c86ea43870ebd9ae1f",
+  "source_sha256": "cdd6693dcbc7351e22f5c656ffe7c5a99b1f50f04a68320e7744e7d24ed4b79a",
+  "prg_sha256": "1d11ca34da87d960de46bb10bfa81e42f8be7e431927b7ae79c71b2953575ae3",
+  "scheduler_bytes": 1267,
+  "jobs_bytes": 1395
+}
++ /opt/homebrew/opt/python@3.14/bin/python3.14 scripts/m3_ue2.py --suite --cache-line 128 --out /Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-autonomous/128 --milliseconds 24000 --timeout 90 --emulator /Users/frenchfaso/Documents/Code/C64/UE2-C64U-Emulator/target/release/ue2emu --config /Users/frenchfaso/Documents/Code/C64/runtime/c64u.toml --flash /Users/frenchfaso/Documents/Code/C64/runtime/flash.bin --settings /Users/frenchfaso/Documents/Code/C64/runtime/ultimate.cfg --kickass /Users/frenchfaso/Documents/Code/C64/toolchain/kickassembler/KickAss.jar --java /Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java
+M3 autonomous fair-jobs: pass, retired[35357, 35340, 8, 8], frame1258
+M3 autonomous sleep-fault: pass, retired[3190, 3160, 10, 1], frame91
+M3 autonomous cancel-job: pass, retired[36951, 36942, 5, 8], frame1228
++ /opt/homebrew/opt/python@3.14/bin/python3.14 scripts/m3_benchmark.py --build /Users/frenchfaso/Documents/Code/C64/C-OS/build/m3/128 --out /Users/frenchfaso/Documents/Code/C64/C-OS/build/m3/benchmark/128 --emulator /Users/frenchfaso/Documents/Code/C64/UE2-C64U-Emulator/target/release/ue2emu --config /Users/frenchfaso/Documents/Code/C64/runtime/c64u.toml --flash /Users/frenchfaso/Documents/Code/C64/runtime/flash.bin --settings /Users/frenchfaso/Documents/Code/C64/runtime/ultimate.cfg --kickass /Users/frenchfaso/Documents/Code/C64/toolchain/kickassembler/KickAss.jar --java /Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java
+{
+  "format": "COSM3BENCH1",
+  "speedup_estimate": 0.015270301911608691,
+  "speedup_interval": [
+    0.015268229386139667,
+    0.015382165951308294
+  ]
+}
++ /opt/homebrew/opt/python@3.14/bin/python3.14 scripts/m3_ue2.py --native-contract --cache-line 64 --out /Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-contract/64 --timeout 90 --emulator /Users/frenchfaso/Documents/Code/C64/UE2-C64U-Emulator/target/release/ue2emu --config /Users/frenchfaso/Documents/Code/C64/runtime/c64u.toml --flash /Users/frenchfaso/Documents/Code/C64/runtime/flash.bin --settings /Users/frenchfaso/Documents/Code/C64/runtime/ultimate.cfg --kickass /Users/frenchfaso/Documents/Code/C64/toolchain/kickassembler/KickAss.jar --java /Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java
+{
+  "format": "COSM3SCHEDULER1",
+  "native_assertions": 126,
+  "failures": 0,
+  "cache_line_bytes": 64,
+  "autonomous": true,
+  "host_opcode_commands": 0,
+  "qualification": "Native contract emulation; raster integration tested separately",
+  "backend_executable_sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+  "assembler_sha256": "9592a39336e73a1db8b4a7749256d62d29b113b1c7f0f6c86ea43870ebd9ae1f",
+  "source_sha256": "cdd6693dcbc7351e22f5c656ffe7c5a99b1f50f04a68320e7744e7d24ed4b79a",
+  "prg_sha256": "e34e3e05b8cf59e79524d0ce21dedd81b3c973bea0ccddb1a7df5becf76476d9",
+  "scheduler_bytes": 1267,
+  "jobs_bytes": 1395
+}
++ /opt/homebrew/opt/python@3.14/bin/python3.14 scripts/m3_ue2.py --suite --cache-line 64 --out /Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-autonomous/64 --milliseconds 24000 --timeout 90 --emulator /Users/frenchfaso/Documents/Code/C64/UE2-C64U-Emulator/target/release/ue2emu --config /Users/frenchfaso/Documents/Code/C64/runtime/c64u.toml --flash /Users/frenchfaso/Documents/Code/C64/runtime/flash.bin --settings /Users/frenchfaso/Documents/Code/C64/runtime/ultimate.cfg --kickass /Users/frenchfaso/Documents/Code/C64/toolchain/kickassembler/KickAss.jar --java /Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java
+M3 autonomous fair-jobs: pass, retired[30715, 30699, 8, 8], frame1257
+M3 autonomous sleep-fault: pass, retired[2743, 2728, 10, 1], frame91
+M3 autonomous cancel-job: pass, retired[32050, 32039, 5, 8], frame1228
++ /opt/homebrew/opt/python@3.14/bin/python3.14 scripts/m3_benchmark.py --build /Users/frenchfaso/Documents/Code/C64/C-OS/build/m3/64 --out /Users/frenchfaso/Documents/Code/C64/C-OS/build/m3/benchmark/64 --emulator /Users/frenchfaso/Documents/Code/C64/UE2-C64U-Emulator/target/release/ue2emu --config /Users/frenchfaso/Documents/Code/C64/runtime/c64u.toml --flash /Users/frenchfaso/Documents/Code/C64/runtime/flash.bin --settings /Users/frenchfaso/Documents/Code/C64/runtime/ultimate.cfg --kickass /Users/frenchfaso/Documents/Code/C64/toolchain/kickassembler/KickAss.jar --java /Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java
+{
+  "format": "COSM3BENCH1",
+  "speedup_estimate": 0.014578718060879993,
+  "speedup_interval": [
+    0.014576813252451403,
+    0.014680645206621329
+  ]
+}
+M3 complete functional verification passed: /Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-results.json

@@ -1,0 +1,74 @@
+{
+  "backend": {
+    "checkout_head_is_not_proof_of_executable_source_revision": true,
+    "config_sha256": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+    "delivered_turbo_slots_per_phi2": 63,
+    "executable_sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+    "firmware_banner": "C64 Ultimate (V1.01) 1.1.0",
+    "firmware_sha256": "487a7d2104d6d32f61f33ca36a16439d947cd1b0eab75d5b1e78248de51bb58d",
+    "inspected_checkout_head": "512883433e93b7cfbf224a01ae5e91b29600c2cf",
+    "profile": {
+      "badline_timing": "Disabled by native $D031=$8F",
+      "board": "c64u",
+      "hdmi": "720x576; horizontal scale 15/8; vertical scale 2",
+      "requested_cpu_mhz": 64,
+      "reu": "16 MB",
+      "turbo_control": "C64U Turbo Registers",
+      "video": "PAL"
+    },
+    "supplied_flash_sha256": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be",
+    "supplied_settings_sha256": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961",
+    "trx64_upstream_reference": "v0.11.0 / ab01fbc56304dd37179bcb469100f187684472ab"
+  },
+  "checks": {
+    "all_64000_source_pixels_checked_in_both_output_rows": true,
+    "backend_cases": 10,
+    "independent_physical_ddr_restoration": true,
+    "native_unittests": 5,
+    "repeat_build_all_four_artifacts_and_map_equal": true
+  },
+  "evidence_sha256": {
+    "map.json": "39df52d293b56407c8cf500cce1e3c42bde08a15b4d740a1d8720e4772116e1d",
+    "map.txt": "066a0c964c8e0395ff461bf0ee3138a64a83022d854bb8cb2c7b6bfe5de684b8",
+    "result.json": "7d9384df5e5029fad20532594709f56b71209d997504d793f5e2893b0531ffe2",
+    "scanout.png": "70cefe5734301e9fd1c7c80055b428be57bc32435beedc5119bb7aab70977dfb",
+    "suite.json": "106c770685a68b4cfacf08f1b0614f5403a3d85b56d2dea5197dc334e83ef514"
+  },
+  "format": "COSM0EVIDENCE1",
+  "limitations": [
+    "No physical C64 Ultimate was accessible.",
+    "Measured backend maxima are not a proven physical worst-case bound.",
+    "The 2000 ms positive sample includes native startup; its scanout counter is not a steady-state FPS measurement.",
+    "No NMI/menu disturbance was injected in the positive run.",
+    "The absent REU count field is invalid capacity data and must be interpreted with E3 status."
+  ],
+  "native_artifacts": {
+    "diagnostic.reu": "2bd632105548563f54f97dfaa10235ef7cd6f17b69fed0850731268099ba4adc",
+    "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+    "probe.prg": "501dd0b29cb4d9dea7e913e6e9af0ed08f30ff907626d85fc919c827f1310a66",
+    "renderer.prg": "e78c014bfc840438660982ca37321bebc83466ce957136e3fa48f10431d9ea1f"
+  },
+  "native_build_tag_hex": "e5b09ce4",
+  "scope": "Functional emulation only; physical timing qualification pending",
+  "timing_method": {
+    "cpu_setting_is_not_reu_bandwidth_multiplier": true,
+    "observed_dma_path_fit": "duration_ticks = 2 + byte_count in both directions",
+    "resolution": "One CIA PHI2 tick",
+    "samples_per_record": 16,
+    "setup_ticks_min_max": [
+      1,
+      2
+    ],
+    "timer_ticks_min_max": [
+      0,
+      0
+    ]
+  },
+  "tools": {
+    "assembler_sha256": "9592a39336e73a1db8b4a7749256d62d29b113b1c7f0f6c86ea43870ebd9ae1f",
+    "assembler_version": "Kick Assembler 5.25",
+    "java_version": "Temurin 25.0.4.1",
+    "python_version": "3.14.8"
+  },
+  "verification_date": "2026-10-10"
+}

@@ -1,0 +1,569 @@
+[
+  {
+    "bytes": 16777216,
+    "completed_helper": "m0-pal64-reu16",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m0/ue2/pal64-reu16/isolated-flash.bin",
+    "sha256": "ddbf28df6bd8194defa2f276214fc1528add3b46417940fc8fe7821f82e50191"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "m0-pal64-reu16",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m0/ue2/pal64-reu16/run/usb-dir/usb-49e507be1e/image-1.img",
+    "sha256": "081e147b0a5c37f707bf1218b1bf372c245f7745cc09ff61428cf60cf04eebb2"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "m0-pal64-reu16",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m0/ue2/pal64-reu16/usb/diagnostic.reu",
+    "sha256": "429c3e4265663a0d79d595f3d4b1a2dbf555614b14fa05a5706838a79520f36b"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "m0-reu128",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m0/ue2/reu128/isolated-flash.bin",
+    "sha256": "b3fd271e2d994f63658a70fd34d840eb4c4389c5c822d9e26f981d0503910d37"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "m0-reu128",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m0/ue2/reu128/run/usb-dir/usb-433a1666e1/image-1.img",
+    "sha256": "0f62a6cb97992600b98211d69607ef6512be2c285535287c46ed2d8150aa4eac"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "m0-reu128",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m0/ue2/reu128/usb/diagnostic.reu",
+    "sha256": "429c3e4265663a0d79d595f3d4b1a2dbf555614b14fa05a5706838a79520f36b"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "m0-reu512",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m0/ue2/reu512/isolated-flash.bin",
+    "sha256": "56aaba57d0ca6bda27d9a058cbcdf101ee4b802db27112cb4357fa408041ff26"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "m0-reu512",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m0/ue2/reu512/run/usb-dir/usb-8c0a1738f6/image-1.img",
+    "sha256": "a1b8e3edd7133857d98cd11b26a89499e15c46867d06d01749bc2e24fd441796"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "m0-reu512",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m0/ue2/reu512/usb/diagnostic.reu",
+    "sha256": "429c3e4265663a0d79d595f3d4b1a2dbf555614b14fa05a5706838a79520f36b"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "m0-reu2m",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m0/ue2/reu2m/isolated-flash.bin",
+    "sha256": "8b1f44918c3a360fec6df766db707e9128a19216677ae4577716dbbfeebd05e7"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "m0-reu2m",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m0/ue2/reu2m/run/usb-dir/usb-52db8f895b/image-1.img",
+    "sha256": "4d9d600477a0805ea8a719fb4fcf7c09bfb2c6a0a51361f14f64928cb07960b6"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "m0-reu2m",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m0/ue2/reu2m/usb/diagnostic.reu",
+    "sha256": "429c3e4265663a0d79d595f3d4b1a2dbf555614b14fa05a5706838a79520f36b"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "m0-reu8m",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m0/ue2/reu8m/isolated-flash.bin",
+    "sha256": "a5e9c46c2bfa9d9907e53ca5aec8c9628c28374466d221c6fa30a6d81e4837d5"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "m0-reu8m",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m0/ue2/reu8m/run/usb-dir/usb-c3972288e4/image-1.img",
+    "sha256": "0282948a62555cf4d758385c30b5be505c867a0a07351252f85aa0903db4dc55"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "m0-reu8m",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m0/ue2/reu8m/usb/diagnostic.reu",
+    "sha256": "429c3e4265663a0d79d595f3d4b1a2dbf555614b14fa05a5706838a79520f36b"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "m0-reu-absent",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m0/ue2/reu-absent/isolated-flash.bin",
+    "sha256": "388bcfe79f55588bc52ee1da97fb4b8b25437fd22e3b37dd2405a57f71106a1c"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "m0-reu-absent",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m0/ue2/reu-absent/run/usb-dir/usb-b93d65dad6/image-1.img",
+    "sha256": "2a94358b7c5528b5c4c60c9b731f1d220f955c2ddbbd12280a77bef44c32c004"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "m0-reu-absent",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m0/ue2/reu-absent/usb/diagnostic.reu",
+    "sha256": "429c3e4265663a0d79d595f3d4b1a2dbf555614b14fa05a5706838a79520f36b"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "m0-turbo32",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m0/ue2/turbo32/isolated-flash.bin",
+    "sha256": "ca392cfeb2d047301265b0bd03bc158f09134db5cb326a82c7f27cfee5081451"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "m0-turbo32",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m0/ue2/turbo32/run/usb-dir/usb-d4723db1b9/image-1.img",
+    "sha256": "0f32710402af7fe3b1d174985f13684d81012b7180f1a3524586259e6826ed7f"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "m0-turbo32",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m0/ue2/turbo32/usb/diagnostic.reu",
+    "sha256": "429c3e4265663a0d79d595f3d4b1a2dbf555614b14fa05a5706838a79520f36b"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "m0-turbo48",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m0/ue2/turbo48/isolated-flash.bin",
+    "sha256": "1d3533ebe6f410132eb5cdc7192438e8c710062c21831fc996dccc80ab43c101"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "m0-turbo48",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m0/ue2/turbo48/run/usb-dir/usb-203a92ab6f/image-1.img",
+    "sha256": "69042a1ce705ac545caedd4e88d78029db6850b2f55001d685d5953c73326c9c"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "m0-turbo48",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m0/ue2/turbo48/usb/diagnostic.reu",
+    "sha256": "429c3e4265663a0d79d595f3d4b1a2dbf555614b14fa05a5706838a79520f36b"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "m0-ntsc",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m0/ue2/ntsc/isolated-flash.bin",
+    "sha256": "5439c734da233764aa45ddefe2b464475ec7c3f8dd5ed90c09ed61eae4ab8548"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "m0-ntsc",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m0/ue2/ntsc/run/usb-dir/usb-2c1b2aac54/image-1.img",
+    "sha256": "badebde2dcb4c6a4cba27f820493f7ed54b8f80be1fb8a87a9128538c7c735f3"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "m0-ntsc",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m0/ue2/ntsc/usb/diagnostic.reu",
+    "sha256": "429c3e4265663a0d79d595f3d4b1a2dbf555614b14fa05a5706838a79520f36b"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "m0-bad-pack",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m0/ue2/bad-pack/isolated-flash.bin",
+    "sha256": "ddbf28df6bd8194defa2f276214fc1528add3b46417940fc8fe7821f82e50191"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "m0-bad-pack",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m0/ue2/bad-pack/run/usb-dir/usb-da972b8140/image-1.img",
+    "sha256": "aa10042546abf85915557499d1887eebb9e736ddd1cc69ff9026f868f3e12a53"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "m0-bad-pack",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m0/ue2/bad-pack/usb/diagnostic.reu",
+    "sha256": "141ae9d01831111381504ec320f0f4892b66ad932b62dd4639670fbc46a763fc"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "cache-cancel",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/cache-cancel/128/isolated-flash.bin",
+    "sha256": "13e6ae2719ca10fd287f5dbf775543ead8ef74fbdd02c9b1b5a1efea036a7712"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "cache-cancel",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/cache-cancel/128/run/usb-dir/usb-37b5b19f2d/image-1.img",
+    "sha256": "3c82f844969c4ded2847408306a405cfb7d40a62e8ea9e5b9e7012b37d497e21"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "cache-cancel",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/cache-cancel/128/usb/cache.reu",
+    "sha256": "69348f8a2ab1bcdf8d64752c92cb78a32faffadca3d8ae2b63e3e7a19a3e51fe"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "cache-cancel",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/cache-cancel/64/isolated-flash.bin",
+    "sha256": "13e6ae2719ca10fd287f5dbf775543ead8ef74fbdd02c9b1b5a1efea036a7712"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "cache-cancel",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/cache-cancel/64/run/usb-dir/usb-cfc09cf264/image-1.img",
+    "sha256": "4bf584860d4459aeec1e300bad03d83554b9e8c054f1319fe034d69f23746117"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "cache-cancel",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/cache-cancel/64/usb/cache.reu",
+    "sha256": "69348f8a2ab1bcdf8d64752c92cb78a32faffadca3d8ae2b63e3e7a19a3e51fe"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "rollback-128-extended",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/cache-rollback/128/extended/isolated-flash.bin",
+    "sha256": "852cac1d4302274f81a9996ba87207b100db7c3fb0858a2534246bbe73905a20"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "rollback-128-extended",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/cache-rollback/128/extended/run/usb-dir/usb-225be04a72/image-1.img",
+    "sha256": "33fb979628a7a05c7b16d203649f538cdf76224948a6ad34c691d03eb75986ba"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "rollback-128-extended",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/cache-rollback/128/extended/usb/rollback.reu",
+    "sha256": "69348f8a2ab1bcdf8d64752c92cb78a32faffadca3d8ae2b63e3e7a19a3e51fe"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "rollback-128-normal",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/cache-rollback/128/normal/isolated-flash.bin",
+    "sha256": "852cac1d4302274f81a9996ba87207b100db7c3fb0858a2534246bbe73905a20"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "rollback-128-normal",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/cache-rollback/128/normal/run/usb-dir/usb-d79f20ff17/image-1.img",
+    "sha256": "d47f612f51c018e8c4aaeda34001d041923800ce59665e5ea96dbadbfe1c9949"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "rollback-128-normal",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/cache-rollback/128/normal/usb/rollback.reu",
+    "sha256": "69348f8a2ab1bcdf8d64752c92cb78a32faffadca3d8ae2b63e3e7a19a3e51fe"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "rollback-64-extended",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/cache-rollback/64/extended/isolated-flash.bin",
+    "sha256": "852cac1d4302274f81a9996ba87207b100db7c3fb0858a2534246bbe73905a20"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "rollback-64-extended",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/cache-rollback/64/extended/run/usb-dir/usb-f208a0b9ae/image-1.img",
+    "sha256": "5423b3bf15bb9c0a6c572a62c204e395ccd4b2ebf42a71360d5b058d55225f44"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "rollback-64-extended",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/cache-rollback/64/extended/usb/rollback.reu",
+    "sha256": "69348f8a2ab1bcdf8d64752c92cb78a32faffadca3d8ae2b63e3e7a19a3e51fe"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "rollback-64-normal",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/cache-rollback/64/normal/isolated-flash.bin",
+    "sha256": "852cac1d4302274f81a9996ba87207b100db7c3fb0858a2534246bbe73905a20"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "rollback-64-normal",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/cache-rollback/64/normal/run/usb-dir/usb-88e073dad7/image-1.img",
+    "sha256": "4430ca3ee227c30cae65a5a08ec1c20a1f054520c357e5cbb75ebc7ae2098e28"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "rollback-64-normal",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/cache-rollback/64/normal/usb/rollback.reu",
+    "sha256": "69348f8a2ab1bcdf8d64752c92cb78a32faffadca3d8ae2b63e3e7a19a3e51fe"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "margins",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m2/margins/isolated-flash.bin",
+    "sha256": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "margins",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m2/margins/run/usb-dir/usb-21975cbde7/image-1.img",
+    "sha256": "47e6ece981bf35f6651eeae598aae5112ce0e3fea759fef048c12c9108ba4614"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "m3-128-admission",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-admission/128/backend/isolated-flash.bin",
+    "sha256": "a0d033d9fa74773275d9b8e639037296243e196e3d533170d4a3f0e43efec0aa"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "m3-128-admission",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-admission/128/backend/run/usb-dir/usb-64f3b33e3d/image-1.img",
+    "sha256": "ba553d36d4c675faa3a37649ad1ab8127f57d019e6a537c617b1baa1601f2d0e"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "m3-128-raster-active",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-raster-active/128/backend/isolated-flash.bin",
+    "sha256": "a0d033d9fa74773275d9b8e639037296243e196e3d533170d4a3f0e43efec0aa"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "m3-128-raster-active",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-raster-active/128/backend/run/usb-dir/usb-c989a476e2/image-1.img",
+    "sha256": "9b47397ea87ede8535b99fae13a344634793d8f31edc4c56c202f6bbb658a6c8"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "m3-128-hot-pc",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-hot-pc/128/backend/isolated-flash.bin",
+    "sha256": "a0d033d9fa74773275d9b8e639037296243e196e3d533170d4a3f0e43efec0aa"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "m3-128-hot-pc",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-hot-pc/128/backend/run/usb-dir/usb-2c23e174f0/image-1.img",
+    "sha256": "224150993c386aca40536e3fe3a52bd94d69e6d05d3e36e9fb78d984ab1ad16e"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "m2-128-differential",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m2/ue2/128/isolated-flash.bin",
+    "sha256": "ddbf28df6bd8194defa2f276214fc1528add3b46417940fc8fe7821f82e50191"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "m2-128-differential",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m2/ue2/128/run/usb-dir/usb-10aac9a59d/image-1.img",
+    "sha256": "f87cbd10633ac0a01c56a6c0467cdfdddc7d5ae52480241812cf91da2eacdb20"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "m2-128-differential",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m2/ue2/128/usb/diagnostic.reu",
+    "sha256": "0e11c1611181c28a2d13d854016b3947ded49f795939dc09f1a4da642a666824"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "m3-128-contract",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-contract/128/isolated-flash.bin",
+    "sha256": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "m3-128-contract",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-contract/128/run/usb-dir/usb-4a95960cd2/image-1.img",
+    "sha256": "3b806e8af8fc0fd07a6a261166985a35d399c3e0d81aae3ecb9a88a9b2eb6635"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "m3-128-autonomous",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-autonomous/128/backend/isolated-flash.bin",
+    "sha256": "ddbf28df6bd8194defa2f276214fc1528add3b46417940fc8fe7821f82e50191"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "m3-128-autonomous",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-autonomous/128/backend/run/usb-dir/usb-f092623064/image-3.img",
+    "sha256": "9dbe2ed854c4cb27f15c573a139fe85ebcfa6f997c6ef3c3880a30f03176fa40"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "m3-128-autonomous",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-autonomous/128/backend/usb/diagnostic.reu",
+    "sha256": "5b4622fbb2d54c12538c85b91f32a58ff5eaee203fc0dd56624b6621684211d3"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "m3-64-admission",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-admission/64/backend/isolated-flash.bin",
+    "sha256": "a0d033d9fa74773275d9b8e639037296243e196e3d533170d4a3f0e43efec0aa"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "m3-64-admission",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-admission/64/backend/run/usb-dir/usb-83f1b55461/image-1.img",
+    "sha256": "17a7be14f74ac5a0937865ba0cb1a6629d2e2b13e9110a8e1e755cce82e9f879"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "m3-64-raster-active",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-raster-active/64/backend/isolated-flash.bin",
+    "sha256": "a0d033d9fa74773275d9b8e639037296243e196e3d533170d4a3f0e43efec0aa"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "m3-64-raster-active",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-raster-active/64/backend/run/usb-dir/usb-ef0cdb359e/image-1.img",
+    "sha256": "4bf963061bff585857189e6186828198bdee4bb226344631a0ccc8ade25d1af7"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "m3-64-hot-pc",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-hot-pc/64/backend/isolated-flash.bin",
+    "sha256": "a0d033d9fa74773275d9b8e639037296243e196e3d533170d4a3f0e43efec0aa"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "m3-64-hot-pc",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-hot-pc/64/backend/run/usb-dir/usb-3b41f7e693/image-1.img",
+    "sha256": "a7efc069fa257ae639086b94be0b12ebd5a1c7d45ecc8fcc99b3069d8b903659"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "m2-64-differential",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m2/ue2/64/isolated-flash.bin",
+    "sha256": "ddbf28df6bd8194defa2f276214fc1528add3b46417940fc8fe7821f82e50191"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "m2-64-differential",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m2/ue2/64/run/usb-dir/usb-cd032cf5be/image-1.img",
+    "sha256": "76cf3fd74dbb35da8ce57bc9c6a358f919535cf77b2927fde511227260e52177"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "m2-64-differential",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m2/ue2/64/usb/diagnostic.reu",
+    "sha256": "700c248f1a5f4e5c7f43609c4f6a056dc02644c32b0411dce6516345bc9ac0db"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "m3-64-contract",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-contract/64/isolated-flash.bin",
+    "sha256": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "m3-64-contract",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-contract/64/run/usb-dir/usb-7abb0bad0e/image-1.img",
+    "sha256": "541bd53f689e5f505da31cfc755ade4b52859019fb34847553e1fef6c74cc420"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "m3-64-autonomous",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-autonomous/64/backend/isolated-flash.bin",
+    "sha256": "ddbf28df6bd8194defa2f276214fc1528add3b46417940fc8fe7821f82e50191"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "m3-64-autonomous",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-autonomous/64/backend/run/usb-dir/usb-1227d61db1/image-3.img",
+    "sha256": "47cb0888e037a9788e48f5a2f125901a3486099742cd993e1edaaa98dea73413"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "m3-64-autonomous",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-autonomous/64/backend/usb/diagnostic.reu",
+    "sha256": "7d4e6f061e47b845d86721652ac5cde932cf4a934c8e1b712aa8e560976df939"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "abi2-rejection",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/abi2-rejection/backend/isolated-flash.bin",
+    "sha256": "ddbf28df6bd8194defa2f276214fc1528add3b46417940fc8fe7821f82e50191"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "abi2-rejection",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/abi2-rejection/backend/run/usb-dir/usb-041a2fc55b/image-1.img",
+    "sha256": "bcdff3445865d1fca058b97551d46f8feb69eb46812ad3cd27d335fe184c6638"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "abi2-rejection",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/abi2-rejection/backend/usb/diagnostic.reu",
+    "sha256": "47839f69275efa588e3ba98b168a121cd1a2600988a210e46cda1b93f14884a9"
+  }
+]

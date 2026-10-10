@@ -1,0 +1,6 @@
+{"context":{"fuel":0,"p":[397440,400383,0,401407],"pc":397316,"r":[3,1,2,0,0,0,0,0],"retired":3,"sp":401407},"outcome":"FuelExhausted","slice":0}
+{"context":{"fuel":0,"p":[397440,400383,0,401407],"pc":397312,"r":[3,1,3,0,0,0,0,0],"retired":6,"sp":401407},"outcome":"FuelExhausted","slice":1}
+{"context":{"fuel":0,"p":[397440,400383,0,401407],"pc":397316,"r":[3,1,5,0,0,0,0,0],"retired":9,"sp":401407},"outcome":"FuelExhausted","slice":2}
+{"context":{"fuel":0,"p":[397440,400383,0,401407],"pc":397312,"r":[3,1,6,0,0,0,0,0],"retired":12,"sp":401407},"outcome":"FuelExhausted","slice":3}
+{"context":{"fuel":0,"p":[397440,400383,0,401407],"pc":397316,"r":[3,1,8,0,0,0,0,0],"retired":15,"sp":401407},"outcome":"FuelExhausted","slice":4}
+{"context":{"fuel":0,"p":[397440,400383,0,401407],"pc":397312,"r":[3,1,9,0,0,0,0,0],"retired":18,"sp":401407},"outcome":"FuelExhausted","slice":5}

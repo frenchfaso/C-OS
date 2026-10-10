@@ -1,0 +1,103 @@
+{
+  "format": "COSM3COLLECTIONRESIDUAL1",
+  "status": "conditional-pass",
+  "variants": [
+    {
+      "variant": "128",
+      "scheduler_video_admit": {
+        "instruction_visits": 22,
+        "cpu_cycle_upper_bound": 95,
+        "uniform_cpu_cycle_upper_bound": 161,
+        "uniform_cpu_io_phi2_upper_bound": 25,
+        "uniform_conditional_total_phi2_upper_bound": 25,
+        "io_access_upper_bound": 3,
+        "cpu_io_phi2_upper_bound": 23,
+        "dma_phi2_allowance": 0,
+        "conditional_total_phi2_upper_bound": 23
+      },
+      "refused_tick_branch_and_return_phi2": 1,
+      "polling_residual_allowance_phi2": 24,
+      "scheduler_first_unit_upper_phi2": 2046,
+      "outer_bridge_allowance_phi2": 1,
+      "window_first_unit_upper_phi2": 2071,
+      "complete_window_phi2": 2520,
+      "complete_window_slack_phi2": 449,
+      "map_sha256": "6aec6f96fe90032b6fe4ed7d959d28e23c41173b5d8384c72797abf7f888f572",
+      "native_sha256": "50cae5a9d3d495d056c064cbee9fdae9780c611660dbb942a39c96ecbf075171",
+      "checker_sha256": "eb8c82462525641ecd46603d06fbc92c277806d3393a4c8cd296ff4392d263a1"
+    },
+    {
+      "variant": "64",
+      "scheduler_video_admit": {
+        "instruction_visits": 22,
+        "cpu_cycle_upper_bound": 95,
+        "uniform_cpu_cycle_upper_bound": 161,
+        "uniform_cpu_io_phi2_upper_bound": 25,
+        "uniform_conditional_total_phi2_upper_bound": 25,
+        "io_access_upper_bound": 3,
+        "cpu_io_phi2_upper_bound": 23,
+        "dma_phi2_allowance": 0,
+        "conditional_total_phi2_upper_bound": 23
+      },
+      "refused_tick_branch_and_return_phi2": 1,
+      "polling_residual_allowance_phi2": 24,
+      "scheduler_first_unit_upper_phi2": 2046,
+      "outer_bridge_allowance_phi2": 1,
+      "window_first_unit_upper_phi2": 2071,
+      "complete_window_phi2": 2520,
+      "complete_window_slack_phi2": 449,
+      "map_sha256": "b676216bbe81d4b4bc6e8cbc8f36f32a1113a03575a51cd2b44c4beb33ddc60b",
+      "native_sha256": "6e24d4672a168f983060343ab1a2a8f28d660dca26ef1a57b7e6a288f316f0ea",
+      "checker_sha256": "eb8c82462525641ecd46603d06fbc92c277806d3393a4c8cd296ff4392d263a1"
+    },
+    {
+      "variant": "larger-128",
+      "scheduler_video_admit": {
+        "instruction_visits": 22,
+        "cpu_cycle_upper_bound": 95,
+        "uniform_cpu_cycle_upper_bound": 161,
+        "uniform_cpu_io_phi2_upper_bound": 25,
+        "uniform_conditional_total_phi2_upper_bound": 25,
+        "io_access_upper_bound": 3,
+        "cpu_io_phi2_upper_bound": 23,
+        "dma_phi2_allowance": 0,
+        "conditional_total_phi2_upper_bound": 23
+      },
+      "refused_tick_branch_and_return_phi2": 1,
+      "polling_residual_allowance_phi2": 24,
+      "scheduler_first_unit_upper_phi2": 2046,
+      "outer_bridge_allowance_phi2": 1,
+      "window_first_unit_upper_phi2": 2071,
+      "complete_window_phi2": 2520,
+      "complete_window_slack_phi2": 449,
+      "map_sha256": "3ebc8104f412044904043a8adb010702304199935d47d1f26233c4eb8f519e3e",
+      "native_sha256": "50cae5a9d3d495d056c064cbee9fdae9780c611660dbb942a39c96ecbf075171",
+      "checker_sha256": "eb8c82462525641ecd46603d06fbc92c277806d3393a4c8cd296ff4392d263a1"
+    },
+    {
+      "variant": "larger-64",
+      "scheduler_video_admit": {
+        "instruction_visits": 22,
+        "cpu_cycle_upper_bound": 95,
+        "uniform_cpu_cycle_upper_bound": 161,
+        "uniform_cpu_io_phi2_upper_bound": 25,
+        "uniform_conditional_total_phi2_upper_bound": 25,
+        "io_access_upper_bound": 3,
+        "cpu_io_phi2_upper_bound": 23,
+        "dma_phi2_allowance": 0,
+        "conditional_total_phi2_upper_bound": 23
+      },
+      "refused_tick_branch_and_return_phi2": 1,
+      "polling_residual_allowance_phi2": 24,
+      "scheduler_first_unit_upper_phi2": 2046,
+      "outer_bridge_allowance_phi2": 1,
+      "window_first_unit_upper_phi2": 2071,
+      "complete_window_phi2": 2520,
+      "complete_window_slack_phi2": 449,
+      "map_sha256": "f7c12c644134fc08f40c56a2b4b1061c7902a79ac2704fe0d3292d304a7b02b0",
+      "native_sha256": "6e24d4672a168f983060343ab1a2a8f28d660dca26ef1a57b7e6a288f316f0ea",
+      "checker_sha256": "eb8c82462525641ecd46603d06fbc92c277806d3393a4c8cd296ff4392d263a1"
+    }
+  ],
+  "assumptions": "Qualified admitted continuations return before IRQ58; continued PAL scanout without missed synchronization; no NMI/recovery. Only the top scheduler polling refusal can be suspended at IRQ58 and resume when the renderer returns at line259/260."
+}

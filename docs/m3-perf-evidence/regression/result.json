@@ -1,0 +1,384 @@
+{
+  "abi2_rejection": "build/abi2-rejection/result.json",
+  "admission": [
+    "build/m3-admission/128/result.json",
+    "build/m3-admission/64/result.json"
+  ],
+  "application_abi": 2,
+  "autonomous": [
+    "build/m3-autonomous/128/result.json",
+    "build/m3-autonomous/64/result.json"
+  ],
+  "autonomous_packs": 6,
+  "benchmark_scope": "Separate final workload timing evidence; this runner verifies regressions",
+  "cleanup_sha256": "2ce5cf328f6dca7e99e84dc917c92b4e0e3feb511ae7b94c741d1731d47ff0bb",
+  "commands_sha256": "8c0178fc632091fb7b2c2d41d98b645517a19c7efb4eb08772f39f9dacd5d051",
+  "completed_at": "2026-10-10T18:12:59.201646+00:00",
+  "contracts": [
+    "build/m3-contract/128/result.json",
+    "build/m3-contract/64/result.json"
+  ],
+  "differential_cases_per_profile": 654,
+  "external_inputs": {
+    "cargo": {
+      "path": "/Users/frenchfaso/.cargo/bin/rustup",
+      "sha256": "20ef5516c31b1ac2290084199ba77dbbcaa1406c45c1d978ca68558ef5964ef5"
+    },
+    "cargo_toolchain": {
+      "path": "/Users/frenchfaso/.rustup/toolchains/1.93.0-aarch64-apple-darwin/bin/cargo",
+      "sha256": "46c9483604e913070b085dc5acf972bc560395c10dfec1cdb389c4b6bf17cf67"
+    },
+    "config": {
+      "path": "/Users/frenchfaso/Documents/Code/C64/runtime/c64u.toml",
+      "sha256": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048"
+    },
+    "cpu_core_cpu.rs": {
+      "path": "/Users/frenchfaso/Documents/Code/C64/UE2-C64U-Emulator/vendor/trx64-core/src/cpu.rs",
+      "sha256": "58e5f831ee3a3f708ff67c3d1f7749775d17ce31c96e5a4c89e029bd2bf45101"
+    },
+    "cpu_core_tables.rs": {
+      "path": "/Users/frenchfaso/Documents/Code/C64/UE2-C64U-Emulator/vendor/trx64-core/src/tables.rs",
+      "sha256": "8c34037354a84636b4d7f6df7c62498c95ab5c2dda6e70e81b6fe8e4a0d7fbad"
+    },
+    "emulator": {
+      "path": "/Users/frenchfaso/Documents/Code/C64/UE2-C64U-Emulator/target/release/ue2emu",
+      "sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225"
+    },
+    "flash": {
+      "path": "/Users/frenchfaso/Documents/Code/C64/runtime/flash.bin",
+      "sha256": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be"
+    },
+    "java": {
+      "path": "/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java",
+      "sha256": "83c9c5310d044e7c4262432854eb1bc5f49763d7c1e9971777a646c91b96c06d"
+    },
+    "kickass": {
+      "path": "/Users/frenchfaso/Documents/Code/C64/toolchain/kickassembler/KickAss.jar",
+      "sha256": "9592a39336e73a1db8b4a7749256d62d29b113b1c7f0f6c86ea43870ebd9ae1f"
+    },
+    "lsof": {
+      "path": "/usr/sbin/lsof",
+      "sha256": "deff85c7b4750a948a69fcd48eae3b394a37575e5048e5eb4a35b7a0482c3dc8"
+    },
+    "python": {
+      "path": "/opt/homebrew/Cellar/python@3.14/3.14.8_1/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+      "sha256": "a98562fe4ead1d19685b0c82ac8d2f9572c9b7e8cf3d7040f7af4ba973b70d9a"
+    },
+    "rustc": {
+      "path": "/Users/frenchfaso/.cargo/bin/rustup",
+      "sha256": "20ef5516c31b1ac2290084199ba77dbbcaa1406c45c1d978ca68558ef5964ef5"
+    },
+    "rustc_toolchain": {
+      "path": "/Users/frenchfaso/.rustup/toolchains/1.93.0-aarch64-apple-darwin/bin/rustc",
+      "sha256": "87b02c67012c28083fe485a50b10470a662c828c6e2cd0caf4775e00986cdfc8"
+    },
+    "settings": {
+      "path": "/Users/frenchfaso/Documents/Code/C64/runtime/ultimate.cfg",
+      "sha256": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961"
+    }
+  },
+  "fixtures_sha256": "c5f8b833a7e4c28d7217802ebdccf682ead43d3b53e79080fb6f54554ebf202a",
+  "format": "COSM3PERFRESULT1",
+  "host": {
+    "abi": 2,
+    "binaries": {
+      "cosasm": "80aaa1c9d1e8a2275c40ab426876952a4fee06394d0062bcc85cdf69906b4b8d",
+      "cosbench": "73ca68a128b03726ab1d1a42b643780f3d64ea10b34be625ee1b745d5478135b",
+      "cosdis": "b484777265a88705372e5547c14a4c80c3d0263304463829baaf73c3b2cbd8b6",
+      "cosfixtures": "bdad691082acd785b6c612dfb49a10915cf7d3f01b56f27189d340e656be86df",
+      "cospack": "eaa442502624a08d36c4bf2585779535bd4366b9b559b011da59a9ee050be91f",
+      "cosrun": "b56147e203a5b40dd45dc949671a84d09ef1a07703556ed89bf0c9e6050aca70"
+    },
+    "clippy_warnings": 0,
+    "fmt": true,
+    "tests_passed": 62,
+    "tool_versions": {
+      "cargo": "cargo 1.93.0 (083ac5135 2025-12-15)",
+      "rustc": "rustc 1.93.0 (254b59607 2026-01-19)"
+    }
+  },
+  "hot_pc": [
+    "build/m3-hot-pc/128/result.json",
+    "build/m3-hot-pc/64/result.json"
+  ],
+  "m0_suite": [
+    {
+      "case": "pal64-reu16",
+      "result": "build/m0/ue2/pal64-reu16/result.json",
+      "result_sha256": "0f73b9943e67d692252fde433d82055ca32e7146267a8d47ac66ce4a5193a9cd",
+      "status": 1
+    },
+    {
+      "case": "reu128",
+      "result": "build/m0/ue2/reu128/result.json",
+      "result_sha256": "f270da340c84b723db7bec0a826cb464413a9574f730c911af89b8f55b417f1b",
+      "status": 227
+    },
+    {
+      "case": "reu512",
+      "result": "build/m0/ue2/reu512/result.json",
+      "result_sha256": "4a23eaac53dcd70fcbe66609650aa2a16370ac7a29d3f728b3e40b4ccd35dc5b",
+      "status": 227
+    },
+    {
+      "case": "reu2m",
+      "result": "build/m0/ue2/reu2m/result.json",
+      "result_sha256": "f1a4061ed38611ca08e0ae59ff00336512c595c4e211f3e8b0f4648429367c6f",
+      "status": 227
+    },
+    {
+      "case": "reu8m",
+      "result": "build/m0/ue2/reu8m/result.json",
+      "result_sha256": "dbfa7c2a5d27b1d67a2d13a05a051a90f84d3fe6ea95971875bd5ce1a497f7be",
+      "status": 227
+    },
+    {
+      "case": "reu-absent",
+      "result": "build/m0/ue2/reu-absent/result.json",
+      "result_sha256": "0ef4eaeb08af5e08cd948fac5f98acff59491dc27a0c06086dd9e645c0e75623",
+      "status": 227
+    },
+    {
+      "case": "turbo32",
+      "result": "build/m0/ue2/turbo32/result.json",
+      "result_sha256": "e0e5a6740d39b54943bd91eb0560b694d5b60469407fb78b04d9ebb9ddf34f75",
+      "status": 226
+    },
+    {
+      "case": "turbo48",
+      "result": "build/m0/ue2/turbo48/result.json",
+      "result_sha256": "412ee4b5256daa3484d15288cf438f65b61d336800341d9d21111c2942b0baa1",
+      "status": 226
+    },
+    {
+      "case": "ntsc",
+      "result": "build/m0/ue2/ntsc/result.json",
+      "result_sha256": "c9358c99ef84b79623fa80339e447c4d34837ec409c7dc8c57fbd3d8be902b57",
+      "status": 225
+    },
+    {
+      "case": "bad-pack",
+      "result": "build/m0/ue2/bad-pack/result.json",
+      "result_sha256": "4fa9bdce1f953a480709a0e20e7052e818fd3c6071f0c0592f6821edccecdcd6",
+      "status": 228
+    }
+  ],
+  "native": [
+    "build/m2/ue2/128/result.json",
+    "build/m2/ue2/64/result.json"
+  ],
+  "native_active_raster_reporting_cases": 1648,
+  "native_coherent_admission_cases": 3296,
+  "native_current_pc_invariant_cases": 148,
+  "native_m3_assertions": 252,
+  "physical_rollback_scenarios": 512,
+  "qualification": "Functional emulation; physical Ultimate timing pending",
+  "raster_active": [
+    "build/m3-raster-active/128/result.json",
+    "build/m3-raster-active/64/result.json"
+  ],
+  "result_files": {
+    "build/abi2-rejection/result.json": "932588324f57c34fd1f6dc0267d09d56945cf3cb2def993351e99544c458a9f1",
+    "build/cache-cancel/128/result.json": "264d6e390f71d3a5869cc6946dd156ecf4832f6de926c893ba7eca35bd20af3e",
+    "build/cache-cancel/64/result.json": "095836ae589a025a983233a71928e1cd78d7ad3b60c5e883393b496f73f3d2b2",
+    "build/cache-rollback/128/extended/result.json": "6953de2d2ce903687beb3c48365acdc43dc5f9fe33b98e552b563264f4b547d4",
+    "build/cache-rollback/128/normal/result.json": "b4f182573ddfd666dd2fc7158eb223fd3d4b342fc17b31000119c1765332fbfb",
+    "build/cache-rollback/64/extended/result.json": "ee5b66c17316f1a69fb59402c10c9ade9af58e1a48ba72405fab66564127a105",
+    "build/cache-rollback/64/normal/result.json": "f66bf66aae72ba1900550ba5659393832c690840175e9e40b89e2776022dcae3",
+    "build/m0/ue2/bad-pack/result.json": "4fa9bdce1f953a480709a0e20e7052e818fd3c6071f0c0592f6821edccecdcd6",
+    "build/m0/ue2/ntsc/result.json": "c9358c99ef84b79623fa80339e447c4d34837ec409c7dc8c57fbd3d8be902b57",
+    "build/m0/ue2/pal64-reu16/result.json": "0f73b9943e67d692252fde433d82055ca32e7146267a8d47ac66ce4a5193a9cd",
+    "build/m0/ue2/reu-absent/result.json": "0ef4eaeb08af5e08cd948fac5f98acff59491dc27a0c06086dd9e645c0e75623",
+    "build/m0/ue2/reu128/result.json": "f270da340c84b723db7bec0a826cb464413a9574f730c911af89b8f55b417f1b",
+    "build/m0/ue2/reu2m/result.json": "f1a4061ed38611ca08e0ae59ff00336512c595c4e211f3e8b0f4648429367c6f",
+    "build/m0/ue2/reu512/result.json": "4a23eaac53dcd70fcbe66609650aa2a16370ac7a29d3f728b3e40b4ccd35dc5b",
+    "build/m0/ue2/reu8m/result.json": "dbfa7c2a5d27b1d67a2d13a05a051a90f84d3fe6ea95971875bd5ce1a497f7be",
+    "build/m0/ue2/turbo32/result.json": "e0e5a6740d39b54943bd91eb0560b694d5b60469407fb78b04d9ebb9ddf34f75",
+    "build/m0/ue2/turbo48/result.json": "412ee4b5256daa3484d15288cf438f65b61d336800341d9d21111c2942b0baa1",
+    "build/m1-results.json": "44f75cb9022dd862f4b448c2ac1ddae0218603586b1b0fb82a58c3b9d66348b3",
+    "build/m2/128/bounds.json": "eb788a2dc6acc1c866615101a2d1a96d79096c2205b08e47641db8e64cf6b561",
+    "build/m2/64/bounds.json": "e0bc690c965b12b713b8a94160466d8823ab5f6efda0483e499c1f92f6f69da7",
+    "build/m2/margins/result.json": "405e8170d650833047681ea3beaad8fb3bde535f66a0798e76551c2279cf4ebf",
+    "build/m2/ue2/128/result.json": "70dec4aaccdb164ddb739bb9223af2b6560cef560163a5759b343d7fc133288f",
+    "build/m2/ue2/64/result.json": "8fe44be6efad5f317296893c26e69b60b87adee7db12c5e44090215c85638055",
+    "build/m3-admission/128/result.json": "6e6f8ad6bab450e070c3408949b92fcc5011e5cd30d40907a132253fbc719aa9",
+    "build/m3-admission/128/scheduler_video_admit/result.json": "b324b9e5c4a147f56d9aad3ad827cf44c7609cc11dcede9bd59ddcc121c7cbbe",
+    "build/m3-admission/128/vm_video_admit/result.json": "808cc56b44bb98a1ff83baea59b07146a76bb2087685f03a5f5628fc0d33c336",
+    "build/m3-admission/64/result.json": "9c2d9ad18dbcfb6fe2449ee3374cc92120aeff233e3bad2088aec66ec3496333",
+    "build/m3-admission/64/scheduler_video_admit/result.json": "b324b9e5c4a147f56d9aad3ad827cf44c7609cc11dcede9bd59ddcc121c7cbbe",
+    "build/m3-admission/64/vm_video_admit/result.json": "808cc56b44bb98a1ff83baea59b07146a76bb2087685f03a5f5628fc0d33c336",
+    "build/m3-autonomous/128/result.json": "160a254bf086f97778c343017224b53d3a3ae7109f63a09a536c34752e4015a6",
+    "build/m3-autonomous/64/result.json": "17854060ecb629358139c91fa518ea87958ecdba75675407c0afb37e3273f4c4",
+    "build/m3-contract/128/result.json": "357708ef9db293842c9a746e0bc02da8d18ee53d4ef7c6ed599a2633c2eab6fc",
+    "build/m3-contract/64/result.json": "c40dde392ff8b2e070e6402d789ef4e42e5b39d232ce2f1653b1e63572e35cfb",
+    "build/m3-hot-pc/128/result.json": "ecc9e9bbf085987d24cf11544715af97149a504cf26d5803302107b688d0305d",
+    "build/m3-hot-pc/64/result.json": "cc8fe0d9c1e07550dfdf1e3e40a687a3aadd3239ceef5549780bbb18fab1a0b9",
+    "build/m3-raster-active/128/result.json": "73d71866530cf717aae4c7d044f52a5031a00e7d92debabf9d2a7ed0a6c69024",
+    "build/m3-raster-active/64/result.json": "be70bee5617b663b93cfb69bd9949726e78a186d43a92fc465545d4a4f00f378",
+    "build/m3/128/bounds.json": "7196ff48bc42f6e77875489873db936e786771d9f06927c172a28a7736d9dff3",
+    "build/m3/64/bounds.json": "9ad497f5b088371b00b5d5aecac57a84c9dad9f37d7993e6d3a5a75b48170720"
+  },
+  "rollback": [
+    "build/cache-rollback/128/extended/result.json",
+    "build/cache-rollback/128/normal/result.json",
+    "build/cache-rollback/64/extended/result.json",
+    "build/cache-rollback/64/normal/result.json"
+  ],
+  "source_sha256": {
+    "Cargo.lock": "2e6cc0ef714b97fc90deb7f5c107933dccf1201e8f0af5275ffe3aa41b1a9c3f",
+    "Cargo.toml": "44ae290af59148805c65910078f25b8d1c8db36d4e1ddab3520c47a0e27653c1",
+    "README.md": "0cbad90dfc74dd340c0844283f7688ef55179e0cd18fbf153cd0eb25e61990d7",
+    "apps/calls.casm": "3b5a948399d9d45a9510988567458d4090768161ed7acd2ab3eb53705d2e54a4",
+    "apps/linear.casm": "6ccf119865f4318321ad9b9560c923a62a7110f3cf92b9efa24b1d248d9e1f61",
+    "apps/mandelbrot-32x24.casm": "ec2c940023246ab7f0a9646da562f67c69d92dd48ca4c3edda2ff5302c15c7a5",
+    "apps/mandelbrot-mul-only.casm": "e245857cfdc33d8629443f96b54df1d11c0b03676585112442482207d0243eb0",
+    "apps/mandelbrot-registers-pointer-cy.casm": "3b7a8a4aaf24fbb492fe0c3c66727f81d54ca1715018fff9990502701ff5290a",
+    "apps/mandelbrot-registers-shared.casm": "8c2be0c48a472d23fcb4f4d66cbb17828e000593069dc8ba05da1ef0fc8011b1",
+    "apps/mandelbrot-registers.casm": "4c074fd97fb1b7b3db4251ee45ad680b5f437245d98922c2bb730ac6b2cc766f",
+    "apps/mandelbrot.casm": "3b7a8a4aaf24fbb492fe0c3c66727f81d54ca1715018fff9990502701ff5290a",
+    "apps/spin.casm": "fd175ad51533c02f9bc02f97d9d570e11a07db351676a1dc9cccaf2afbec1907",
+    "manifests/empty.json": "257e28289cf975c9844b95175e9140fd7f9affd92fd02cb2bb0b3b6d0423f28e",
+    "manifests/m1.json": "e6d3c227e63986892d94762147455ff4f59db7c5bdcc751b78a8077426bd55a4",
+    "manifests/m3.json": "9d2d18ba241bb0145c16c8516ce89242bbe64d32232095498a95da9db74622e4",
+    "native/build_profile.inc": "b237847dd566e2c4bdad78b6b8c03a73529bc5be076fb83c72473b4b22412570",
+    "native/cache.asm": "291ff44a8011f0397115a7b1c7d7f5884b24763d93dfba503d4f38749157aa5b",
+    "native/hardware.inc": "9dfe1e1e864b1615f1cd61a1f3bf77949c48ad436ccce6787f449ead492061ac",
+    "native/jobs.asm": "4320a2a488e32c5b81c2e658856698f8e00652b1de002f9a7f2007d12c5dadaa",
+    "native/m2_abi.inc": "bed2621718697a09099310b7fd432e0711943966f8cc18b8f8435c92d6be0ff5",
+    "native/m2_boot.asm": "6a9952246e6181b611ae3fede4585acf1db39d57d0d611b60d96d4c4492a3434",
+    "native/m3_boot.asm": "d90497a54c56f120ac6ea78d2b591b9b1a20efd3358faf6e96398216d47d3c3a",
+    "native/m3_kernel.asm": "7ecd670e4314eb07e3692881d68761d0d913bde18eb950a4d9ed225bfe0b6b45",
+    "native/margins.asm": "b564aa9241381685be41866a3e4d00aaae2680e7af923e853c90a3fa0cb4485f",
+    "native/probe.asm": "e9d8c0cf310ecc44b702b2943978c959a67d15268edde728161363dda02967fe",
+    "native/renderer.asm": "c6e5265423603fd8a9a68c50c34fa0c0c40fc85a80b085fa597468534712a759",
+    "native/scheduler.asm": "6cd7078680132fa44ebbddb7b365bb6f277038030e1988f0b290dbdd695c3fe9",
+    "native/scheduler.inc": "926c09b70cdebda487f5d311e24e33cfa113736f01d7ebb54ed200736c703e19",
+    "native/vm.asm": "c6c34fd17c99d183f8bc436fa450ee7de611005f7e98f0693bfba1a11952406f",
+    "rust-toolchain.toml": "4c2b49f5f849a8c7e2dd6e782dc0c1e3979f6aadfcb2f6ab75128ade28774fc8",
+    "scripts/check_abi2.py": "cb9eefcf092244ee386c65198e8c9fb404c144ed137885c5364f68a79ee7a42e",
+    "scripts/check_m1.py": "135eb509549ad4e7d571099751a7a89c62ead519ca4cefff8215894ee86a32b2",
+    "scripts/check_m2.py": "dc1f541cd7912154ab794f493529a6cca1f3d9bed2fa5aefdb562bea4f1097d4",
+    "scripts/check_m3.py": "8f20f4e0282fac8f4a347cf994437b68957334a35830fce9f70a5c0cb49ea3cc",
+    "scripts/check_m3_admission.py": "966055772c299a844de660a1a14d0a28ac4b71e8958c6a63082c75358b902fe2",
+    "scripts/check_m3_hot_pc.py": "6a9ce165e17435529000b9e05dfb508171eb605419e90b4be1dc9f3f25d16341",
+    "scripts/check_m3_perf.py": "9c8800b869f68cf140057bce28e54d88ac3a3afbea1d375d0868775b77949159",
+    "scripts/check_m3_raster_active.py": "c57a79eb54d6f360c63e9bcd4b23b075325259dade6974163fdefc8c61e9d8c4",
+    "scripts/m0.py": "ec2bc308c7cd26dde6f909e6ca3cd9e1faa2f60ff54556de3205ed2f57545e72",
+    "scripts/m0_ue2.py": "eb8784e2c57a6b07fffbb40ad79f57c80ce59b6b2d69c7a8964e057227725034",
+    "scripts/m2.py": "f0d8f87ef50490099e8f5dd56e32eda3575a0ab82fda4c793a435ed9217ce77e",
+    "scripts/m2_bounds.py": "eb8c82462525641ecd46603d06fbc92c277806d3393a4c8cd296ff4392d263a1",
+    "scripts/m2_compare.py": "dc5e9c57dbec6a8ed389677140bfa09f54cef0afc1082f352c79774e97682139",
+    "scripts/m2_margins.py": "a3e5bfbb397c49b4f7e6e99b781fc645f2b1d2f30f8f59bcaba2c3a377f461c8",
+    "scripts/m2_ue2.py": "08f3a804d6958d109a97b65cd97dee5ef1d274cc3253e4d17e5ac3cf3d5edda9",
+    "scripts/m3.py": "8f98391eae11822d9bb825db8b96a99b99601684af2982dec9497beadc00c011",
+    "scripts/m3_benchmark.py": "0fb094223f04559760bff0cb348db8ddfce351b11cdb67af0f2fadc6e6d5536f",
+    "scripts/m3_profile.py": "75594c481064183c97c43832dd2406f3743b9514c7cf1963a48bd6e5d2ec2900",
+    "scripts/m3_profile_timer_check.py": "7b3203d3bb8d8ab1516f5cfa57fdab7acb61d78d1804b811482ff25c2c31e072",
+    "scripts/m3_ue2.py": "4cecbdc6c95e2132c24177ee21f869cc4f8967c77d96392e365773e4f343193d",
+    "scripts/mandelbrot_reference.py": "bf6625529b191dc66f79bbe94ad1a654f1436da4cc0edf61474444ebb41970fc",
+    "scripts/png_rgb.py": "85a22198005dbb8bfe7f3d953bcd0afede51b49c4a1815618323581e53103393",
+    "specs/LANGUAGE.md": "029baf0b4998687972dc1add6516883e91c71c3407bf6bc71369a7e590c3480e",
+    "specs/M2-UPIC-MARGINS.md": "983d09a67ecfead354fee35ba7a8894573714076e961cad6c087b6061e10b44b",
+    "specs/M3-PERFORMANCE.md": "443c1e899e613b582c05e77f640e635c3206341f364237a9acf1dcaab14cec75",
+    "specs/NUMERICS.md": "533c6b0cdab1c2216d13ec40e2aa77b3b34de804844740b349ba28fa2471b549",
+    "specs/PERFORMANCE.md": "84730c50f4dbbbf5cf66b99697e10c80d4dce499f84ddba3014dffd094d63793",
+    "specs/SPEC.md": "5f01b7c012d264e5c562c5f052ec493d811b052bcfac645e928e7ea166b82e48",
+    "specs/ULTIMATE-API.md": "a705840e8501e3d208193fd0c03315cc192cd631a36b1ef1e1bfc4fe9d523a7c",
+    "src/assembler.rs": "614fadf2b0843a65d8e78e19d1c02f2fdf5b57c4af9f821aea7c2bfbe58457cd",
+    "src/bin/cosasm.rs": "9bff4ef6da22794c64f5a7595202beeca6f64b6e73ab0a66abf0869b92ffa449",
+    "src/bin/cosbench.rs": "98184ae79891d27f6d13181a2d3c204d79f8799cb9218010a3d0d897311f9dbd",
+    "src/bin/cosdis.rs": "6f6067ee47843e52ff69d417a33adacc41d76f4a6ce6e5f30d35677ae7bf1bd4",
+    "src/bin/cosfixtures.rs": "a404c19b9c21b8c032a8cb5d1f80b60d204d0ab174765e78e1fc86f50fcf8190",
+    "src/bin/cospack.rs": "f30b2479e00321c70370163b5f87ad0d50601ab9e491cd73cfdd5bff1a8e5c96",
+    "src/bin/cosrun.rs": "5bffcd7daa38d41ff0fb96621ef3235a136f2714c93599dc824939a5d06f0b56",
+    "src/harness.rs": "665c34d6e8e19fff731323ece70a701bd53266ff72b15582a2fb51a2206f50f2",
+    "src/isa.rs": "7dad8c57a21f2c9c6e84f101b4488b4f70679e6fa27bad42235b77d094ef26df",
+    "src/lib.rs": "24e4c9302ef0cce4b5ce0328181271046c8f842eed54645ee86892944f7e1bab",
+    "src/object.rs": "02c856a8d7bda043f29738cf921a6e64bd1a51413d3fa0791cca67211e7d4bba",
+    "src/pack.rs": "aa143bdca0a572b759c2fa5e340a29edec7f4201c21446cf9fe9a178ea16ebc9",
+    "src/vm.rs": "74ba5e80f7d3a1e6f48d7b6c97399e13af765a5108a0c4b903145ed6abe9f091",
+    "tests/abi.rs": "28e7679d56f20fbb8d9e1cfa6209903add7e3952cb5e880c4b93c0055ec644c2",
+    "tests/harness.rs": "e482115ab699e6963207359d7ccb4b07b796cb349e91156699e5421a1ec9a7fa",
+    "tests/multiply.rs": "1147122f62d7b71fcd64f9296bf3332148c4e0e8e84201302e3115ec22b0b817",
+    "tests/native/cache_cancel.asm": "792efe6836dacb3fc3a0696bcf8221be6ebb787e5be83a263f2633979c575b88",
+    "tests/native/cache_rollback.asm": "09c4f1cf76a6aa92dff289477c1c8d5f010641992c6957df7ea113d21ded478b",
+    "tests/native/check_cache_cancel.py": "b50d80805cbfda0512e1c919e679b070eb1c7adde50dcfd6be3a9012c527e93d",
+    "tests/native/check_cache_rollback.py": "8726533dcbefdeaa87511eefd140af74617a3537c1d5342c1995f5e7a26b40e0",
+    "tests/native/m3_scheduler.asm": "9c73475e648f97f92c306722947db99558c6edb412f07e018c8b043810617e96",
+    "tests/native/mandelbrot_1mhz.asm": "db97bb32af94906134b4c327cb83458d92f3fe6372712df6336ec5c07205b4d8",
+    "tests/native/mandelbrot_32x24_1mhz.asm": "6c92171b307fed2e6b834f390a01efa2a1bf0d4ebf2a0a4ef2ac40a199b3d42e",
+    "tests/native/margins.asm": "7337f0ba92e7b970d67ae08da010830992c6e19de6e0898c73e5713b64e2d8ec",
+    "tests/native/test_m0.py": "00859738545b943af9c04161426ac9944f1931f2787bf6d2ab1743f439f9811d",
+    "tests/native/test_m2_artifacts.py": "da3aa335d626d443a5776dc4f9937f8167e4b2b3e34d162124cbcb1cb8e33e6c",
+    "tests/native/test_m2_bounds.py": "134096c68449a74d7bfd36c96cff0d38360ac4b988cd7478d4ceb8eb98faa54b",
+    "tests/native/test_m2_compare.py": "2a54ed7cdd1b24c24895c825229e88e99d0307002342e52be0b0e6dd817b9863",
+    "tests/native/test_m3_artifacts.py": "d28848b19757f315ae5f5fa23e83e9242c436d66b3a0db411b64ab141a09575e",
+    "tests/native/test_m3_perf_runner.py": "77cb453b56348849d89cae3d17024e5936c767249d033d9ad30dc1085a41c6e8",
+    "tests/native/test_m3_profile.py": "087c6b21f108d3240422a03f6a2ae2781834fa22a47d60ecf7c30c98dd147a89",
+    "tests/native/test_m3_raster_active.py": "1f33aa761786f94b9ea26d59b93e57ecf0a5048c0303d124a763dd4d3ab87972",
+    "tests/native/test_m3_ue2_sampling.py": "a461fce51dd47bfe2c073eeba497cd6cc09362bfb2f473148abedd26874f3e85",
+    "tests/native/test_native_bounds.py": "b846bddc52b9cf85826a6083a70afa6354ddf04bdc180dc14db73e3eb8a65605",
+    "tests/semantics.rs": "85634096a2e221e5b7a1e9f245e648b443090b302e0c72c28c28b979579100c1",
+    "tests/toolchain.rs": "d67e1010adc2b412f3cbfa01d59cda7c3e162351a2426d2344677102a6a81836"
+  },
+  "sources_unchanged_during_run": true,
+  "status": "pass",
+  "variants": [
+    {
+      "artifact_sha256": {
+        "m3.manifest.json": "44ded8219c007dabebf8b5c60e76e84a858e109c252850e7d951276093c6b6b3",
+        "m3.prg": "cc38852ee8f0bbafa1ed9a113542d21462a0f8ea4d35875b5965ff80e5bf8469",
+        "m3.reu": "82f1ab9f50fed8076633bb53628b3e21f17aac7a9b213c96b8cdc926985ee55a",
+        "map.json": "f6fba5e786be780a74603e827223cdabd9642ec231f90091c3430a84930c9baa",
+        "map.txt": "9b187488c0ea6af09ee1ab905f604dc1f891b29d7e4565ae8cd6e88294f1a50f",
+        "native.bin": "50cae5a9d3d495d056c064cbee9fdae9780c611660dbb942a39c96ecbf075171",
+        "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+        "renderer.prg": "5858b9691af7965b54c4f0ca5e96a314c2105293c291f91c72dd8246ad02adb2"
+      },
+      "cache_line": 128,
+      "milestone": "m3"
+    },
+    {
+      "artifact_sha256": {
+        "m3.manifest.json": "71b07ef97cb2fd86f5453ce72386e856e8a2ba53b0555ac1d124358e8a0b7711",
+        "m3.prg": "cee8eb94b2ed5d5bab63147467d2cee3ebd6dcb42146302af8bb2f781df0f9cb",
+        "m3.reu": "7c68f5bbe55c0e4d6720d2708975014fe955bd4c994937c1f16b3c743dc47f5e",
+        "map.json": "5dbefe4ff18091d2cc46522758282e7acd116b58d0a8210da911c37d77a245e7",
+        "map.txt": "5a29d1c62c6fe9e4e14efd5776344f390680a1e2387fcc356149941f099c7f5c",
+        "native.bin": "6e24d4672a168f983060343ab1a2a8f28d660dca26ef1a57b7e6a288f316f0ea",
+        "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+        "renderer.prg": "5858b9691af7965b54c4f0ca5e96a314c2105293c291f91c72dd8246ad02adb2"
+      },
+      "cache_line": 64,
+      "milestone": "m3"
+    },
+    {
+      "artifact_sha256": {
+        "m2.manifest.json": "87e6b74ee066a2f2365cab43bca4d80d6603cf580d20dce167e6ca23babd5ff8",
+        "m2.prg": "ed92de8a4637b455be5ac38eda038e1d6de66b263b00df076306d7701b85c2f5",
+        "m2.reu": "f53d1dce44fdda63e935e992572bd46104e92e91036f81fc741ce5dad3f02e31",
+        "map.json": "1d5c2b8fe36013af6dc1afcbb6e7bd26d723d7c868abb4b89562e65cd37c7f5e",
+        "map.txt": "75ff66f6c9f55637e725394fb82f4c279f69fd07ccd8e6dca466cbd2df5c34c1",
+        "native.bin": "9327e0be341952b3d44d08a2c0619c9a81eac8a89f953f4a1163d5a2b0b9e2e3",
+        "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+        "renderer.prg": "e78c014bfc840438660982ca37321bebc83466ce957136e3fa48f10431d9ea1f"
+      },
+      "cache_line": 128,
+      "milestone": "m2"
+    },
+    {
+      "artifact_sha256": {
+        "m2.manifest.json": "ddc31704efaeef3bdf08f8df408aefe7cba1e08f349ad8ad4a17851075d90a8d",
+        "m2.prg": "b1a7a9b39ec99a10d42fae8415ba1ffd96fd27c679e5955abd1911382ec9c7d6",
+        "m2.reu": "056f3c09cf17aff950244132f63d90f04f2da2f84cb04d429994540ef029eb00",
+        "map.json": "3ca0daf9da192c4e47bab02bb32ed097561c8d66759d748b5733c3344859367c",
+        "map.txt": "4d1563985670a94119e942ee19e197bd2ba9fcb0af5b2de3be6c62f47fecac1d",
+        "native.bin": "d1ae4d16a7283f11b37dd0466ce4c4dd37ee006b5bf22b2ab4ff4c6f65d6bb8d",
+        "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+        "renderer.prg": "e78c014bfc840438660982ca37321bebc83466ce957136e3fa48f10431d9ea1f"
+      },
+      "cache_line": 64,
+      "milestone": "m2"
+    }
+  ]
+}

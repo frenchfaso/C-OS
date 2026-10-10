@@ -1,0 +1,14 @@
+{
+  "width": 16,
+  "height": 12,
+  "limit": 16,
+  "arithmetic": "signed Q8.8; full product floor-divided by256",
+  "viewport": {
+    "cx_first": -512,
+    "cy_first": -384,
+    "step": 64
+  },
+  "bytes": 192,
+  "iterations": 964,
+  "sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c"
+}

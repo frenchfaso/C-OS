@@ -1,0 +1,19 @@
+; Read a relocated pointer, then store/load across $04FFFF/$050000.
+.const VALUE = $ABCD
+.entry start
+.code
+start:
+    PLI P0, saved_pointer
+    LDP P1, P0, 0
+    LDI R2, VALUE
+    ST16 R2, P1, 0
+    LD16 R3, P1, 0
+    PGETHI R4, P1
+    LDI R0, 0
+    SYSCALL 0
+.data
+saved_pointer:
+    .ptr buffer+65279
+.bss
+buffer:
+    .space 70000

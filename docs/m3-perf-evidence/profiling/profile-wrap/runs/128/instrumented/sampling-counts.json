@@ -1,0 +1,104 @@
+{
+  "format": "COSM3PROFILESAMPLINGCOUNTS1",
+  "counter_sha256": "e8f9243e4fcb2cb2db6d72b086eca469c2120afefab8903afb3c5dad8d177b6f",
+  "accepted_run_result_sha256": "f573e08dbdf6d631920a6620e2b63ac03f50150562451f6234f6438a10fa282f",
+  "counts": {
+    "vm_step": {
+      "sampled_calls": 290,
+      "sample_factor": 128,
+      "remainder": 35,
+      "lifetime_calls": 37155
+    },
+    "code_fetch": {
+      "sampled_calls": 284,
+      "sample_factor": 128,
+      "remainder": 11,
+      "lifetime_calls": 36363
+    },
+    "pc_bounds": {
+      "sampled_calls": 568,
+      "sample_factor": 128,
+      "remainder": 19,
+      "lifetime_calls": 72723
+    },
+    "decode": {
+      "sampled_calls": 0,
+      "sample_factor": 128,
+      "remainder": 0,
+      "lifetime_calls": 0
+    },
+    "preflight": {
+      "sampled_calls": 0,
+      "sample_factor": 128,
+      "remainder": 0,
+      "lifetime_calls": 0
+    },
+    "execute": {
+      "sampled_calls": 0,
+      "sample_factor": 128,
+      "remainder": 0,
+      "lifetime_calls": 0
+    },
+    "cache_unpin": {
+      "sampled_calls": 299,
+      "sample_factor": 128,
+      "remainder": 74,
+      "lifetime_calls": 38346
+    },
+    "data_read": {
+      "sampled_calls": 0,
+      "sample_factor": 128,
+      "remainder": 0,
+      "lifetime_calls": 0
+    },
+    "data_write": {
+      "sampled_calls": 0,
+      "sample_factor": 128,
+      "remainder": 0,
+      "lifetime_calls": 0
+    },
+    "scheduler_tick": {
+      "sampled_calls": 0,
+      "sample_factor": 128,
+      "remainder": 0,
+      "lifetime_calls": 0
+    },
+    "native_phase": {
+      "sampled_calls": 0,
+      "sample_factor": 128,
+      "remainder": 0,
+      "lifetime_calls": 0
+    },
+    "cache_service": {
+      "sampled_calls": 0,
+      "sample_factor": 128,
+      "remainder": 0,
+      "lifetime_calls": 0
+    },
+    "video_admission": {
+      "sampled_calls": 7946,
+      "sample_factor": 128,
+      "remainder": 79,
+      "lifetime_calls": 1017167
+    },
+    "dma_admission": {
+      "sampled_calls": 0,
+      "sample_factor": 128,
+      "remainder": 0,
+      "lifetime_calls": 0
+    },
+    "fixed_syscall": {
+      "sampled_calls": 0,
+      "sample_factor": 128,
+      "remainder": 0,
+      "lifetime_calls": 0
+    },
+    "empty_probe": {
+      "sampled_calls": 256,
+      "sample_factor": 1,
+      "remainder": 0,
+      "lifetime_calls": 256
+    }
+  },
+  "scope": "Exact call counts reconstructed from sampled count and initialized continuous modulo256 counter; no time extrapolation. Calibration dense."
+}

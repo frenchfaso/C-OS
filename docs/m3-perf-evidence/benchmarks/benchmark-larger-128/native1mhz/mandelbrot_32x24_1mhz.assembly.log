@@ -1,0 +1,24 @@
+//------------------------------------------------------
+//------------------------------------------------------
+//         Kick Assembler v5.25 by Mads Nielsen         
+//------------------------------------------------------
+//------------------------------------------------------
+Output dir: /Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final-candidate/benchmark-larger-128/native1mhz
+parsing
+flex pass 1
+flex pass 2
+Output pass
+  Baseline code fits classic RAM below$2000=true (true)
+Writing prg file: /Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final-candidate/benchmark-larger-128/native1mhz/mandelbrot_32x24_1mhz.prg
+
+Memory Map
+----------
+Default-segment:
+  $0801-$080c BASIC
+  $080d-$0a89 Baseline program
+  $6000-$62ff Computed iteration image
+
+
+Made 1 asserts , 0 failed
+Writing Vice symbol file: /Users/frenchfaso/Documents/Code/C64/C-OS/build/m3-perf/final-candidate/benchmark-larger-128/native1mhz/mandelbrot_32x24_1mhz.vs
+Writing Symbol file: mandelbrot_32x24_1mhz.sym

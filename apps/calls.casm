@@ -1,0 +1,20 @@
+; Nested calls exercise the three-byte return address and pointer stack.
+.entry start
+.code
+start:
+    GETSP P0
+    PUSHP P0
+    LDI R2, 21
+    CALL twice
+    POPP P1
+    LDI R0, 0
+    SYSCALL 0
+ twice:
+    PUSH16 R3
+    MOV R3, R2
+    CALL add_value
+    POP16 R3
+    RET
+ add_value:
+    ADD R2, R3
+    RET

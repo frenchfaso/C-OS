@@ -1,0 +1,85 @@
+#importonce
+#import "build_profile.inc"
+// Internal native interface for ABI 2 four-byte bytecode.
+// Active architectural state and bounds occupy 96 bytes in zero page.
+.const VM_STATE = $02
+.const VM_STATE_BYTES = 96
+.const VM_R = VM_STATE+0
+.const VM_P = VM_STATE+16
+.const VM_PC = VM_STATE+28
+.const VM_SP = VM_STATE+31
+.const VM_FUEL = VM_STATE+34
+.const VM_RETIRED = VM_STATE+35
+.const VM_PID = VM_STATE+43
+.const VM_ARENA_FIRST = VM_STATE+45
+.const VM_ARENA_LAST = VM_STATE+48
+.const VM_CODE_FIRST = VM_STATE+51
+.const VM_CODE_LAST = VM_STATE+54
+.const VM_HEAP_FIRST = VM_STATE+57
+.const VM_HEAP_LAST = VM_STATE+60
+.const VM_STACK_FIRST = VM_STATE+63
+.const VM_STACK_LAST = VM_STATE+66
+.const VM_OUTCOME = VM_STATE+69
+.const VM_FAULT = VM_STATE+70
+.const VM_FAULT_ADDRESS = VM_STATE+71 // Four bytes, including overflow carry.
+.const VM_FAULT_HAS_ADDRESS = VM_STATE+75
+.const VM_TRAP = VM_STATE+76
+.const VM_SYSCALL_ID = VM_STATE+78
+.const VM_TOKEN = VM_STATE+79 // Eight-byte per-incarnation serial.
+.const VM_CALL_PC = VM_STATE+87
+.const VM_PENDING = VM_STATE+90
+.const VM_GENERATION = VM_STATE+91 // Two-byte slot incarnation.
+.const VM_IR = $62
+.const VM_NEXT = $66
+.const VM_EA = $69
+.const VM_LAST = $6c
+.const VM_VALUE = $6f
+.const VM_SCRATCH = $72 // $72..$7f owned by interpreter.
+.const VM_PCB = $0400 // Four 128-byte slots; first96bytes copied.
+.const VM_SLOT = $03b0
+.const VM_VIDEO = $03b1
+
+.const VM_RUN = 0
+.const VM_FUEL_EXHAUSTED = 1
+.const VM_WAIT_REU = 2
+.const VM_YIELD = 3
+.const VM_SYSCALL = 4
+.const VM_FAULTED = 5
+.const VM_STOPPED = 6
+.const VM_WAIT_VIDEO = 7
+.const FAULT_DECODE = 1
+.const FAULT_PC = 2
+.const FAULT_ADDRESS = 3
+.const FAULT_ARENA = 4
+.const FAULT_READ_ONLY = 5
+.const FAULT_STACK_OVERFLOW = 6
+.const FAULT_STACK_UNDERFLOW = 7
+.const FAULT_SP = 8
+.const FAULT_TRAP = 9
+
+.const CACHE_ADDR = $91
+.const CACHE_WIDTH = $94
+.const CACHE_WRITE = $95
+.const CACHE_VALUE = $96
+.const CACHE_LOCAL = $99
+.const CACHE_SCRATCH = $9b // Through $af; boot scratch at $b0..$bf.
+.const CACHE_CODE = $0800
+.const CACHE_DATA = $0c00
+.const CACHE_TAG_LO = $fd80
+.const CACHE_TAG_MID = $fd90
+.const CACHE_TAG_HI = $fda0
+.const CACHE_OWNER = $fdb0
+.const CACHE_FLAGS = $fdc0
+.const CACHE_GEN_LO = $fdd0
+.const CACHE_GEN_HI = $fde0
+.const CACHE_VALID = 1
+.const CACHE_DIRTY = 2
+.const CACHE_BUSY = 4
+.const CACHE_REF = 8
+.const CACHE_PIN = 16
+.const CACHE_WORK = $0350 // Through $03af; cache-owned continuations/counters.
+
+.const M2_MAILBOX = $fe00
+.const M2_ARGUMENTS = $fe20
+.const M2_SNAPSHOT = $fee0 //96-byte immutable command acknowledgment snapshot.
+.const M2_COMPLETION = $fe80 // token8,gen2,status2,Rmask1,Pmask1,Rvalues16,Pvalues12.

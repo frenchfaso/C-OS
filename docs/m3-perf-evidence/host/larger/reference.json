@@ -1,0 +1,20 @@
+{
+  "format": "COSM3LARGERREFERENCE1",
+  "width": 32,
+  "height": 24,
+  "step": 32,
+  "limit": 16,
+  "cx_first": -512,
+  "cy_first": -384,
+  "cx_end_exclusive": 512,
+  "cy_end_exclusive": 384,
+  "cx_last": 480,
+  "cy_last": 352,
+  "bytes": 768,
+  "iterations": 3891,
+  "image_sha256": "83c6af3119bdd417f7429627c04198faa2732a05d03f65ce62cff704278cb69a",
+  "application_source_sha256": "ec2c940023246ab7f0a9646da562f67c69d92dd48ca4c3edda2ff5302c15c7a5",
+  "reference_source_sha256": "bf6625529b191dc66f79bbe94ad1a654f1436da4cc0edf61474444ebb41970fc",
+  "base_pointer_cy_source_sha256": "3b7a8a4aaf24fbb492fe0c3c66727f81d54ca1715018fff9990502701ff5290a",
+  "target_benchmark_executed": false
+}

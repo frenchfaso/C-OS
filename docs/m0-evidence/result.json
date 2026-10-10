@@ -1,0 +1,205 @@
+{
+  "format": "COSM0UE2RESULT1",
+  "qualification": "Functional emulation only; hardware timing pending",
+  "backend_executable_sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+  "supplied_config": "/Users/frenchfaso/Documents/Code/C64/runtime/c64u.toml",
+  "supplied_settings_sha256": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961",
+  "executed_private_reu_sha256": "74f0a805b7d254be9fe6ff7d39645a8041b5ec26e4902efe1103fa57670f1f3b",
+  "artifact_sha256": {
+    "diagnostic.reu": "2bd632105548563f54f97dfaa10235ef7cd6f17b69fed0850731268099ba4adc",
+    "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+    "probe.prg": "501dd0b29cb4d9dea7e913e6e9af0ed08f30ff907626d85fc919c827f1310a66",
+    "renderer.prg": "e78c014bfc840438660982ca37321bebc83466ce957136e3fa48f10431d9ea1f"
+  },
+  "line_delay": 140,
+  "raster_lines": 312,
+  "slow_cpu_loop_count": 16,
+  "fast_cpu_loop_count": 704,
+  "expected_status": 1,
+  "actual_status": 1,
+  "reu_banks": 256,
+  "restore_errors": 0,
+  "alias_detected": 0,
+  "scanouts": 90,
+  "missed_syncs": 0,
+  "nmi_count": 0,
+  "deferred_dma": 27482,
+  "runtime_dma_pairs": 450,
+  "active_dma_violations": 0,
+  "maximum_observed_stack_bytes": 10,
+  "framebuffer_matches": true,
+  "timings": [
+    {
+      "direction": "setup",
+      "bytes": 1,
+      "minimum_phi2_ticks": 1,
+      "maximum_phi2_ticks": 2
+    },
+    {
+      "direction": "timer",
+      "bytes": 0,
+      "minimum_phi2_ticks": 0,
+      "maximum_phi2_ticks": 0
+    },
+    {
+      "direction": "FETCH",
+      "bytes": 1,
+      "minimum_phi2_ticks": 3,
+      "maximum_phi2_ticks": 3
+    },
+    {
+      "direction": "FETCH",
+      "bytes": 16,
+      "minimum_phi2_ticks": 18,
+      "maximum_phi2_ticks": 18
+    },
+    {
+      "direction": "FETCH",
+      "bytes": 64,
+      "minimum_phi2_ticks": 66,
+      "maximum_phi2_ticks": 66
+    },
+    {
+      "direction": "FETCH",
+      "bytes": 128,
+      "minimum_phi2_ticks": 130,
+      "maximum_phi2_ticks": 130
+    },
+    {
+      "direction": "FETCH",
+      "bytes": 256,
+      "minimum_phi2_ticks": 258,
+      "maximum_phi2_ticks": 258
+    },
+    {
+      "direction": "STASH",
+      "bytes": 1,
+      "minimum_phi2_ticks": 3,
+      "maximum_phi2_ticks": 3
+    },
+    {
+      "direction": "STASH",
+      "bytes": 16,
+      "minimum_phi2_ticks": 18,
+      "maximum_phi2_ticks": 18
+    },
+    {
+      "direction": "STASH",
+      "bytes": 64,
+      "minimum_phi2_ticks": 66,
+      "maximum_phi2_ticks": 66
+    },
+    {
+      "direction": "STASH",
+      "bytes": 128,
+      "minimum_phi2_ticks": 130,
+      "maximum_phi2_ticks": 130
+    },
+    {
+      "direction": "STASH",
+      "bytes": 256,
+      "minimum_phi2_ticks": 258,
+      "maximum_phi2_ticks": 258
+    }
+  ],
+  "independent_reu_restoration_matches": true,
+  "scanout": {
+    "source_width": 320,
+    "source_height": 200,
+    "output_width": 720,
+    "output_height": 576,
+    "output_rectangle": [
+      12,
+      104,
+      601,
+      400
+    ],
+    "separately_visible_stripe_pixels": 320,
+    "all_64000_pixels_and_both_output_rows_match": true,
+    "palette_rgb": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        247,
+        247,
+        247
+      ],
+      [
+        141,
+        47,
+        52
+      ],
+      [
+        106,
+        212,
+        205
+      ],
+      [
+        152,
+        53,
+        164
+      ],
+      [
+        76,
+        180,
+        66
+      ],
+      [
+        44,
+        41,
+        177
+      ],
+      [
+        239,
+        239,
+        93
+      ],
+      [
+        152,
+        78,
+        32
+      ],
+      [
+        91,
+        56,
+        0
+      ],
+      [
+        209,
+        103,
+        109
+      ],
+      [
+        74,
+        74,
+        74
+      ],
+      [
+        123,
+        123,
+        123
+      ],
+      [
+        159,
+        239,
+        147
+      ],
+      [
+        109,
+        106,
+        239
+      ],
+      [
+        178,
+        178,
+        178
+      ]
+    ],
+    "first_and_last_pixels_visible": true,
+    "even_low_odd_high": true
+  },
+  "sample_emulated_milliseconds": 2000
+}

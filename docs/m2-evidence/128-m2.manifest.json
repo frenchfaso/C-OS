@@ -1,0 +1,284 @@
+{
+  "format": "COSPACK1",
+  "abi": 1,
+  "numeric_profile": "COS-NUM-1",
+  "target": "c64u-pal-upic320",
+  "build_tag": 3485389317,
+  "reu_image": "m2.reu",
+  "system_reserve": {
+    "first": 0,
+    "last": 262143
+  },
+  "storage": {
+    "mode": "discover",
+    "directory": "cos",
+    "marker": ".cos-volume"
+  },
+  "apps": [
+    {
+      "id": 1,
+      "name": "Linear",
+      "source": "build/linear.cobj",
+      "arena": {
+        "first": 262144,
+        "last": 393215
+      },
+      "code": {
+        "first": 262144,
+        "last": 262175
+      },
+      "data": {
+        "start": 262272,
+        "length": 3
+      },
+      "bss": {
+        "start": 262400,
+        "length": 70000
+      },
+      "heap": {
+        "first": 332416,
+        "last": 392191
+      },
+      "stack": {
+        "first": 392192,
+        "last": 393215
+      },
+      "entry": 262144,
+      "data_seed": {
+        "start": 128,
+        "length": 3
+      },
+      "symbols": {
+        "buffer": 262400,
+        "saved_pointer": 262272,
+        "start": 262144
+      },
+      "source_map": [
+        {
+          "address": 262144,
+          "file": "apps/linear.casm",
+          "line": 6,
+          "column": 5
+        },
+        {
+          "address": 262148,
+          "file": "apps/linear.casm",
+          "line": 7,
+          "column": 5
+        },
+        {
+          "address": 262152,
+          "file": "apps/linear.casm",
+          "line": 8,
+          "column": 5
+        },
+        {
+          "address": 262156,
+          "file": "apps/linear.casm",
+          "line": 9,
+          "column": 5
+        },
+        {
+          "address": 262160,
+          "file": "apps/linear.casm",
+          "line": 10,
+          "column": 5
+        },
+        {
+          "address": 262164,
+          "file": "apps/linear.casm",
+          "line": 11,
+          "column": 5
+        },
+        {
+          "address": 262168,
+          "file": "apps/linear.casm",
+          "line": 12,
+          "column": 5
+        },
+        {
+          "address": 262172,
+          "file": "apps/linear.casm",
+          "line": 13,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Calls",
+      "source": "build/calls.cobj",
+      "arena": {
+        "first": 393216,
+        "last": 397311
+      },
+      "code": {
+        "first": 393216,
+        "last": 393271
+      },
+      "data": {
+        "start": 393344,
+        "length": 0
+      },
+      "bss": {
+        "start": 393344,
+        "length": 0
+      },
+      "heap": {
+        "first": 393344,
+        "last": 396287
+      },
+      "stack": {
+        "first": 396288,
+        "last": 397311
+      },
+      "entry": 393216,
+      "data_seed": {
+        "start": 256,
+        "length": 0
+      },
+      "symbols": {
+        "add_value": 393264,
+        "start": 393216,
+        "twice": 393244
+      },
+      "source_map": [
+        {
+          "address": 393216,
+          "file": "apps/calls.casm",
+          "line": 5,
+          "column": 5
+        },
+        {
+          "address": 393220,
+          "file": "apps/calls.casm",
+          "line": 6,
+          "column": 5
+        },
+        {
+          "address": 393224,
+          "file": "apps/calls.casm",
+          "line": 7,
+          "column": 5
+        },
+        {
+          "address": 393228,
+          "file": "apps/calls.casm",
+          "line": 8,
+          "column": 5
+        },
+        {
+          "address": 393232,
+          "file": "apps/calls.casm",
+          "line": 9,
+          "column": 5
+        },
+        {
+          "address": 393236,
+          "file": "apps/calls.casm",
+          "line": 10,
+          "column": 5
+        },
+        {
+          "address": 393240,
+          "file": "apps/calls.casm",
+          "line": 11,
+          "column": 5
+        },
+        {
+          "address": 393244,
+          "file": "apps/calls.casm",
+          "line": 13,
+          "column": 5
+        },
+        {
+          "address": 393248,
+          "file": "apps/calls.casm",
+          "line": 14,
+          "column": 5
+        },
+        {
+          "address": 393252,
+          "file": "apps/calls.casm",
+          "line": 15,
+          "column": 5
+        },
+        {
+          "address": 393256,
+          "file": "apps/calls.casm",
+          "line": 16,
+          "column": 5
+        },
+        {
+          "address": 393260,
+          "file": "apps/calls.casm",
+          "line": 17,
+          "column": 5
+        },
+        {
+          "address": 393264,
+          "file": "apps/calls.casm",
+          "line": 19,
+          "column": 5
+        },
+        {
+          "address": 393268,
+          "file": "apps/calls.casm",
+          "line": 20,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Spin",
+      "source": "build/spin.cobj",
+      "arena": {
+        "first": 397312,
+        "last": 401407
+      },
+      "code": {
+        "first": 397312,
+        "last": 397319
+      },
+      "data": {
+        "start": 397440,
+        "length": 0
+      },
+      "bss": {
+        "start": 397440,
+        "length": 0
+      },
+      "heap": {
+        "first": 397440,
+        "last": 400383
+      },
+      "stack": {
+        "first": 400384,
+        "last": 401407
+      },
+      "entry": 397312,
+      "data_seed": {
+        "start": 256,
+        "length": 0
+      },
+      "symbols": {
+        "loop": 397312
+      },
+      "source_map": [
+        {
+          "address": 397312,
+          "file": "apps/spin.casm",
+          "line": 5,
+          "column": 5
+        },
+        {
+          "address": 397316,
+          "file": "apps/spin.casm",
+          "line": 6,
+          "column": 5
+        }
+      ]
+    }
+  ]
+}

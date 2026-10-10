@@ -1,0 +1,22 @@
+{
+  "cache_line": 128,
+  "status": "pass",
+  "counters": {
+    "fetch_bytes": 1409,
+    "stash_bytes": 129,
+    "stale": 1,
+    "native_reads": 1,
+    "native_writes": 1,
+    "dma_calls": 14
+  },
+  "observed_stack_bytes": 8,
+  "logical_first_bytes": "4041424344454647",
+  "physical_sha256": "78e32f2bace2ae43da7734547105c378dc33c455814abdc7783f2e5b1109b368",
+  "prg_sha256": "86c02fdd08d96232343a7381732d09635a5c4e0e7dbc2bf73ef33287258fdbed",
+  "cache_source_sha256": "e9ba035f3dd210b47dbf9f392de1425b2ececce4096356dda9c28d19c1488fa5",
+  "fixture_source_sha256": "792efe6836dacb3fc3a0696bcf8221be6ebb787e5be83a263f2633979c575b88",
+  "supplied_config_sha256": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+  "supplied_flash_sha256": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be",
+  "supplied_settings_sha256": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961",
+  "emulator_path": "/Users/frenchfaso/Documents/Code/C64/UE2-C64U-Emulator/target/release/ue2emu"
+}

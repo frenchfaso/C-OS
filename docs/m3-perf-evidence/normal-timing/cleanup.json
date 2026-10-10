@@ -1,0 +1,212 @@
+[
+  {
+    "bytes": 16777216,
+    "completed_helper": "primary-128",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-perf/final-candidate/benchmark-primary-128/cos/isolated-flash.bin",
+    "sha256": "ddbf28df6bd8194defa2f276214fc1528add3b46417940fc8fe7821f82e50191"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "primary-128",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-perf/final-candidate/benchmark-primary-128/cos/run/usb-dir/usb-e558a606b4/image-1.img",
+    "sha256": "a96e8ce2cd6c023a2b1a1e0d451537b9d0f417577d6609fa810934eb47a585b3"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "primary-128",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-perf/final-candidate/benchmark-primary-128/cos/usb/diagnostic.reu",
+    "sha256": "49c6280a4dcd2724af93eb57fc7c8da6320b9904d1e3176d0881636338c664c1"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "primary-128",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-perf/final-candidate/benchmark-primary-128/native1mhz/isolated-flash.bin",
+    "sha256": "a0d033d9fa74773275d9b8e639037296243e196e3d533170d4a3f0e43efec0aa"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "primary-128",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-perf/final-candidate/benchmark-primary-128/native1mhz/run/usb-dir/usb-79083cf3c9/image-1.img",
+    "sha256": "21efd112f4e4deb5cb4c9cc65df1bef67b5ac3b36aeae9933f647317ea85c9d5"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "primary-64",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-perf/final-candidate/benchmark-primary-64/cos/isolated-flash.bin",
+    "sha256": "ddbf28df6bd8194defa2f276214fc1528add3b46417940fc8fe7821f82e50191"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "primary-64",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-perf/final-candidate/benchmark-primary-64/cos/run/usb-dir/usb-3cc06706a8/image-1.img",
+    "sha256": "a8ee0bcdcc7e4b0aa417d82af2471b9d9b776f843599cd768ea38b59b5bf651c"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "primary-64",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-perf/final-candidate/benchmark-primary-64/cos/usb/diagnostic.reu",
+    "sha256": "2a43f57633e9ae66ea9fc9614942d1065c96475146379cbc0505d77f2e0a12e1"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "primary-64",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-perf/final-candidate/benchmark-primary-64/native1mhz/isolated-flash.bin",
+    "sha256": "a0d033d9fa74773275d9b8e639037296243e196e3d533170d4a3f0e43efec0aa"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "primary-64",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-perf/final-candidate/benchmark-primary-64/native1mhz/run/usb-dir/usb-7af99f33a6/image-1.img",
+    "sha256": "a5c61a505a6c1ebdfa99de4d362ed25931a9c640c81e87bb004c57c8de1cf24d"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "primary-128-repeat",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-perf/final-candidate/benchmark-primary-128-repeat/cos/isolated-flash.bin",
+    "sha256": "ddbf28df6bd8194defa2f276214fc1528add3b46417940fc8fe7821f82e50191"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "primary-128-repeat",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-perf/final-candidate/benchmark-primary-128-repeat/cos/run/usb-dir/usb-5b35371b55/image-1.img",
+    "sha256": "73b11bf4c72a5221416309a8b0b873ae07e5b80e952ea860ba723a049b8e2ee1"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "primary-128-repeat",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-perf/final-candidate/benchmark-primary-128-repeat/cos/usb/diagnostic.reu",
+    "sha256": "49c6280a4dcd2724af93eb57fc7c8da6320b9904d1e3176d0881636338c664c1"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "primary-128-repeat",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-perf/final-candidate/benchmark-primary-128-repeat/native1mhz/isolated-flash.bin",
+    "sha256": "a0d033d9fa74773275d9b8e639037296243e196e3d533170d4a3f0e43efec0aa"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "primary-128-repeat",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-perf/final-candidate/benchmark-primary-128-repeat/native1mhz/run/usb-dir/usb-b91061dab2/image-1.img",
+    "sha256": "33f021b20e773e6a65b17b8d818cab0e958195e2c2242af30222aa88f2326785"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "primary-64-repeat",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-perf/final-candidate/benchmark-primary-64-repeat/cos/isolated-flash.bin",
+    "sha256": "ddbf28df6bd8194defa2f276214fc1528add3b46417940fc8fe7821f82e50191"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "primary-64-repeat",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-perf/final-candidate/benchmark-primary-64-repeat/cos/run/usb-dir/usb-92564fad1f/image-1.img",
+    "sha256": "81801dafe2a9f7ea97f35b487eed9aaffc8d24eb3780485f9986d8f0688d9dcc"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "primary-64-repeat",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-perf/final-candidate/benchmark-primary-64-repeat/cos/usb/diagnostic.reu",
+    "sha256": "2a43f57633e9ae66ea9fc9614942d1065c96475146379cbc0505d77f2e0a12e1"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "primary-64-repeat",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-perf/final-candidate/benchmark-primary-64-repeat/native1mhz/isolated-flash.bin",
+    "sha256": "a0d033d9fa74773275d9b8e639037296243e196e3d533170d4a3f0e43efec0aa"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "primary-64-repeat",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-perf/final-candidate/benchmark-primary-64-repeat/native1mhz/run/usb-dir/usb-f263e29b64/image-1.img",
+    "sha256": "c2561821e3f814b563bc02e7072abf0728af3acf676a7d1b73bd3de5e71cc79e"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "larger-128",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-perf/final-candidate/benchmark-larger-128/cos/isolated-flash.bin",
+    "sha256": "ddbf28df6bd8194defa2f276214fc1528add3b46417940fc8fe7821f82e50191"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "larger-128",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-perf/final-candidate/benchmark-larger-128/cos/run/usb-dir/usb-0719031534/image-1.img",
+    "sha256": "384d904ea0af667bc51c79e4c8dc73ad5752e7bf744916b1d8c70c04a84e547a"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "larger-128",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-perf/final-candidate/benchmark-larger-128/cos/usb/diagnostic.reu",
+    "sha256": "be77ffaa3178b8eb77d9fe3961f51a2da286272c55923b0786896317382b9e42"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "larger-128",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-perf/final-candidate/benchmark-larger-128/native1mhz/isolated-flash.bin",
+    "sha256": "a0d033d9fa74773275d9b8e639037296243e196e3d533170d4a3f0e43efec0aa"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "larger-128",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-perf/final-candidate/benchmark-larger-128/native1mhz/run/usb-dir/usb-90f683e244/image-1.img",
+    "sha256": "5a137f36e42818a815ec841d0e8f3e154bec947638a25a50b9bcffb8856bb0f3"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "larger-64",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-perf/final-candidate/benchmark-larger-64/cos/isolated-flash.bin",
+    "sha256": "ddbf28df6bd8194defa2f276214fc1528add3b46417940fc8fe7821f82e50191"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "larger-64",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-perf/final-candidate/benchmark-larger-64/cos/run/usb-dir/usb-df80ccca70/image-1.img",
+    "sha256": "b4ef85ef3a0a32b0bb5ee924c7e70a375ee513b344720e1b53e20832d566d635"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "larger-64",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-perf/final-candidate/benchmark-larger-64/cos/usb/diagnostic.reu",
+    "sha256": "29226d5572ea69753895dbd3eb65455c61178674aa8a8af4c0bb977b99d09323"
+  },
+  {
+    "bytes": 16777216,
+    "completed_helper": "larger-64",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-perf/final-candidate/benchmark-larger-64/native1mhz/isolated-flash.bin",
+    "sha256": "a0d033d9fa74773275d9b8e639037296243e196e3d533170d4a3f0e43efec0aa"
+  },
+  {
+    "bytes": 268435456,
+    "completed_helper": "larger-64",
+    "open_file_check": "lsof: no open descriptors",
+    "path": "build/m3-perf/final-candidate/benchmark-larger-64/native1mhz/run/usb-dir/usb-5faa080128/image-1.img",
+    "sha256": "c52e5797bcd8c43f3f357cceb098611de890a96b00c3f5764a597eeb8dcdf3aa"
+  }
+]

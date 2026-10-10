@@ -1,0 +1,501 @@
+{
+  "format": "COSM3STATICBOUND1",
+  "build_format": "COSM3MAP1",
+  "native_ram_first": 4608,
+  "extended_diagnostics": false,
+  "build_tag": 1307018067,
+  "cache_line_bytes": 64,
+  "artifact_sha256": {
+    "m3.manifest.json": "8e95db8a45341c2009409474fb0d306c3e9c688781437894ff2752051c77b217",
+    "m3.prg": "fb2fe2f2df18bce3e57d2cd5bfb08f6378a783f5c163d31472a228a44faecb4d",
+    "m3.reu": "5bba7654eb9ba25a81910a664e3396a3e4e2b30f7c242b6bbf50035b57c321b7",
+    "native.bin": "ae020a109dc76479d388fd60e81021158c919c50022a15e53c349fbe486e5324",
+    "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+    "renderer.prg": "5858b9691af7965b54c4f0ca5e96a314c2105293c291f91c72dd8246ad02adb2"
+  },
+  "map_sha256": "17dc23d152c58b41f2a66e66eecbb41a99c48155e41b875ab8c4251bd2ffe299",
+  "checker_sha256": "fa0b2afc47d16e355ccbdec8057787e572459d472504fc0a059f24d4bc0f1f59",
+  "uniform_cycles_per_instruction": 7,
+  "qualified_model_fast_cycles_per_phi2": 48,
+  "extra_phi2_per_io_access": 7,
+  "pal_admission_windows": {
+    "vm_video_admit": {
+      "first_line": 260,
+      "last_line": 299
+    },
+    "vm_dma_admit": {
+      "first_line": 260,
+      "last_line": 299
+    }
+  },
+  "pal_lines_per_frame": 312,
+  "pal_phi2_per_line": 63,
+  "next_raster_irq_line": 58,
+  "latest_admission_guard_phi2": 4410,
+  "loops": {
+    "vm_retire": 7,
+    "vm_e_shl_loop": 14,
+    "vm_e_shr_loop": 14,
+    "vm_e_sar_loop": 14,
+    "vm_e_token_increment": 7,
+    "cache_unpin": 15,
+    "cache_require_data": 7,
+    "cache_clock_scan": 15,
+    "cache_code_hit": 3,
+    "cache_read_byte": 2,
+    "cache_write_byte": 2,
+    "cache_native_begin": 2,
+    "cache_native_transfer": 2,
+    "cache_native_dma": 2,
+    "cache_native_find_dirty": 7,
+    "cache_native_write_done": 15,
+    "cache_invalidate_scan": 15,
+    "vm_save_loop": 95,
+    "vm_load_loop": 95,
+    "scheduler_enqueue": 4,
+    "scheduler_dequeue": 2,
+    "scheduler_has_job": 3,
+    "scheduler_native_scan": 3,
+    "scheduler_remove_scan": 4,
+    "scheduler_remove_shift": 3,
+    "scheduler_wake_reu": 3,
+    "scheduler_wake_timed_scan": 3,
+    "jobs_memory_ready": 2,
+    "jobs_overlap_order": 2,
+    "jobs_validate": 2,
+    "jobs_validate_last": 2,
+    "jobs_validate_code": 2,
+    "jobs_validate_code_end": 2,
+    "jobs_error_outputs": 15,
+    "jobs_clear_outputs": 7
+  },
+  "conditional_loops": {
+    "scheduler_timer_read": 1
+  },
+  "backedges": {
+    "1d6b": {
+      "target": 7522,
+      "label": "cache_unpin",
+      "taken_edge_cap": 15,
+      "basis": "structural loop"
+    },
+    "1e26": {
+      "target": 7710,
+      "label": "cache_code_hit",
+      "taken_edge_cap": 3,
+      "basis": "structural loop"
+    },
+    "1ec6": {
+      "target": 7836,
+      "label": "cache_clock_scan",
+      "taken_edge_cap": 15,
+      "basis": "structural loop"
+    },
+    "1e91": {
+      "target": 7817,
+      "label": "cache_require_data",
+      "taken_edge_cap": 7,
+      "basis": "structural loop"
+    },
+    "1f4e": {
+      "target": 7996,
+      "label": "cache_read_byte",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "1a36": {
+      "target": 6704,
+      "label": "vm_e_shl_loop",
+      "taken_edge_cap": 14,
+      "basis": "structural loop"
+    },
+    "1a45": {
+      "target": 6719,
+      "label": "vm_e_shr_loop",
+      "taken_edge_cap": 14,
+      "basis": "structural loop"
+    },
+    "1a58": {
+      "target": 6734,
+      "label": "vm_e_sar_loop",
+      "taken_edge_cap": 14,
+      "basis": "structural loop"
+    },
+    "1f67": {
+      "target": 8021,
+      "label": "cache_write_byte",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "1b8f": {
+      "target": 7048,
+      "label": "vm_e_token_increment",
+      "taken_edge_cap": 7,
+      "basis": "structural loop"
+    },
+    "140f": {
+      "target": 5128,
+      "label": "vm_retire",
+      "taken_edge_cap": 7,
+      "basis": "structural loop"
+    },
+    "2358": {
+      "target": 9031,
+      "label": "cache_native_find_dirty",
+      "taken_edge_cap": 7,
+      "basis": "structural loop"
+    },
+    "2328": {
+      "target": 8991,
+      "label": "cache_native_dma",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "233c": {
+      "target": 9007,
+      "label": "cache_native_write_done",
+      "taken_edge_cap": 15,
+      "basis": "structural loop"
+    },
+    "2303": {
+      "target": 8956,
+      "label": "cache_native_transfer",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "22e6": {
+      "target": 8928,
+      "label": "cache_native_transfer",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "228c": {
+      "target": 8833,
+      "label": "cache_native_begin",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "24c9": {
+      "target": 9406,
+      "label": "scheduler_enqueue",
+      "taken_edge_cap": 4,
+      "basis": "structural loop"
+    },
+    "2750": {
+      "target": 10052,
+      "label": "scheduler_remove_shift",
+      "taken_edge_cap": 3,
+      "basis": "structural loop"
+    },
+    "273f": {
+      "target": 10033,
+      "label": "scheduler_remove_scan",
+      "taken_edge_cap": 4,
+      "basis": "structural loop"
+    },
+    "2bc9": {
+      "target": 11202,
+      "label": "jobs_validate_code_end",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "2bba": {
+      "target": 11187,
+      "label": "jobs_validate_code",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "2ba7": {
+      "target": 11168,
+      "label": "jobs_validate_last",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "2b98": {
+      "target": 11153,
+      "label": "jobs_validate",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "2b1c": {
+      "target": 11029,
+      "label": "jobs_memory_ready",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "2b2c": {
+      "target": 11045,
+      "label": "jobs_overlap_order",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "2e2c": {
+      "target": 11810,
+      "label": "jobs_error_outputs",
+      "taken_edge_cap": 15,
+      "basis": "structural loop"
+    },
+    "2e46": {
+      "target": 11832,
+      "label": "jobs_clear_outputs",
+      "taken_edge_cap": 7,
+      "basis": "structural loop"
+    },
+    "1bc3": {
+      "target": 7099,
+      "label": "vm_save_loop",
+      "taken_edge_cap": 95,
+      "basis": "structural loop"
+    },
+    "1bd5": {
+      "target": 7117,
+      "label": "vm_load_loop",
+      "taken_edge_cap": 95,
+      "basis": "structural loop"
+    },
+    "2871": {
+      "target": 10338,
+      "label": "scheduler_timer_read",
+      "taken_edge_cap": 1,
+      "basis": "conditional timer rollover"
+    },
+    "27c1": {
+      "target": 10146,
+      "label": "scheduler_wake_reu",
+      "taken_edge_cap": 3,
+      "basis": "structural loop"
+    },
+    "26a8": {
+      "target": 9868,
+      "label": "scheduler_native_scan",
+      "taken_edge_cap": 3,
+      "basis": "structural loop"
+    },
+    "2234": {
+      "target": 8722,
+      "label": "cache_invalidate_scan",
+      "taken_edge_cap": 15,
+      "basis": "structural loop"
+    },
+    "2846": {
+      "target": 10187,
+      "label": "scheduler_wake_timed_scan",
+      "taken_edge_cap": 3,
+      "basis": "structural loop"
+    },
+    "24ef": {
+      "target": 9446,
+      "label": "scheduler_dequeue",
+      "taken_edge_cap": 2,
+      "basis": "structural loop"
+    },
+    "2640": {
+      "target": 9771,
+      "label": "scheduler_has_job",
+      "taken_edge_cap": 3,
+      "basis": "structural loop"
+    }
+  },
+  "results": {
+    "vm_step": {
+      "instruction_visits": 2815,
+      "cpu_cycle_upper_bound": 19712,
+      "io_access_upper_bound": 2,
+      "cpu_io_phi2_upper_bound": 425,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 425
+    },
+    "cache_service": {
+      "instruction_visits": 267,
+      "cpu_cycle_upper_bound": 1876,
+      "io_access_upper_bound": 16,
+      "cpu_io_phi2_upper_bound": 152,
+      "dma_phi2_allowance": 511,
+      "conditional_total_phi2_upper_bound": 663
+    },
+    "cache_native_read": {
+      "instruction_visits": 1970,
+      "cpu_cycle_upper_bound": 13797,
+      "io_access_upper_bound": 16,
+      "cpu_io_phi2_upper_bound": 400,
+      "dma_phi2_allowance": 511,
+      "conditional_total_phi2_upper_bound": 911
+    },
+    "cache_native_write": {
+      "instruction_visits": 1969,
+      "cpu_cycle_upper_bound": 13790,
+      "io_access_upper_bound": 16,
+      "cpu_io_phi2_upper_bound": 400,
+      "dma_phi2_allowance": 511,
+      "conditional_total_phi2_upper_bound": 911
+    }
+  },
+  "separately_bounded_helpers": {
+    "jobs_step": {
+      "instruction_visits": 2194,
+      "cpu_cycle_upper_bound": 15365,
+      "io_access_upper_bound": 16,
+      "cpu_io_phi2_upper_bound": 433,
+      "dma_phi2_allowance": 511,
+      "conditional_total_phi2_upper_bound": 944
+    },
+    "jobs_accept": {
+      "instruction_visits": 388,
+      "cpu_cycle_upper_bound": 2723,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 57,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 57
+    },
+    "jobs_validate": {
+      "instruction_visits": 100,
+      "cpu_cycle_upper_bound": 707,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 15,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 15
+    },
+    "jobs_complete": {
+      "instruction_visits": 89,
+      "cpu_cycle_upper_bound": 630,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 14,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 14
+    },
+    "scheduler_native_phase": {
+      "instruction_visits": 7778,
+      "cpu_cycle_upper_bound": 54453,
+      "io_access_upper_bound": 28,
+      "cpu_io_phi2_upper_bound": 1331,
+      "dma_phi2_allowance": 511,
+      "conditional_total_phi2_upper_bound": 1842
+    },
+    "scheduler_select": {
+      "instruction_visits": 1209,
+      "cpu_cycle_upper_bound": 8470,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 177,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 177
+    },
+    "scheduler_cancel_current": {
+      "instruction_visits": 635,
+      "cpu_cycle_upper_bound": 4452,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 93,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 93
+    },
+    "scheduler_wake_reu": {
+      "instruction_visits": 271,
+      "cpu_cycle_upper_bound": 1904,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 40,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 40
+    },
+    "scheduler_wake_timed": {
+      "instruction_visits": 5503,
+      "cpu_cycle_upper_bound": 38528,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 803,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 803
+    },
+    "scheduler_frame_tick": {
+      "instruction_visits": 8,
+      "cpu_cycle_upper_bound": 63,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 2,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 2
+    },
+    "scheduler_enqueue": {
+      "instruction_visits": 37,
+      "cpu_cycle_upper_bound": 266,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 6,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 6
+    },
+    "scheduler_dequeue": {
+      "instruction_visits": 24,
+      "cpu_cycle_upper_bound": 175,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 4,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 4
+    },
+    "scheduler_has_job": {
+      "instruction_visits": 109,
+      "cpu_cycle_upper_bound": 770,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 17,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 17
+    },
+    "scheduler_timer_read": {
+      "instruction_visits": 15,
+      "cpu_cycle_upper_bound": 112,
+      "io_access_upper_bound": 6,
+      "cpu_io_phi2_upper_bound": 45,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 45
+    },
+    "scheduler_account_native": {
+      "instruction_visits": 67,
+      "cpu_cycle_upper_bound": 476,
+      "io_access_upper_bound": 6,
+      "cpu_io_phi2_upper_bound": 52,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 52
+    },
+    "cache_invalidate_owner": {
+      "instruction_visits": 265,
+      "cpu_cycle_upper_bound": 1862,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 39,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 39
+    }
+  },
+  "last_opcode_admission_audit": {
+    "scheduler_vm_result": {
+      "instruction_visits": 1253,
+      "cpu_cycle_upper_bound": 8778,
+      "io_access_upper_bound": 0,
+      "cpu_io_phi2_upper_bound": 183,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 183
+    },
+    "scheduler_vm_phase": {
+      "instruction_visits": 5455,
+      "cpu_cycle_upper_bound": 38192,
+      "io_access_upper_bound": 2,
+      "cpu_io_phi2_upper_bound": 810,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 810
+    },
+    "scheduler_tick": {
+      "instruction_visits": 20617,
+      "cpu_cycle_upper_bound": 144326,
+      "io_access_upper_bound": 32,
+      "cpu_io_phi2_upper_bound": 3231,
+      "dma_phi2_allowance": 511,
+      "conditional_total_phi2_upper_bound": 3742
+    },
+    "qualification": "These overapproximations summarize vm_run as its final re-admitted opcode only; preceding opcode time is excluded. They are not whole-quantum execution bounds. The VM result tail includes fixed syscall acceptance and context saving."
+  },
+  "timer_read_model": {
+    "read_triplet_instruction_visits": 7,
+    "read_triplet_io_accesses": 3,
+    "read_triplet_phi2_upper_bound": 23,
+    "low_byte_rollover_period_phi2": 256,
+    "retry_taken_edge_cap": 1,
+    "assumptions": "Continuous CIA timer, no external reprogramming; no IRQ or repeated NMI interruption spanning a 256-PHI2 period during the read"
+  },
+  "structural_preconditions": "VM contexts are 96 bytes; at most four process slots and four runnable queue entries; scalar width 1..3; cache has 16 entries",
+  "qualification": "Conditional fixed emulated turbo profile; physical memory/I/O/DMA stall bounds pending",
+  "scope": "Admitted results cover one vm_step or one service/native call. M3 helper results are separate call bounds, not an admission guarantee for scheduler_tick or vm_run; vm_run rechecks admission before every opcode. Initialization, outer recovery polling, IRQ and NMI time are excluded"
+}

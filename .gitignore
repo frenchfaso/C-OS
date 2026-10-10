@@ -1,3 +1,7 @@
 .DS_Store
 /target/
 /build/
+/toolchain/KickAss.jar
+__pycache__/
+/docs/reference/README.md
+/docs/reference/ui-mockup.png

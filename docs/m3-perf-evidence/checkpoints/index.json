@@ -1,0 +1,1748 @@
+{
+  "copied_files": [
+    {
+      "bytes": 25839,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/abi1-128/result.json",
+      "original_path": "build/m3/benchmark/128/result.json",
+      "sha256": "58919fa8489476919a04f523b7dbaa409836d9a1cbd17d863de361e5824052e8"
+    },
+    {
+      "bytes": 25760,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/abi1-128/map.json",
+      "original_path": "build/m3/128/map.json",
+      "sha256": "f930d60416501548861c16cfddb246bd8fb1de05033e73bd2e14a57a3417ea6a"
+    },
+    {
+      "bytes": 14769,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/abi1-128/bounds.json",
+      "original_path": "build/m3/128/bounds.json",
+      "sha256": "2242e0eee9a884a3c164c4f03e24e89a2ae510c2f7202f6dd2ce5cb36a787d91"
+    },
+    {
+      "bytes": 17343,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/abi1-128/m3.manifest.json",
+      "original_path": "build/m3/128/m3.manifest.json",
+      "sha256": "dcde82a9ab448c1449d0b2b56b92102afe9ca84d5f31da19123475a63a9aeaf9"
+    },
+    {
+      "bytes": 3922,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/provenance/baseline-source-snapshot.json",
+      "original_path": "build/m3-perf/baseline/source-snapshot.json",
+      "sha256": "30aad730ce39ff27084d5e8102f7d8e38da49ac44835b5812a871be2056bfe66"
+    },
+    {
+      "bytes": 25876,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/abi1-128/frozen-map.json",
+      "original_path": "build/m3-perf/baseline/128/map.json",
+      "sha256": "835260f3707798d7626f1a799d8672a94688b7860a5509b8558a6d42295ce61c"
+    },
+    {
+      "bytes": 3315,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/abi1-128/baseline-repeat.json",
+      "original_path": "build/m3-perf/profile-core/runs/128/baseline/result.json",
+      "sha256": "d24a2100e746501a85660c19370d5a76129c75642cb0764db876ce8cb33f4796"
+    },
+    {
+      "bytes": 25918,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/mul-only-128/result.json",
+      "original_path": "build/m3-perf/experiments/mul-only-128/result.json",
+      "sha256": "54cbd5ff2b0000caf270e4c2face62aefdb501ae6417d314791b7e195d9f4fed"
+    },
+    {
+      "bytes": 25996,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/mul-only-128/map.json",
+      "original_path": "build/m3-perf/mul-only/128/map.json",
+      "sha256": "859e106c778ee469c1d9510c624e1dd26b70f8f334dc8f9163f94f20aca8e62d"
+    },
+    {
+      "bytes": 14934,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/mul-only-128/bounds.json",
+      "original_path": "build/m3-perf/mul-only/128/bounds.json",
+      "sha256": "77145ed15980aae7a06bc67177853fd6b055e0b3fa405df8f14d964629a280c8"
+    },
+    {
+      "bytes": 12100,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/mul-only-128/m3.manifest.json",
+      "original_path": "build/m3-perf/mul-only/128/m3.manifest.json",
+      "sha256": "62ace61528135ca8c536354ae31ef5d113ece5dfaaa5f536ed62e4506687e309"
+    },
+    {
+      "bytes": 3846,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/provenance/registers-source-snapshot.json",
+      "original_path": "build/m3-perf/registers/source-snapshot.json",
+      "sha256": "e57ca50a3bb7df447996855dd50d4c8eb04232d0b9d0202ef6d22a6bccd44175"
+    },
+    {
+      "bytes": 26059,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/registers-128/result.json",
+      "original_path": "build/m3-perf/registers/benchmark-128/result.json",
+      "sha256": "4f9a69bde618570577016c9860fb1c378f8139fec6e3b77cc0270b9a6ad3488e"
+    },
+    {
+      "bytes": 27409,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/registers-128/map.json",
+      "original_path": "build/m3-perf/registers/128/map.json",
+      "sha256": "c0fc77ea605ef76583a97c04acada3440be9eaf90e6229e9562207c1dda6ad77"
+    },
+    {
+      "bytes": 14934,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/registers-128/bounds.json",
+      "original_path": "build/m3-perf/registers/128/bounds.json",
+      "sha256": "b43692c3a74d329f18d3b5d6d17fd000e61d4ee18dc014f0847049a65cea397b"
+    },
+    {
+      "bytes": 9808,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/registers-128/m3.manifest.json",
+      "original_path": "build/m3-perf/registers/128/m3.manifest.json",
+      "sha256": "d3c81b079e3d022797798c927b016f610f24cb2992863c89baec7be6f8c64d8f"
+    },
+    {
+      "bytes": 21053,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/registers-64/result.json",
+      "original_path": "build/m3-perf/registers/benchmark-64/result.json",
+      "sha256": "3675df3ef3b53c6bc68b63f07b9c23ae5b761697043210287290cdf07f07244c"
+    },
+    {
+      "bytes": 27408,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/registers-64/map.json",
+      "original_path": "build/m3-perf/registers/64/map.json",
+      "sha256": "ca1c444397ce333a14fa721f11a600d15dd8b1f4e2b41f61ff65aa5dc9989b1e"
+    },
+    {
+      "bytes": 14933,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/registers-64/bounds.json",
+      "original_path": "build/m3-perf/registers/64/bounds.json",
+      "sha256": "b606ba421cc595c60313e6a17cff7dbcdecc505ffebd3db64baf6814db68a885"
+    },
+    {
+      "bytes": 9808,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/registers-64/m3.manifest.json",
+      "original_path": "build/m3-perf/registers/64/m3.manifest.json",
+      "sha256": "f781f738058c68798f1a57a17a8d79a044993e2fac25ecd69f1f21f9a81ad0e3"
+    },
+    {
+      "bytes": 27173,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/wrap-128/result.json",
+      "original_path": "build/m3-perf/wrap-window/benchmark-128/result.json",
+      "sha256": "ea2471fd7ab69cdfa9645901cd0f13d58d9c93b4e4424779779ac3e08987f840"
+    },
+    {
+      "bytes": 27581,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/wrap-128/map.json",
+      "original_path": "build/m3-perf/wrap-window/128/map.json",
+      "sha256": "4f98e821ac51cc7e40ba2e64a7416f4246c8967bed1ab166e72a59e11635c399"
+    },
+    {
+      "bytes": 21273,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/wrap-128/bounds.json",
+      "original_path": "build/m3-perf/wrap-window/128/bounds.json",
+      "sha256": "b108cffe642a6333806c6d4c26bbe0c1b1916a7b28975620c488e88dfa0f912f"
+    },
+    {
+      "bytes": 9807,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/wrap-128/m3.manifest.json",
+      "original_path": "build/m3-perf/wrap-window/128/m3.manifest.json",
+      "sha256": "5a1eb444357450d65f34eef1cbb002514cc8f956e9042a21518a565c5dd9e8c2"
+    },
+    {
+      "bytes": 4006,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/provenance/wrap-window-source-snapshot.json",
+      "original_path": "build/m3-perf/wrap-window/source-snapshot.json",
+      "sha256": "57b9d40de70007022f77b1801323c98861f55a6139c52fa62326b33f2f29d1f7"
+    },
+    {
+      "bytes": 27175,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/cache-wrap-128/result.json",
+      "original_path": "build/m3-perf/cache-wrap/benchmark-128/result.json",
+      "sha256": "f8e3db4d21a5b9cec8983ffc2c0f15997357bc5cfd4cc21ca37338ea5dc6a998"
+    },
+    {
+      "bytes": 27641,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/cache-wrap-128/map.json",
+      "original_path": "build/m3-perf/cache-wrap/128/map.json",
+      "sha256": "d3469cf87af914c80952299e136d1fdc28195f8344228a7e7c33e0d50c804881"
+    },
+    {
+      "bytes": 20848,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/cache-wrap-128/bounds.json",
+      "original_path": "build/m3-perf/cache-wrap/128/bounds.json",
+      "sha256": "7314b258151c8200d5843f630bbb201d1395ae47258173677ca58c6f0bc3ea40"
+    },
+    {
+      "bytes": 9807,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/cache-wrap-128/m3.manifest.json",
+      "original_path": "build/m3-perf/cache-wrap/128/m3.manifest.json",
+      "sha256": "127134e8aea7a50988b1443bd0bdfe42818794be36e3e5d023db4f4192e5bd61"
+    },
+    {
+      "bytes": 5090,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/provenance/cache-wrap-source-snapshot.json",
+      "original_path": "build/m3-perf/cache-wrap/source-snapshot.json",
+      "sha256": "c56932edfb6a986e4434ad27c5879c85e7e036c5a1d0822693fb77106891cf39"
+    },
+    {
+      "bytes": 22173,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/cache-wrap-64/result.json",
+      "original_path": "build/m3-perf/cache-wrap/benchmark-64/result.json",
+      "sha256": "a2f12cb0168ed9a87e469b5733ef48e31ae473e1ffd5f739cb46bede60190947"
+    },
+    {
+      "bytes": 27641,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/cache-wrap-64/map.json",
+      "original_path": "build/m3-perf/cache-wrap/64/map.json",
+      "sha256": "906b27abc0cbbf68f18ba28657bf3bd4bab62c4ff4f957af2156486239257436"
+    },
+    {
+      "bytes": 20848,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/cache-wrap-64/bounds.json",
+      "original_path": "build/m3-perf/cache-wrap/64/bounds.json",
+      "sha256": "8b5989cc3086ad77672b1b803535de805c8997f5b409de9f51c4fb3a781bd2f9"
+    },
+    {
+      "bytes": 9808,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/cache-wrap-64/m3.manifest.json",
+      "original_path": "build/m3-perf/cache-wrap/64/m3.manifest.json",
+      "sha256": "d2931c026bde379d64b588d038b1ed6fe62efab510cb8bb6816fe6da8b4f98c0"
+    },
+    {
+      "bytes": 27174,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/hot-pc-128/result.json",
+      "original_path": "build/m3-perf/hot-pc/benchmark-128-verified/result.json",
+      "sha256": "38fe6d511042e67c83c43adabbee1aeaf977ae511b38c908ed21c886a8b193fe"
+    },
+    {
+      "bytes": 27853,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/hot-pc-128/map.json",
+      "original_path": "build/m3-perf/hot-pc/128/map.json",
+      "sha256": "dec612849b12bc637e2cc594e5e3b230cfab3e183d0671e2b54ddccff43ddcc7"
+    },
+    {
+      "bytes": 21965,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/hot-pc-128/bounds.json",
+      "original_path": "build/m3-perf/hot-pc/128/bounds.json",
+      "sha256": "ada0af1fae30d704e9329d2e7c4eb204e4f9efb714ec813aa155b5dd37eb158f"
+    },
+    {
+      "bytes": 9807,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/hot-pc-128/m3.manifest.json",
+      "original_path": "build/m3-perf/hot-pc/128/m3.manifest.json",
+      "sha256": "504adf5d68770f11bd3cd82c41f71ee4c65f8b53476041bdd09a8f512eb7d7a3"
+    },
+    {
+      "bytes": 4486,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/provenance/hot-pc-source-snapshot.json",
+      "original_path": "build/m3-perf/hot-pc/source-snapshot.json",
+      "sha256": "5c3e96b6995b3b63af2a0865103fbf95e1e4c45b921d99869ed7fff1ee6d2677"
+    },
+    {
+      "bytes": 4551,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/provenance/hot-pc-qualification-source-snapshot.json",
+      "original_path": "build/m3-perf/hot-pc/qualification-source-snapshot.json",
+      "sha256": "aaf5b2dc664146e31fadc16919e4e569a422ba49777bcf006e03e0c51cfdfd9d"
+    },
+    {
+      "bytes": 27176,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/unpin-skip-128/result.json",
+      "original_path": "build/m3-perf/unpin-skip/benchmark-128/result.json",
+      "sha256": "8a2e64f344ac2e246ec758aab49d6e492fd536471ea8d7f3438218dfec332f26"
+    },
+    {
+      "bytes": 27884,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/unpin-skip-128/map.json",
+      "original_path": "build/m3-perf/unpin-skip/128/map.json",
+      "sha256": "df50effa8ad823ff6d80468d192726ff00eca2f89bfe91e137c03f7a1e10815e"
+    },
+    {
+      "bytes": 21676,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/unpin-skip-128/bounds.json",
+      "original_path": "build/m3-perf/unpin-skip/128/bounds.json",
+      "sha256": "fa744bdee5c4e13167d13c3ea5a112c399545a22c2c991be1b262d0f5cd72e90"
+    },
+    {
+      "bytes": 9808,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/unpin-skip-128/m3.manifest.json",
+      "original_path": "build/m3-perf/unpin-skip/128/m3.manifest.json",
+      "sha256": "2b1bc83f1b09362eaad4ae55139c97c56bd295778bd117c011aeb0946df71c2a"
+    },
+    {
+      "bytes": 5497,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/provenance/unpin-skip-source-snapshot.json",
+      "original_path": "build/m3-perf/unpin-skip/source-snapshot.json",
+      "sha256": "0999b77e7baebe640a63366b2f9e3df9911a85183aee6c95bc9959911215cd36"
+    },
+    {
+      "bytes": 27215,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/idle-scan-128/result.json",
+      "original_path": "build/m3-perf/idle-scan/benchmark-128/result.json",
+      "sha256": "36b025c84c8f425234866e3c9ef17e3846fefb75150eeb2f5c821d5de7c284e8"
+    },
+    {
+      "bytes": 27895,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/idle-scan-128/map.json",
+      "original_path": "build/m3-perf/idle-scan/128/map.json",
+      "sha256": "810916ac1dc49a44005903a45f6d415ef2a1d486992f531f7e5efc47f29d6524"
+    },
+    {
+      "bytes": 21675,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/idle-scan-128/bounds.json",
+      "original_path": "build/m3-perf/idle-scan/128/bounds.json",
+      "sha256": "7065ccc421001a867aeca7189170ff86a82c5e8b0353499bfa3f74f4c64c2981"
+    },
+    {
+      "bytes": 9808,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/idle-scan-128/m3.manifest.json",
+      "original_path": "build/m3-perf/idle-scan/128/m3.manifest.json",
+      "sha256": "2e3f812907229b2b77a42de83abb2001dff3be552cc3dc679c8fd22e8475ef39"
+    },
+    {
+      "bytes": 5613,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/provenance/idle-scan-source-snapshot.json",
+      "original_path": "build/m3-perf/idle-scan/source-snapshot.json",
+      "sha256": "3ddfd10ab5d69d82a2bdf41623f0f230a60bd528cb3d1c5e400253751a21b5a1"
+    },
+    {
+      "bytes": 27175,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/split-admission-128/result.json",
+      "original_path": "build/m3-perf/split-admission/benchmark-128/result.json",
+      "sha256": "09d9f4ff9ccfb75184aa6665e0d8a18fd1dab9d6941fd69743802642730f0d95"
+    },
+    {
+      "bytes": 28098,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/split-admission-128/map.json",
+      "original_path": "build/m3-perf/split-admission/128/map.json",
+      "sha256": "ea320ff8e2afc1d015146fda97f4cae21d30cfe72a3c2eb6c41da65ef9077907"
+    },
+    {
+      "bytes": 25251,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/split-admission-128/bounds.json",
+      "original_path": "build/m3-perf/split-admission/128/bounds.json",
+      "sha256": "cca921dd8a8fda16b75c0592233487eb914c61c57224e8c8243d11a147f8ebad"
+    },
+    {
+      "bytes": 9808,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/split-admission-128/m3.manifest.json",
+      "original_path": "build/m3-perf/split-admission/128/m3.manifest.json",
+      "sha256": "cd790b9057e9eb6eb1ab3d4907851972ebd683117c74920c33d50560e51b3c38"
+    },
+    {
+      "bytes": 4472,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/provenance/split-admission-source-snapshot.json",
+      "original_path": "build/m3-perf/split-admission/source-snapshot.json",
+      "sha256": "8130083ee69d9c89a6e4d9600c6428dc06f98ea41ac6848697b814237e3ae008"
+    },
+    {
+      "bytes": 4540,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/provenance/split-admission-qualification-source-snapshot.json",
+      "original_path": "build/m3-perf/split-admission/qualification-source-snapshot.json",
+      "sha256": "ee0eaeab81c1f12d25daa2eaa1b36f65b260b0fdb104bbacd0eabb800983b006"
+    },
+    {
+      "bytes": 311,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/provenance/reference.json",
+      "original_path": "build/mandelbrot-reference.json",
+      "sha256": "b72aba778bf29e19ee1aff59f0c2b4ebd1a555258b2423d888a7420aea356852"
+    }
+  ],
+  "copy_policy": "JSON receipts, exact maps/bounds/manifests and source snapshot inventories only. No REU image, firmware, emulator executable or source tree is copied. Existing final primary archives are referenced without duplicate copies.",
+  "excluded": "Prepared-index155 and batch4 are not accepted table checkpoints and are not included.",
+  "format": "COSM3PERFCHECKPOINTARCHIVE1",
+  "incongruences": [],
+  "purpose": "Durable association of only the accepted Measured development checkpoints table rows to existing measurement receipts; no target runs or source changes.",
+  "qualification": "Historical measurements in the qualified functional emulator profile. Physical Ultimate timing remains pending; copied bounds and inventories retain their original qualifications.",
+  "reference_output": {
+    "bytes": 192,
+    "original_path": "build/mandelbrot-reference.bin",
+    "receipt": {
+      "bytes": 311,
+      "evidence_path": "docs/m3-perf-evidence/checkpoints/provenance/reference.json",
+      "original_path": "build/mandelbrot-reference.json",
+      "sha256": "b72aba778bf29e19ee1aff59f0c2b4ebd1a555258b2423d888a7420aea356852"
+    },
+    "sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c"
+  },
+  "rows": [
+    {
+      "application_abi": 1,
+      "cache_line_bytes": 128,
+      "change": "Frozen M3 ABI 1",
+      "frames": 8938,
+      "id": "abi1-128",
+      "identities": {
+        "application_source_sha256": "c4010519b54ad2323e05ba7b77d43c7071c7739559436fb00da3036cabdb5620",
+        "artifact_sha256": {
+          "m3.manifest.json": "dcde82a9ab448c1449d0b2b56b92102afe9ca84d5f31da19123475a63a9aeaf9",
+          "m3.prg": "94f6755f29c69e54615de1c7bf918241ace60244a5735ecfeaa5345eedc467a8",
+          "m3.reu": "47839f69275efa588e3ba98b168a121cd1a2600988a210e46cda1b93f14884a9",
+          "native.bin": "d806ab584547ef2568f6f43c8b88c5c42e4676bf3bf060089770331eb5c0a136",
+          "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+          "renderer.prg": "5858b9691af7965b54c4f0ca5e96a314c2105293c291f91c72dd8246ad02adb2"
+        },
+        "backend_sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+        "benchmark_source_sha256": {
+          "apps/mandelbrot.casm": "c4010519b54ad2323e05ba7b77d43c7071c7739559436fb00da3036cabdb5620",
+          "scripts/m3_benchmark.py": "672c29c85b0e512d7d59ca73091f54932cbecc01a9b694d71ca413fb926c0c6f",
+          "scripts/mandelbrot_reference.py": "a00aee6febf2f3fa717168ef702fda656a53dfcfc5d271fea76fea5c26b2812f",
+          "src/bin/cosbench.rs": "e62eb1c0a0efb106e05d952a8839bc7e027ae8646a71bdf3a5a9bbec404cc77d",
+          "tests/native/mandelbrot_1mhz.asm": "db97bb32af94906134b4c327cb83458d92f3fe6372712df6336ec5c07205b4d8"
+        },
+        "bounds_sha256": "2242e0eee9a884a3c164c4f03e24e89a2ae510c2f7202f6dd2ce5cb36a787d91",
+        "build_tag": 2441396846,
+        "image_sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+        "input_sha256": {
+          "config": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+          "emulator": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+          "flash": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be",
+          "kickass": "9592a39336e73a1db8b4a7749256d62d29b113b1c7f0f6c86ea43870ebd9ae1f",
+          "settings": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961"
+        },
+        "map_sha256": "f930d60416501548861c16cfddb246bd8fb1de05033e73bd2e14a57a3417ea6a",
+        "native_source_sha256": null,
+        "reference_source_sha256": "a00aee6febf2f3fa717168ef702fda656a53dfcfc5d271fea76fea5c26b2812f"
+      },
+      "native_cos_ratio": 0.01527,
+      "native_phi2": 2682768,
+      "notes": [
+        "ABI1 is the preserved historical pack. The benchmark bounds bind build/m3/128/map.json; the later baseline-repeat receipt binds a distinct frozen map with the same build tag and exact artifact digests. Both maps are archived without rewriting."
+      ],
+      "phi2_estimate": 175685328,
+      "receipt": {
+        "bytes": 25839,
+        "evidence_path": "docs/m3-perf-evidence/checkpoints/abi1-128/result.json",
+        "original_path": "build/m3/benchmark/128/result.json",
+        "sha256": "58919fa8489476919a04f523b7dbaa409836d9a1cbd17d863de361e5824052e8"
+      },
+      "retired": 693194,
+      "supporting_evidence": [
+        {
+          "bytes": 25760,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/abi1-128/map.json",
+          "original_path": "build/m3/128/map.json",
+          "sha256": "f930d60416501548861c16cfddb246bd8fb1de05033e73bd2e14a57a3417ea6a"
+        },
+        {
+          "bytes": 14769,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/abi1-128/bounds.json",
+          "original_path": "build/m3/128/bounds.json",
+          "sha256": "2242e0eee9a884a3c164c4f03e24e89a2ae510c2f7202f6dd2ce5cb36a787d91"
+        },
+        {
+          "bytes": 17343,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/abi1-128/m3.manifest.json",
+          "original_path": "build/m3/128/m3.manifest.json",
+          "sha256": "dcde82a9ab448c1449d0b2b56b92102afe9ca84d5f31da19123475a63a9aeaf9"
+        },
+        {
+          "bytes": 3922,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/provenance/baseline-source-snapshot.json",
+          "original_path": "build/m3-perf/baseline/source-snapshot.json",
+          "sha256": "30aad730ce39ff27084d5e8102f7d8e38da49ac44835b5812a871be2056bfe66"
+        },
+        {
+          "bytes": 25876,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/abi1-128/frozen-map.json",
+          "original_path": "build/m3-perf/baseline/128/map.json",
+          "sha256": "835260f3707798d7626f1a799d8672a94688b7860a5509b8558a6d42295ce61c"
+        },
+        {
+          "bytes": 3315,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/abi1-128/baseline-repeat.json",
+          "original_path": "build/m3-perf/profile-core/runs/128/baseline/result.json",
+          "sha256": "d24a2100e746501a85660c19370d5a76129c75642cb0764db876ce8cb33f4796"
+        }
+      ],
+      "table_row": 1,
+      "verification": {
+        "all_64000_live_scanout_pixels_match": true,
+        "diagnostic_counters": {
+          "active_line_dma": 0,
+          "missed_synchronization": 0,
+          "nmi": 0,
+          "recovery": 0
+        },
+        "full_logical_output_reference_match": true,
+        "host_target_retirements_match": true,
+        "manifest_abi_verified": true,
+        "receipt_map_bounds_artifact_identities_match": true,
+        "table_frames_retired_phi2_ratio_match": true
+      }
+    },
+    {
+      "application_abi": 2,
+      "cache_line_bytes": 128,
+      "change": "MULS helper only",
+      "frames": 1069,
+      "id": "mul-only-128",
+      "identities": {
+        "application_source_sha256": "e245857cfdc33d8629443f96b54df1d11c0b03676585112442482207d0243eb0",
+        "artifact_sha256": {
+          "m3.manifest.json": "62ace61528135ca8c536354ae31ef5d113ece5dfaaa5f536ed62e4506687e309",
+          "m3.prg": "7aaf2a3443166113d8bd4dce5f57bbdb5b7ac2684d04179401277618c1f89ae9",
+          "m3.reu": "410017f8228e83399fc1054a825fc679294b43c5c4dcd86d3bde54d6a657e62b",
+          "native.bin": "ceb8742a90ced8a715ca0cf002e7441091e96dd7b44a7dbe6719fc32e9bf1483",
+          "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+          "renderer.prg": "5858b9691af7965b54c4f0ca5e96a314c2105293c291f91c72dd8246ad02adb2"
+        },
+        "backend_sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+        "benchmark_source_sha256": {
+          "apps/mandelbrot-mul-only.casm": "e245857cfdc33d8629443f96b54df1d11c0b03676585112442482207d0243eb0",
+          "build/m3-perf/apps/mul-only/host-profile.json": "a207a4255080f8baddea593a4dc354f979744c3cf3c64cc23b4784664d63e39d",
+          "scripts/m3_benchmark.py": "8e6ac39a2b1227be82cbbfc99804ecc031ece1467efedd1032cc60fe88493771",
+          "scripts/mandelbrot_reference.py": "a00aee6febf2f3fa717168ef702fda656a53dfcfc5d271fea76fea5c26b2812f",
+          "src/bin/cosbench.rs": "98184ae79891d27f6d13181a2d3c204d79f8799cb9218010a3d0d897311f9dbd",
+          "tests/native/mandelbrot_1mhz.asm": "db97bb32af94906134b4c327cb83458d92f3fe6372712df6336ec5c07205b4d8"
+        },
+        "bounds_sha256": "77145ed15980aae7a06bc67177853fd6b055e0b3fa405df8f14d964629a280c8",
+        "build_tag": 1078067429,
+        "image_sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+        "input_sha256": {
+          "config": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+          "emulator": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+          "flash": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be",
+          "kickass": "9592a39336e73a1db8b4a7749256d62d29b113b1c7f0f6c86ea43870ebd9ae1f",
+          "settings": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961"
+        },
+        "map_sha256": "859e106c778ee469c1d9510c624e1dd26b70f8f334dc8f9163f94f20aca8e62d",
+        "native_source_sha256": null,
+        "reference_source_sha256": "a00aee6febf2f3fa717168ef702fda656a53dfcfc5d271fea76fea5c26b2812f"
+      },
+      "native_cos_ratio": 0.127676,
+      "native_phi2": 2682768,
+      "notes": [
+        "The early MUL-only map has no individual native-source inventory. The register source snapshot explicitly preserves the same native runtime; the native.bin digest matches the register128 checkpoint. The benchmark receipt separately binds the MUL-only app and runner sources."
+      ],
+      "phi2_estimate": 21012264,
+      "receipt": {
+        "bytes": 25918,
+        "evidence_path": "docs/m3-perf-evidence/checkpoints/mul-only-128/result.json",
+        "original_path": "build/m3-perf/experiments/mul-only-128/result.json",
+        "sha256": "54cbd5ff2b0000caf270e4c2face62aefdb501ae6417d314791b7e195d9f4fed"
+      },
+      "retired": 50106,
+      "supporting_evidence": [
+        {
+          "bytes": 25996,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/mul-only-128/map.json",
+          "original_path": "build/m3-perf/mul-only/128/map.json",
+          "sha256": "859e106c778ee469c1d9510c624e1dd26b70f8f334dc8f9163f94f20aca8e62d"
+        },
+        {
+          "bytes": 14934,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/mul-only-128/bounds.json",
+          "original_path": "build/m3-perf/mul-only/128/bounds.json",
+          "sha256": "77145ed15980aae7a06bc67177853fd6b055e0b3fa405df8f14d964629a280c8"
+        },
+        {
+          "bytes": 12100,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/mul-only-128/m3.manifest.json",
+          "original_path": "build/m3-perf/mul-only/128/m3.manifest.json",
+          "sha256": "62ace61528135ca8c536354ae31ef5d113ece5dfaaa5f536ed62e4506687e309"
+        },
+        {
+          "bytes": 3846,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/provenance/registers-source-snapshot.json",
+          "original_path": "build/m3-perf/registers/source-snapshot.json",
+          "sha256": "e57ca50a3bb7df447996855dd50d4c8eb04232d0b9d0202ef6d22a6bccd44175"
+        }
+      ],
+      "table_row": 2,
+      "verification": {
+        "all_64000_live_scanout_pixels_match": true,
+        "diagnostic_counters": {
+          "active_line_dma": 0,
+          "missed_synchronization": 0,
+          "nmi": 0,
+          "recovery": 0
+        },
+        "full_logical_output_reference_match": true,
+        "host_target_retirements_match": true,
+        "manifest_abi_verified": true,
+        "receipt_map_bounds_artifact_identities_match": true,
+        "table_frames_retired_phi2_ratio_match": true
+      }
+    },
+    {
+      "application_abi": 2,
+      "cache_line_bytes": 128,
+      "change": "Register allocation, inline extraction",
+      "frames": 427,
+      "id": "registers-128",
+      "identities": {
+        "application_source_sha256": "4c074fd97fb1b7b3db4251ee45ad680b5f437245d98922c2bb730ac6b2cc766f",
+        "artifact_sha256": {
+          "m3.manifest.json": "d3c81b079e3d022797798c927b016f610f24cb2992863c89baec7be6f8c64d8f",
+          "m3.prg": "a8b6b488d28e394a874605efec4a149d9579ce80a53f5eabee1af00a1ac8a0e9",
+          "m3.reu": "928562b5cb4d198abf4b00baf69c5cec8cd2aacc4d665f8ac4df11cf60c26455",
+          "native.bin": "ceb8742a90ced8a715ca0cf002e7441091e96dd7b44a7dbe6719fc32e9bf1483",
+          "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+          "renderer.prg": "5858b9691af7965b54c4f0ca5e96a314c2105293c291f91c72dd8246ad02adb2"
+        },
+        "backend_sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+        "benchmark_source_sha256": {
+          "apps/mandelbrot-registers.casm": "4c074fd97fb1b7b3db4251ee45ad680b5f437245d98922c2bb730ac6b2cc766f",
+          "build/m3-perf/apps/registers/host-profile.json": "0291ba25ca57c476342375c642b859468789e7a711c8dab2ddc5fdc231a828cc",
+          "scripts/m3_benchmark.py": "8e6ac39a2b1227be82cbbfc99804ecc031ece1467efedd1032cc60fe88493771",
+          "scripts/mandelbrot_reference.py": "a00aee6febf2f3fa717168ef702fda656a53dfcfc5d271fea76fea5c26b2812f",
+          "src/bin/cosbench.rs": "98184ae79891d27f6d13181a2d3c204d79f8799cb9218010a3d0d897311f9dbd",
+          "tests/native/mandelbrot_1mhz.asm": "db97bb32af94906134b4c327cb83458d92f3fe6372712df6336ec5c07205b4d8"
+        },
+        "bounds_sha256": "b43692c3a74d329f18d3b5d6d17fd000e61d4ee18dc014f0847049a65cea397b",
+        "build_tag": 1414686424,
+        "image_sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+        "input_sha256": {
+          "config": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+          "emulator": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+          "flash": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be",
+          "kickass": "9592a39336e73a1db8b4a7749256d62d29b113b1c7f0f6c86ea43870ebd9ae1f",
+          "settings": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961"
+        },
+        "map_sha256": "c0fc77ea605ef76583a97c04acada3440be9eaf90e6229e9562207c1dda6ad77",
+        "native_source_sha256": {
+          "build_profile.inc": "b237847dd566e2c4bdad78b6b8c03a73529bc5be076fb83c72473b4b22412570",
+          "cache.asm": "e9ba035f3dd210b47dbf9f392de1425b2ececce4096356dda9c28d19c1488fa5",
+          "hardware.inc": "9dfe1e1e864b1615f1cd61a1f3bf77949c48ad436ccce6787f449ead492061ac",
+          "jobs.asm": "4320a2a488e32c5b81c2e658856698f8e00652b1de002f9a7f2007d12c5dadaa",
+          "m2_abi.inc": "bed2621718697a09099310b7fd432e0711943966f8cc18b8f8435c92d6be0ff5",
+          "m3_boot.asm": "d90497a54c56f120ac6ea78d2b591b9b1a20efd3358faf6e96398216d47d3c3a",
+          "m3_kernel.asm": "2543ec72df5c7389b8635712780375b0f748d888a8010fd98a1bf6169731639a",
+          "margins.asm": "b564aa9241381685be41866a3e4d00aaae2680e7af923e853c90a3fa0cb4485f",
+          "probe.asm": "e9d8c0cf310ecc44b702b2943978c959a67d15268edde728161363dda02967fe",
+          "renderer.asm": "c6e5265423603fd8a9a68c50c34fa0c0c40fc85a80b085fa597468534712a759",
+          "scheduler.asm": "d13b7b63b437c218167111065c7c2c86634d6b01d9d3649c5ca857acd58358cc",
+          "scheduler.inc": "926c09b70cdebda487f5d311e24e33cfa113736f01d7ebb54ed200736c703e19",
+          "vm.asm": "ae044bac9bf54ea4a7c42818b9db68d5f84ffe4528701063af2b47bbc226a723"
+        },
+        "reference_source_sha256": "a00aee6febf2f3fa717168ef702fda656a53dfcfc5d271fea76fea5c26b2812f"
+      },
+      "native_cos_ratio": 0.319639,
+      "native_phi2": 2682768,
+      "notes": [],
+      "phi2_estimate": 8393112,
+      "receipt": {
+        "bytes": 26059,
+        "evidence_path": "docs/m3-perf-evidence/checkpoints/registers-128/result.json",
+        "original_path": "build/m3-perf/registers/benchmark-128/result.json",
+        "sha256": "4f9a69bde618570577016c9860fb1c378f8139fec6e3b77cc0270b9a6ad3488e"
+      },
+      "retired": 36358,
+      "supporting_evidence": [
+        {
+          "bytes": 27409,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/registers-128/map.json",
+          "original_path": "build/m3-perf/registers/128/map.json",
+          "sha256": "c0fc77ea605ef76583a97c04acada3440be9eaf90e6229e9562207c1dda6ad77"
+        },
+        {
+          "bytes": 14934,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/registers-128/bounds.json",
+          "original_path": "build/m3-perf/registers/128/bounds.json",
+          "sha256": "b43692c3a74d329f18d3b5d6d17fd000e61d4ee18dc014f0847049a65cea397b"
+        },
+        {
+          "bytes": 9808,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/registers-128/m3.manifest.json",
+          "original_path": "build/m3-perf/registers/128/m3.manifest.json",
+          "sha256": "d3c81b079e3d022797798c927b016f610f24cb2992863c89baec7be6f8c64d8f"
+        },
+        {
+          "bytes": 3846,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/provenance/registers-source-snapshot.json",
+          "original_path": "build/m3-perf/registers/source-snapshot.json",
+          "sha256": "e57ca50a3bb7df447996855dd50d4c8eb04232d0b9d0202ef6d22a6bccd44175"
+        }
+      ],
+      "table_row": 3,
+      "verification": {
+        "all_64000_live_scanout_pixels_match": true,
+        "diagnostic_counters": {
+          "active_line_dma": 0,
+          "missed_synchronization": 0,
+          "nmi": 0,
+          "recovery": 0
+        },
+        "full_logical_output_reference_match": true,
+        "host_target_retirements_match": true,
+        "manifest_abi_verified": true,
+        "receipt_map_bounds_artifact_identities_match": true,
+        "table_frames_retired_phi2_ratio_match": true
+      }
+    },
+    {
+      "application_abi": 2,
+      "cache_line_bytes": 64,
+      "change": "Same register application",
+      "frames": 666,
+      "id": "registers-64",
+      "identities": {
+        "application_source_sha256": "4c074fd97fb1b7b3db4251ee45ad680b5f437245d98922c2bb730ac6b2cc766f",
+        "artifact_sha256": {
+          "m3.manifest.json": "f781f738058c68798f1a57a17a8d79a044993e2fac25ecd69f1f21f9a81ad0e3",
+          "m3.prg": "533ee08ccfcdb2255d4e147a7d5fb20f642e630b629588647f003df74d1d1b88",
+          "m3.reu": "101ece1380224f1a8f4cbfa2174af8b559f22dc39a21503f77375ab105952eb4",
+          "native.bin": "106542b6f85557ad6b16aa5c6a5544c206ac8c8a3037b8507cca6f4eea9bb233",
+          "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+          "renderer.prg": "5858b9691af7965b54c4f0ca5e96a314c2105293c291f91c72dd8246ad02adb2"
+        },
+        "backend_sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+        "benchmark_source_sha256": {
+          "apps/mandelbrot-registers.casm": "4c074fd97fb1b7b3db4251ee45ad680b5f437245d98922c2bb730ac6b2cc766f",
+          "build/m3-perf/apps/registers/host-profile.json": "0291ba25ca57c476342375c642b859468789e7a711c8dab2ddc5fdc231a828cc",
+          "scripts/m3_benchmark.py": "8e6ac39a2b1227be82cbbfc99804ecc031ece1467efedd1032cc60fe88493771",
+          "scripts/mandelbrot_reference.py": "a00aee6febf2f3fa717168ef702fda656a53dfcfc5d271fea76fea5c26b2812f",
+          "src/bin/cosbench.rs": "98184ae79891d27f6d13181a2d3c204d79f8799cb9218010a3d0d897311f9dbd",
+          "tests/native/mandelbrot_1mhz.asm": "db97bb32af94906134b4c327cb83458d92f3fe6372712df6336ec5c07205b4d8"
+        },
+        "bounds_sha256": "b606ba421cc595c60313e6a17cff7dbcdecc505ffebd3db64baf6814db68a885",
+        "build_tag": 1887280295,
+        "image_sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+        "input_sha256": {
+          "config": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+          "emulator": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+          "flash": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be",
+          "kickass": "9592a39336e73a1db8b4a7749256d62d29b113b1c7f0f6c86ea43870ebd9ae1f",
+          "settings": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961"
+        },
+        "map_sha256": "ca1c444397ce333a14fa721f11a600d15dd8b1f4e2b41f61ff65aa5dc9989b1e",
+        "native_source_sha256": {
+          "build_profile.inc": "b237847dd566e2c4bdad78b6b8c03a73529bc5be076fb83c72473b4b22412570",
+          "cache.asm": "e9ba035f3dd210b47dbf9f392de1425b2ececce4096356dda9c28d19c1488fa5",
+          "hardware.inc": "9dfe1e1e864b1615f1cd61a1f3bf77949c48ad436ccce6787f449ead492061ac",
+          "jobs.asm": "4320a2a488e32c5b81c2e658856698f8e00652b1de002f9a7f2007d12c5dadaa",
+          "m2_abi.inc": "bed2621718697a09099310b7fd432e0711943966f8cc18b8f8435c92d6be0ff5",
+          "m3_boot.asm": "d90497a54c56f120ac6ea78d2b591b9b1a20efd3358faf6e96398216d47d3c3a",
+          "m3_kernel.asm": "2543ec72df5c7389b8635712780375b0f748d888a8010fd98a1bf6169731639a",
+          "margins.asm": "b564aa9241381685be41866a3e4d00aaae2680e7af923e853c90a3fa0cb4485f",
+          "probe.asm": "e9d8c0cf310ecc44b702b2943978c959a67d15268edde728161363dda02967fe",
+          "renderer.asm": "c6e5265423603fd8a9a68c50c34fa0c0c40fc85a80b085fa597468534712a759",
+          "scheduler.asm": "d13b7b63b437c218167111065c7c2c86634d6b01d9d3649c5ca857acd58358cc",
+          "scheduler.inc": "926c09b70cdebda487f5d311e24e33cfa113736f01d7ebb54ed200736c703e19",
+          "vm.asm": "ae044bac9bf54ea4a7c42818b9db68d5f84ffe4528701063af2b47bbc226a723"
+        },
+        "reference_source_sha256": "a00aee6febf2f3fa717168ef702fda656a53dfcfc5d271fea76fea5c26b2812f"
+      },
+      "native_cos_ratio": 0.204934,
+      "native_phi2": 2682768,
+      "notes": [],
+      "phi2_estimate": 13090896,
+      "receipt": {
+        "bytes": 21053,
+        "evidence_path": "docs/m3-perf-evidence/checkpoints/registers-64/result.json",
+        "original_path": "build/m3-perf/registers/benchmark-64/result.json",
+        "sha256": "3675df3ef3b53c6bc68b63f07b9c23ae5b761697043210287290cdf07f07244c"
+      },
+      "retired": 36358,
+      "supporting_evidence": [
+        {
+          "bytes": 27408,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/registers-64/map.json",
+          "original_path": "build/m3-perf/registers/64/map.json",
+          "sha256": "ca1c444397ce333a14fa721f11a600d15dd8b1f4e2b41f61ff65aa5dc9989b1e"
+        },
+        {
+          "bytes": 14933,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/registers-64/bounds.json",
+          "original_path": "build/m3-perf/registers/64/bounds.json",
+          "sha256": "b606ba421cc595c60313e6a17cff7dbcdecc505ffebd3db64baf6814db68a885"
+        },
+        {
+          "bytes": 9808,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/registers-64/m3.manifest.json",
+          "original_path": "build/m3-perf/registers/64/m3.manifest.json",
+          "sha256": "f781f738058c68798f1a57a17a8d79a044993e2fac25ecd69f1f21f9a81ad0e3"
+        },
+        {
+          "bytes": 3846,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/provenance/registers-source-snapshot.json",
+          "original_path": "build/m3-perf/registers/source-snapshot.json",
+          "sha256": "e57ca50a3bb7df447996855dd50d4c8eb04232d0b9d0202ef6d22a6bccd44175"
+        }
+      ],
+      "table_row": 4,
+      "verification": {
+        "all_64000_live_scanout_pixels_match": true,
+        "diagnostic_counters": {
+          "active_line_dma": 0,
+          "missed_synchronization": 0,
+          "nmi": 0,
+          "recovery": 0
+        },
+        "full_logical_output_reference_match": true,
+        "host_target_retirements_match": true,
+        "manifest_abi_verified": true,
+        "receipt_map_bounds_artifact_identities_match": true,
+        "table_frames_retired_phi2_ratio_match": true
+      }
+    },
+    {
+      "application_abi": 2,
+      "cache_line_bytes": 128,
+      "change": "Coherent wrap-safe admission",
+      "frames": 232,
+      "id": "wrap-128",
+      "identities": {
+        "application_source_sha256": "4c074fd97fb1b7b3db4251ee45ad680b5f437245d98922c2bb730ac6b2cc766f",
+        "artifact_sha256": {
+          "m3.manifest.json": "5a1eb444357450d65f34eef1cbb002514cc8f956e9042a21518a565c5dd9e8c2",
+          "m3.prg": "99ac42a76e7cfa1daa30ba1b8c053e478eb94495d79529deee8b1a7c0ee81bfd",
+          "m3.reu": "0b92162ddfecb5659eb84ec9e741c506ec9a8ca04253f2f5b0e0163f1341897a",
+          "native.bin": "6e04b119b689ea3dea156ed25518a4a64a9d602e1cdf288e5d321af23bfc5ed3",
+          "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+          "renderer.prg": "5858b9691af7965b54c4f0ca5e96a314c2105293c291f91c72dd8246ad02adb2"
+        },
+        "backend_sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+        "benchmark_source_sha256": {
+          "apps/mandelbrot-registers.casm": "4c074fd97fb1b7b3db4251ee45ad680b5f437245d98922c2bb730ac6b2cc766f",
+          "build/m3-perf/apps/registers/host-profile.json": "0291ba25ca57c476342375c642b859468789e7a711c8dab2ddc5fdc231a828cc",
+          "scripts/m3_benchmark.py": "c105b94bfecdcb1e8376f10b067f404b5a641c8915a4081b7e3bf490946a4c2a",
+          "scripts/mandelbrot_reference.py": "a00aee6febf2f3fa717168ef702fda656a53dfcfc5d271fea76fea5c26b2812f",
+          "src/bin/cosbench.rs": "98184ae79891d27f6d13181a2d3c204d79f8799cb9218010a3d0d897311f9dbd",
+          "tests/native/mandelbrot_1mhz.asm": "db97bb32af94906134b4c327cb83458d92f3fe6372712df6336ec5c07205b4d8"
+        },
+        "bounds_sha256": "b108cffe642a6333806c6d4c26bbe0c1b1916a7b28975620c488e88dfa0f912f",
+        "build_tag": 943745646,
+        "image_sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+        "input_sha256": {
+          "config": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+          "emulator": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+          "flash": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be",
+          "kickass": "9592a39336e73a1db8b4a7749256d62d29b113b1c7f0f6c86ea43870ebd9ae1f",
+          "settings": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961"
+        },
+        "map_sha256": "4f98e821ac51cc7e40ba2e64a7416f4246c8967bed1ab166e72a59e11635c399",
+        "native_source_sha256": {
+          "build_profile.inc": "b237847dd566e2c4bdad78b6b8c03a73529bc5be076fb83c72473b4b22412570",
+          "cache.asm": "e9ba035f3dd210b47dbf9f392de1425b2ececce4096356dda9c28d19c1488fa5",
+          "hardware.inc": "9dfe1e1e864b1615f1cd61a1f3bf77949c48ad436ccce6787f449ead492061ac",
+          "jobs.asm": "4320a2a488e32c5b81c2e658856698f8e00652b1de002f9a7f2007d12c5dadaa",
+          "m2_abi.inc": "bed2621718697a09099310b7fd432e0711943966f8cc18b8f8435c92d6be0ff5",
+          "m3_boot.asm": "d90497a54c56f120ac6ea78d2b591b9b1a20efd3358faf6e96398216d47d3c3a",
+          "m3_kernel.asm": "28fef4d106d5a9359e1b82ad3cce486919e19d794b5d3942f5319cb985aae76b",
+          "margins.asm": "b564aa9241381685be41866a3e4d00aaae2680e7af923e853c90a3fa0cb4485f",
+          "probe.asm": "e9d8c0cf310ecc44b702b2943978c959a67d15268edde728161363dda02967fe",
+          "renderer.asm": "c6e5265423603fd8a9a68c50c34fa0c0c40fc85a80b085fa597468534712a759",
+          "scheduler.asm": "d13b7b63b437c218167111065c7c2c86634d6b01d9d3649c5ca857acd58358cc",
+          "scheduler.inc": "926c09b70cdebda487f5d311e24e33cfa113736f01d7ebb54ed200736c703e19",
+          "vm.asm": "ae044bac9bf54ea4a7c42818b9db68d5f84ffe4528701063af2b47bbc226a723"
+        },
+        "reference_source_sha256": "a00aee6febf2f3fa717168ef702fda656a53dfcfc5d271fea76fea5c26b2812f"
+      },
+      "native_cos_ratio": 0.588302,
+      "native_phi2": 2682768,
+      "notes": [],
+      "phi2_estimate": 4560192,
+      "receipt": {
+        "bytes": 27173,
+        "evidence_path": "docs/m3-perf-evidence/checkpoints/wrap-128/result.json",
+        "original_path": "build/m3-perf/wrap-window/benchmark-128/result.json",
+        "sha256": "ea2471fd7ab69cdfa9645901cd0f13d58d9c93b4e4424779779ac3e08987f840"
+      },
+      "retired": 36358,
+      "supporting_evidence": [
+        {
+          "bytes": 27581,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/wrap-128/map.json",
+          "original_path": "build/m3-perf/wrap-window/128/map.json",
+          "sha256": "4f98e821ac51cc7e40ba2e64a7416f4246c8967bed1ab166e72a59e11635c399"
+        },
+        {
+          "bytes": 21273,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/wrap-128/bounds.json",
+          "original_path": "build/m3-perf/wrap-window/128/bounds.json",
+          "sha256": "b108cffe642a6333806c6d4c26bbe0c1b1916a7b28975620c488e88dfa0f912f"
+        },
+        {
+          "bytes": 9807,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/wrap-128/m3.manifest.json",
+          "original_path": "build/m3-perf/wrap-window/128/m3.manifest.json",
+          "sha256": "5a1eb444357450d65f34eef1cbb002514cc8f956e9042a21518a565c5dd9e8c2"
+        },
+        {
+          "bytes": 4006,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/provenance/wrap-window-source-snapshot.json",
+          "original_path": "build/m3-perf/wrap-window/source-snapshot.json",
+          "sha256": "57b9d40de70007022f77b1801323c98861f55a6139c52fa62326b33f2f29d1f7"
+        }
+      ],
+      "table_row": 5,
+      "verification": {
+        "all_64000_live_scanout_pixels_match": true,
+        "diagnostic_counters": {
+          "active_line_dma": 0,
+          "missed_synchronization": 0,
+          "nmi": 0,
+          "recovery": 0
+        },
+        "full_logical_output_reference_match": true,
+        "host_target_retirements_match": true,
+        "manifest_abi_verified": true,
+        "receipt_map_bounds_artifact_identities_match": true,
+        "table_frames_retired_phi2_ratio_match": true
+      }
+    },
+    {
+      "application_abi": 2,
+      "cache_line_bytes": 128,
+      "change": "Cache hot paths plus wrap-safe admission",
+      "frames": 206,
+      "id": "cache-wrap-128",
+      "identities": {
+        "application_source_sha256": "4c074fd97fb1b7b3db4251ee45ad680b5f437245d98922c2bb730ac6b2cc766f",
+        "artifact_sha256": {
+          "m3.manifest.json": "127134e8aea7a50988b1443bd0bdfe42818794be36e3e5d023db4f4192e5bd61",
+          "m3.prg": "ef61d455d3cad053e4e3dd652491caee68a0694a97efc42e8d51a6e7df54f78c",
+          "m3.reu": "c6d053e3eb3673191617fe8435eec9b5830b44c3cda7f00438b304a089d27b5e",
+          "native.bin": "ff1ee2b0c0027767058a71d88b921459ea6d16395f2a3aceb8bae3c0957e26f7",
+          "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+          "renderer.prg": "5858b9691af7965b54c4f0ca5e96a314c2105293c291f91c72dd8246ad02adb2"
+        },
+        "backend_sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+        "benchmark_source_sha256": {
+          "apps/mandelbrot-registers.casm": "4c074fd97fb1b7b3db4251ee45ad680b5f437245d98922c2bb730ac6b2cc766f",
+          "build/m3-perf/apps/registers/host-profile.json": "0291ba25ca57c476342375c642b859468789e7a711c8dab2ddc5fdc231a828cc",
+          "scripts/m3_benchmark.py": "c105b94bfecdcb1e8376f10b067f404b5a641c8915a4081b7e3bf490946a4c2a",
+          "scripts/mandelbrot_reference.py": "a00aee6febf2f3fa717168ef702fda656a53dfcfc5d271fea76fea5c26b2812f",
+          "src/bin/cosbench.rs": "98184ae79891d27f6d13181a2d3c204d79f8799cb9218010a3d0d897311f9dbd",
+          "tests/native/mandelbrot_1mhz.asm": "db97bb32af94906134b4c327cb83458d92f3fe6372712df6336ec5c07205b4d8"
+        },
+        "bounds_sha256": "7314b258151c8200d5843f630bbb201d1395ae47258173677ca58c6f0bc3ea40",
+        "build_tag": 691693920,
+        "image_sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+        "input_sha256": {
+          "config": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+          "emulator": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+          "flash": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be",
+          "kickass": "9592a39336e73a1db8b4a7749256d62d29b113b1c7f0f6c86ea43870ebd9ae1f",
+          "settings": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961"
+        },
+        "map_sha256": "d3469cf87af914c80952299e136d1fdc28195f8344228a7e7c33e0d50c804881",
+        "native_source_sha256": {
+          "build_profile.inc": "b237847dd566e2c4bdad78b6b8c03a73529bc5be076fb83c72473b4b22412570",
+          "cache.asm": "291ff44a8011f0397115a7b1c7d7f5884b24763d93dfba503d4f38749157aa5b",
+          "hardware.inc": "9dfe1e1e864b1615f1cd61a1f3bf77949c48ad436ccce6787f449ead492061ac",
+          "jobs.asm": "4320a2a488e32c5b81c2e658856698f8e00652b1de002f9a7f2007d12c5dadaa",
+          "m2_abi.inc": "bed2621718697a09099310b7fd432e0711943966f8cc18b8f8435c92d6be0ff5",
+          "m3_boot.asm": "d90497a54c56f120ac6ea78d2b591b9b1a20efd3358faf6e96398216d47d3c3a",
+          "m3_kernel.asm": "28fef4d106d5a9359e1b82ad3cce486919e19d794b5d3942f5319cb985aae76b",
+          "margins.asm": "b564aa9241381685be41866a3e4d00aaae2680e7af923e853c90a3fa0cb4485f",
+          "probe.asm": "e9d8c0cf310ecc44b702b2943978c959a67d15268edde728161363dda02967fe",
+          "renderer.asm": "c6e5265423603fd8a9a68c50c34fa0c0c40fc85a80b085fa597468534712a759",
+          "scheduler.asm": "d13b7b63b437c218167111065c7c2c86634d6b01d9d3649c5ca857acd58358cc",
+          "scheduler.inc": "926c09b70cdebda487f5d311e24e33cfa113736f01d7ebb54ed200736c703e19",
+          "vm.asm": "ae044bac9bf54ea4a7c42818b9db68d5f84ffe4528701063af2b47bbc226a723"
+        },
+        "reference_source_sha256": "a00aee6febf2f3fa717168ef702fda656a53dfcfc5d271fea76fea5c26b2812f"
+      },
+      "native_cos_ratio": 0.662553,
+      "native_phi2": 2682768,
+      "notes": [
+        "The source snapshot status records preparation before target measurement; the accepted completed measurement is the separate benchmark receipt copied here. The original snapshot is preserved verbatim."
+      ],
+      "phi2_estimate": 4049136,
+      "receipt": {
+        "bytes": 27175,
+        "evidence_path": "docs/m3-perf-evidence/checkpoints/cache-wrap-128/result.json",
+        "original_path": "build/m3-perf/cache-wrap/benchmark-128/result.json",
+        "sha256": "f8e3db4d21a5b9cec8983ffc2c0f15997357bc5cfd4cc21ca37338ea5dc6a998"
+      },
+      "retired": 36358,
+      "supporting_evidence": [
+        {
+          "bytes": 27641,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/cache-wrap-128/map.json",
+          "original_path": "build/m3-perf/cache-wrap/128/map.json",
+          "sha256": "d3469cf87af914c80952299e136d1fdc28195f8344228a7e7c33e0d50c804881"
+        },
+        {
+          "bytes": 20848,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/cache-wrap-128/bounds.json",
+          "original_path": "build/m3-perf/cache-wrap/128/bounds.json",
+          "sha256": "7314b258151c8200d5843f630bbb201d1395ae47258173677ca58c6f0bc3ea40"
+        },
+        {
+          "bytes": 9807,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/cache-wrap-128/m3.manifest.json",
+          "original_path": "build/m3-perf/cache-wrap/128/m3.manifest.json",
+          "sha256": "127134e8aea7a50988b1443bd0bdfe42818794be36e3e5d023db4f4192e5bd61"
+        },
+        {
+          "bytes": 5090,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/provenance/cache-wrap-source-snapshot.json",
+          "original_path": "build/m3-perf/cache-wrap/source-snapshot.json",
+          "sha256": "c56932edfb6a986e4434ad27c5879c85e7e036c5a1d0822693fb77106891cf39"
+        }
+      ],
+      "table_row": 6,
+      "verification": {
+        "all_64000_live_scanout_pixels_match": true,
+        "diagnostic_counters": {
+          "active_line_dma": 0,
+          "missed_synchronization": 0,
+          "nmi": 0,
+          "recovery": 0
+        },
+        "full_logical_output_reference_match": true,
+        "host_target_retirements_match": true,
+        "manifest_abi_verified": true,
+        "receipt_map_bounds_artifact_identities_match": true,
+        "table_frames_retired_phi2_ratio_match": true
+      }
+    },
+    {
+      "application_abi": 2,
+      "cache_line_bytes": 64,
+      "change": "Same cache/runtime, register application",
+      "frames": 338,
+      "id": "cache-wrap-64",
+      "identities": {
+        "application_source_sha256": "4c074fd97fb1b7b3db4251ee45ad680b5f437245d98922c2bb730ac6b2cc766f",
+        "artifact_sha256": {
+          "m3.manifest.json": "d2931c026bde379d64b588d038b1ed6fe62efab510cb8bb6816fe6da8b4f98c0",
+          "m3.prg": "c215e89b54387d6c5c9fd70f2e36a38015806d600722bf7a6169de4f4d0e574f",
+          "m3.reu": "2781f2eb4ec76652eb6ee01e08d033ca10c44ee4c2fd0e25a49a6bb21877e1ac",
+          "native.bin": "933f35c8cf8d2367723e9cb85fbbea4130226eb07bc053c2328951bb20c8702f",
+          "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+          "renderer.prg": "5858b9691af7965b54c4f0ca5e96a314c2105293c291f91c72dd8246ad02adb2"
+        },
+        "backend_sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+        "benchmark_source_sha256": {
+          "apps/mandelbrot-registers.casm": "4c074fd97fb1b7b3db4251ee45ad680b5f437245d98922c2bb730ac6b2cc766f",
+          "build/m3-perf/apps/registers/host-profile.json": "0291ba25ca57c476342375c642b859468789e7a711c8dab2ddc5fdc231a828cc",
+          "scripts/m3_benchmark.py": "c105b94bfecdcb1e8376f10b067f404b5a641c8915a4081b7e3bf490946a4c2a",
+          "scripts/mandelbrot_reference.py": "a00aee6febf2f3fa717168ef702fda656a53dfcfc5d271fea76fea5c26b2812f",
+          "src/bin/cosbench.rs": "98184ae79891d27f6d13181a2d3c204d79f8799cb9218010a3d0d897311f9dbd",
+          "tests/native/mandelbrot_1mhz.asm": "db97bb32af94906134b4c327cb83458d92f3fe6372712df6336ec5c07205b4d8"
+        },
+        "bounds_sha256": "8b5989cc3086ad77672b1b803535de805c8997f5b409de9f51c4fb3a781bd2f9",
+        "build_tag": 3126200058,
+        "image_sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+        "input_sha256": {
+          "config": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+          "emulator": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+          "flash": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be",
+          "kickass": "9592a39336e73a1db8b4a7749256d62d29b113b1c7f0f6c86ea43870ebd9ae1f",
+          "settings": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961"
+        },
+        "map_sha256": "906b27abc0cbbf68f18ba28657bf3bd4bab62c4ff4f957af2156486239257436",
+        "native_source_sha256": {
+          "build_profile.inc": "b237847dd566e2c4bdad78b6b8c03a73529bc5be076fb83c72473b4b22412570",
+          "cache.asm": "291ff44a8011f0397115a7b1c7d7f5884b24763d93dfba503d4f38749157aa5b",
+          "hardware.inc": "9dfe1e1e864b1615f1cd61a1f3bf77949c48ad436ccce6787f449ead492061ac",
+          "jobs.asm": "4320a2a488e32c5b81c2e658856698f8e00652b1de002f9a7f2007d12c5dadaa",
+          "m2_abi.inc": "bed2621718697a09099310b7fd432e0711943966f8cc18b8f8435c92d6be0ff5",
+          "m3_boot.asm": "d90497a54c56f120ac6ea78d2b591b9b1a20efd3358faf6e96398216d47d3c3a",
+          "m3_kernel.asm": "28fef4d106d5a9359e1b82ad3cce486919e19d794b5d3942f5319cb985aae76b",
+          "margins.asm": "b564aa9241381685be41866a3e4d00aaae2680e7af923e853c90a3fa0cb4485f",
+          "probe.asm": "e9d8c0cf310ecc44b702b2943978c959a67d15268edde728161363dda02967fe",
+          "renderer.asm": "c6e5265423603fd8a9a68c50c34fa0c0c40fc85a80b085fa597468534712a759",
+          "scheduler.asm": "d13b7b63b437c218167111065c7c2c86634d6b01d9d3649c5ca857acd58358cc",
+          "scheduler.inc": "926c09b70cdebda487f5d311e24e33cfa113736f01d7ebb54ed200736c703e19",
+          "vm.asm": "ae044bac9bf54ea4a7c42818b9db68d5f84ffe4528701063af2b47bbc226a723"
+        },
+        "reference_source_sha256": "a00aee6febf2f3fa717168ef702fda656a53dfcfc5d271fea76fea5c26b2812f"
+      },
+      "native_cos_ratio": 0.403805,
+      "native_phi2": 2682768,
+      "notes": [
+        "The source snapshot status records preparation before target measurement; the accepted completed measurement is the separate benchmark receipt copied here. The original snapshot is preserved verbatim."
+      ],
+      "phi2_estimate": 6643728,
+      "receipt": {
+        "bytes": 22173,
+        "evidence_path": "docs/m3-perf-evidence/checkpoints/cache-wrap-64/result.json",
+        "original_path": "build/m3-perf/cache-wrap/benchmark-64/result.json",
+        "sha256": "a2f12cb0168ed9a87e469b5733ef48e31ae473e1ffd5f739cb46bede60190947"
+      },
+      "retired": 36358,
+      "supporting_evidence": [
+        {
+          "bytes": 27641,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/cache-wrap-64/map.json",
+          "original_path": "build/m3-perf/cache-wrap/64/map.json",
+          "sha256": "906b27abc0cbbf68f18ba28657bf3bd4bab62c4ff4f957af2156486239257436"
+        },
+        {
+          "bytes": 20848,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/cache-wrap-64/bounds.json",
+          "original_path": "build/m3-perf/cache-wrap/64/bounds.json",
+          "sha256": "8b5989cc3086ad77672b1b803535de805c8997f5b409de9f51c4fb3a781bd2f9"
+        },
+        {
+          "bytes": 9808,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/cache-wrap-64/m3.manifest.json",
+          "original_path": "build/m3-perf/cache-wrap/64/m3.manifest.json",
+          "sha256": "d2931c026bde379d64b588d038b1ed6fe62efab510cb8bb6816fe6da8b4f98c0"
+        },
+        {
+          "bytes": 5090,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/provenance/cache-wrap-source-snapshot.json",
+          "original_path": "build/m3-perf/cache-wrap/source-snapshot.json",
+          "sha256": "c56932edfb6a986e4434ad27c5879c85e7e036c5a1d0822693fb77106891cf39"
+        }
+      ],
+      "table_row": 7,
+      "verification": {
+        "all_64000_live_scanout_pixels_match": true,
+        "diagnostic_counters": {
+          "active_line_dma": 0,
+          "missed_synchronization": 0,
+          "nmi": 0,
+          "recovery": 0
+        },
+        "full_logical_output_reference_match": true,
+        "host_target_retirements_match": true,
+        "manifest_abi_verified": true,
+        "receipt_map_bounds_artifact_identities_match": true,
+        "table_frames_retired_phi2_ratio_match": true
+      }
+    },
+    {
+      "application_abi": 2,
+      "cache_line_bytes": 128,
+      "change": "Validated current-PC loop",
+      "frames": 172,
+      "id": "hot-pc-128",
+      "identities": {
+        "application_source_sha256": "4c074fd97fb1b7b3db4251ee45ad680b5f437245d98922c2bb730ac6b2cc766f",
+        "artifact_sha256": {
+          "m3.manifest.json": "504adf5d68770f11bd3cd82c41f71ee4c65f8b53476041bdd09a8f512eb7d7a3",
+          "m3.prg": "d8a725a234457265014215a89090a2f6b3e55f45018c8df664e260ad793b2194",
+          "m3.reu": "4e2b8b8ae62ad189d95e6510e59bc14291c649a17033026ecd7d7af041764886",
+          "native.bin": "2db6d35431c1731c39727c08d5a674836478f1fbda88dc1d8868eb282ca270fc",
+          "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+          "renderer.prg": "5858b9691af7965b54c4f0ca5e96a314c2105293c291f91c72dd8246ad02adb2"
+        },
+        "backend_sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+        "benchmark_source_sha256": {
+          "apps/mandelbrot-registers.casm": "4c074fd97fb1b7b3db4251ee45ad680b5f437245d98922c2bb730ac6b2cc766f",
+          "build/m3-perf/apps/registers/host-profile.json": "0291ba25ca57c476342375c642b859468789e7a711c8dab2ddc5fdc231a828cc",
+          "scripts/m3_benchmark.py": "c105b94bfecdcb1e8376f10b067f404b5a641c8915a4081b7e3bf490946a4c2a",
+          "scripts/mandelbrot_reference.py": "a00aee6febf2f3fa717168ef702fda656a53dfcfc5d271fea76fea5c26b2812f",
+          "src/bin/cosbench.rs": "98184ae79891d27f6d13181a2d3c204d79f8799cb9218010a3d0d897311f9dbd",
+          "tests/native/mandelbrot_1mhz.asm": "db97bb32af94906134b4c327cb83458d92f3fe6372712df6336ec5c07205b4d8"
+        },
+        "bounds_sha256": "ada0af1fae30d704e9329d2e7c4eb204e4f9efb714ec813aa155b5dd37eb158f",
+        "build_tag": 967818297,
+        "image_sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+        "input_sha256": {
+          "config": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+          "emulator": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+          "flash": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be",
+          "kickass": "9592a39336e73a1db8b4a7749256d62d29b113b1c7f0f6c86ea43870ebd9ae1f",
+          "settings": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961"
+        },
+        "map_sha256": "dec612849b12bc637e2cc594e5e3b230cfab3e183d0671e2b54ddccff43ddcc7",
+        "native_source_sha256": {
+          "build_profile.inc": "b237847dd566e2c4bdad78b6b8c03a73529bc5be076fb83c72473b4b22412570",
+          "cache.asm": "291ff44a8011f0397115a7b1c7d7f5884b24763d93dfba503d4f38749157aa5b",
+          "hardware.inc": "9dfe1e1e864b1615f1cd61a1f3bf77949c48ad436ccce6787f449ead492061ac",
+          "jobs.asm": "4320a2a488e32c5b81c2e658856698f8e00652b1de002f9a7f2007d12c5dadaa",
+          "m2_abi.inc": "bed2621718697a09099310b7fd432e0711943966f8cc18b8f8435c92d6be0ff5",
+          "m3_boot.asm": "d90497a54c56f120ac6ea78d2b591b9b1a20efd3358faf6e96398216d47d3c3a",
+          "m3_kernel.asm": "28fef4d106d5a9359e1b82ad3cce486919e19d794b5d3942f5319cb985aae76b",
+          "margins.asm": "b564aa9241381685be41866a3e4d00aaae2680e7af923e853c90a3fa0cb4485f",
+          "probe.asm": "e9d8c0cf310ecc44b702b2943978c959a67d15268edde728161363dda02967fe",
+          "renderer.asm": "c6e5265423603fd8a9a68c50c34fa0c0c40fc85a80b085fa597468534712a759",
+          "scheduler.asm": "d13b7b63b437c218167111065c7c2c86634d6b01d9d3649c5ca857acd58358cc",
+          "scheduler.inc": "926c09b70cdebda487f5d311e24e33cfa113736f01d7ebb54ed200736c703e19",
+          "vm.asm": "8b4c0aaa80fdccd349c3fce9dc53fb1be4ef4f8c71378c4bff17a2510cab2021"
+        },
+        "reference_source_sha256": "a00aee6febf2f3fa717168ef702fda656a53dfcfc5d271fea76fea5c26b2812f"
+      },
+      "native_cos_ratio": 0.793523,
+      "native_phi2": 2682768,
+      "notes": [],
+      "phi2_estimate": 3380832,
+      "receipt": {
+        "bytes": 27174,
+        "evidence_path": "docs/m3-perf-evidence/checkpoints/hot-pc-128/result.json",
+        "original_path": "build/m3-perf/hot-pc/benchmark-128-verified/result.json",
+        "sha256": "38fe6d511042e67c83c43adabbee1aeaf977ae511b38c908ed21c886a8b193fe"
+      },
+      "retired": 36358,
+      "supporting_evidence": [
+        {
+          "bytes": 27853,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/hot-pc-128/map.json",
+          "original_path": "build/m3-perf/hot-pc/128/map.json",
+          "sha256": "dec612849b12bc637e2cc594e5e3b230cfab3e183d0671e2b54ddccff43ddcc7"
+        },
+        {
+          "bytes": 21965,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/hot-pc-128/bounds.json",
+          "original_path": "build/m3-perf/hot-pc/128/bounds.json",
+          "sha256": "ada0af1fae30d704e9329d2e7c4eb204e4f9efb714ec813aa155b5dd37eb158f"
+        },
+        {
+          "bytes": 9807,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/hot-pc-128/m3.manifest.json",
+          "original_path": "build/m3-perf/hot-pc/128/m3.manifest.json",
+          "sha256": "504adf5d68770f11bd3cd82c41f71ee4c65f8b53476041bdd09a8f512eb7d7a3"
+        },
+        {
+          "bytes": 4486,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/provenance/hot-pc-source-snapshot.json",
+          "original_path": "build/m3-perf/hot-pc/source-snapshot.json",
+          "sha256": "5c3e96b6995b3b63af2a0865103fbf95e1e4c45b921d99869ed7fff1ee6d2677"
+        },
+        {
+          "bytes": 4551,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/provenance/hot-pc-qualification-source-snapshot.json",
+          "original_path": "build/m3-perf/hot-pc/qualification-source-snapshot.json",
+          "sha256": "aaf5b2dc664146e31fadc16919e4e569a422ba49777bcf006e03e0c51cfdfd9d"
+        }
+      ],
+      "table_row": 8,
+      "verification": {
+        "all_64000_live_scanout_pixels_match": true,
+        "diagnostic_counters": {
+          "active_line_dma": 0,
+          "missed_synchronization": 0,
+          "nmi": 0,
+          "recovery": 0
+        },
+        "full_logical_output_reference_match": true,
+        "host_target_retirements_match": true,
+        "manifest_abi_verified": true,
+        "receipt_map_bounds_artifact_identities_match": true,
+        "table_frames_retired_phi2_ratio_match": true
+      }
+    },
+    {
+      "application_abi": 2,
+      "cache_line_bytes": 128,
+      "change": "Conditional nonaccess unpin (isolated)",
+      "frames": 156,
+      "id": "unpin-skip-128",
+      "identities": {
+        "application_source_sha256": "4c074fd97fb1b7b3db4251ee45ad680b5f437245d98922c2bb730ac6b2cc766f",
+        "artifact_sha256": {
+          "m3.manifest.json": "2b1bc83f1b09362eaad4ae55139c97c56bd295778bd117c011aeb0946df71c2a",
+          "m3.prg": "e7f650cff415a6fe87205e3c69ea5fc0b392aa70e94f168c8f211364fb4204cd",
+          "m3.reu": "823a06ad9196fec7657b7c7068a667cdfd9b1b190e318523b08503420f8510ad",
+          "native.bin": "79d66152026b2698002a690bfe0863588b3128d5b9542001ebc9c14599da1e3e",
+          "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+          "renderer.prg": "5858b9691af7965b54c4f0ca5e96a314c2105293c291f91c72dd8246ad02adb2"
+        },
+        "backend_sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+        "benchmark_source_sha256": {
+          "apps/mandelbrot-registers.casm": "4c074fd97fb1b7b3db4251ee45ad680b5f437245d98922c2bb730ac6b2cc766f",
+          "build/m3-perf/apps/registers/host-profile.json": "0291ba25ca57c476342375c642b859468789e7a711c8dab2ddc5fdc231a828cc",
+          "scripts/m3_benchmark.py": "c105b94bfecdcb1e8376f10b067f404b5a641c8915a4081b7e3bf490946a4c2a",
+          "scripts/mandelbrot_reference.py": "a00aee6febf2f3fa717168ef702fda656a53dfcfc5d271fea76fea5c26b2812f",
+          "src/bin/cosbench.rs": "98184ae79891d27f6d13181a2d3c204d79f8799cb9218010a3d0d897311f9dbd",
+          "tests/native/mandelbrot_1mhz.asm": "db97bb32af94906134b4c327cb83458d92f3fe6372712df6336ec5c07205b4d8"
+        },
+        "bounds_sha256": "fa744bdee5c4e13167d13c3ea5a112c399545a22c2c991be1b262d0f5cd72e90",
+        "build_tag": 2803996487,
+        "image_sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+        "input_sha256": {
+          "config": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+          "emulator": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+          "flash": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be",
+          "kickass": "9592a39336e73a1db8b4a7749256d62d29b113b1c7f0f6c86ea43870ebd9ae1f",
+          "settings": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961"
+        },
+        "map_sha256": "df50effa8ad823ff6d80468d192726ff00eca2f89bfe91e137c03f7a1e10815e",
+        "native_source_sha256": {
+          "build_profile.inc": "b237847dd566e2c4bdad78b6b8c03a73529bc5be076fb83c72473b4b22412570",
+          "cache.asm": "291ff44a8011f0397115a7b1c7d7f5884b24763d93dfba503d4f38749157aa5b",
+          "hardware.inc": "9dfe1e1e864b1615f1cd61a1f3bf77949c48ad436ccce6787f449ead492061ac",
+          "jobs.asm": "4320a2a488e32c5b81c2e658856698f8e00652b1de002f9a7f2007d12c5dadaa",
+          "m2_abi.inc": "bed2621718697a09099310b7fd432e0711943966f8cc18b8f8435c92d6be0ff5",
+          "m3_boot.asm": "d90497a54c56f120ac6ea78d2b591b9b1a20efd3358faf6e96398216d47d3c3a",
+          "m3_kernel.asm": "28fef4d106d5a9359e1b82ad3cce486919e19d794b5d3942f5319cb985aae76b",
+          "margins.asm": "b564aa9241381685be41866a3e4d00aaae2680e7af923e853c90a3fa0cb4485f",
+          "probe.asm": "e9d8c0cf310ecc44b702b2943978c959a67d15268edde728161363dda02967fe",
+          "renderer.asm": "c6e5265423603fd8a9a68c50c34fa0c0c40fc85a80b085fa597468534712a759",
+          "scheduler.asm": "d13b7b63b437c218167111065c7c2c86634d6b01d9d3649c5ca857acd58358cc",
+          "scheduler.inc": "926c09b70cdebda487f5d311e24e33cfa113736f01d7ebb54ed200736c703e19",
+          "vm.asm": "c6c34fd17c99d183f8bc436fa450ee7de611005f7e98f0693bfba1a11952406f"
+        },
+        "reference_source_sha256": "a00aee6febf2f3fa717168ef702fda656a53dfcfc5d271fea76fea5c26b2812f"
+      },
+      "native_cos_ratio": 0.87491,
+      "native_phi2": 2682768,
+      "notes": [],
+      "phi2_estimate": 3066336,
+      "receipt": {
+        "bytes": 27176,
+        "evidence_path": "docs/m3-perf-evidence/checkpoints/unpin-skip-128/result.json",
+        "original_path": "build/m3-perf/unpin-skip/benchmark-128/result.json",
+        "sha256": "8a2e64f344ac2e246ec758aab49d6e492fd536471ea8d7f3438218dfec332f26"
+      },
+      "retired": 36358,
+      "supporting_evidence": [
+        {
+          "bytes": 27884,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/unpin-skip-128/map.json",
+          "original_path": "build/m3-perf/unpin-skip/128/map.json",
+          "sha256": "df50effa8ad823ff6d80468d192726ff00eca2f89bfe91e137c03f7a1e10815e"
+        },
+        {
+          "bytes": 21676,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/unpin-skip-128/bounds.json",
+          "original_path": "build/m3-perf/unpin-skip/128/bounds.json",
+          "sha256": "fa744bdee5c4e13167d13c3ea5a112c399545a22c2c991be1b262d0f5cd72e90"
+        },
+        {
+          "bytes": 9808,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/unpin-skip-128/m3.manifest.json",
+          "original_path": "build/m3-perf/unpin-skip/128/m3.manifest.json",
+          "sha256": "2b1bc83f1b09362eaad4ae55139c97c56bd295778bd117c011aeb0946df71c2a"
+        },
+        {
+          "bytes": 5497,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/provenance/unpin-skip-source-snapshot.json",
+          "original_path": "build/m3-perf/unpin-skip/source-snapshot.json",
+          "sha256": "0999b77e7baebe640a63366b2f9e3df9911a85183aee6c95bc9959911215cd36"
+        }
+      ],
+      "table_row": 9,
+      "verification": {
+        "all_64000_live_scanout_pixels_match": true,
+        "diagnostic_counters": {
+          "active_line_dma": 0,
+          "missed_synchronization": 0,
+          "nmi": 0,
+          "recovery": 0
+        },
+        "full_logical_output_reference_match": true,
+        "host_target_retirements_match": true,
+        "manifest_abi_verified": true,
+        "receipt_map_bounds_artifact_identities_match": true,
+        "table_frames_retired_phi2_ratio_match": true
+      }
+    },
+    {
+      "application_abi": 2,
+      "cache_line_bytes": 128,
+      "change": "Empty native-job metadata scan (isolated)",
+      "frames": 150,
+      "id": "idle-scan-128",
+      "identities": {
+        "application_source_sha256": "4c074fd97fb1b7b3db4251ee45ad680b5f437245d98922c2bb730ac6b2cc766f",
+        "artifact_sha256": {
+          "m3.manifest.json": "2e3f812907229b2b77a42de83abb2001dff3be552cc3dc679c8fd22e8475ef39",
+          "m3.prg": "06098ac9a72a9627d73379a66c5f94d2cb01a461ae12d829fd0e2daaae643e29",
+          "m3.reu": "53549ec213fc4e57e780db60352cef8a4436dbe8cc36a82e5c3862a040e9fc30",
+          "native.bin": "a6a5004d2dd7c2ebd75c7e99beed74bfd566c31dff361673773c4facaa539411",
+          "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+          "renderer.prg": "5858b9691af7965b54c4f0ca5e96a314c2105293c291f91c72dd8246ad02adb2"
+        },
+        "backend_sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+        "benchmark_source_sha256": {
+          "apps/mandelbrot-registers.casm": "4c074fd97fb1b7b3db4251ee45ad680b5f437245d98922c2bb730ac6b2cc766f",
+          "build/m3-perf/apps/registers/host-profile.json": "0291ba25ca57c476342375c642b859468789e7a711c8dab2ddc5fdc231a828cc",
+          "scripts/m3_benchmark.py": "c105b94bfecdcb1e8376f10b067f404b5a641c8915a4081b7e3bf490946a4c2a",
+          "scripts/mandelbrot_reference.py": "a00aee6febf2f3fa717168ef702fda656a53dfcfc5d271fea76fea5c26b2812f",
+          "src/bin/cosbench.rs": "98184ae79891d27f6d13181a2d3c204d79f8799cb9218010a3d0d897311f9dbd",
+          "tests/native/mandelbrot_1mhz.asm": "db97bb32af94906134b4c327cb83458d92f3fe6372712df6336ec5c07205b4d8"
+        },
+        "bounds_sha256": "7065ccc421001a867aeca7189170ff86a82c5e8b0353499bfa3f74f4c64c2981",
+        "build_tag": 1471177999,
+        "image_sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+        "input_sha256": {
+          "config": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+          "emulator": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+          "flash": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be",
+          "kickass": "9592a39336e73a1db8b4a7749256d62d29b113b1c7f0f6c86ea43870ebd9ae1f",
+          "settings": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961"
+        },
+        "map_sha256": "810916ac1dc49a44005903a45f6d415ef2a1d486992f531f7e5efc47f29d6524",
+        "native_source_sha256": {
+          "build_profile.inc": "b237847dd566e2c4bdad78b6b8c03a73529bc5be076fb83c72473b4b22412570",
+          "cache.asm": "291ff44a8011f0397115a7b1c7d7f5884b24763d93dfba503d4f38749157aa5b",
+          "hardware.inc": "9dfe1e1e864b1615f1cd61a1f3bf77949c48ad436ccce6787f449ead492061ac",
+          "jobs.asm": "4320a2a488e32c5b81c2e658856698f8e00652b1de002f9a7f2007d12c5dadaa",
+          "m2_abi.inc": "bed2621718697a09099310b7fd432e0711943966f8cc18b8f8435c92d6be0ff5",
+          "m3_boot.asm": "d90497a54c56f120ac6ea78d2b591b9b1a20efd3358faf6e96398216d47d3c3a",
+          "m3_kernel.asm": "28fef4d106d5a9359e1b82ad3cce486919e19d794b5d3942f5319cb985aae76b",
+          "margins.asm": "b564aa9241381685be41866a3e4d00aaae2680e7af923e853c90a3fa0cb4485f",
+          "probe.asm": "e9d8c0cf310ecc44b702b2943978c959a67d15268edde728161363dda02967fe",
+          "renderer.asm": "c6e5265423603fd8a9a68c50c34fa0c0c40fc85a80b085fa597468534712a759",
+          "scheduler.asm": "5023c355061d295a514c4c534779ad645466cb15e1317a526b6ca10cacd8de06",
+          "scheduler.inc": "926c09b70cdebda487f5d311e24e33cfa113736f01d7ebb54ed200736c703e19",
+          "vm.asm": "8b4c0aaa80fdccd349c3fce9dc53fb1be4ef4f8c71378c4bff17a2510cab2021"
+        },
+        "reference_source_sha256": "a00aee6febf2f3fa717168ef702fda656a53dfcfc5d271fea76fea5c26b2812f"
+      },
+      "native_cos_ratio": 0.909906,
+      "native_phi2": 2682768,
+      "notes": [],
+      "phi2_estimate": 2948400,
+      "receipt": {
+        "bytes": 27215,
+        "evidence_path": "docs/m3-perf-evidence/checkpoints/idle-scan-128/result.json",
+        "original_path": "build/m3-perf/idle-scan/benchmark-128/result.json",
+        "sha256": "36b025c84c8f425234866e3c9ef17e3846fefb75150eeb2f5c821d5de7c284e8"
+      },
+      "retired": 36358,
+      "supporting_evidence": [
+        {
+          "bytes": 27895,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/idle-scan-128/map.json",
+          "original_path": "build/m3-perf/idle-scan/128/map.json",
+          "sha256": "810916ac1dc49a44005903a45f6d415ef2a1d486992f531f7e5efc47f29d6524"
+        },
+        {
+          "bytes": 21675,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/idle-scan-128/bounds.json",
+          "original_path": "build/m3-perf/idle-scan/128/bounds.json",
+          "sha256": "7065ccc421001a867aeca7189170ff86a82c5e8b0353499bfa3f74f4c64c2981"
+        },
+        {
+          "bytes": 9808,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/idle-scan-128/m3.manifest.json",
+          "original_path": "build/m3-perf/idle-scan/128/m3.manifest.json",
+          "sha256": "2e3f812907229b2b77a42de83abb2001dff3be552cc3dc679c8fd22e8475ef39"
+        },
+        {
+          "bytes": 5613,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/provenance/idle-scan-source-snapshot.json",
+          "original_path": "build/m3-perf/idle-scan/source-snapshot.json",
+          "sha256": "3ddfd10ab5d69d82a2bdf41623f0f230a60bd528cb3d1c5e400253751a21b5a1"
+        }
+      ],
+      "table_row": 10,
+      "verification": {
+        "all_64000_live_scanout_pixels_match": true,
+        "diagnostic_counters": {
+          "active_line_dma": 0,
+          "missed_synchronization": 0,
+          "nmi": 0,
+          "recovery": 0
+        },
+        "full_logical_output_reference_match": true,
+        "host_target_retirements_match": true,
+        "manifest_abi_verified": true,
+        "receipt_map_bounds_artifact_identities_match": true,
+        "table_frames_retired_phi2_ratio_match": true
+      }
+    },
+    {
+      "application_abi": 2,
+      "cache_line_bytes": 128,
+      "change": "Separate scheduler/VM admission (isolated)",
+      "frames": 142,
+      "id": "split-admission-128",
+      "identities": {
+        "application_source_sha256": "4c074fd97fb1b7b3db4251ee45ad680b5f437245d98922c2bb730ac6b2cc766f",
+        "artifact_sha256": {
+          "m3.manifest.json": "cd790b9057e9eb6eb1ab3d4907851972ebd683117c74920c33d50560e51b3c38",
+          "m3.prg": "0bb1b277b564f6a0b36f298ea17382f476e5618ecaf1b49f067d89f5604e6821",
+          "m3.reu": "8ac665d422a5a6211516ee11cf234baa0c6f7496b5f0c71e23cf3a6a2f69aa39",
+          "native.bin": "6e65d88f46c4513535c309d16daac9c0d2e9aaeda0df9a30da647dcb1f736570",
+          "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+          "renderer.prg": "5858b9691af7965b54c4f0ca5e96a314c2105293c291f91c72dd8246ad02adb2"
+        },
+        "backend_sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+        "benchmark_source_sha256": {
+          "apps/mandelbrot-registers.casm": "4c074fd97fb1b7b3db4251ee45ad680b5f437245d98922c2bb730ac6b2cc766f",
+          "build/m3-perf/apps/registers/host-profile.json": "0291ba25ca57c476342375c642b859468789e7a711c8dab2ddc5fdc231a828cc",
+          "scripts/m3_benchmark.py": "c105b94bfecdcb1e8376f10b067f404b5a641c8915a4081b7e3bf490946a4c2a",
+          "scripts/mandelbrot_reference.py": "a00aee6febf2f3fa717168ef702fda656a53dfcfc5d271fea76fea5c26b2812f",
+          "src/bin/cosbench.rs": "98184ae79891d27f6d13181a2d3c204d79f8799cb9218010a3d0d897311f9dbd",
+          "tests/native/mandelbrot_1mhz.asm": "db97bb32af94906134b4c327cb83458d92f3fe6372712df6336ec5c07205b4d8"
+        },
+        "bounds_sha256": "cca921dd8a8fda16b75c0592233487eb914c61c57224e8c8243d11a147f8ebad",
+        "build_tag": 2073734837,
+        "image_sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+        "input_sha256": {
+          "config": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+          "emulator": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+          "flash": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be",
+          "kickass": "9592a39336e73a1db8b4a7749256d62d29b113b1c7f0f6c86ea43870ebd9ae1f",
+          "settings": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961"
+        },
+        "map_sha256": "ea320ff8e2afc1d015146fda97f4cae21d30cfe72a3c2eb6c41da65ef9077907",
+        "native_source_sha256": {
+          "build_profile.inc": "b237847dd566e2c4bdad78b6b8c03a73529bc5be076fb83c72473b4b22412570",
+          "cache.asm": "291ff44a8011f0397115a7b1c7d7f5884b24763d93dfba503d4f38749157aa5b",
+          "hardware.inc": "9dfe1e1e864b1615f1cd61a1f3bf77949c48ad436ccce6787f449ead492061ac",
+          "jobs.asm": "4320a2a488e32c5b81c2e658856698f8e00652b1de002f9a7f2007d12c5dadaa",
+          "m2_abi.inc": "bed2621718697a09099310b7fd432e0711943966f8cc18b8f8435c92d6be0ff5",
+          "m3_boot.asm": "d90497a54c56f120ac6ea78d2b591b9b1a20efd3358faf6e96398216d47d3c3a",
+          "m3_kernel.asm": "2d962b6d631ed349d21f5819aaa62d2d6baa9d3fd61a03bf7ec6a919ee57874a",
+          "margins.asm": "b564aa9241381685be41866a3e4d00aaae2680e7af923e853c90a3fa0cb4485f",
+          "probe.asm": "e9d8c0cf310ecc44b702b2943978c959a67d15268edde728161363dda02967fe",
+          "renderer.asm": "c6e5265423603fd8a9a68c50c34fa0c0c40fc85a80b085fa597468534712a759",
+          "scheduler.asm": "df527a1723b2d0b1ace79ec3640e3ffb660191e337d847b841f17edbb840fdf7",
+          "scheduler.inc": "926c09b70cdebda487f5d311e24e33cfa113736f01d7ebb54ed200736c703e19",
+          "vm.asm": "8b4c0aaa80fdccd349c3fce9dc53fb1be4ef4f8c71378c4bff17a2510cab2021"
+        },
+        "reference_source_sha256": "a00aee6febf2f3fa717168ef702fda656a53dfcfc5d271fea76fea5c26b2812f"
+      },
+      "native_cos_ratio": 0.961169,
+      "native_phi2": 2682768,
+      "notes": [],
+      "phi2_estimate": 2791152,
+      "receipt": {
+        "bytes": 27175,
+        "evidence_path": "docs/m3-perf-evidence/checkpoints/split-admission-128/result.json",
+        "original_path": "build/m3-perf/split-admission/benchmark-128/result.json",
+        "sha256": "09d9f4ff9ccfb75184aa6665e0d8a18fd1dab9d6941fd69743802642730f0d95"
+      },
+      "retired": 36358,
+      "supporting_evidence": [
+        {
+          "bytes": 28098,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/split-admission-128/map.json",
+          "original_path": "build/m3-perf/split-admission/128/map.json",
+          "sha256": "ea320ff8e2afc1d015146fda97f4cae21d30cfe72a3c2eb6c41da65ef9077907"
+        },
+        {
+          "bytes": 25251,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/split-admission-128/bounds.json",
+          "original_path": "build/m3-perf/split-admission/128/bounds.json",
+          "sha256": "cca921dd8a8fda16b75c0592233487eb914c61c57224e8c8243d11a147f8ebad"
+        },
+        {
+          "bytes": 9808,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/split-admission-128/m3.manifest.json",
+          "original_path": "build/m3-perf/split-admission/128/m3.manifest.json",
+          "sha256": "cd790b9057e9eb6eb1ab3d4907851972ebd683117c74920c33d50560e51b3c38"
+        },
+        {
+          "bytes": 4472,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/provenance/split-admission-source-snapshot.json",
+          "original_path": "build/m3-perf/split-admission/source-snapshot.json",
+          "sha256": "8130083ee69d9c89a6e4d9600c6428dc06f98ea41ac6848697b814237e3ae008"
+        },
+        {
+          "bytes": 4540,
+          "evidence_path": "docs/m3-perf-evidence/checkpoints/provenance/split-admission-qualification-source-snapshot.json",
+          "original_path": "build/m3-perf/split-admission/qualification-source-snapshot.json",
+          "sha256": "ee0eaeab81c1f12d25daa2eaa1b36f65b260b0fdb104bbacd0eabb800983b006"
+        }
+      ],
+      "table_row": 11,
+      "verification": {
+        "all_64000_live_scanout_pixels_match": true,
+        "diagnostic_counters": {
+          "active_line_dma": 0,
+          "missed_synchronization": 0,
+          "nmi": 0,
+          "recovery": 0
+        },
+        "full_logical_output_reference_match": true,
+        "host_target_retirements_match": true,
+        "manifest_abi_verified": true,
+        "receipt_map_bounds_artifact_identities_match": true,
+        "table_frames_retired_phi2_ratio_match": true
+      }
+    },
+    {
+      "application_abi": 2,
+      "cache_line_bytes": 128,
+      "change": "Combined runtime, cy held in P3",
+      "frames": 95,
+      "id": "final-128",
+      "identities": {
+        "application_source_sha256": "3b7a8a4aaf24fbb492fe0c3c66727f81d54ca1715018fff9990502701ff5290a",
+        "artifact_sha256": {
+          "m3.manifest.json": "2fab8aa53c16455f19df74541cea04b1d52e366d07542f88a5570fcefc2e858f",
+          "m3.prg": "4c242c8f13773de17901c5c350faeb2bb3a6f137f69987de2f1723bce7f4db10",
+          "m3.reu": "49c6280a4dcd2724af93eb57fc7c8da6320b9904d1e3176d0881636338c664c1",
+          "native.bin": "50cae5a9d3d495d056c064cbee9fdae9780c611660dbb942a39c96ecbf075171",
+          "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+          "renderer.prg": "5858b9691af7965b54c4f0ca5e96a314c2105293c291f91c72dd8246ad02adb2"
+        },
+        "backend_sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+        "benchmark_source_sha256": {
+          "apps/mandelbrot.casm": "3b7a8a4aaf24fbb492fe0c3c66727f81d54ca1715018fff9990502701ff5290a",
+          "build/m3-perf/pointer-cy/source/build/m3-perf/apps/pointer-cy/host-profile.json": "3f3f95b8cb13383f6df3d0fe9ab731f816c859e44b892ce342e4af1340088692",
+          "scripts/m3_benchmark.py": "0fb094223f04559760bff0cb348db8ddfce351b11cdb67af0f2fadc6e6d5536f",
+          "scripts/mandelbrot_reference.py": "bf6625529b191dc66f79bbe94ad1a654f1436da4cc0edf61474444ebb41970fc",
+          "src/bin/cosbench.rs": "98184ae79891d27f6d13181a2d3c204d79f8799cb9218010a3d0d897311f9dbd",
+          "tests/native/mandelbrot_1mhz.asm": "db97bb32af94906134b4c327cb83458d92f3fe6372712df6336ec5c07205b4d8"
+        },
+        "bounds_sha256": "d45564d9454fa079cb51eb60999113169aef06bf5cd56565ab4a1c54c3046ab3",
+        "build_tag": 3321962373,
+        "image_sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+        "input_sha256": {
+          "config": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+          "emulator": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+          "flash": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be",
+          "kickass": "9592a39336e73a1db8b4a7749256d62d29b113b1c7f0f6c86ea43870ebd9ae1f",
+          "settings": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961"
+        },
+        "map_sha256": "6aec6f96fe90032b6fe4ed7d959d28e23c41173b5d8384c72797abf7f888f572",
+        "native_source_sha256": {
+          "build_profile.inc": "b237847dd566e2c4bdad78b6b8c03a73529bc5be076fb83c72473b4b22412570",
+          "cache.asm": "291ff44a8011f0397115a7b1c7d7f5884b24763d93dfba503d4f38749157aa5b",
+          "hardware.inc": "9dfe1e1e864b1615f1cd61a1f3bf77949c48ad436ccce6787f449ead492061ac",
+          "jobs.asm": "4320a2a488e32c5b81c2e658856698f8e00652b1de002f9a7f2007d12c5dadaa",
+          "m2_abi.inc": "bed2621718697a09099310b7fd432e0711943966f8cc18b8f8435c92d6be0ff5",
+          "m3_boot.asm": "d90497a54c56f120ac6ea78d2b591b9b1a20efd3358faf6e96398216d47d3c3a",
+          "m3_kernel.asm": "7ecd670e4314eb07e3692881d68761d0d913bde18eb950a4d9ed225bfe0b6b45",
+          "margins.asm": "b564aa9241381685be41866a3e4d00aaae2680e7af923e853c90a3fa0cb4485f",
+          "probe.asm": "e9d8c0cf310ecc44b702b2943978c959a67d15268edde728161363dda02967fe",
+          "renderer.asm": "c6e5265423603fd8a9a68c50c34fa0c0c40fc85a80b085fa597468534712a759",
+          "scheduler.asm": "6cd7078680132fa44ebbddb7b365bb6f277038030e1988f0b290dbdd695c3fe9",
+          "scheduler.inc": "926c09b70cdebda487f5d311e24e33cfa113736f01d7ebb54ed200736c703e19",
+          "vm.asm": "c6c34fd17c99d183f8bc436fa450ee7de611005f7e98f0693bfba1a11952406f"
+        },
+        "reference_source_sha256": "bf6625529b191dc66f79bbe94ad1a654f1436da4cc0edf61474444ebb41970fc"
+      },
+      "native_cos_ratio": 1.436694,
+      "native_phi2": 2682768,
+      "notes": [],
+      "phi2_estimate": 1867320,
+      "receipt": {
+        "already_archived": true,
+        "bytes": 27344,
+        "evidence_path": "docs/m3-perf-evidence/benchmarks/benchmark-primary-128/result.json",
+        "original_path": "build/m3-perf/final-candidate/benchmark-primary-128/result.json",
+        "sha256": "26180bcf99d0d8accb9a7a75a6748926a3e8778d6528dfd37862fe40e15f6fa9"
+      },
+      "retired": 36357,
+      "supporting_evidence": [
+        {
+          "already_archived": true,
+          "bytes": 28170,
+          "evidence_path": "docs/m3-perf-evidence/artifacts/128/map.json",
+          "original_path": "build/m3-perf/final-candidate/128/map.json",
+          "sha256": "6aec6f96fe90032b6fe4ed7d959d28e23c41173b5d8384c72797abf7f888f572"
+        },
+        {
+          "already_archived": true,
+          "bytes": 25777,
+          "evidence_path": "docs/m3-perf-evidence/artifacts/128/bounds.json",
+          "original_path": "build/m3-perf/final-candidate/128/bounds.json",
+          "sha256": "d45564d9454fa079cb51eb60999113169aef06bf5cd56565ab4a1c54c3046ab3"
+        },
+        {
+          "already_archived": true,
+          "bytes": 9086,
+          "evidence_path": "docs/m3-perf-evidence/artifacts/128/m3.manifest.json",
+          "original_path": "build/m3-perf/final-candidate/128/m3.manifest.json",
+          "sha256": "2fab8aa53c16455f19df74541cea04b1d52e366d07542f88a5570fcefc2e858f"
+        }
+      ],
+      "table_row": 12,
+      "verification": {
+        "all_64000_live_scanout_pixels_match": true,
+        "diagnostic_counters": {
+          "active_line_dma": 0,
+          "missed_synchronization": 0,
+          "nmi": 0,
+          "recovery": 0
+        },
+        "full_logical_output_reference_match": true,
+        "host_target_retirements_match": true,
+        "manifest_abi_verified": true,
+        "receipt_map_bounds_artifact_identities_match": true,
+        "table_frames_retired_phi2_ratio_match": true
+      }
+    },
+    {
+      "application_abi": 2,
+      "cache_line_bytes": 64,
+      "change": "Same combined runtime/application",
+      "frames": 257,
+      "id": "final-64",
+      "identities": {
+        "application_source_sha256": "3b7a8a4aaf24fbb492fe0c3c66727f81d54ca1715018fff9990502701ff5290a",
+        "artifact_sha256": {
+          "m3.manifest.json": "27472719b142d4b97df12ea296a44b2e9f29567bd52a6b6e88e39bd36d29457c",
+          "m3.prg": "a2bac78aca780f1b425e60a8e2ea3d878c1df479b347b76dc8db2ffce6ce59ee",
+          "m3.reu": "2a43f57633e9ae66ea9fc9614942d1065c96475146379cbc0505d77f2e0a12e1",
+          "native.bin": "6e24d4672a168f983060343ab1a2a8f28d660dca26ef1a57b7e6a288f316f0ea",
+          "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+          "renderer.prg": "5858b9691af7965b54c4f0ca5e96a314c2105293c291f91c72dd8246ad02adb2"
+        },
+        "backend_sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+        "benchmark_source_sha256": {
+          "apps/mandelbrot.casm": "3b7a8a4aaf24fbb492fe0c3c66727f81d54ca1715018fff9990502701ff5290a",
+          "build/m3-perf/pointer-cy/source/build/m3-perf/apps/pointer-cy/host-profile.json": "3f3f95b8cb13383f6df3d0fe9ab731f816c859e44b892ce342e4af1340088692",
+          "scripts/m3_benchmark.py": "0fb094223f04559760bff0cb348db8ddfce351b11cdb67af0f2fadc6e6d5536f",
+          "scripts/mandelbrot_reference.py": "bf6625529b191dc66f79bbe94ad1a654f1436da4cc0edf61474444ebb41970fc",
+          "src/bin/cosbench.rs": "98184ae79891d27f6d13181a2d3c204d79f8799cb9218010a3d0d897311f9dbd",
+          "tests/native/mandelbrot_1mhz.asm": "db97bb32af94906134b4c327cb83458d92f3fe6372712df6336ec5c07205b4d8"
+        },
+        "bounds_sha256": "b8dd76d9888688536e48fdc9ab6db44370a27ce50cb5b5a81145855e6f37f143",
+        "build_tag": 1139196794,
+        "image_sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+        "input_sha256": {
+          "config": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+          "emulator": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+          "flash": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be",
+          "kickass": "9592a39336e73a1db8b4a7749256d62d29b113b1c7f0f6c86ea43870ebd9ae1f",
+          "settings": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961"
+        },
+        "map_sha256": "b676216bbe81d4b4bc6e8cbc8f36f32a1113a03575a51cd2b44c4beb33ddc60b",
+        "native_source_sha256": {
+          "build_profile.inc": "b237847dd566e2c4bdad78b6b8c03a73529bc5be076fb83c72473b4b22412570",
+          "cache.asm": "291ff44a8011f0397115a7b1c7d7f5884b24763d93dfba503d4f38749157aa5b",
+          "hardware.inc": "9dfe1e1e864b1615f1cd61a1f3bf77949c48ad436ccce6787f449ead492061ac",
+          "jobs.asm": "4320a2a488e32c5b81c2e658856698f8e00652b1de002f9a7f2007d12c5dadaa",
+          "m2_abi.inc": "bed2621718697a09099310b7fd432e0711943966f8cc18b8f8435c92d6be0ff5",
+          "m3_boot.asm": "d90497a54c56f120ac6ea78d2b591b9b1a20efd3358faf6e96398216d47d3c3a",
+          "m3_kernel.asm": "7ecd670e4314eb07e3692881d68761d0d913bde18eb950a4d9ed225bfe0b6b45",
+          "margins.asm": "b564aa9241381685be41866a3e4d00aaae2680e7af923e853c90a3fa0cb4485f",
+          "probe.asm": "e9d8c0cf310ecc44b702b2943978c959a67d15268edde728161363dda02967fe",
+          "renderer.asm": "c6e5265423603fd8a9a68c50c34fa0c0c40fc85a80b085fa597468534712a759",
+          "scheduler.asm": "6cd7078680132fa44ebbddb7b365bb6f277038030e1988f0b290dbdd695c3fe9",
+          "scheduler.inc": "926c09b70cdebda487f5d311e24e33cfa113736f01d7ebb54ed200736c703e19",
+          "vm.asm": "c6c34fd17c99d183f8bc436fa450ee7de611005f7e98f0693bfba1a11952406f"
+        },
+        "reference_source_sha256": "bf6625529b191dc66f79bbe94ad1a654f1436da4cc0edf61474444ebb41970fc"
+      },
+      "native_cos_ratio": 0.531074,
+      "native_phi2": 2682768,
+      "notes": [],
+      "phi2_estimate": 5051592,
+      "receipt": {
+        "already_archived": true,
+        "bytes": 22341,
+        "evidence_path": "docs/m3-perf-evidence/benchmarks/benchmark-primary-64/result.json",
+        "original_path": "build/m3-perf/final-candidate/benchmark-primary-64/result.json",
+        "sha256": "2f63aad6f6b8db135a18b29814ba9fb7a356a1d5ceb29fc572aa79b2d9dfbf36"
+      },
+      "retired": 36357,
+      "supporting_evidence": [
+        {
+          "already_archived": true,
+          "bytes": 28169,
+          "evidence_path": "docs/m3-perf-evidence/artifacts/64/map.json",
+          "original_path": "build/m3-perf/final-candidate/64/map.json",
+          "sha256": "b676216bbe81d4b4bc6e8cbc8f36f32a1113a03575a51cd2b44c4beb33ddc60b"
+        },
+        {
+          "already_archived": true,
+          "bytes": 25776,
+          "evidence_path": "docs/m3-perf-evidence/artifacts/64/bounds.json",
+          "original_path": "build/m3-perf/final-candidate/64/bounds.json",
+          "sha256": "b8dd76d9888688536e48fdc9ab6db44370a27ce50cb5b5a81145855e6f37f143"
+        },
+        {
+          "already_archived": true,
+          "bytes": 9086,
+          "evidence_path": "docs/m3-perf-evidence/artifacts/64/m3.manifest.json",
+          "original_path": "build/m3-perf/final-candidate/64/m3.manifest.json",
+          "sha256": "27472719b142d4b97df12ea296a44b2e9f29567bd52a6b6e88e39bd36d29457c"
+        }
+      ],
+      "table_row": 13,
+      "verification": {
+        "all_64000_live_scanout_pixels_match": true,
+        "diagnostic_counters": {
+          "active_line_dma": 0,
+          "missed_synchronization": 0,
+          "nmi": 0,
+          "recovery": 0
+        },
+        "full_logical_output_reference_match": true,
+        "host_target_retirements_match": true,
+        "manifest_abi_verified": true,
+        "receipt_map_bounds_artifact_identities_match": true,
+        "table_frames_retired_phi2_ratio_match": true
+      }
+    }
+  ],
+  "source_table": {
+    "path": "docs/m3-perf.md",
+    "rows": 13,
+    "section": "Measured development checkpoints so far",
+    "table_sha256": "5875249ca0ca7d2f74b71824d90432f964f2567498bab1a254132baf7e73ba2b"
+  }
+}

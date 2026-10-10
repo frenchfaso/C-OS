@@ -1,0 +1,89 @@
+{
+  "format": "COSCACHEPROOF1",
+  "cache_source_sha256": "e9ba035f3dd210b47dbf9f392de1425b2ececce4096356dda9c28d19c1488fa5",
+  "fixture_source_sha256": "09c4f1cf76a6aa92dff289477c1c8d5f010641992c6957df7ea113d21ded478b",
+  "checker_source_sha256": "8726533dcbefdeaa87511eefd140af74617a3537c1d5342c1995f5e7a26b40e0",
+  "successful_scenarios": 512,
+  "negative_control_failures": 96,
+  "negative_control_cache_sha256": "6e32186aa5c8410ff1b89ca5c40d8cd63d186e693a97d77dc6a40759dff9a7bb",
+  "records": [
+    {
+      "file": "cache-rollback-128-extended.json",
+      "status": "pass",
+      "scenarios": 128,
+      "rows_sha256": "135e26bc4418daf44e320417f818300d57669b42d19adecf157f7ed43750c4b6",
+      "physical_a_sha256": "b1088ccf8733ef5d8f3c59f19cc61a046233d7d59bdff0335c0601091f113e36",
+      "physical_b_sha256": "e755c415eba1d77c6a3b6de6b486ae16f1a2270d794fc12a1773e18e1ff94b94"
+    },
+    {
+      "file": "cache-rollback-128-normal.json",
+      "status": "pass",
+      "scenarios": 128,
+      "rows_sha256": "135e26bc4418daf44e320417f818300d57669b42d19adecf157f7ed43750c4b6",
+      "physical_a_sha256": "b1088ccf8733ef5d8f3c59f19cc61a046233d7d59bdff0335c0601091f113e36",
+      "physical_b_sha256": "e755c415eba1d77c6a3b6de6b486ae16f1a2270d794fc12a1773e18e1ff94b94"
+    },
+    {
+      "file": "cache-rollback-64-extended.json",
+      "status": "pass",
+      "scenarios": 128,
+      "rows_sha256": "0087117e48deb4431bf8b8bed4a310d15ecf53b0e26666e64d7befa312cdc729",
+      "physical_a_sha256": "a0853a6db541f204246ab47002491c8015a3098cd7918d0aa49ea8b88f0210e6",
+      "physical_b_sha256": "e755c415eba1d77c6a3b6de6b486ae16f1a2270d794fc12a1773e18e1ff94b94"
+    },
+    {
+      "file": "cache-rollback-64-normal.json",
+      "status": "pass",
+      "scenarios": 128,
+      "rows_sha256": "0087117e48deb4431bf8b8bed4a310d15ecf53b0e26666e64d7befa312cdc729",
+      "physical_a_sha256": "a0853a6db541f204246ab47002491c8015a3098cd7918d0aa49ea8b88f0210e6",
+      "physical_b_sha256": "e755c415eba1d77c6a3b6de6b486ae16f1a2270d794fc12a1773e18e1ff94b94"
+    }
+  ],
+  "profile_byte_identity": true,
+  "scope": "Native cache rollback and coherence regressions on the existing UE2 backend; no full M3 milestone or physical hardware qualification claim",
+  "current_oracle_revalidation": [
+    {
+      "cache_line": 128,
+      "profile": "extended",
+      "scenarios": 128,
+      "failures": 0,
+      "completed": true
+    },
+    {
+      "cache_line": 128,
+      "profile": "normal",
+      "scenarios": 128,
+      "failures": 0,
+      "completed": true
+    },
+    {
+      "cache_line": 64,
+      "profile": "extended",
+      "scenarios": 128,
+      "failures": 0,
+      "completed": true
+    },
+    {
+      "cache_line": 64,
+      "profile": "normal",
+      "scenarios": 128,
+      "failures": 0,
+      "completed": true
+    },
+    {
+      "cache_line": 128,
+      "profile": "baseline",
+      "scenarios": 128,
+      "failures": 96,
+      "completed": true
+    }
+  ],
+  "reproduction_command": "python3 tests/native/check_cache_rollback.py --emulator /path/to/ue2emu --config /path/to/c64u.toml --flash /path/to/flash.bin --settings /path/to/ultimate.cfg --kickassembler /path/to/KickAss.jar --java /path/to/java",
+  "negative_control_command_addition": "--cache-source /path/to/read-only-pre-fix/cache.asm --profiles extended --lines 128 --out build/cache-rollback/baseline",
+  "snapshot_observations_route": "Target RAM rows and physical REU FW-memory monitor reads in <=1024-byte chunks; current oracle revalidates retained byte snapshots",
+  "emulator_sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+  "kickassembler_sha256": "9592a39336e73a1db8b4a7749256d62d29b113b1c7f0f6c86ea43870ebd9ae1f",
+  "fixture_mode": "Autonomous cache fixture with finite permissive admission stubs; physical REU reads and actual DMA callbacks, independently from the full video integration runner",
+  "revalidation_completion_condition": "Fixture completion marker and zero scenario failures are both required for a pass; retained completed negative control has 96 expected failures"
+}

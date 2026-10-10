@@ -1,0 +1,41 @@
+{
+  "format": "COSM1VERIFICATION1",
+  "qualification": "Host semantic verification only; native VM and physical hardware timing are not implemented or qualified",
+  "verification_date": "2026-10-10",
+  "rustc": "rustc 1.93.0 (254b59607 2026-01-19)\nbinary: rustc\ncommit-hash: 254b59607d4417e9dffbc307138ae5c86280fe4c\ncommit-date: 2026-01-19\nhost: aarch64-apple-darwin\nrelease: 1.93.0\nLLVM version: 21.1.8",
+  "cargo": "cargo 1.93.0 (083ac5135 2025-12-15)",
+  "host": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "tests": {
+    "host_semantics": 26,
+    "harness": 8,
+    "toolchain": 15,
+    "native_artifacts": 5
+  },
+  "passed_commands": [
+    "cargo test --offline --locked --workspace",
+    "cargo clippy --offline --locked --workspace --all-targets -- -D warnings",
+    "cargo fmt --all -- --check",
+    "python3 scripts/check_m1.py --offline",
+    "python3 -m unittest discover -s tests/native -v"
+  ],
+  "standalone_source_copy": {
+    "tests_and_pipelines_passed": true,
+    "cargo_dependencies": "Cached dependencies selected by Cargo.lock",
+    "external_native_tool": "Pinned Kick Assembler 5.25; no neighboring project source required",
+    "byte_identical_artifact_sha256": {
+      "linear.cobj": "d7317b9ef36347865c346dc01dd9c0de8608630dc7420216e3847d1d6a97d740",
+      "calls.cobj": "cb75e19219531322e09707b48c9127cdc1e43a32b6a96c8fa1d4340858bae66b",
+      "spin.cobj": "c7db2504be170e9198cdb8a71541f570f2ea8906964d868b2afa29a55029870e",
+      "m1.reu": "b512d28c3099cf579eeddfe7f91495b75b59ab06d0177c93a193ee073439673b",
+      "m1.manifest.json": "4f5c7c92cc76f36d968f9f7deb5d87eefdca01d00f3bb2914a68315b10079119",
+      "m1.asm": "b2e4f193a70910c7c859df7957109bf578ad0f61f1a792c08db2f74f73bf8eab",
+      "m1.map.txt": "e6eaac6f25eca49846826f7e9eab7c904eaacb42ed36892b4a112d2e9adb9990",
+      "m0/probe.prg": "501dd0b29cb4d9dea7e913e6e9af0ed08f30ff907626d85fc919c827f1310a66",
+      "m0/renderer.prg": "e78c014bfc840438660982ca37321bebc83466ce957136e3fa48f10431d9ea1f",
+      "m0/diagnostic.reu": "2bd632105548563f54f97dfaa10235ef7cd6f17b69fed0850731268099ba4adc",
+      "m0/pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+      "m0/map.json": "39df52d293b56407c8cf500cce1e3c42bde08a15b4d740a1d8720e4772116e1d",
+      "m0/map.txt": "066a0c964c8e0395ff461bf0ee3138a64a83022d854bb8cb2c7b6bfe5de684b8"
+    }
+  }
+}

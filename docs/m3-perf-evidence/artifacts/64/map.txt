@@ -1,0 +1,33 @@
+C-OS M3 cumulative local RAM map; inclusive bounds
+first last reserved assembled runtime remaining name
+0000 0001        2         0       0         2 6510 ports
+0002 007f      126         0     126         0 active VM state and interpreter scratch
+0080 00bf       64         0      48        16 driver scratch
+00c0 00ff       64         0       2        62 raster scratch
+0100 01ff      256         0     256         0 hardware stack
+0200 02ff      256         0     256         0 nibble table
+0300 03ff      256         0     122       134 diagnostics/global state
+0400 05ff      512         0     512         0 four VM contexts
+0600 07ff      512         0       0       512 event rings (future)
+0800 0bff     1024         0     512       512 private code cache
+0c00 0fff     1024         0     512       512 shared data cache
+1000 11ff      512         0     176       336 DMA staging
+1200 3fff    11776      7525       0      4251 resident code
+4000 cfff    36864         0   36864         0 framebuffer part 1
+d000 dfff     4096         0       0      4096 I/O
+e000 efff     4096         0    4096         0 framebuffer part 2
+f000 f9ff     2560      2289       0       271 renderer
+fa00 fcff      768         0       0       768 font (future)
+fd00 fd7f      128         0       0       128 cursor (future)
+fd80 fdff      128         0     112        16 cache metadata
+fe00 fff9      506         0     224       282 scheduler globals and syscall completion
+fffa ffff        6         0       6         0 vectors
+Diagnostic harness: 0 assembled bytes.
+Runtime admission: PAL 260–311; latest-start guard 441 PHI2 ticks.
+Future numeric target: 4096 within existing resident budget; shortfall: 0.
+Hardware stack depth: measured in fresh backend results; M0 bound does not apply.
+Physical hardware timing qualification remains pending.
+Normal bootstrap: $0801-$0e97; final resident image begins $1200.
+Scheduler/jobs: 1287/1397 assembled bytes.
+Future numeric interval: $2f65-$3f64; headroom after target: 155 bytes.
+Future shell/input/graphics/UCI/SID/audio code remains unsized within the same fixed map; no claim that all remaining services fit.

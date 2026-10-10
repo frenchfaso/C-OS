@@ -1,0 +1,72 @@
+[
+  {
+    "case": "pal64-reu16",
+    "status": 1,
+    "reu_banks": 256,
+    "fast_cpu_loop_count": 704,
+    "restored": true
+  },
+  {
+    "case": "reu128",
+    "status": 227,
+    "reu_banks": 2,
+    "fast_cpu_loop_count": 704,
+    "restored": true
+  },
+  {
+    "case": "reu512",
+    "status": 227,
+    "reu_banks": 8,
+    "fast_cpu_loop_count": 704,
+    "restored": true
+  },
+  {
+    "case": "reu2m",
+    "status": 227,
+    "reu_banks": 32,
+    "fast_cpu_loop_count": 704,
+    "restored": true
+  },
+  {
+    "case": "reu8m",
+    "status": 227,
+    "reu_banks": 128,
+    "fast_cpu_loop_count": 704,
+    "restored": true
+  },
+  {
+    "case": "reu-absent",
+    "status": 227,
+    "reu_banks": 1,
+    "fast_cpu_loop_count": 704,
+    "restored": true
+  },
+  {
+    "case": "turbo32",
+    "status": 226,
+    "reu_banks": 0,
+    "fast_cpu_loop_count": 368,
+    "restored": true
+  },
+  {
+    "case": "turbo48",
+    "status": 226,
+    "reu_banks": 0,
+    "fast_cpu_loop_count": 528,
+    "restored": true
+  },
+  {
+    "case": "ntsc",
+    "status": 225,
+    "reu_banks": 0,
+    "fast_cpu_loop_count": 0,
+    "restored": true
+  },
+  {
+    "case": "bad-pack",
+    "status": 228,
+    "reu_banks": 256,
+    "fast_cpu_loop_count": 704,
+    "restored": true
+  }
+]

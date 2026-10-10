@@ -1,0 +1,1357 @@
+{
+  "format": "COSM3PROFILEEVIDENCE1",
+  "scope": "Accepted isolated profiling, timer qualification and their exact reused baselines only",
+  "all_copy_hashes_verified": true,
+  "files": [
+    {
+      "path": "profile-A/result.json",
+      "original_path": "build/m3-perf/profile-A/result.json",
+      "bytes": 21740,
+      "sha256": "c86a73eb5ff22d75bf4fa938946c9b493fc250aa1236d51d4d8beb6a80a064a0",
+      "group": "profile-A",
+      "purpose": "Accepted inclusive profiling receipt"
+    },
+    {
+      "path": "profile-A/128/result.json",
+      "original_path": "build/m3-perf/profile-A/128/result.json",
+      "bytes": 13705,
+      "sha256": "afd7e4d63d264c6630fcbb76d80e376de5e86f475576c274706f051c624ea102",
+      "group": "profile-A",
+      "purpose": "Per-profile elapsed and counters receipt"
+    },
+    {
+      "path": "profile-A/profiler-script.py",
+      "original_path": "build/m3-perf/profile-A/profiler-script.py",
+      "bytes": 25871,
+      "sha256": "e685e518361455bac2e93ead7bbd9d61655d415531c7d47b31b62c03e7c69530",
+      "group": "profile-A",
+      "purpose": "Exact executed profiler runner"
+    },
+    {
+      "path": "profile-A/runs/128/instrumented/result.json",
+      "original_path": "build/m3-perf/profile-A/runs/128/instrumented/result.json",
+      "bytes": 8557,
+      "sha256": "daa8dda780a47ba03f5cc4767f3046eaa0fcbe6d0f817e237413e8694e26d838",
+      "group": "profile-A",
+      "purpose": "Complete autonomous output and safety checks"
+    },
+    {
+      "path": "profile-A/runs/128/instrumented/sampling-counts.json",
+      "original_path": "build/m3-perf/profile-A/runs/128/instrumented/sampling-counts.json",
+      "bytes": 2499,
+      "sha256": "306c141fc237a360cc50b8c2ee9e3f06c0ec8a9968ba5b175848e50936c9c3f7",
+      "group": "profile-A",
+      "purpose": "Exact call population reconstruction and input binding"
+    },
+    {
+      "path": "profile-A/runs/128/instrumented/counters.bin",
+      "original_path": "build/m3-perf/profile-A/runs/128/instrumented/counters.bin",
+      "bytes": 576,
+      "sha256": "547ed8342cb19fb6e9c4c623ba949c82134427969a154378cdd379f6d5d5f341",
+      "group": "profile-A",
+      "purpose": "Raw 576-byte native profile counters"
+    },
+    {
+      "path": "profile-A/runs/128/instrumented/image.bin",
+      "original_path": "build/m3-perf/profile-A/runs/128/instrumented/image.bin",
+      "bytes": 192,
+      "sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+      "group": "profile-A",
+      "purpose": "Complete logical image before cleanup"
+    },
+    {
+      "path": "profile-A/runs/128/instrumented/scanout.png",
+      "original_path": "build/m3-perf/profile-A/runs/128/instrumented/scanout.png",
+      "bytes": 131185,
+      "sha256": "70cefe5734301e9fd1c7c80055b428be57bc32435beedc5119bb7aab70977dfb",
+      "group": "profile-A",
+      "purpose": "Live PAL verification image"
+    },
+    {
+      "path": "profile-A/runs/128/instrumented/scanout.png.geometry.json",
+      "original_path": "build/m3-perf/profile-A/runs/128/instrumented/scanout.png.geometry.json",
+      "bytes": 957,
+      "sha256": "b181d3f71671e454a0dde925fc13a58b623d74edd350a50cefd51696ff80c259",
+      "group": "profile-A",
+      "purpose": "All-pixel live scanout verification"
+    },
+    {
+      "path": "profile-A/instrumented/128/profile-bounds.json",
+      "original_path": "build/m3-perf/profile-A/instrumented/128/profile-bounds.json",
+      "bytes": 15404,
+      "sha256": "8970fc480a4e893f832e8b4ddedbbff02d3c18a83be8d1b6bd35fba674dd2687",
+      "group": "profile-A",
+      "purpose": "Generated conditional timer and admission qualification"
+    },
+    {
+      "path": "profile-A/instrumented/128/map.json",
+      "original_path": "build/m3-perf/profile-A/instrumented/128/map.json",
+      "bytes": 27219,
+      "sha256": "de178467d3918e3ca5504bd1cbd6d33118dd8674d052301523bb6a1a1c075ed4",
+      "group": "profile-A",
+      "purpose": "Executed artifact and RAM map"
+    },
+    {
+      "path": "profile-A/instrumented/128/m3.manifest.json",
+      "original_path": "build/m3-perf/profile-A/instrumented/128/m3.manifest.json",
+      "bytes": 17343,
+      "sha256": "18341dd4eed4983a9be57f81ae5c891f969d17e93565a3390e0f66db7f9e445e",
+      "group": "profile-A",
+      "purpose": "ABI-matched linked application map"
+    },
+    {
+      "path": "profile-A/instrumented/128/native.bin",
+      "original_path": "build/m3-perf/profile-A/instrumented/128/native.bin",
+      "bytes": 8785,
+      "sha256": "0a39f292e208bffb1ae42bbf6e61f2fb8f8db9689d93566c9818736264bf3864",
+      "group": "profile-A",
+      "purpose": "Small exact assembled diagnostic native image"
+    },
+    {
+      "path": "profile-A/instrumented/128/m3.prg",
+      "original_path": "build/m3-perf/profile-A/instrumented/128/m3.prg",
+      "bytes": 1689,
+      "sha256": "9fad19f9e46cee93c4a7375238e23e79b9a2841dfb63259776a2982c4639522f",
+      "group": "profile-A",
+      "purpose": "Small exact bootstrap"
+    },
+    {
+      "path": "profile-A/instrumented/128/renderer.prg",
+      "original_path": "build/m3-perf/profile-A/instrumented/128/renderer.prg",
+      "bytes": 2291,
+      "sha256": "5858b9691af7965b54c4f0ca5e96a314c2105293c291f91c72dd8246ad02adb2",
+      "group": "profile-A",
+      "purpose": "Small exact live scanout program"
+    },
+    {
+      "path": "profile-A/instrumented/source/native/profile.asm",
+      "original_path": "build/m3-perf/profile-A/instrumented/source/native/profile.asm",
+      "bytes": 11933,
+      "sha256": "4898cef3fcd47b29fc517e045d52b591439341cfef00cfc572bfdc24c8b577e8",
+      "group": "profile-A",
+      "purpose": "Exact generated probe assembly"
+    },
+    {
+      "path": "profile-A/instrumented/source/native/m3_kernel.asm",
+      "original_path": "build/m3-perf/profile-A/instrumented/source/native/m3_kernel.asm",
+      "bytes": 2933,
+      "sha256": "7ad4224211a3af93ad90ccbd7284c541a21019844dc2963f058dc8508a3f1746",
+      "group": "profile-A",
+      "purpose": "Generated bounded diagnostic admission source"
+    },
+    {
+      "path": "profile-A/instrumented/source/scripts/m2_bounds.py",
+      "original_path": "build/m3-perf/profile-A/instrumented/source/scripts/m2_bounds.py",
+      "bytes": 14141,
+      "sha256": "fa0b2afc47d16e355ccbdec8057787e572459d472504fc0a059f24d4bc0f1f59",
+      "group": "profile-A",
+      "purpose": "Exact generated qualification checker"
+    },
+    {
+      "path": "profile-A/instrumented/128/interval-qualification.json",
+      "original_path": "build/m3-perf/profile-A/instrumented/128/interval-qualification.json",
+      "bytes": 1181,
+      "sha256": "81a10a32dd85cd8dd51573349f51b223aea220b2c47ab3e31450d22f584e8e89",
+      "group": "profile-A",
+      "purpose": "Accepted interval/source provenance receipt"
+    },
+    {
+      "path": "profile-A/instrumented/source/manifests/m3.json",
+      "original_path": "build/m3-perf/profile-A/instrumented/source/manifests/m3.json",
+      "bytes": 355,
+      "sha256": "378680c54b2a223d803900e1156d63043c0d95176216da9dbd5cbd4772cc75eb",
+      "group": "profile-A",
+      "purpose": "Frozen workload/host-result provenance"
+    },
+    {
+      "path": "profile-A/instrumented/source/apps/mandelbrot.casm",
+      "original_path": "build/m3-perf/profile-A/instrumented/source/apps/mandelbrot.casm",
+      "bytes": 2697,
+      "sha256": "c4010519b54ad2323e05ba7b77d43c7071c7739559436fb00da3036cabdb5620",
+      "group": "profile-A",
+      "purpose": "Frozen workload/host-result provenance"
+    },
+    {
+      "path": "profile-A/instrumented/source/build/mandelbrot-host-profile.json",
+      "original_path": "build/m3-perf/profile-A/instrumented/source/build/mandelbrot-host-profile.json",
+      "bytes": 965,
+      "sha256": "2aef7521b23b25e3ed9ea05a9e840bc04d1d41a7483cb1ca1344feed4ff54aef",
+      "group": "profile-A",
+      "purpose": "Frozen workload/host-result provenance"
+    },
+    {
+      "path": "profile-A/instrumented/source/build/mandelbrot.cobj",
+      "original_path": "build/m3-perf/profile-A/instrumented/source/build/mandelbrot.cobj",
+      "bytes": 20114,
+      "sha256": "8aec33c47e6a8bff613203dcb7749ff1e6f2f6481476a870ee821d037082e7cf",
+      "group": "profile-A",
+      "purpose": "Frozen workload/host-result provenance"
+    },
+    {
+      "path": "profile-checks/result.json",
+      "original_path": "build/m3-perf/profile-checks/result.json",
+      "bytes": 21565,
+      "sha256": "62e4ba04b225decfd32edd4bc76f9cf0205bb4e8859290795882fe19b868bb97",
+      "group": "profile-checks",
+      "purpose": "Accepted inclusive profiling receipt"
+    },
+    {
+      "path": "profile-checks/128/result.json",
+      "original_path": "build/m3-perf/profile-checks/128/result.json",
+      "bytes": 13765,
+      "sha256": "7a8f91a8ab6f9be139d7ca321b251f0c23ba662ea56cedf1cea6f4c2b0a791e3",
+      "group": "profile-checks",
+      "purpose": "Per-profile elapsed and counters receipt"
+    },
+    {
+      "path": "profile-checks/profiler-script.py",
+      "original_path": "build/m3-perf/profile-checks/profiler-script.py",
+      "bytes": 31544,
+      "sha256": "89fca86cb97155f93399e06a5ca933d984de862ce22aa796caa9d959658393bb",
+      "group": "profile-checks",
+      "purpose": "Exact executed profiler runner"
+    },
+    {
+      "path": "profile-checks/runs/128/instrumented/result.json",
+      "original_path": "build/m3-perf/profile-checks/runs/128/instrumented/result.json",
+      "bytes": 8572,
+      "sha256": "df8308e88a3acdc1ce4a965444f1277acdca4ee802db07f98c68c933939c13f2",
+      "group": "profile-checks",
+      "purpose": "Complete autonomous output and safety checks"
+    },
+    {
+      "path": "profile-checks/runs/128/instrumented/sampling-counts.json",
+      "original_path": "build/m3-perf/profile-checks/runs/128/instrumented/sampling-counts.json",
+      "bytes": 2453,
+      "sha256": "2ec4da834bef91ca4e602a104765efae0e055d25d920213eb0215b8be131eac7",
+      "group": "profile-checks",
+      "purpose": "Exact call population reconstruction and input binding"
+    },
+    {
+      "path": "profile-checks/runs/128/instrumented/counters.bin",
+      "original_path": "build/m3-perf/profile-checks/runs/128/instrumented/counters.bin",
+      "bytes": 576,
+      "sha256": "97ae411e1115394886c0f96098c9e214f42e1ccbe5f9d650e66484ded5913244",
+      "group": "profile-checks",
+      "purpose": "Raw 576-byte native profile counters"
+    },
+    {
+      "path": "profile-checks/runs/128/instrumented/image.bin",
+      "original_path": "build/m3-perf/profile-checks/runs/128/instrumented/image.bin",
+      "bytes": 192,
+      "sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+      "group": "profile-checks",
+      "purpose": "Complete logical image before cleanup"
+    },
+    {
+      "path": "profile-checks/runs/128/instrumented/scanout.png",
+      "original_path": "build/m3-perf/profile-checks/runs/128/instrumented/scanout.png",
+      "bytes": 131185,
+      "sha256": "70cefe5734301e9fd1c7c80055b428be57bc32435beedc5119bb7aab70977dfb",
+      "group": "profile-checks",
+      "purpose": "Live PAL verification image"
+    },
+    {
+      "path": "profile-checks/runs/128/instrumented/scanout.png.geometry.json",
+      "original_path": "build/m3-perf/profile-checks/runs/128/instrumented/scanout.png.geometry.json",
+      "bytes": 957,
+      "sha256": "ce51c2b880c560b09ed08483f7e7fcbe27d2deed9c322e84c2f7c426442ce008",
+      "group": "profile-checks",
+      "purpose": "All-pixel live scanout verification"
+    },
+    {
+      "path": "profile-checks/instrumented/128/profile-bounds.json",
+      "original_path": "build/m3-perf/profile-checks/instrumented/128/profile-bounds.json",
+      "bytes": 15876,
+      "sha256": "4aa0bf6463539983c61edca0ceafadf832b5a1ec33ab369527e96f744ba9b4b3",
+      "group": "profile-checks",
+      "purpose": "Generated conditional timer and admission qualification"
+    },
+    {
+      "path": "profile-checks/instrumented/128/map.json",
+      "original_path": "build/m3-perf/profile-checks/instrumented/128/map.json",
+      "bytes": 27218,
+      "sha256": "361956af5baa08e9dd9061a8e7b09cab29c22c7a36f0eaabfc6ec54dbb3260c0",
+      "group": "profile-checks",
+      "purpose": "Executed artifact and RAM map"
+    },
+    {
+      "path": "profile-checks/instrumented/128/m3.manifest.json",
+      "original_path": "build/m3-perf/profile-checks/instrumented/128/m3.manifest.json",
+      "bytes": 17342,
+      "sha256": "9aec53cc493b3371ba6fa35b50c15bcf00b3acd0953ce5961f44d581ec5acd17",
+      "group": "profile-checks",
+      "purpose": "ABI-matched linked application map"
+    },
+    {
+      "path": "profile-checks/instrumented/128/native.bin",
+      "original_path": "build/m3-perf/profile-checks/instrumented/128/native.bin",
+      "bytes": 8785,
+      "sha256": "cdeeca86f3049e811f49dad7235fe463795d9b7c2b629926670dd77d51fdb880",
+      "group": "profile-checks",
+      "purpose": "Small exact assembled diagnostic native image"
+    },
+    {
+      "path": "profile-checks/instrumented/128/m3.prg",
+      "original_path": "build/m3-perf/profile-checks/instrumented/128/m3.prg",
+      "bytes": 1689,
+      "sha256": "08ba0ecc917a6e2bf184781a173b08c34e6cd3bbf929660656082efd8db891cc",
+      "group": "profile-checks",
+      "purpose": "Small exact bootstrap"
+    },
+    {
+      "path": "profile-checks/instrumented/128/renderer.prg",
+      "original_path": "build/m3-perf/profile-checks/instrumented/128/renderer.prg",
+      "bytes": 2291,
+      "sha256": "5858b9691af7965b54c4f0ca5e96a314c2105293c291f91c72dd8246ad02adb2",
+      "group": "profile-checks",
+      "purpose": "Small exact live scanout program"
+    },
+    {
+      "path": "profile-checks/instrumented/source/native/profile.asm",
+      "original_path": "build/m3-perf/profile-checks/instrumented/source/native/profile.asm",
+      "bytes": 11929,
+      "sha256": "aaae28744e8dd6180c2cd414f45efb4457181d1cad6bf61530091d74e0e1daa8",
+      "group": "profile-checks",
+      "purpose": "Exact generated probe assembly"
+    },
+    {
+      "path": "profile-checks/instrumented/source/native/m3_kernel.asm",
+      "original_path": "build/m3-perf/profile-checks/instrumented/source/native/m3_kernel.asm",
+      "bytes": 2933,
+      "sha256": "8bd7d3436e05618e1de95aa9faf4a1f5780405bb94506765d1e47f92a247fe8d",
+      "group": "profile-checks",
+      "purpose": "Generated bounded diagnostic admission source"
+    },
+    {
+      "path": "profile-checks/instrumented/source/scripts/m2_bounds.py",
+      "original_path": "build/m3-perf/profile-checks/instrumented/source/scripts/m2_bounds.py",
+      "bytes": 14141,
+      "sha256": "fa0b2afc47d16e355ccbdec8057787e572459d472504fc0a059f24d4bc0f1f59",
+      "group": "profile-checks",
+      "purpose": "Exact generated qualification checker"
+    },
+    {
+      "path": "profile-checks/instrumented/source/manifests/m3.json",
+      "original_path": "build/m3-perf/profile-checks/instrumented/source/manifests/m3.json",
+      "bytes": 355,
+      "sha256": "378680c54b2a223d803900e1156d63043c0d95176216da9dbd5cbd4772cc75eb",
+      "group": "profile-checks",
+      "purpose": "Frozen workload/host-result provenance"
+    },
+    {
+      "path": "profile-checks/instrumented/source/apps/mandelbrot.casm",
+      "original_path": "build/m3-perf/profile-checks/instrumented/source/apps/mandelbrot.casm",
+      "bytes": 2697,
+      "sha256": "c4010519b54ad2323e05ba7b77d43c7071c7739559436fb00da3036cabdb5620",
+      "group": "profile-checks",
+      "purpose": "Frozen workload/host-result provenance"
+    },
+    {
+      "path": "profile-checks/instrumented/source/build/mandelbrot-host-profile.json",
+      "original_path": "build/m3-perf/profile-checks/instrumented/source/build/mandelbrot-host-profile.json",
+      "bytes": 965,
+      "sha256": "2aef7521b23b25e3ed9ea05a9e840bc04d1d41a7483cb1ca1344feed4ff54aef",
+      "group": "profile-checks",
+      "purpose": "Frozen workload/host-result provenance"
+    },
+    {
+      "path": "profile-checks/instrumented/source/build/mandelbrot.cobj",
+      "original_path": "build/m3-perf/profile-checks/instrumented/source/build/mandelbrot.cobj",
+      "bytes": 20114,
+      "sha256": "8aec33c47e6a8bff613203dcb7749ff1e6f2f6481476a870ee821d037082e7cf",
+      "group": "profile-checks",
+      "purpose": "Frozen workload/host-result provenance"
+    },
+    {
+      "path": "profile-services/result.json",
+      "original_path": "build/m3-perf/profile-services/result.json",
+      "bytes": 21817,
+      "sha256": "d28e9aea93c8eb601a3b6b473a7de263b162e573bde3830bc5c9bfb8a9bb0a28",
+      "group": "profile-services",
+      "purpose": "Accepted inclusive profiling receipt"
+    },
+    {
+      "path": "profile-services/128/result.json",
+      "original_path": "build/m3-perf/profile-services/128/result.json",
+      "bytes": 13931,
+      "sha256": "d89970ee6f2bdb7e332168f55d3ed43b7bee7ffd02207efe49f250b395e92c45",
+      "group": "profile-services",
+      "purpose": "Per-profile elapsed and counters receipt"
+    },
+    {
+      "path": "profile-services/profiler-script.py",
+      "original_path": "build/m3-perf/profile-services/profiler-script.py",
+      "bytes": 32612,
+      "sha256": "e4d5dfed89702c73e971054b7ba898bdb522026f4b5a528779954235d8d86a63",
+      "group": "profile-services",
+      "purpose": "Exact executed profiler runner"
+    },
+    {
+      "path": "profile-services/runs/128/instrumented/result.json",
+      "original_path": "build/m3-perf/profile-services/runs/128/instrumented/result.json",
+      "bytes": 8700,
+      "sha256": "ddd63add9a39d1af3555a06d626e1b5144e946cc889dd21c24e55ce37b7c99ed",
+      "group": "profile-services",
+      "purpose": "Complete autonomous output and safety checks"
+    },
+    {
+      "path": "profile-services/runs/128/instrumented/sampling-counts.json",
+      "original_path": "build/m3-perf/profile-services/runs/128/instrumented/sampling-counts.json",
+      "bytes": 2526,
+      "sha256": "053ab01d4c07f379985804015148a5f3c5f129225c50769666b6dea3fd7d5c6d",
+      "group": "profile-services",
+      "purpose": "Exact call population reconstruction and input binding"
+    },
+    {
+      "path": "profile-services/runs/128/instrumented/counters.bin",
+      "original_path": "build/m3-perf/profile-services/runs/128/instrumented/counters.bin",
+      "bytes": 576,
+      "sha256": "13163b6db09eeb3dc1f38ea0b8f989a58bc4611c2d353974c97ca0064de9770d",
+      "group": "profile-services",
+      "purpose": "Raw 576-byte native profile counters"
+    },
+    {
+      "path": "profile-services/runs/128/instrumented/image.bin",
+      "original_path": "build/m3-perf/profile-services/runs/128/instrumented/image.bin",
+      "bytes": 192,
+      "sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+      "group": "profile-services",
+      "purpose": "Complete logical image before cleanup"
+    },
+    {
+      "path": "profile-services/runs/128/instrumented/scanout.png",
+      "original_path": "build/m3-perf/profile-services/runs/128/instrumented/scanout.png",
+      "bytes": 131185,
+      "sha256": "70cefe5734301e9fd1c7c80055b428be57bc32435beedc5119bb7aab70977dfb",
+      "group": "profile-services",
+      "purpose": "Live PAL verification image"
+    },
+    {
+      "path": "profile-services/runs/128/instrumented/scanout.png.geometry.json",
+      "original_path": "build/m3-perf/profile-services/runs/128/instrumented/scanout.png.geometry.json",
+      "bytes": 957,
+      "sha256": "75982c15b3d4d0973882823bb0291c7976a043e80b58e61274ea71413af054bd",
+      "group": "profile-services",
+      "purpose": "All-pixel live scanout verification"
+    },
+    {
+      "path": "profile-services/instrumented/128/profile-bounds.json",
+      "original_path": "build/m3-perf/profile-services/instrumented/128/profile-bounds.json",
+      "bytes": 16138,
+      "sha256": "52c76b2a03ef3ebb897ee3122293e2e3b1cb054f720cb48bd3d693bf70fa0f38",
+      "group": "profile-services",
+      "purpose": "Generated conditional timer and admission qualification"
+    },
+    {
+      "path": "profile-services/instrumented/128/map.json",
+      "original_path": "build/m3-perf/profile-services/instrumented/128/map.json",
+      "bytes": 27219,
+      "sha256": "12117e0824acf62541f7c4f9c5878f291faed8eec4d92c2d98f0ebbce5a39ee7",
+      "group": "profile-services",
+      "purpose": "Executed artifact and RAM map"
+    },
+    {
+      "path": "profile-services/instrumented/128/m3.manifest.json",
+      "original_path": "build/m3-perf/profile-services/instrumented/128/m3.manifest.json",
+      "bytes": 17343,
+      "sha256": "37720f68c1717b7c5d54c6238fd0859ebf580e5c95d75ac28d19cd842f169b34",
+      "group": "profile-services",
+      "purpose": "ABI-matched linked application map"
+    },
+    {
+      "path": "profile-services/instrumented/128/native.bin",
+      "original_path": "build/m3-perf/profile-services/instrumented/128/native.bin",
+      "bytes": 8785,
+      "sha256": "11718a9e75c4d1bcf24686da4535194a7b3fb539d1b61833a87a9502addf5801",
+      "group": "profile-services",
+      "purpose": "Small exact assembled diagnostic native image"
+    },
+    {
+      "path": "profile-services/instrumented/128/m3.prg",
+      "original_path": "build/m3-perf/profile-services/instrumented/128/m3.prg",
+      "bytes": 1689,
+      "sha256": "cb7f1c85f8b1c3ea1f30a760f92f65e764092a92bff3bab157862af3bad3fec8",
+      "group": "profile-services",
+      "purpose": "Small exact bootstrap"
+    },
+    {
+      "path": "profile-services/instrumented/128/renderer.prg",
+      "original_path": "build/m3-perf/profile-services/instrumented/128/renderer.prg",
+      "bytes": 2291,
+      "sha256": "5858b9691af7965b54c4f0ca5e96a314c2105293c291f91c72dd8246ad02adb2",
+      "group": "profile-services",
+      "purpose": "Small exact live scanout program"
+    },
+    {
+      "path": "profile-services/instrumented/source/native/profile.asm",
+      "original_path": "build/m3-perf/profile-services/instrumented/source/native/profile.asm",
+      "bytes": 11929,
+      "sha256": "aaae28744e8dd6180c2cd414f45efb4457181d1cad6bf61530091d74e0e1daa8",
+      "group": "profile-services",
+      "purpose": "Exact generated probe assembly"
+    },
+    {
+      "path": "profile-services/instrumented/source/native/m3_kernel.asm",
+      "original_path": "build/m3-perf/profile-services/instrumented/source/native/m3_kernel.asm",
+      "bytes": 2933,
+      "sha256": "bf301821cafa1b9978859a2f2b87027b1bc816aebc30681c5434a056fe66c5a2",
+      "group": "profile-services",
+      "purpose": "Generated bounded diagnostic admission source"
+    },
+    {
+      "path": "profile-services/instrumented/source/scripts/m2_bounds.py",
+      "original_path": "build/m3-perf/profile-services/instrumented/source/scripts/m2_bounds.py",
+      "bytes": 14141,
+      "sha256": "fa0b2afc47d16e355ccbdec8057787e572459d472504fc0a059f24d4bc0f1f59",
+      "group": "profile-services",
+      "purpose": "Exact generated qualification checker"
+    },
+    {
+      "path": "profile-services/instrumented/source/manifests/m3.json",
+      "original_path": "build/m3-perf/profile-services/instrumented/source/manifests/m3.json",
+      "bytes": 355,
+      "sha256": "378680c54b2a223d803900e1156d63043c0d95176216da9dbd5cbd4772cc75eb",
+      "group": "profile-services",
+      "purpose": "Frozen workload/host-result provenance"
+    },
+    {
+      "path": "profile-services/instrumented/source/apps/mandelbrot.casm",
+      "original_path": "build/m3-perf/profile-services/instrumented/source/apps/mandelbrot.casm",
+      "bytes": 2697,
+      "sha256": "c4010519b54ad2323e05ba7b77d43c7071c7739559436fb00da3036cabdb5620",
+      "group": "profile-services",
+      "purpose": "Frozen workload/host-result provenance"
+    },
+    {
+      "path": "profile-services/instrumented/source/build/mandelbrot-host-profile.json",
+      "original_path": "build/m3-perf/profile-services/instrumented/source/build/mandelbrot-host-profile.json",
+      "bytes": 965,
+      "sha256": "2aef7521b23b25e3ed9ea05a9e840bc04d1d41a7483cb1ca1344feed4ff54aef",
+      "group": "profile-services",
+      "purpose": "Frozen workload/host-result provenance"
+    },
+    {
+      "path": "profile-services/instrumented/source/build/mandelbrot.cobj",
+      "original_path": "build/m3-perf/profile-services/instrumented/source/build/mandelbrot.cobj",
+      "bytes": 20114,
+      "sha256": "8aec33c47e6a8bff613203dcb7749ff1e6f2f6481476a870ee821d037082e7cf",
+      "group": "profile-services",
+      "purpose": "Frozen workload/host-result provenance"
+    },
+    {
+      "path": "profile-wrap/result.json",
+      "original_path": "build/m3-perf/profile-wrap/result.json",
+      "bytes": 48816,
+      "sha256": "2f239b781a0d85b65639a5353c41f87858c13d6599a1aec961fc960520ec8477",
+      "group": "profile-wrap",
+      "purpose": "Accepted inclusive profiling receipt"
+    },
+    {
+      "path": "profile-wrap/128/result.json",
+      "original_path": "build/m3-perf/profile-wrap/128/result.json",
+      "bytes": 33162,
+      "sha256": "48cec5d1df84a7e361e10f5b4137a375adaa919f9f8dbd237ec8d673f9b97de0",
+      "group": "profile-wrap",
+      "purpose": "Per-profile elapsed and counters receipt"
+    },
+    {
+      "path": "profile-wrap/profiler-script.py",
+      "original_path": "build/m3-perf/profile-wrap/profiler-script.py",
+      "bytes": 30556,
+      "sha256": "54a9b8b42e200fa7b4982c0491aad03cb414518351892f6961ab1131995cc7d0",
+      "group": "profile-wrap",
+      "purpose": "Exact executed profiler runner"
+    },
+    {
+      "path": "profile-wrap/runs/128/instrumented/result.json",
+      "original_path": "build/m3-perf/profile-wrap/runs/128/instrumented/result.json",
+      "bytes": 8568,
+      "sha256": "f573e08dbdf6d631920a6620e2b63ac03f50150562451f6234f6438a10fa282f",
+      "group": "profile-wrap",
+      "purpose": "Complete autonomous output and safety checks"
+    },
+    {
+      "path": "profile-wrap/runs/128/instrumented/sampling-counts.json",
+      "original_path": "build/m3-perf/profile-wrap/runs/128/instrumented/sampling-counts.json",
+      "bytes": 2518,
+      "sha256": "bcad227855260044137be46326ab093cf52f6b509e44742264cfadf6f33f9e51",
+      "group": "profile-wrap",
+      "purpose": "Exact call population reconstruction and input binding"
+    },
+    {
+      "path": "profile-wrap/runs/128/instrumented/counters.bin",
+      "original_path": "build/m3-perf/profile-wrap/runs/128/instrumented/counters.bin",
+      "bytes": 576,
+      "sha256": "e8f9243e4fcb2cb2db6d72b086eca469c2120afefab8903afb3c5dad8d177b6f",
+      "group": "profile-wrap",
+      "purpose": "Raw 576-byte native profile counters"
+    },
+    {
+      "path": "profile-wrap/runs/128/instrumented/image.bin",
+      "original_path": "build/m3-perf/profile-wrap/runs/128/instrumented/image.bin",
+      "bytes": 192,
+      "sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+      "group": "profile-wrap",
+      "purpose": "Complete logical image before cleanup"
+    },
+    {
+      "path": "profile-wrap/runs/128/instrumented/scanout.png",
+      "original_path": "build/m3-perf/profile-wrap/runs/128/instrumented/scanout.png",
+      "bytes": 131185,
+      "sha256": "70cefe5734301e9fd1c7c80055b428be57bc32435beedc5119bb7aab70977dfb",
+      "group": "profile-wrap",
+      "purpose": "Live PAL verification image"
+    },
+    {
+      "path": "profile-wrap/runs/128/instrumented/scanout.png.geometry.json",
+      "original_path": "build/m3-perf/profile-wrap/runs/128/instrumented/scanout.png.geometry.json",
+      "bytes": 956,
+      "sha256": "f1d67817917479046190a027ee4e03c47c037bc80d8ad5575fd881cf7997c239",
+      "group": "profile-wrap",
+      "purpose": "All-pixel live scanout verification"
+    },
+    {
+      "path": "profile-wrap/instrumented/128/profile-bounds.json",
+      "original_path": "build/m3-perf/profile-wrap/instrumented/128/profile-bounds.json",
+      "bytes": 21536,
+      "sha256": "e8e90b82df818e55696d2bb3b2d20c6c88859fe257a160e377adc1267ee78829",
+      "group": "profile-wrap",
+      "purpose": "Generated conditional timer and admission qualification"
+    },
+    {
+      "path": "profile-wrap/instrumented/128/map.json",
+      "original_path": "build/m3-perf/profile-wrap/instrumented/128/map.json",
+      "bytes": 29127,
+      "sha256": "383b087593c522c3e7ed8720efa21ac40c52aaabc782cb61920849f04617cbe9",
+      "group": "profile-wrap",
+      "purpose": "Executed artifact and RAM map"
+    },
+    {
+      "path": "profile-wrap/instrumented/128/m3.manifest.json",
+      "original_path": "build/m3-perf/profile-wrap/instrumented/128/m3.manifest.json",
+      "bytes": 9807,
+      "sha256": "d5c4c13fe53887f6ce9efb6847a56cfda6e46ed34f896125102d91fd94bc2f71",
+      "group": "profile-wrap",
+      "purpose": "ABI-matched linked application map"
+    },
+    {
+      "path": "profile-wrap/instrumented/128/native.bin",
+      "original_path": "build/m3-perf/profile-wrap/instrumented/128/native.bin",
+      "bytes": 8916,
+      "sha256": "26822c4bbdbdccf6b5efba50d1d444861cd78eb75a2b8aca1f327a641462c8e3",
+      "group": "profile-wrap",
+      "purpose": "Small exact assembled diagnostic native image"
+    },
+    {
+      "path": "profile-wrap/instrumented/128/m3.prg",
+      "original_path": "build/m3-perf/profile-wrap/instrumented/128/m3.prg",
+      "bytes": 1689,
+      "sha256": "e5630207b5857b21435e3fe3ba5d1105f3a3ccfc3c87a959df90ec4d8070995d",
+      "group": "profile-wrap",
+      "purpose": "Small exact bootstrap"
+    },
+    {
+      "path": "profile-wrap/instrumented/128/renderer.prg",
+      "original_path": "build/m3-perf/profile-wrap/instrumented/128/renderer.prg",
+      "bytes": 2291,
+      "sha256": "5858b9691af7965b54c4f0ca5e96a314c2105293c291f91c72dd8246ad02adb2",
+      "group": "profile-wrap",
+      "purpose": "Small exact live scanout program"
+    },
+    {
+      "path": "profile-wrap/instrumented/source/native/profile.asm",
+      "original_path": "build/m3-perf/profile-wrap/instrumented/source/native/profile.asm",
+      "bytes": 11929,
+      "sha256": "aaae28744e8dd6180c2cd414f45efb4457181d1cad6bf61530091d74e0e1daa8",
+      "group": "profile-wrap",
+      "purpose": "Exact generated probe assembly"
+    },
+    {
+      "path": "profile-wrap/instrumented/source/native/m3_kernel.asm",
+      "original_path": "build/m3-perf/profile-wrap/instrumented/source/native/m3_kernel.asm",
+      "bytes": 3630,
+      "sha256": "b1361510ef013eb6c0e5fb0dc9257b5c51f8685d0a0a1b4e4e157cb101ee82a1",
+      "group": "profile-wrap",
+      "purpose": "Generated bounded diagnostic admission source"
+    },
+    {
+      "path": "profile-wrap/instrumented/source/scripts/m2_bounds.py",
+      "original_path": "build/m3-perf/profile-wrap/instrumented/source/scripts/m2_bounds.py",
+      "bytes": 23340,
+      "sha256": "cd5622c4f2d99982827709dc1710a2d3840f14cdf8b1a37696ed332519af4c22",
+      "group": "profile-wrap",
+      "purpose": "Exact generated qualification checker"
+    },
+    {
+      "path": "profile-wrap/instrumented/128/interval-qualification.json",
+      "original_path": "build/m3-perf/profile-wrap/instrumented/128/interval-qualification.json",
+      "bytes": 1181,
+      "sha256": "7588d0dffd8439d88c9dc6ae47cf332d169db17215ecac681a83c05dc111c663",
+      "group": "profile-wrap",
+      "purpose": "Accepted interval/source provenance receipt"
+    },
+    {
+      "path": "profile-wrap/baseline-receipt.json",
+      "original_path": "build/m3-perf/profile-wrap/baseline-receipt.json",
+      "bytes": 18959,
+      "sha256": "2081e880cbcc652cfbbdd9723e6e960627a139c7c70ab689b194031b66d1d923",
+      "group": "profile-wrap",
+      "purpose": "Accepted interval/source provenance receipt"
+    },
+    {
+      "path": "profile-wrap/instrumented/source/manifests/registers.json",
+      "original_path": "build/m3-perf/profile-wrap/instrumented/source/manifests/registers.json",
+      "bytes": 431,
+      "sha256": "fd1b576c603286c87eee720f34bfedd2c26b29600544b9c5378123f883663ea9",
+      "group": "profile-wrap",
+      "purpose": "Frozen workload/host-result provenance"
+    },
+    {
+      "path": "profile-wrap/instrumented/source/apps/mandelbrot-registers.casm",
+      "original_path": "build/m3-perf/profile-wrap/instrumented/source/apps/mandelbrot-registers.casm",
+      "bytes": 1615,
+      "sha256": "4c074fd97fb1b7b3db4251ee45ad680b5f437245d98922c2bb730ac6b2cc766f",
+      "group": "profile-wrap",
+      "purpose": "Frozen workload/host-result provenance"
+    },
+    {
+      "path": "profile-wrap/instrumented/source/build/m3-perf/apps/registers/host-profile.json",
+      "original_path": "build/m3-perf/profile-wrap/instrumented/source/build/m3-perf/apps/registers/host-profile.json",
+      "bytes": 915,
+      "sha256": "0291ba25ca57c476342375c642b859468789e7a711c8dab2ddc5fdc231a828cc",
+      "group": "profile-wrap",
+      "purpose": "Frozen workload/host-result provenance"
+    },
+    {
+      "path": "profile-wrap/instrumented/source/build/m3-perf/apps/registers.cobj",
+      "original_path": "build/m3-perf/profile-wrap/instrumented/source/build/m3-perf/apps/registers.cobj",
+      "bytes": 10319,
+      "sha256": "a27be9155c2060521b412c3fe88123e08f30bf3fe1f2488a4b4342f856d41a94",
+      "group": "profile-wrap",
+      "purpose": "Frozen workload/host-result provenance"
+    },
+    {
+      "path": "profile-wrap-step/result.json",
+      "original_path": "build/m3-perf/profile-wrap-step/result.json",
+      "bytes": 48588,
+      "sha256": "de65a1d2424432a5eeefd3321dd4bddf79a98f5e3bce9d2cf520e804c1250f59",
+      "group": "profile-wrap-step",
+      "purpose": "Accepted inclusive profiling receipt"
+    },
+    {
+      "path": "profile-wrap-step/128/result.json",
+      "original_path": "build/m3-perf/profile-wrap-step/128/result.json",
+      "bytes": 33137,
+      "sha256": "7f625e6a9ef19a9185beb8223dda984a9ebc42188b28a0da5e73ed9452735be3",
+      "group": "profile-wrap-step",
+      "purpose": "Per-profile elapsed and counters receipt"
+    },
+    {
+      "path": "profile-wrap-step/profiler-script.py",
+      "original_path": "build/m3-perf/profile-wrap-step/profiler-script.py",
+      "bytes": 32612,
+      "sha256": "e4d5dfed89702c73e971054b7ba898bdb522026f4b5a528779954235d8d86a63",
+      "group": "profile-wrap-step",
+      "purpose": "Exact executed profiler runner"
+    },
+    {
+      "path": "profile-wrap-step/runs/128/instrumented/result.json",
+      "original_path": "build/m3-perf/profile-wrap-step/runs/128/instrumented/result.json",
+      "bytes": 8619,
+      "sha256": "4fce808fccad468d1308414ab9f73997d2045b05267bb9c022dfa64b0bc622e4",
+      "group": "profile-wrap-step",
+      "purpose": "Complete autonomous output and safety checks"
+    },
+    {
+      "path": "profile-wrap-step/runs/128/instrumented/sampling-counts.json",
+      "original_path": "build/m3-perf/profile-wrap-step/runs/128/instrumented/sampling-counts.json",
+      "bytes": 2487,
+      "sha256": "7e73f1c6d2f210056e55f6718799488f35d23c463b1c399e54892f8b954928fa",
+      "group": "profile-wrap-step",
+      "purpose": "Exact call population reconstruction and input binding"
+    },
+    {
+      "path": "profile-wrap-step/runs/128/instrumented/counters.bin",
+      "original_path": "build/m3-perf/profile-wrap-step/runs/128/instrumented/counters.bin",
+      "bytes": 576,
+      "sha256": "1faa2d1d15a8df58ab20ad7e631da089a7944fc03083b28656dcde17e1ef183b",
+      "group": "profile-wrap-step",
+      "purpose": "Raw 576-byte native profile counters"
+    },
+    {
+      "path": "profile-wrap-step/runs/128/instrumented/image.bin",
+      "original_path": "build/m3-perf/profile-wrap-step/runs/128/instrumented/image.bin",
+      "bytes": 192,
+      "sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+      "group": "profile-wrap-step",
+      "purpose": "Complete logical image before cleanup"
+    },
+    {
+      "path": "profile-wrap-step/runs/128/instrumented/scanout.png",
+      "original_path": "build/m3-perf/profile-wrap-step/runs/128/instrumented/scanout.png",
+      "bytes": 131185,
+      "sha256": "70cefe5734301e9fd1c7c80055b428be57bc32435beedc5119bb7aab70977dfb",
+      "group": "profile-wrap-step",
+      "purpose": "Live PAL verification image"
+    },
+    {
+      "path": "profile-wrap-step/runs/128/instrumented/scanout.png.geometry.json",
+      "original_path": "build/m3-perf/profile-wrap-step/runs/128/instrumented/scanout.png.geometry.json",
+      "bytes": 956,
+      "sha256": "940658c00047121ed253b23b7d748a6de4dc2f1d2a27134226c9d13b94557120",
+      "group": "profile-wrap-step",
+      "purpose": "All-pixel live scanout verification"
+    },
+    {
+      "path": "profile-wrap-step/instrumented/128/profile-bounds.json",
+      "original_path": "build/m3-perf/profile-wrap-step/instrumented/128/profile-bounds.json",
+      "bytes": 22086,
+      "sha256": "a8b5956fd8a774df96b7d08f0c1e9951376a0698371688b8eb94d78ec9c759b1",
+      "group": "profile-wrap-step",
+      "purpose": "Generated conditional timer and admission qualification"
+    },
+    {
+      "path": "profile-wrap-step/instrumented/128/map.json",
+      "original_path": "build/m3-perf/profile-wrap-step/instrumented/128/map.json",
+      "bytes": 29128,
+      "sha256": "d231bcd1a6ad8597806adb30eb8b25e7474b9858def1ed8530623c9844ccf0fc",
+      "group": "profile-wrap-step",
+      "purpose": "Executed artifact and RAM map"
+    },
+    {
+      "path": "profile-wrap-step/instrumented/128/m3.manifest.json",
+      "original_path": "build/m3-perf/profile-wrap-step/instrumented/128/m3.manifest.json",
+      "bytes": 9808,
+      "sha256": "bb34dd32718a9f603bc75dabdb7dca52c275dff0a617c92a8406b5fda122c333",
+      "group": "profile-wrap-step",
+      "purpose": "ABI-matched linked application map"
+    },
+    {
+      "path": "profile-wrap-step/instrumented/128/native.bin",
+      "original_path": "build/m3-perf/profile-wrap-step/instrumented/128/native.bin",
+      "bytes": 8916,
+      "sha256": "a845d87f7700b04127115f253b672079a14c175d7bb0f585f2b5ce624668d781",
+      "group": "profile-wrap-step",
+      "purpose": "Small exact assembled diagnostic native image"
+    },
+    {
+      "path": "profile-wrap-step/instrumented/128/m3.prg",
+      "original_path": "build/m3-perf/profile-wrap-step/instrumented/128/m3.prg",
+      "bytes": 1689,
+      "sha256": "8151acb3faadf9d451824b6bf832abe41827124bf069a79a46ffd03eb53f8ed6",
+      "group": "profile-wrap-step",
+      "purpose": "Small exact bootstrap"
+    },
+    {
+      "path": "profile-wrap-step/instrumented/128/renderer.prg",
+      "original_path": "build/m3-perf/profile-wrap-step/instrumented/128/renderer.prg",
+      "bytes": 2291,
+      "sha256": "5858b9691af7965b54c4f0ca5e96a314c2105293c291f91c72dd8246ad02adb2",
+      "group": "profile-wrap-step",
+      "purpose": "Small exact live scanout program"
+    },
+    {
+      "path": "profile-wrap-step/instrumented/source/native/profile.asm",
+      "original_path": "build/m3-perf/profile-wrap-step/instrumented/source/native/profile.asm",
+      "bytes": 11929,
+      "sha256": "aaae28744e8dd6180c2cd414f45efb4457181d1cad6bf61530091d74e0e1daa8",
+      "group": "profile-wrap-step",
+      "purpose": "Exact generated probe assembly"
+    },
+    {
+      "path": "profile-wrap-step/instrumented/source/native/m3_kernel.asm",
+      "original_path": "build/m3-perf/profile-wrap-step/instrumented/source/native/m3_kernel.asm",
+      "bytes": 3689,
+      "sha256": "17feddb029ed65c64c475b8f45643ccdfcc5fb4a4665fe681f421cf44710d33f",
+      "group": "profile-wrap-step",
+      "purpose": "Generated bounded diagnostic admission source"
+    },
+    {
+      "path": "profile-wrap-step/instrumented/source/scripts/m2_bounds.py",
+      "original_path": "build/m3-perf/profile-wrap-step/instrumented/source/scripts/m2_bounds.py",
+      "bytes": 23340,
+      "sha256": "cd5622c4f2d99982827709dc1710a2d3840f14cdf8b1a37696ed332519af4c22",
+      "group": "profile-wrap-step",
+      "purpose": "Exact generated qualification checker"
+    },
+    {
+      "path": "profile-wrap-step/instrumented/source/manifests/registers.json",
+      "original_path": "build/m3-perf/profile-wrap-step/instrumented/source/manifests/registers.json",
+      "bytes": 431,
+      "sha256": "fd1b576c603286c87eee720f34bfedd2c26b29600544b9c5378123f883663ea9",
+      "group": "profile-wrap-step",
+      "purpose": "Frozen workload/host-result provenance"
+    },
+    {
+      "path": "profile-wrap-step/instrumented/source/apps/mandelbrot-registers.casm",
+      "original_path": "build/m3-perf/profile-wrap-step/instrumented/source/apps/mandelbrot-registers.casm",
+      "bytes": 1615,
+      "sha256": "4c074fd97fb1b7b3db4251ee45ad680b5f437245d98922c2bb730ac6b2cc766f",
+      "group": "profile-wrap-step",
+      "purpose": "Frozen workload/host-result provenance"
+    },
+    {
+      "path": "profile-wrap-step/instrumented/source/build/m3-perf/apps/registers/host-profile.json",
+      "original_path": "build/m3-perf/profile-wrap-step/instrumented/source/build/m3-perf/apps/registers/host-profile.json",
+      "bytes": 915,
+      "sha256": "0291ba25ca57c476342375c642b859468789e7a711c8dab2ddc5fdc231a828cc",
+      "group": "profile-wrap-step",
+      "purpose": "Frozen workload/host-result provenance"
+    },
+    {
+      "path": "profile-wrap-step/instrumented/source/build/m3-perf/apps/registers.cobj",
+      "original_path": "build/m3-perf/profile-wrap-step/instrumented/source/build/m3-perf/apps/registers.cobj",
+      "bytes": 10319,
+      "sha256": "a27be9155c2060521b412c3fe88123e08f30bf3fe1f2488a4b4342f856d41a94",
+      "group": "profile-wrap-step",
+      "purpose": "Frozen workload/host-result provenance"
+    },
+    {
+      "path": "profile-wrap-arithmetic/result.json",
+      "original_path": "build/m3-perf/profile-wrap-arithmetic/result.json",
+      "bytes": 48605,
+      "sha256": "b79f88ec5bf560f86867d1706c6e291428df97c38d7e7277794e34c27c6cf3a0",
+      "group": "profile-wrap-arithmetic",
+      "purpose": "Accepted inclusive profiling receipt"
+    },
+    {
+      "path": "profile-wrap-arithmetic/128/result.json",
+      "original_path": "build/m3-perf/profile-wrap-arithmetic/128/result.json",
+      "bytes": 33149,
+      "sha256": "b7b3dfe7b1dc44dc757130e178b224d69b505ad0abcb3ef5bb21be4e001c9065",
+      "group": "profile-wrap-arithmetic",
+      "purpose": "Per-profile elapsed and counters receipt"
+    },
+    {
+      "path": "profile-wrap-arithmetic/profiler-script.py",
+      "original_path": "build/m3-perf/profile-wrap-arithmetic/profiler-script.py",
+      "bytes": 32612,
+      "sha256": "e4d5dfed89702c73e971054b7ba898bdb522026f4b5a528779954235d8d86a63",
+      "group": "profile-wrap-arithmetic",
+      "purpose": "Exact executed profiler runner"
+    },
+    {
+      "path": "profile-wrap-arithmetic/runs/128/instrumented/result.json",
+      "original_path": "build/m3-perf/profile-wrap-arithmetic/runs/128/instrumented/result.json",
+      "bytes": 8614,
+      "sha256": "fc991191dd3cc127b1e68a66c05d5e8550fa1c4d9a7ec43e2f25ae77f963dd33",
+      "group": "profile-wrap-arithmetic",
+      "purpose": "Complete autonomous output and safety checks"
+    },
+    {
+      "path": "profile-wrap-arithmetic/runs/128/instrumented/sampling-counts.json",
+      "original_path": "build/m3-perf/profile-wrap-arithmetic/runs/128/instrumented/sampling-counts.json",
+      "bytes": 2492,
+      "sha256": "3d1c47682298751db575d65a928f22d9e0c5defe102e35c081a74570193dcdf8",
+      "group": "profile-wrap-arithmetic",
+      "purpose": "Exact call population reconstruction and input binding"
+    },
+    {
+      "path": "profile-wrap-arithmetic/runs/128/instrumented/counters.bin",
+      "original_path": "build/m3-perf/profile-wrap-arithmetic/runs/128/instrumented/counters.bin",
+      "bytes": 576,
+      "sha256": "a13a86bfe58a36f5791f84018a08d3ff4a81151d5fdde15966b96e1f53a423c7",
+      "group": "profile-wrap-arithmetic",
+      "purpose": "Raw 576-byte native profile counters"
+    },
+    {
+      "path": "profile-wrap-arithmetic/runs/128/instrumented/image.bin",
+      "original_path": "build/m3-perf/profile-wrap-arithmetic/runs/128/instrumented/image.bin",
+      "bytes": 192,
+      "sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+      "group": "profile-wrap-arithmetic",
+      "purpose": "Complete logical image before cleanup"
+    },
+    {
+      "path": "profile-wrap-arithmetic/runs/128/instrumented/scanout.png",
+      "original_path": "build/m3-perf/profile-wrap-arithmetic/runs/128/instrumented/scanout.png",
+      "bytes": 131185,
+      "sha256": "70cefe5734301e9fd1c7c80055b428be57bc32435beedc5119bb7aab70977dfb",
+      "group": "profile-wrap-arithmetic",
+      "purpose": "Live PAL verification image"
+    },
+    {
+      "path": "profile-wrap-arithmetic/runs/128/instrumented/scanout.png.geometry.json",
+      "original_path": "build/m3-perf/profile-wrap-arithmetic/runs/128/instrumented/scanout.png.geometry.json",
+      "bytes": 956,
+      "sha256": "940658c00047121ed253b23b7d748a6de4dc2f1d2a27134226c9d13b94557120",
+      "group": "profile-wrap-arithmetic",
+      "purpose": "All-pixel live scanout verification"
+    },
+    {
+      "path": "profile-wrap-arithmetic/instrumented/128/profile-bounds.json",
+      "original_path": "build/m3-perf/profile-wrap-arithmetic/instrumented/128/profile-bounds.json",
+      "bytes": 22087,
+      "sha256": "755525907169827223c0993ab635d38c623776e982e274ec96f5063120c8df35",
+      "group": "profile-wrap-arithmetic",
+      "purpose": "Generated conditional timer and admission qualification"
+    },
+    {
+      "path": "profile-wrap-arithmetic/instrumented/128/map.json",
+      "original_path": "build/m3-perf/profile-wrap-arithmetic/instrumented/128/map.json",
+      "bytes": 29128,
+      "sha256": "b7b3ce3d6d7ba18d5124368d52143d4d08b26f18573c45fbb34e590030e077b3",
+      "group": "profile-wrap-arithmetic",
+      "purpose": "Executed artifact and RAM map"
+    },
+    {
+      "path": "profile-wrap-arithmetic/instrumented/128/m3.manifest.json",
+      "original_path": "build/m3-perf/profile-wrap-arithmetic/instrumented/128/m3.manifest.json",
+      "bytes": 9808,
+      "sha256": "7bdb4c90515d81cf0496747c31caaf95ea2f4deccafd04f98ff839e06760a8e9",
+      "group": "profile-wrap-arithmetic",
+      "purpose": "ABI-matched linked application map"
+    },
+    {
+      "path": "profile-wrap-arithmetic/instrumented/128/native.bin",
+      "original_path": "build/m3-perf/profile-wrap-arithmetic/instrumented/128/native.bin",
+      "bytes": 8916,
+      "sha256": "dd1fda680c6fdc772a172488a9fd7064555758722a37dc5fb732edf4718d3b46",
+      "group": "profile-wrap-arithmetic",
+      "purpose": "Small exact assembled diagnostic native image"
+    },
+    {
+      "path": "profile-wrap-arithmetic/instrumented/128/m3.prg",
+      "original_path": "build/m3-perf/profile-wrap-arithmetic/instrumented/128/m3.prg",
+      "bytes": 1689,
+      "sha256": "0e624c9705ae128c3fc1773a24c32a76356a1d7bcc4029d00886d48937d561b0",
+      "group": "profile-wrap-arithmetic",
+      "purpose": "Small exact bootstrap"
+    },
+    {
+      "path": "profile-wrap-arithmetic/instrumented/128/renderer.prg",
+      "original_path": "build/m3-perf/profile-wrap-arithmetic/instrumented/128/renderer.prg",
+      "bytes": 2291,
+      "sha256": "5858b9691af7965b54c4f0ca5e96a314c2105293c291f91c72dd8246ad02adb2",
+      "group": "profile-wrap-arithmetic",
+      "purpose": "Small exact live scanout program"
+    },
+    {
+      "path": "profile-wrap-arithmetic/instrumented/source/native/profile.asm",
+      "original_path": "build/m3-perf/profile-wrap-arithmetic/instrumented/source/native/profile.asm",
+      "bytes": 11929,
+      "sha256": "aaae28744e8dd6180c2cd414f45efb4457181d1cad6bf61530091d74e0e1daa8",
+      "group": "profile-wrap-arithmetic",
+      "purpose": "Exact generated probe assembly"
+    },
+    {
+      "path": "profile-wrap-arithmetic/instrumented/source/native/m3_kernel.asm",
+      "original_path": "build/m3-perf/profile-wrap-arithmetic/instrumented/source/native/m3_kernel.asm",
+      "bytes": 3689,
+      "sha256": "9ff4e25e28c8148954d0615ffe0b60fb3f77383087bc0d355dca43b353557303",
+      "group": "profile-wrap-arithmetic",
+      "purpose": "Generated bounded diagnostic admission source"
+    },
+    {
+      "path": "profile-wrap-arithmetic/instrumented/source/scripts/m2_bounds.py",
+      "original_path": "build/m3-perf/profile-wrap-arithmetic/instrumented/source/scripts/m2_bounds.py",
+      "bytes": 23340,
+      "sha256": "cd5622c4f2d99982827709dc1710a2d3840f14cdf8b1a37696ed332519af4c22",
+      "group": "profile-wrap-arithmetic",
+      "purpose": "Exact generated qualification checker"
+    },
+    {
+      "path": "profile-wrap-arithmetic/instrumented/source/manifests/registers.json",
+      "original_path": "build/m3-perf/profile-wrap-arithmetic/instrumented/source/manifests/registers.json",
+      "bytes": 431,
+      "sha256": "fd1b576c603286c87eee720f34bfedd2c26b29600544b9c5378123f883663ea9",
+      "group": "profile-wrap-arithmetic",
+      "purpose": "Frozen workload/host-result provenance"
+    },
+    {
+      "path": "profile-wrap-arithmetic/instrumented/source/apps/mandelbrot-registers.casm",
+      "original_path": "build/m3-perf/profile-wrap-arithmetic/instrumented/source/apps/mandelbrot-registers.casm",
+      "bytes": 1615,
+      "sha256": "4c074fd97fb1b7b3db4251ee45ad680b5f437245d98922c2bb730ac6b2cc766f",
+      "group": "profile-wrap-arithmetic",
+      "purpose": "Frozen workload/host-result provenance"
+    },
+    {
+      "path": "profile-wrap-arithmetic/instrumented/source/build/m3-perf/apps/registers/host-profile.json",
+      "original_path": "build/m3-perf/profile-wrap-arithmetic/instrumented/source/build/m3-perf/apps/registers/host-profile.json",
+      "bytes": 915,
+      "sha256": "0291ba25ca57c476342375c642b859468789e7a711c8dab2ddc5fdc231a828cc",
+      "group": "profile-wrap-arithmetic",
+      "purpose": "Frozen workload/host-result provenance"
+    },
+    {
+      "path": "profile-wrap-arithmetic/instrumented/source/build/m3-perf/apps/registers.cobj",
+      "original_path": "build/m3-perf/profile-wrap-arithmetic/instrumented/source/build/m3-perf/apps/registers.cobj",
+      "bytes": 10319,
+      "sha256": "a27be9155c2060521b412c3fe88123e08f30bf3fe1f2488a4b4342f856d41a94",
+      "group": "profile-wrap-arithmetic",
+      "purpose": "Frozen workload/host-result provenance"
+    },
+    {
+      "path": "profile-timer-final/result.json",
+      "original_path": "build/m3-perf/profile-timer-final/result.json",
+      "bytes": 6181,
+      "sha256": "0eb5b1743420a572f13dbd4704a35d4a88828f5185a7d61eb5e9c631fb2ce8cf",
+      "group": "profile-timer-final",
+      "purpose": "Accepted modular timer/register/flag qualification; not a body-cost estimate"
+    },
+    {
+      "path": "profile-timer-final/counters.bin",
+      "original_path": "build/m3-perf/profile-timer-final/counters.bin",
+      "bytes": 576,
+      "sha256": "ff10cc7303d8a8056476bd918c712dbb4635098a1aea81a130b70dc76eea8589",
+      "group": "profile-timer-final",
+      "purpose": "Accepted modular timer/register/flag qualification; not a body-cost estimate"
+    },
+    {
+      "path": "profile-timer-final/timer.asm",
+      "original_path": "build/m3-perf/profile-timer-final/timer.asm",
+      "bytes": 13206,
+      "sha256": "b5f5f074b55ee69b8c463474f50faa723bd8418e868159421765c88f9f7027fd",
+      "group": "profile-timer-final",
+      "purpose": "Accepted modular timer/register/flag qualification; not a body-cost estimate"
+    },
+    {
+      "path": "profile-timer-final/timer.prg",
+      "original_path": "build/m3-perf/profile-timer-final/timer.prg",
+      "bytes": 2185,
+      "sha256": "168aa0f461e44281dbd429e1b8d54c383d06849cc03cc1b23da18e7d4991eff4",
+      "group": "profile-timer-final",
+      "purpose": "Accepted modular timer/register/flag qualification; not a body-cost estimate"
+    },
+    {
+      "path": "profile-timer-final/timer.sym",
+      "original_path": "build/m3-perf/profile-timer-final/timer.sym",
+      "bytes": 1736,
+      "sha256": "c572265cd9a29d426b7d6ad0479acb121adae3f7a06c0f695addb4e396943a74",
+      "group": "profile-timer-final",
+      "purpose": "Accepted modular timer/register/flag qualification; not a body-cost estimate"
+    },
+    {
+      "path": "profile-timer-final/timer.vs",
+      "original_path": "build/m3-perf/profile-timer-final/timer.vs",
+      "bytes": 1610,
+      "sha256": "59277d346f44f08ca57b72bacb06190442e37e7502e44a4c8aaf553e5f34ea06",
+      "group": "profile-timer-final",
+      "purpose": "Accepted modular timer/register/flag qualification; not a body-cost estimate"
+    },
+    {
+      "path": "baselines/abi1/result.json",
+      "original_path": "build/m3-perf/profile-core/runs/128/baseline/result.json",
+      "bytes": 3315,
+      "sha256": "d24a2100e746501a85660c19370d5a76129c75642cb0764db876ce8cb33f4796",
+      "group": "baseline-abi1",
+      "purpose": "Accepted repeated frozen ABI1 baseline"
+    },
+    {
+      "path": "baselines/abi1/image.bin",
+      "original_path": "build/m3-perf/profile-core/runs/128/baseline/image.bin",
+      "bytes": 192,
+      "sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+      "group": "baseline-abi1",
+      "purpose": "Accepted repeated frozen ABI1 baseline"
+    },
+    {
+      "path": "baselines/abi1/scanout.png",
+      "original_path": "build/m3-perf/profile-core/runs/128/baseline/scanout.png",
+      "bytes": 131185,
+      "sha256": "70cefe5734301e9fd1c7c80055b428be57bc32435beedc5119bb7aab70977dfb",
+      "group": "baseline-abi1",
+      "purpose": "Accepted repeated frozen ABI1 baseline"
+    },
+    {
+      "path": "baselines/abi1/scanout.png.geometry.json",
+      "original_path": "build/m3-perf/profile-core/runs/128/baseline/scanout.png.geometry.json",
+      "bytes": 957,
+      "sha256": "926071b218ba7fe846129fd9cb05a06a7044549bd3d960bb8a78a213ca1f148f",
+      "group": "baseline-abi1",
+      "purpose": "Accepted repeated frozen ABI1 baseline"
+    },
+    {
+      "path": "baselines/abi1/source-snapshot.json",
+      "original_path": "build/m3-perf/baseline/source-snapshot.json",
+      "bytes": 3922,
+      "sha256": "30aad730ce39ff27084d5e8102f7d8e38da49ac44835b5812a871be2056bfe66",
+      "group": "baseline-abi1",
+      "purpose": "Frozen source/tool provenance"
+    },
+    {
+      "path": "baselines/abi2/source-snapshot.json",
+      "original_path": "build/m3-perf/wrap-window/source-snapshot.json",
+      "bytes": 4006,
+      "sha256": "57b9d40de70007022f77b1801323c98861f55a6139c52fa62326b33f2f29d1f7",
+      "group": "baseline-abi2",
+      "purpose": "Frozen source/tool provenance"
+    },
+    {
+      "path": "baselines/abi2/result.json",
+      "original_path": "build/m3-perf/wrap-window/benchmark-128/result.json",
+      "bytes": 27173,
+      "sha256": "ea2471fd7ab69cdfa9645901cd0f13d58d9c93b4e4424779779ac3e08987f840",
+      "group": "baseline-abi2",
+      "purpose": "Accepted wrap-safe ABI2 baseline"
+    },
+    {
+      "path": "baselines/abi2/cos/image.bin",
+      "original_path": "build/m3-perf/wrap-window/benchmark-128/cos/image.bin",
+      "bytes": 192,
+      "sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+      "group": "baseline-abi2",
+      "purpose": "Accepted wrap-safe ABI2 baseline"
+    },
+    {
+      "path": "baselines/abi2/cos/scanout.png",
+      "original_path": "build/m3-perf/wrap-window/benchmark-128/cos/scanout.png",
+      "bytes": 131185,
+      "sha256": "70cefe5734301e9fd1c7c80055b428be57bc32435beedc5119bb7aab70977dfb",
+      "group": "baseline-abi2",
+      "purpose": "Accepted wrap-safe ABI2 baseline"
+    },
+    {
+      "path": "baselines/abi2/cos/scanout.png.geometry.json",
+      "original_path": "build/m3-perf/wrap-window/benchmark-128/cos/scanout.png.geometry.json",
+      "bytes": 956,
+      "sha256": "6fffcea2433eca4f5dd01970e0f2329b74aa255abb66d83429b6911db7c0ddab",
+      "group": "baseline-abi2",
+      "purpose": "Accepted wrap-safe ABI2 baseline"
+    },
+    {
+      "path": "baselines/abi2/native1mhz/image.bin",
+      "original_path": "build/m3-perf/wrap-window/benchmark-128/native1mhz/image.bin",
+      "bytes": 192,
+      "sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+      "group": "baseline-abi2",
+      "purpose": "Accepted wrap-safe ABI2 baseline"
+    }
+  ],
+  "groups": [
+    {
+      "id": "profile-A",
+      "accepted_result": "profile-A/result.json",
+      "original_root": "build/m3-perf/profile-A",
+      "application_abi": 1,
+      "cache_line_bytes": 128,
+      "sample_factor": 128,
+      "selected_categories": [
+        "decode",
+        "execute"
+      ],
+      "baseline_frames": 8938,
+      "instrumented_frames": 9488,
+      "retired": 693194,
+      "image_sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+      "qualification": "Autonomous target execution in the existing functional emulator; physical Ultimate timing pending"
+    },
+    {
+      "id": "profile-checks",
+      "accepted_result": "profile-checks/result.json",
+      "original_root": "build/m3-perf/profile-checks",
+      "application_abi": 1,
+      "cache_line_bytes": 128,
+      "sample_factor": 128,
+      "selected_categories": [
+        "cache_unpin",
+        "code_fetch",
+        "pc_bounds",
+        "preflight"
+      ],
+      "baseline_frames": 8938,
+      "instrumented_frames": 20787,
+      "retired": 693194,
+      "image_sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+      "qualification": "Autonomous target execution in the existing functional emulator; physical Ultimate timing pending"
+    },
+    {
+      "id": "profile-services",
+      "accepted_result": "profile-services/result.json",
+      "original_root": "build/m3-perf/profile-services",
+      "application_abi": 1,
+      "cache_line_bytes": 128,
+      "sample_factor": 128,
+      "selected_categories": [
+        "cache_service",
+        "dma_admission",
+        "native_phase",
+        "scheduler_tick",
+        "video_admission"
+      ],
+      "baseline_frames": 8938,
+      "instrumented_frames": 10375,
+      "retired": 693194,
+      "image_sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+      "qualification": "Autonomous target execution in the existing functional emulator; physical Ultimate timing pending"
+    },
+    {
+      "id": "profile-wrap",
+      "accepted_result": "profile-wrap/result.json",
+      "original_root": "build/m3-perf/profile-wrap",
+      "application_abi": 2,
+      "cache_line_bytes": 128,
+      "sample_factor": 128,
+      "selected_categories": [
+        "cache_unpin",
+        "code_fetch",
+        "pc_bounds",
+        "video_admission",
+        "vm_step"
+      ],
+      "baseline_frames": 232,
+      "instrumented_frames": 518,
+      "retired": 36358,
+      "image_sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+      "qualification": "Autonomous target execution in the existing functional emulator; physical Ultimate timing pending"
+    },
+    {
+      "id": "profile-wrap-step",
+      "accepted_result": "profile-wrap-step/result.json",
+      "original_root": "build/m3-perf/profile-wrap-step",
+      "application_abi": 2,
+      "cache_line_bytes": 128,
+      "sample_factor": 128,
+      "selected_categories": [
+        "vm_step"
+      ],
+      "baseline_frames": 232,
+      "instrumented_frames": 247,
+      "retired": 36358,
+      "image_sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+      "qualification": "Autonomous target execution in the existing functional emulator; physical Ultimate timing pending"
+    },
+    {
+      "id": "profile-wrap-arithmetic",
+      "accepted_result": "profile-wrap-arithmetic/result.json",
+      "original_root": "build/m3-perf/profile-wrap-arithmetic",
+      "application_abi": 2,
+      "cache_line_bytes": 128,
+      "sample_factor": 128,
+      "selected_categories": [
+        "execute",
+        "preflight"
+      ],
+      "baseline_frames": 232,
+      "instrumented_frames": 266,
+      "retired": 36358,
+      "image_sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+      "qualification": "Autonomous target execution in the existing functional emulator; physical Ultimate timing pending"
+    }
+  ],
+  "qualification_only": [
+    {
+      "id": "profile-timer-final",
+      "accepted_result": "profile-timer-final/result.json",
+      "completed_calls": 65539,
+      "sampling_phase_deliberately_reset_for_forced_probes": true
+    }
+  ],
+  "excluded_artifacts": "Firmware, REU images, private USB copies, host executables, execution logs and rejected measurements are not copied; original paths and their hashes remain in accepted receipts.",
+  "rejected_evidence_references": [
+    {
+      "original_path": "build/m3-perf/profile-core/runs/128/instrumented/invalid-profile.json",
+      "status": "rejected",
+      "reason": "Live cascaded CIA2 profile counters overflowed; interval maxima included modulo-negative 65536-PHI2 discontinuities. Precise cause unestablished; no accepted timing from this trial."
+    }
+  ],
+  "generated_notes": [
+    {
+      "path": "README.md",
+      "sha256": "d88f851c76c2d1c7646c3d3d1bff67753a757b9abdf9fb7c8fa45b3dc75546dd",
+      "bytes": 2028
+    }
+  ]
+}

@@ -1,0 +1,415 @@
+{
+  "elapsed_frames": 20787,
+  "elapsed_phi2_ticks_estimate": 408589272,
+  "frame_quantization_phi2_ticks": 19656,
+  "retired": 693194,
+  "image_sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+  "profile": {
+    "vm_step": {
+      "routine": "vm_step",
+      "inclusive_phi2_ticks": 0,
+      "calls": 0,
+      "minimum_phi2_ticks": 4294967295,
+      "maximum_phi2_ticks": 0,
+      "carry_set_phi2_ticks": 0,
+      "carry_set_calls": 0,
+      "body_excess_vs_empty_interval_phi2_ticks": [
+        0,
+        0
+      ]
+    },
+    "code_fetch": {
+      "routine": "cache_fetch_code",
+      "inclusive_phi2_ticks": 40615,
+      "calls": 5499,
+      "minimum_phi2_ticks": 6,
+      "maximum_phi2_ticks": 9,
+      "carry_set_phi2_ticks": 676,
+      "carry_set_calls": 86,
+      "body_excess_vs_empty_interval_phi2_ticks": [
+        24118,
+        29617
+      ]
+    },
+    "pc_bounds": {
+      "routine": "vm_check_pc",
+      "inclusive_phi2_ticks": 55749,
+      "calls": 10940,
+      "minimum_phi2_ticks": 5,
+      "maximum_phi2_ticks": 6,
+      "carry_set_phi2_ticks": 0,
+      "carry_set_calls": 0,
+      "body_excess_vs_empty_interval_phi2_ticks": [
+        22929,
+        33869
+      ]
+    },
+    "decode": {
+      "routine": "vm_decode_operands",
+      "inclusive_phi2_ticks": 0,
+      "calls": 0,
+      "minimum_phi2_ticks": 4294967295,
+      "maximum_phi2_ticks": 0,
+      "carry_set_phi2_ticks": 0,
+      "carry_set_calls": 0,
+      "body_excess_vs_empty_interval_phi2_ticks": [
+        0,
+        0
+      ]
+    },
+    "preflight": {
+      "routine": "vm_preflight",
+      "inclusive_phi2_ticks": 19874,
+      "calls": 5415,
+      "minimum_phi2_ticks": 2,
+      "maximum_phi2_ticks": 18,
+      "carry_set_phi2_ticks": 0,
+      "carry_set_calls": 0,
+      "body_excess_vs_empty_interval_phi2_ticks": [
+        3629,
+        9044
+      ]
+    },
+    "execute": {
+      "routine": "vm_execute",
+      "inclusive_phi2_ticks": 0,
+      "calls": 0,
+      "minimum_phi2_ticks": 4294967295,
+      "maximum_phi2_ticks": 0,
+      "carry_set_phi2_ticks": 0,
+      "carry_set_calls": 0,
+      "body_excess_vs_empty_interval_phi2_ticks": [
+        0,
+        0
+      ]
+    },
+    "cache_unpin": {
+      "routine": "cache_unpin",
+      "inclusive_phi2_ticks": 39487,
+      "calls": 5920,
+      "minimum_phi2_ticks": 6,
+      "maximum_phi2_ticks": 7,
+      "carry_set_phi2_ticks": 1626,
+      "carry_set_calls": 243,
+      "body_excess_vs_empty_interval_phi2_ticks": [
+        21727,
+        27647
+      ]
+    },
+    "data_read": {
+      "routine": "cache_read_prepared",
+      "inclusive_phi2_ticks": 0,
+      "calls": 0,
+      "minimum_phi2_ticks": 4294967295,
+      "maximum_phi2_ticks": 0,
+      "carry_set_phi2_ticks": 0,
+      "carry_set_calls": 0,
+      "body_excess_vs_empty_interval_phi2_ticks": [
+        0,
+        0
+      ]
+    },
+    "data_write": {
+      "routine": "cache_write_prepared",
+      "inclusive_phi2_ticks": 0,
+      "calls": 0,
+      "minimum_phi2_ticks": 4294967295,
+      "maximum_phi2_ticks": 0,
+      "carry_set_phi2_ticks": 0,
+      "carry_set_calls": 0,
+      "body_excess_vs_empty_interval_phi2_ticks": [
+        0,
+        0
+      ]
+    },
+    "scheduler_tick": {
+      "routine": "scheduler_tick",
+      "inclusive_phi2_ticks": 0,
+      "calls": 0,
+      "minimum_phi2_ticks": 4294967295,
+      "maximum_phi2_ticks": 0,
+      "carry_set_phi2_ticks": 0,
+      "carry_set_calls": 0,
+      "body_excess_vs_empty_interval_phi2_ticks": [
+        0,
+        0
+      ]
+    },
+    "native_phase": {
+      "routine": "scheduler_native_phase",
+      "inclusive_phi2_ticks": 0,
+      "calls": 0,
+      "minimum_phi2_ticks": 4294967295,
+      "maximum_phi2_ticks": 0,
+      "carry_set_phi2_ticks": 0,
+      "carry_set_calls": 0,
+      "body_excess_vs_empty_interval_phi2_ticks": [
+        0,
+        0
+      ]
+    },
+    "cache_service": {
+      "routine": "cache_service",
+      "inclusive_phi2_ticks": 0,
+      "calls": 0,
+      "minimum_phi2_ticks": 4294967295,
+      "maximum_phi2_ticks": 0,
+      "carry_set_phi2_ticks": 0,
+      "carry_set_calls": 0,
+      "body_excess_vs_empty_interval_phi2_ticks": [
+        0,
+        0
+      ]
+    },
+    "video_admission": {
+      "routine": "vm_video_admit",
+      "inclusive_phi2_ticks": 0,
+      "calls": 0,
+      "minimum_phi2_ticks": 4294967295,
+      "maximum_phi2_ticks": 0,
+      "carry_set_phi2_ticks": 0,
+      "carry_set_calls": 0,
+      "body_excess_vs_empty_interval_phi2_ticks": [
+        0,
+        0
+      ]
+    },
+    "dma_admission": {
+      "routine": "vm_dma_admit",
+      "inclusive_phi2_ticks": 0,
+      "calls": 0,
+      "minimum_phi2_ticks": 4294967295,
+      "maximum_phi2_ticks": 0,
+      "carry_set_phi2_ticks": 0,
+      "carry_set_calls": 0,
+      "body_excess_vs_empty_interval_phi2_ticks": [
+        0,
+        0
+      ]
+    },
+    "fixed_syscall": {
+      "routine": "jobs_accept",
+      "inclusive_phi2_ticks": 0,
+      "calls": 0,
+      "minimum_phi2_ticks": 4294967295,
+      "maximum_phi2_ticks": 0,
+      "carry_set_phi2_ticks": 0,
+      "carry_set_calls": 0,
+      "body_excess_vs_empty_interval_phi2_ticks": [
+        0,
+        0
+      ]
+    },
+    "empty_probe": {
+      "routine": "profile_nop",
+      "inclusive_phi2_ticks": 665,
+      "calls": 256,
+      "minimum_phi2_ticks": 2,
+      "maximum_phi2_ticks": 3,
+      "carry_set_phi2_ticks": 0,
+      "carry_set_calls": 0,
+      "body_excess_vs_empty_interval_phi2_ticks": [
+        0,
+        153
+      ]
+    }
+  },
+  "build_tag": 656387948,
+  "artifact_sha256": {
+    "m3.prg": "08ba0ecc917a6e2bf184781a173b08c34e6cd3bbf929660656082efd8db891cc",
+    "m3.reu": "5298a81731123f5749f554ca908188b3d3af1241af381deac21425d16e3c1c72",
+    "native.bin": "cdeeca86f3049e811f49dad7235fe463795d9b7c2b629926670dd77d51fdb880",
+    "renderer.prg": "5858b9691af7965b54c4f0ca5e96a314c2105293c291f91c72dd8246ad02adb2",
+    "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+    "m3.manifest.json": "9aec53cc493b3371ba6fa35b50c15bcf00b3acd0953ce5961f44d581ec5acd17"
+  },
+  "map_sha256": "361956af5baa08e9dd9061a8e7b09cab29c22c7a36f0eaabfc6ec54dbb3260c0",
+  "report": [
+    77,
+    48,
+    82,
+    49,
+    1,
+    56,
+    1,
+    16,
+    0,
+    192,
+    2,
+    0,
+    0,
+    1,
+    0,
+    0,
+    100,
+    81,
+    0,
+    0,
+    0,
+    0,
+    118,
+    126,
+    154,
+    0,
+    0,
+    0,
+    0,
+    29,
+    0,
+    0,
+    2,
+    0,
+    2,
+    0,
+    0,
+    0,
+    1,
+    0,
+    3,
+    0,
+    3,
+    0,
+    18,
+    0,
+    18,
+    0,
+    66,
+    0,
+    66,
+    0,
+    130,
+    0,
+    130,
+    0,
+    2,
+    1,
+    2,
+    1,
+    3,
+    0,
+    3,
+    0,
+    18,
+    0,
+    18,
+    0,
+    66,
+    0,
+    66,
+    0,
+    130,
+    0,
+    130,
+    0,
+    2,
+    1,
+    2,
+    1
+  ],
+  "supplied_input_sha256": {
+    "emulator": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+    "config": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+    "flash": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be",
+    "settings": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961"
+  },
+  "private_reu_sha256": "5298a81731123f5749f554ca908188b3d3af1241af381deac21425d16e3c1c72",
+  "private_settings_sha256": "d299fc10d9f1e2328adfadc5705c72651688413204585c631f829a8741d65f36",
+  "scanout": {
+    "source_width": 320,
+    "source_height": 200,
+    "output_width": 720,
+    "output_height": 576,
+    "output_rectangle": [
+      12,
+      104,
+      601,
+      400
+    ],
+    "separately_visible_stripe_pixels": 320,
+    "all_64000_pixels_and_both_output_rows_match": true,
+    "palette_rgb": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        247,
+        247,
+        247
+      ],
+      [
+        141,
+        47,
+        52
+      ],
+      [
+        106,
+        212,
+        205
+      ],
+      [
+        152,
+        53,
+        164
+      ],
+      [
+        76,
+        180,
+        66
+      ],
+      [
+        44,
+        41,
+        177
+      ],
+      [
+        239,
+        239,
+        93
+      ],
+      [
+        152,
+        78,
+        32
+      ],
+      [
+        91,
+        56,
+        0
+      ],
+      [
+        209,
+        103,
+        109
+      ],
+      [
+        74,
+        74,
+        74
+      ],
+      [
+        123,
+        123,
+        123
+      ],
+      [
+        159,
+        239,
+        147
+      ],
+      [
+        109,
+        106,
+        239
+      ],
+      [
+        178,
+        178,
+        178
+      ]
+    ],
+    "first_and_last_pixels_visible": true,
+    "even_low_odd_high": true
+  }
+}

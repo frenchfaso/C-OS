@@ -1,0 +1,531 @@
+{
+  "files": {
+    "normal-timing/summary.json": {
+      "bytes": 1128,
+      "sha256": "cdc42fa5e1a6dc0851da739a9ae9ad0cdb43f85501c2496a9570f7f38cfbabfa",
+      "source": "build/m3-perf/final-candidate/normal-timing-summary.json"
+    },
+    "regression/build/abi2-rejection/result.json": {
+      "bytes": 2499,
+      "sha256": "932588324f57c34fd1f6dc0267d09d56945cf3cb2def993351e99544c458a9f1",
+      "source": "build/m3-perf/final-v2/source/build/abi2-rejection/result.json"
+    },
+    "regression/build/cache-cancel/128/result.json": {
+      "bytes": 1020,
+      "sha256": "264d6e390f71d3a5869cc6946dd156ecf4832f6de926c893ba7eca35bd20af3e",
+      "source": "build/m3-perf/final-v2/source/build/cache-cancel/128/result.json"
+    },
+    "regression/build/cache-cancel/64/result.json": {
+      "bytes": 1017,
+      "sha256": "095836ae589a025a983233a71928e1cd78d7ad3b60c5e883393b496f73f3d2b2",
+      "source": "build/m3-perf/final-v2/source/build/cache-cancel/64/result.json"
+    },
+    "regression/build/cache-rollback/128/extended/result.json": {
+      "bytes": 51779,
+      "sha256": "6953de2d2ce903687beb3c48365acdc43dc5f9fe33b98e552b563264f4b547d4",
+      "source": "build/m3-perf/final-v2/source/build/cache-rollback/128/extended/result.json"
+    },
+    "regression/build/cache-rollback/128/normal/result.json": {
+      "bytes": 51780,
+      "sha256": "b4f182573ddfd666dd2fc7158eb223fd3d4b342fc17b31000119c1765332fbfb",
+      "source": "build/m3-perf/final-v2/source/build/cache-rollback/128/normal/result.json"
+    },
+    "regression/build/cache-rollback/64/extended/result.json": {
+      "bytes": 51698,
+      "sha256": "ee5b66c17316f1a69fb59402c10c9ade9af58e1a48ba72405fab66564127a105",
+      "source": "build/m3-perf/final-v2/source/build/cache-rollback/64/extended/result.json"
+    },
+    "regression/build/cache-rollback/64/normal/result.json": {
+      "bytes": 51699,
+      "sha256": "f66bf66aae72ba1900550ba5659393832c690840175e9e40b89e2776022dcae3",
+      "source": "build/m3-perf/final-v2/source/build/cache-rollback/64/normal/result.json"
+    },
+    "regression/build/m0/ue2/bad-pack/result.json": {
+      "bytes": 1409,
+      "sha256": "4fa9bdce1f953a480709a0e20e7052e818fd3c6071f0c0592f6821edccecdcd6",
+      "source": "build/m3-perf/final-v2/source/build/m0/ue2/bad-pack/result.json"
+    },
+    "regression/build/m0/ue2/ntsc/result.json": {
+      "bytes": 1404,
+      "sha256": "c9358c99ef84b79623fa80339e447c4d34837ec409c7dc8c57fbd3d8be902b57",
+      "source": "build/m3-perf/final-v2/source/build/m0/ue2/ntsc/result.json"
+    },
+    "regression/build/m0/ue2/pal64-reu16/result.json": {
+      "bytes": 4127,
+      "sha256": "0f73b9943e67d692252fde433d82055ca32e7146267a8d47ac66ce4a5193a9cd",
+      "source": "build/m3-perf/final-v2/source/build/m0/ue2/pal64-reu16/result.json"
+    },
+    "regression/build/m0/ue2/reu-absent/result.json": {
+      "bytes": 1407,
+      "sha256": "0ef4eaeb08af5e08cd948fac5f98acff59491dc27a0c06086dd9e645c0e75623",
+      "source": "build/m3-perf/final-v2/source/build/m0/ue2/reu-absent/result.json"
+    },
+    "regression/build/m0/ue2/reu128/result.json": {
+      "bytes": 1407,
+      "sha256": "f270da340c84b723db7bec0a826cb464413a9574f730c911af89b8f55b417f1b",
+      "source": "build/m3-perf/final-v2/source/build/m0/ue2/reu128/result.json"
+    },
+    "regression/build/m0/ue2/reu2m/result.json": {
+      "bytes": 1408,
+      "sha256": "f1a4061ed38611ca08e0ae59ff00336512c595c4e211f3e8b0f4648429367c6f",
+      "source": "build/m3-perf/final-v2/source/build/m0/ue2/reu2m/result.json"
+    },
+    "regression/build/m0/ue2/reu512/result.json": {
+      "bytes": 1407,
+      "sha256": "4a23eaac53dcd70fcbe66609650aa2a16370ac7a29d3f728b3e40b4ccd35dc5b",
+      "source": "build/m3-perf/final-v2/source/build/m0/ue2/reu512/result.json"
+    },
+    "regression/build/m0/ue2/reu8m/result.json": {
+      "bytes": 1409,
+      "sha256": "dbfa7c2a5d27b1d67a2d13a05a051a90f84d3fe6ea95971875bd5ce1a497f7be",
+      "source": "build/m3-perf/final-v2/source/build/m0/ue2/reu8m/result.json"
+    },
+    "regression/build/m0/ue2/turbo32/result.json": {
+      "bytes": 1408,
+      "sha256": "e0e5a6740d39b54943bd91eb0560b694d5b60469407fb78b04d9ebb9ddf34f75",
+      "source": "build/m3-perf/final-v2/source/build/m0/ue2/turbo32/result.json"
+    },
+    "regression/build/m0/ue2/turbo48/result.json": {
+      "bytes": 1408,
+      "sha256": "412ee4b5256daa3484d15288cf438f65b61d336800341d9d21111c2942b0baa1",
+      "source": "build/m3-perf/final-v2/source/build/m0/ue2/turbo48/result.json"
+    },
+    "regression/build/m1-results.json": {
+      "bytes": 2446,
+      "sha256": "44f75cb9022dd862f4b448c2ac1ddae0218603586b1b0fb82a58c3b9d66348b3",
+      "source": "build/m3-perf/final-v2/source/build/m1-results.json"
+    },
+    "regression/build/m2/128/bounds.json": {
+      "bytes": 9822,
+      "sha256": "eb788a2dc6acc1c866615101a2d1a96d79096c2205b08e47641db8e64cf6b561",
+      "source": "build/m3-perf/final-v2/source/build/m2/128/bounds.json"
+    },
+    "regression/build/m2/64/bounds.json": {
+      "bytes": 9820,
+      "sha256": "e0bc690c965b12b713b8a94160466d8823ab5f6efda0483e499c1f92f6f69da7",
+      "source": "build/m3-perf/final-v2/source/build/m2/64/bounds.json"
+    },
+    "regression/build/m2/margins/result.json": {
+      "bytes": 1648,
+      "sha256": "405e8170d650833047681ea3beaad8fb3bde535f66a0798e76551c2279cf4ebf",
+      "source": "build/m3-perf/final-v2/source/build/m2/margins/result.json"
+    },
+    "regression/build/m2/ue2/128/result.json": {
+      "bytes": 1130170,
+      "sha256": "70dec4aaccdb164ddb739bb9223af2b6560cef560163a5759b343d7fc133288f",
+      "source": "build/m3-perf/final-v2/source/build/m2/ue2/128/result.json"
+    },
+    "regression/build/m2/ue2/64/result.json": {
+      "bytes": 1129586,
+      "sha256": "8fe44be6efad5f317296893c26e69b60b87adee7db12c5e44090215c85638055",
+      "source": "build/m3-perf/final-v2/source/build/m2/ue2/64/result.json"
+    },
+    "regression/build/m3-admission/128/result.json": {
+      "bytes": 5438,
+      "sha256": "6e6f8ad6bab450e070c3408949b92fcc5011e5cd30d40907a132253fbc719aa9",
+      "source": "build/m3-perf/final-v2/source/build/m3-admission/128/result.json"
+    },
+    "regression/build/m3-admission/128/scheduler_video_admit/result.json": {
+      "bytes": 1635,
+      "sha256": "b324b9e5c4a147f56d9aad3ad827cf44c7609cc11dcede9bd59ddcc121c7cbbe",
+      "source": "build/m3-perf/final-v2/source/build/m3-admission/128/scheduler_video_admit/result.json"
+    },
+    "regression/build/m3-admission/128/vm_video_admit/result.json": {
+      "bytes": 1935,
+      "sha256": "808cc56b44bb98a1ff83baea59b07146a76bb2087685f03a5f5628fc0d33c336",
+      "source": "build/m3-perf/final-v2/source/build/m3-admission/128/vm_video_admit/result.json"
+    },
+    "regression/build/m3-admission/64/result.json": {
+      "bytes": 5438,
+      "sha256": "9c2d9ad18dbcfb6fe2449ee3374cc92120aeff233e3bad2088aec66ec3496333",
+      "source": "build/m3-perf/final-v2/source/build/m3-admission/64/result.json"
+    },
+    "regression/build/m3-admission/64/scheduler_video_admit/result.json": {
+      "bytes": 1635,
+      "sha256": "b324b9e5c4a147f56d9aad3ad827cf44c7609cc11dcede9bd59ddcc121c7cbbe",
+      "source": "build/m3-perf/final-v2/source/build/m3-admission/64/scheduler_video_admit/result.json"
+    },
+    "regression/build/m3-admission/64/vm_video_admit/result.json": {
+      "bytes": 1935,
+      "sha256": "808cc56b44bb98a1ff83baea59b07146a76bb2087685f03a5f5628fc0d33c336",
+      "source": "build/m3-perf/final-v2/source/build/m3-admission/64/vm_video_admit/result.json"
+    },
+    "regression/build/m3-autonomous/128/result.json": {
+      "bytes": 184000,
+      "sha256": "160a254bf086f97778c343017224b53d3a3ae7109f63a09a536c34752e4015a6",
+      "source": "build/m3-perf/final-v2/source/build/m3-autonomous/128/result.json"
+    },
+    "regression/build/m3-autonomous/64/result.json": {
+      "bytes": 147634,
+      "sha256": "17854060ecb629358139c91fa518ea87958ecdba75675407c0afb37e3273f4c4",
+      "source": "build/m3-perf/final-v2/source/build/m3-autonomous/64/result.json"
+    },
+    "regression/build/m3-contract/128/result.json": {
+      "bytes": 652,
+      "sha256": "357708ef9db293842c9a746e0bc02da8d18ee53d4ef7c6ed599a2633c2eab6fc",
+      "source": "build/m3-perf/final-v2/source/build/m3-contract/128/result.json"
+    },
+    "regression/build/m3-contract/64/result.json": {
+      "bytes": 651,
+      "sha256": "c40dde392ff8b2e070e6402d789ef4e42e5b39d232ce2f1653b1e63572e35cfb",
+      "source": "build/m3-perf/final-v2/source/build/m3-contract/64/result.json"
+    },
+    "regression/build/m3-hot-pc/128/result.json": {
+      "bytes": 1562,
+      "sha256": "ecc9e9bbf085987d24cf11544715af97149a504cf26d5803302107b688d0305d",
+      "source": "build/m3-perf/final-v2/source/build/m3-hot-pc/128/result.json"
+    },
+    "regression/build/m3-hot-pc/64/result.json": {
+      "bytes": 1561,
+      "sha256": "cc8fe0d9c1e07550dfdf1e3e40a687a3aadd3239ceef5549780bbb18fab1a0b9",
+      "source": "build/m3-perf/final-v2/source/build/m3-hot-pc/64/result.json"
+    },
+    "regression/build/m3-raster-active/128/result.json": {
+      "bytes": 3079,
+      "sha256": "73d71866530cf717aae4c7d044f52a5031a00e7d92debabf9d2a7ed0a6c69024",
+      "source": "build/m3-perf/final-v2/source/build/m3-raster-active/128/result.json"
+    },
+    "regression/build/m3-raster-active/64/result.json": {
+      "bytes": 3079,
+      "sha256": "be70bee5617b663b93cfb69bd9949726e78a186d43a92fc465545d4a4f00f378",
+      "source": "build/m3-perf/final-v2/source/build/m3-raster-active/64/result.json"
+    },
+    "regression/build/m3/128/bounds.json": {
+      "bytes": 25777,
+      "sha256": "7196ff48bc42f6e77875489873db936e786771d9f06927c172a28a7736d9dff3",
+      "source": "build/m3-perf/final-v2/source/build/m3/128/bounds.json"
+    },
+    "regression/build/m3/64/bounds.json": {
+      "bytes": 25776,
+      "sha256": "9ad497f5b088371b00b5d5aecac57a84c9dad9f37d7993e6d3a5a75b48170720",
+      "source": "build/m3-perf/final-v2/source/build/m3/64/bounds.json"
+    },
+    "regression/cleanup.json": {
+      "bytes": 22136,
+      "sha256": "2ce5cf328f6dca7e99e84dc917c92b4e0e3feb511ae7b94c741d1731d47ff0bb",
+      "source": "build/m3-perf/final-v2/cleanup.json"
+    },
+    "regression/commands.json": {
+      "bytes": 48774,
+      "sha256": "8c0178fc632091fb7b2c2d41d98b645517a19c7efb4eb08772f39f9dacd5d051",
+      "source": "build/m3-perf/final-v2/commands.json"
+    },
+    "regression/external-inputs.json": {
+      "bytes": 2547,
+      "sha256": "fc861e8094408c989cea70d223dd9b6bf29419bf028c569038f14eb425d4f1ab",
+      "source": "build/m3-perf/final-v2/external-inputs.json"
+    },
+    "regression/host-receipts.json": {
+      "bytes": 2824,
+      "sha256": "af67e9e72d48d84db53fff3b3b24908c6d5080308337a14a353737f3372a32ef",
+      "source": "build/m3-perf/final-v2/host-receipts.json"
+    },
+    "regression/logs/abi2-rejection.log": {
+      "bytes": 67,
+      "sha256": "93e20c6deb3c2a0888907d9683fd5a0ac5ba5a87dea80cb675a4a6015fb046bb",
+      "source": "build/m3-perf/final-v2/logs/abi2-rejection.log"
+    },
+    "regression/logs/cache-cancel.log": {
+      "bytes": 2130,
+      "sha256": "aa0d8bf157e6d4067c0c71601b8fe7ce3a1e1540dc72a6a3fc2b12f141765815",
+      "source": "build/m3-perf/final-v2/logs/cache-cancel.log"
+    },
+    "regression/logs/fixtures.log": {
+      "bytes": 136,
+      "sha256": "22552450ee94511e5ba9e262360640c63dcbd6a8ac795248954575439fa495e0",
+      "source": "build/m3-perf/final-v2/logs/fixtures.log"
+    },
+    "regression/logs/host-clippy.log": {
+      "bytes": 176,
+      "sha256": "4f7f5de10e6ef4c406cc2f4f699c77cf32144f39994e8452e19ba3cd84dd8e8d",
+      "source": "build/m3-perf/final-v2/logs/host-clippy.log"
+    },
+    "regression/logs/host-fmt.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "build/m3-perf/final-v2/logs/host-fmt.log"
+    },
+    "regression/logs/host-release.log": {
+      "bytes": 166,
+      "sha256": "33b68327c6915f9132723a6c8ddd79a99e448ec6d877cb6549cfde9ad961365a",
+      "source": "build/m3-perf/final-v2/logs/host-release.log"
+    },
+    "regression/logs/host-test.log": {
+      "bytes": 7490,
+      "sha256": "1023180e026d5785c38c53b91f7d881c6354f92160f645cd3fe3f894d2fc118b",
+      "source": "build/m3-perf/final-v2/logs/host-test.log"
+    },
+    "regression/logs/m0-bad-pack.log": {
+      "bytes": 1409,
+      "sha256": "4fa9bdce1f953a480709a0e20e7052e818fd3c6071f0c0592f6821edccecdcd6",
+      "source": "build/m3-perf/final-v2/logs/m0-bad-pack.log"
+    },
+    "regression/logs/m0-build.log": {
+      "bytes": 197,
+      "sha256": "b046989b98d3b269b4c093f153f6e0438e591b054981b804941d7c567e752235",
+      "source": "build/m3-perf/final-v2/logs/m0-build.log"
+    },
+    "regression/logs/m0-ntsc.log": {
+      "bytes": 1404,
+      "sha256": "c9358c99ef84b79623fa80339e447c4d34837ec409c7dc8c57fbd3d8be902b57",
+      "source": "build/m3-perf/final-v2/logs/m0-ntsc.log"
+    },
+    "regression/logs/m0-pal64-reu16.log": {
+      "bytes": 4127,
+      "sha256": "0f73b9943e67d692252fde433d82055ca32e7146267a8d47ac66ce4a5193a9cd",
+      "source": "build/m3-perf/final-v2/logs/m0-pal64-reu16.log"
+    },
+    "regression/logs/m0-reu-absent.log": {
+      "bytes": 1407,
+      "sha256": "0ef4eaeb08af5e08cd948fac5f98acff59491dc27a0c06086dd9e645c0e75623",
+      "source": "build/m3-perf/final-v2/logs/m0-reu-absent.log"
+    },
+    "regression/logs/m0-reu128.log": {
+      "bytes": 1407,
+      "sha256": "f270da340c84b723db7bec0a826cb464413a9574f730c911af89b8f55b417f1b",
+      "source": "build/m3-perf/final-v2/logs/m0-reu128.log"
+    },
+    "regression/logs/m0-reu2m.log": {
+      "bytes": 1408,
+      "sha256": "f1a4061ed38611ca08e0ae59ff00336512c595c4e211f3e8b0f4648429367c6f",
+      "source": "build/m3-perf/final-v2/logs/m0-reu2m.log"
+    },
+    "regression/logs/m0-reu512.log": {
+      "bytes": 1407,
+      "sha256": "4a23eaac53dcd70fcbe66609650aa2a16370ac7a29d3f728b3e40b4ccd35dc5b",
+      "source": "build/m3-perf/final-v2/logs/m0-reu512.log"
+    },
+    "regression/logs/m0-reu8m.log": {
+      "bytes": 1409,
+      "sha256": "dbfa7c2a5d27b1d67a2d13a05a051a90f84d3fe6ea95971875bd5ce1a497f7be",
+      "source": "build/m3-perf/final-v2/logs/m0-reu8m.log"
+    },
+    "regression/logs/m0-turbo32.log": {
+      "bytes": 1408,
+      "sha256": "e0e5a6740d39b54943bd91eb0560b694d5b60469407fb78b04d9ebb9ddf34f75",
+      "source": "build/m3-perf/final-v2/logs/m0-turbo32.log"
+    },
+    "regression/logs/m0-turbo48.log": {
+      "bytes": 1408,
+      "sha256": "412ee4b5256daa3484d15288cf438f65b61d336800341d9d21111c2942b0baa1",
+      "source": "build/m3-perf/final-v2/logs/m0-turbo48.log"
+    },
+    "regression/logs/m1.log": {
+      "bytes": 172,
+      "sha256": "3ffc0f74c67d45bfd7696303de8d8b1a0b60bd2a7276248046d45c2439184e1a",
+      "source": "build/m3-perf/final-v2/logs/m1.log"
+    },
+    "regression/logs/m2-128-bounds.log": {
+      "bytes": 9822,
+      "sha256": "eb788a2dc6acc1c866615101a2d1a96d79096c2205b08e47641db8e64cf6b561",
+      "source": "build/m3-perf/final-v2/logs/m2-128-bounds.log"
+    },
+    "regression/logs/m2-128-build.log": {
+      "bytes": 109,
+      "sha256": "646c4467a233ddd77255241b3f5e13ebade0d82716b97404a628f21e479d2c68",
+      "source": "build/m3-perf/final-v2/logs/m2-128-build.log"
+    },
+    "regression/logs/m2-128-differential.log": {
+      "bytes": 1594,
+      "sha256": "10a172a80bb8b668ad7f8efc7fa78afb3ffa48df5f592f331c8401704b7668a2",
+      "source": "build/m3-perf/final-v2/logs/m2-128-differential.log"
+    },
+    "regression/logs/m2-128-repeat.log": {
+      "bytes": 109,
+      "sha256": "646c4467a233ddd77255241b3f5e13ebade0d82716b97404a628f21e479d2c68",
+      "source": "build/m3-perf/final-v2/logs/m2-128-repeat.log"
+    },
+    "regression/logs/m2-64-bounds.log": {
+      "bytes": 9820,
+      "sha256": "e0bc690c965b12b713b8a94160466d8823ab5f6efda0483e499c1f92f6f69da7",
+      "source": "build/m3-perf/final-v2/logs/m2-64-bounds.log"
+    },
+    "regression/logs/m2-64-build.log": {
+      "bytes": 108,
+      "sha256": "6a3145195eb9d33e0b02e914219c8a6444a4130660d659bb623c1e30dc7e6f02",
+      "source": "build/m3-perf/final-v2/logs/m2-64-build.log"
+    },
+    "regression/logs/m2-64-differential.log": {
+      "bytes": 1565,
+      "sha256": "4de45abe5ca4dec6c43bf97cab0bfcaafa86f8eb1f926c021c552214402c9400",
+      "source": "build/m3-perf/final-v2/logs/m2-64-differential.log"
+    },
+    "regression/logs/m2-64-repeat.log": {
+      "bytes": 108,
+      "sha256": "6a3145195eb9d33e0b02e914219c8a6444a4130660d659bb623c1e30dc7e6f02",
+      "source": "build/m3-perf/final-v2/logs/m2-64-repeat.log"
+    },
+    "regression/logs/m3-128-admission.log": {
+      "bytes": 138,
+      "sha256": "551e6f6d2fe7e68455a38db41b101c665527a4ed0e6b7ccd69d80a12a8a2d9ae",
+      "source": "build/m3-perf/final-v2/logs/m3-128-admission.log"
+    },
+    "regression/logs/m3-128-autonomous.log": {
+      "bytes": 214,
+      "sha256": "7411800db9d9ccff1174f534f251f61ba8f57ba1f544860ce302820c5a65dd50",
+      "source": "build/m3-perf/final-v2/logs/m3-128-autonomous.log"
+    },
+    "regression/logs/m3-128-bounds.log": {
+      "bytes": 25777,
+      "sha256": "7196ff48bc42f6e77875489873db936e786771d9f06927c172a28a7736d9dff3",
+      "source": "build/m3-perf/final-v2/logs/m3-128-bounds.log"
+    },
+    "regression/logs/m3-128-build.log": {
+      "bytes": 105,
+      "sha256": "dda4fdbf9ee7274a20180e89bb0afdfaa799519e906eed50428f0dae51c89742",
+      "source": "build/m3-perf/final-v2/logs/m3-128-build.log"
+    },
+    "regression/logs/m3-128-contract.log": {
+      "bytes": 652,
+      "sha256": "357708ef9db293842c9a746e0bc02da8d18ee53d4ef7c6ed599a2633c2eab6fc",
+      "source": "build/m3-perf/final-v2/logs/m3-128-contract.log"
+    },
+    "regression/logs/m3-128-hot-pc.log": {
+      "bytes": 39,
+      "sha256": "27e00183fde6aa6c57a82edf1c5d2e0cf63377fdf211770fe2f5c116b7f22bd6",
+      "source": "build/m3-perf/final-v2/logs/m3-128-hot-pc.log"
+    },
+    "regression/logs/m3-128-raster-active.log": {
+      "bytes": 137,
+      "sha256": "c349a6f14488bbf3aec88177f6561daf0f181f55cfa4b915b2d22db2232ea47d",
+      "source": "build/m3-perf/final-v2/logs/m3-128-raster-active.log"
+    },
+    "regression/logs/m3-128-repeat.log": {
+      "bytes": 105,
+      "sha256": "dda4fdbf9ee7274a20180e89bb0afdfaa799519e906eed50428f0dae51c89742",
+      "source": "build/m3-perf/final-v2/logs/m3-128-repeat.log"
+    },
+    "regression/logs/m3-64-admission.log": {
+      "bytes": 137,
+      "sha256": "cc47db8b077559489d204dcaafcd0dd33b53de42c9781d6721487b79601ba09d",
+      "source": "build/m3-perf/final-v2/logs/m3-64-admission.log"
+    },
+    "regression/logs/m3-64-autonomous.log": {
+      "bytes": 210,
+      "sha256": "8a96a908ad92f42719c1a307188d402ee2251693b64d133615b94d40c9cb72e0",
+      "source": "build/m3-perf/final-v2/logs/m3-64-autonomous.log"
+    },
+    "regression/logs/m3-64-bounds.log": {
+      "bytes": 25776,
+      "sha256": "9ad497f5b088371b00b5d5aecac57a84c9dad9f37d7993e6d3a5a75b48170720",
+      "source": "build/m3-perf/final-v2/logs/m3-64-bounds.log"
+    },
+    "regression/logs/m3-64-build.log": {
+      "bytes": 104,
+      "sha256": "270e20dc0cf609861da830220ebfd681e6362897cfb2e6335c7fd6e0aedbff32",
+      "source": "build/m3-perf/final-v2/logs/m3-64-build.log"
+    },
+    "regression/logs/m3-64-contract.log": {
+      "bytes": 651,
+      "sha256": "c40dde392ff8b2e070e6402d789ef4e42e5b39d232ce2f1653b1e63572e35cfb",
+      "source": "build/m3-perf/final-v2/logs/m3-64-contract.log"
+    },
+    "regression/logs/m3-64-hot-pc.log": {
+      "bytes": 39,
+      "sha256": "27e00183fde6aa6c57a82edf1c5d2e0cf63377fdf211770fe2f5c116b7f22bd6",
+      "source": "build/m3-perf/final-v2/logs/m3-64-hot-pc.log"
+    },
+    "regression/logs/m3-64-raster-active.log": {
+      "bytes": 136,
+      "sha256": "7ec1b2f08c8168d44f447fbebc05559f68e22f8477ce84bb2631cb78037579f4",
+      "source": "build/m3-perf/final-v2/logs/m3-64-raster-active.log"
+    },
+    "regression/logs/m3-64-repeat.log": {
+      "bytes": 104,
+      "sha256": "270e20dc0cf609861da830220ebfd681e6362897cfb2e6335c7fd6e0aedbff32",
+      "source": "build/m3-perf/final-v2/logs/m3-64-repeat.log"
+    },
+    "regression/logs/margins.log": {
+      "bytes": 1648,
+      "sha256": "405e8170d650833047681ea3beaad8fb3bde535f66a0798e76551c2279cf4ebf",
+      "source": "build/m3-perf/final-v2/logs/margins.log"
+    },
+    "regression/logs/python-tests.log": {
+      "bytes": 9098,
+      "sha256": "be67fbc2909a94aa330270bebbdc524e0bf6407fa616d39fcc005db420a2c676",
+      "source": "build/m3-perf/final-v2/logs/python-tests.log"
+    },
+    "regression/logs/rollback-128-extended.log": {
+      "bytes": 1326,
+      "sha256": "8ac6e2928df31d88dc7a19c501656f9632215615660afaf0b9a455dcc170d7d6",
+      "source": "build/m3-perf/final-v2/logs/rollback-128-extended.log"
+    },
+    "regression/logs/rollback-128-normal.log": {
+      "bytes": 1327,
+      "sha256": "31d687032f2ca5b9876e922e73d3af3f4853eea5332748cff98d66be3fca3a84",
+      "source": "build/m3-perf/final-v2/logs/rollback-128-normal.log"
+    },
+    "regression/logs/rollback-64-extended.log": {
+      "bytes": 1325,
+      "sha256": "4e6d66026d802947884036c18af6ac26bfe2f766f7025d53cce8084729f7f059",
+      "source": "build/m3-perf/final-v2/logs/rollback-64-extended.log"
+    },
+    "regression/logs/rollback-64-normal.log": {
+      "bytes": 1326,
+      "sha256": "1af4a431488fbab2e00016899cf6d38d56d5420c4e9d6051b8b21ec1a8a7ed2c",
+      "source": "build/m3-perf/final-v2/logs/rollback-64-normal.log"
+    },
+    "regression/logs/workload-object.log": {
+      "bytes": 132,
+      "sha256": "cf8c0a3005c91316990171173d8cc879399cc270b864ec8938ba92e64a1dfd3f",
+      "source": "build/m3-perf/final-v2/logs/workload-object.log"
+    },
+    "regression/preparation.json": {
+      "bytes": 9758,
+      "sha256": "51cc7cd21c4f319b8db5ecf4d6c800cfc51c3168379b2b1cc353aaec6fb2e2e8",
+      "source": "build/m3-perf/final-v2/preparation.json"
+    },
+    "regression/result.json": {
+      "bytes": 24148,
+      "sha256": "97d3f1f30114ca3e082a969e286fc69e50fc5936d26383f179ea77ab9281cd8b",
+      "source": "build/m3-perf/final-v2/result.json"
+    },
+    "rejected/dma-witness-first/edge-record.json": {
+      "bytes": 744,
+      "sha256": "0687c31108f27c757082761e5d0d4e48fdcc30ee16d94675743780698b8da6a7",
+      "source": "build/m3-perf/dma-edge/diagnostic-64/edge-record.json"
+    },
+    "rejected/dma-witness-first/result.json": {
+      "bytes": 22044,
+      "sha256": "592ec50b867e93d87ebfafec50c83cbbe351106544284e6cb3bb8f947cf4c567",
+      "source": "build/m3-perf/dma-edge/diagnostic-64/result.json"
+    },
+    "rejected/dma-witness-repeat/edge-record.json": {
+      "bytes": 744,
+      "sha256": "0687c31108f27c757082761e5d0d4e48fdcc30ee16d94675743780698b8da6a7",
+      "source": "build/m3-perf/dma-edge/diagnostic-64-repeat/edge-record.json"
+    },
+    "rejected/dma-witness-repeat/result.json": {
+      "bytes": 22044,
+      "sha256": "c1daf58d4b24b6d371f1f7b077fd1cfa344fd65e0bbff2bd15538468d7716fd2",
+      "source": "build/m3-perf/dma-edge/diagnostic-64-repeat/result.json"
+    },
+    "rejected/dma-witness-source.json": {
+      "bytes": 9352,
+      "sha256": "46f434ff2669197d4c05afe2c7586db2711c6ec6190dfbd5b2c474e263eb804f",
+      "source": "build/m3-perf/dma-edge/diagnostic-source-snapshot.json"
+    },
+    "rejected/stale-size-assertions/commands.json": {
+      "bytes": 15274,
+      "sha256": "6b3a2267fe87020c02219672902b33cc55970ba26e93873fe7cd0773ac34a861",
+      "source": "build/m3-perf/final/commands.json"
+    },
+    "rejected/stale-size-assertions/preparation.json": {
+      "bytes": 9755,
+      "sha256": "1f3459fadd9382841f6dfe2b36745b941de10c7971dcc4b351b64f8ad0f11b87",
+      "source": "build/m3-perf/final/preparation.json"
+    },
+    "rejected/stale-size-assertions/python-tests.log": {
+      "bytes": 10923,
+      "sha256": "deb72b4bc56a1611c0264128f18e166563f2b62c0bcae9323226b5ac65c64857",
+      "source": "build/m3-perf/final/logs/python-tests.log"
+    },
+    "rejected/unclassified-old-dma-event/protocol.log": {
+      "bytes": 19356,
+      "sha256": "0e6a1466bb036ed95fd9fb235498ca6c3c0735161e003e971fc85e80dbabbab3",
+      "source": "build/m3-perf/combined/benchmark-larger-64/cos/protocol.log"
+    }
+  },
+  "format": "COSM3PERFREGRESSIONCOPIES1",
+  "status": "pass"
+}

@@ -1,0 +1,206 @@
+{
+  "elapsed_frames": 8938,
+  "elapsed_phi2_ticks_estimate": 175685328,
+  "frame_quantization_phi2_ticks": 19656,
+  "retired": 693194,
+  "image_sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+  "profile": null,
+  "build_tag": 2441396846,
+  "artifact_sha256": {
+    "m3.prg": "94f6755f29c69e54615de1c7bf918241ace60244a5735ecfeaa5345eedc467a8",
+    "m3.reu": "47839f69275efa588e3ba98b168a121cd1a2600988a210e46cda1b93f14884a9",
+    "native.bin": "d806ab584547ef2568f6f43c8b88c5c42e4676bf3bf060089770331eb5c0a136",
+    "renderer.prg": "5858b9691af7965b54c4f0ca5e96a314c2105293c291f91c72dd8246ad02adb2",
+    "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+    "m3.manifest.json": "dcde82a9ab448c1449d0b2b56b92102afe9ca84d5f31da19123475a63a9aeaf9"
+  },
+  "map_sha256": "835260f3707798d7626f1a799d8672a94688b7860a5509b8558a6d42295ce61c",
+  "report": [
+    77,
+    48,
+    82,
+    49,
+    1,
+    56,
+    1,
+    16,
+    0,
+    192,
+    2,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    35,
+    0,
+    0,
+    0,
+    0,
+    5,
+    79,
+    84,
+    0,
+    0,
+    0,
+    0,
+    29,
+    0,
+    0,
+    2,
+    0,
+    2,
+    0,
+    0,
+    0,
+    1,
+    0,
+    3,
+    0,
+    3,
+    0,
+    18,
+    0,
+    18,
+    0,
+    66,
+    0,
+    66,
+    0,
+    130,
+    0,
+    130,
+    0,
+    2,
+    1,
+    2,
+    1,
+    3,
+    0,
+    3,
+    0,
+    18,
+    0,
+    18,
+    0,
+    66,
+    0,
+    66,
+    0,
+    130,
+    0,
+    130,
+    0,
+    2,
+    1,
+    2,
+    1
+  ],
+  "supplied_input_sha256": {
+    "emulator": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+    "config": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+    "flash": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be",
+    "settings": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961"
+  },
+  "private_reu_sha256": "47839f69275efa588e3ba98b168a121cd1a2600988a210e46cda1b93f14884a9",
+  "private_settings_sha256": "d299fc10d9f1e2328adfadc5705c72651688413204585c631f829a8741d65f36",
+  "scanout": {
+    "source_width": 320,
+    "source_height": 200,
+    "output_width": 720,
+    "output_height": 576,
+    "output_rectangle": [
+      12,
+      104,
+      601,
+      400
+    ],
+    "separately_visible_stripe_pixels": 320,
+    "all_64000_pixels_and_both_output_rows_match": true,
+    "palette_rgb": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        247,
+        247,
+        247
+      ],
+      [
+        141,
+        47,
+        52
+      ],
+      [
+        106,
+        212,
+        205
+      ],
+      [
+        152,
+        53,
+        164
+      ],
+      [
+        76,
+        180,
+        66
+      ],
+      [
+        44,
+        41,
+        177
+      ],
+      [
+        239,
+        239,
+        93
+      ],
+      [
+        152,
+        78,
+        32
+      ],
+      [
+        91,
+        56,
+        0
+      ],
+      [
+        209,
+        103,
+        109
+      ],
+      [
+        74,
+        74,
+        74
+      ],
+      [
+        123,
+        123,
+        123
+      ],
+      [
+        159,
+        239,
+        147
+      ],
+      [
+        109,
+        106,
+        239
+      ],
+      [
+        178,
+        178,
+        178
+      ]
+    ],
+    "first_and_last_pixels_visible": true,
+    "even_low_odd_high": true
+  }
+}

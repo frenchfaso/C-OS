@@ -1,0 +1,57 @@
+{
+  "abi": 2,
+  "app": "Mandelbrot",
+  "arithmetic_library_retired": 0,
+  "final_context": {
+    "fuel": 84,
+    "p": [
+      263296,
+      277503,
+      262400,
+      65920
+    ],
+    "pc": 262372,
+    "r": [
+      0,
+      0,
+      0,
+      484,
+      480,
+      352,
+      1,
+      900
+    ],
+    "retired": 146476,
+    "sp": 278527
+  },
+  "multiply_signed_retired": 12953,
+  "multiply_unsigned_retired": 0,
+  "native_chunks": 0,
+  "opcode_histogram": {
+    "1": 42110,
+    "11": 4659,
+    "18": 768,
+    "19": 4,
+    "2": 13103,
+    "23": 792,
+    "25": 3915,
+    "3": 12313,
+    "31": 1,
+    "36": 792,
+    "37": 3891,
+    "38": 4531,
+    "4": 3891,
+    "54": 3,
+    "58": 12953,
+    "6": 12953,
+    "8": 16844,
+    "9": 12953
+  },
+  "output_address": 262528,
+  "output_bytes": 768,
+  "pid": 1,
+  "qualification": "Functional host output/profile only; not target throughput",
+  "retired": 146476,
+  "slices": 1145,
+  "syscalls": 3
+}

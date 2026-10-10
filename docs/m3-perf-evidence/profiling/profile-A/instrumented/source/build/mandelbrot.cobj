@@ -1,0 +1,1411 @@
+{
+  "format": "COSOBJ1",
+  "abi": 1,
+  "compiler_version": "cosasm-0.1.0",
+  "numeric_profile": "COS-NUM-1",
+  "code": [
+    54,
+    2,
+    0,
+    0,
+    19,
+    33,
+    20,
+    0,
+    19,
+    34,
+    22,
+    0,
+    2,
+    0,
+    128,
+    254,
+    19,
+    32,
+    2,
+    0,
+    2,
+    0,
+    0,
+    0,
+    19,
+    32,
+    16,
+    0,
+    2,
+    0,
+    0,
+    254,
+    19,
+    32,
+    0,
+    0,
+    2,
+    0,
+    0,
+    0,
+    19,
+    32,
+    14,
+    0,
+    2,
+    0,
+    0,
+    0,
+    19,
+    32,
+    4,
+    0,
+    19,
+    32,
+    6,
+    0,
+    19,
+    32,
+    12,
+    0,
+    17,
+    32,
+    4,
+    0,
+    1,
+    1,
+    0,
+    0,
+    33,
+    0,
+    0,
+    0,
+    19,
+    32,
+    8,
+    0,
+    17,
+    32,
+    6,
+    0,
+    1,
+    1,
+    0,
+    0,
+    33,
+    0,
+    0,
+    0,
+    19,
+    32,
+    10,
+    0,
+    17,
+    33,
+    8,
+    0,
+    3,
+    1,
+    0,
+    0,
+    2,
+    2,
+    0,
+    4,
+    38,
+    33,
+    0,
+    0,
+    17,
+    32,
+    4,
+    0,
+    17,
+    33,
+    6,
+    0,
+    33,
+    0,
+    0,
+    0,
+    8,
+    0,
+    1,
+    0,
+    17,
+    33,
+    2,
+    0,
+    3,
+    16,
+    0,
+    0,
+    19,
+    32,
+    6,
+    0,
+    17,
+    32,
+    8,
+    0,
+    17,
+    33,
+    10,
+    0,
+    4,
+    16,
+    0,
+    0,
+    17,
+    33,
+    0,
+    0,
+    3,
+    16,
+    0,
+    0,
+    19,
+    32,
+    4,
+    0,
+    17,
+    32,
+    12,
+    0,
+    11,
+    0,
+    1,
+    0,
+    19,
+    32,
+    12,
+    0,
+    2,
+    1,
+    16,
+    0,
+    37,
+    16,
+    0,
+    0,
+    17,
+    32,
+    12,
+    0,
+    18,
+    0,
+    0,
+    0,
+    2,
+    1,
+    1,
+    0,
+    23,
+    16,
+    0,
+    0,
+    17,
+    32,
+    0,
+    0,
+    11,
+    0,
+    64,
+    0,
+    19,
+    32,
+    0,
+    0,
+    17,
+    32,
+    14,
+    0,
+    11,
+    0,
+    1,
+    0,
+    19,
+    32,
+    14,
+    0,
+    2,
+    1,
+    16,
+    0,
+    37,
+    16,
+    0,
+    0,
+    17,
+    32,
+    2,
+    0,
+    11,
+    0,
+    64,
+    0,
+    19,
+    32,
+    2,
+    0,
+    17,
+    32,
+    16,
+    0,
+    11,
+    0,
+    1,
+    0,
+    19,
+    32,
+    16,
+    0,
+    2,
+    1,
+    12,
+    0,
+    37,
+    16,
+    0,
+    0,
+    54,
+    2,
+    0,
+    0,
+    19,
+    33,
+    24,
+    0,
+    19,
+    34,
+    26,
+    0,
+    2,
+    0,
+    0,
+    0,
+    54,
+    0,
+    0,
+    0,
+    2,
+    6,
+    0,
+    0,
+    2,
+    7,
+    0,
+    0,
+    40,
+    96,
+    0,
+    0,
+    14,
+    0,
+    0,
+    0,
+    11,
+    0,
+    1,
+    0,
+    2,
+    7,
+    1,
+    0,
+    40,
+    97,
+    0,
+    0,
+    14,
+    1,
+    0,
+    0,
+    11,
+    1,
+    1,
+    0,
+    2,
+    6,
+    1,
+    0,
+    7,
+    103,
+    0,
+    0,
+    48,
+    7,
+    0,
+    0,
+    1,
+    4,
+    0,
+    0,
+    1,
+    22,
+    0,
+    0,
+    2,
+    2,
+    0,
+    0,
+    2,
+    3,
+    0,
+    0,
+    2,
+    5,
+    0,
+    0,
+    2,
+    7,
+    0,
+    0,
+    2,
+    1,
+    16,
+    0,
+    1,
+    96,
+    0,
+    0,
+    8,
+    0,
+    15,
+    0,
+    35,
+    112,
+    0,
+    0,
+    3,
+    66,
+    0,
+    0,
+    38,
+    66,
+    0,
+    0,
+    11,
+    3,
+    1,
+    0,
+    3,
+    83,
+    0,
+    0,
+    1,
+    64,
+    0,
+    0,
+    9,
+    0,
+    15,
+    0,
+    8,
+    4,
+    1,
+    0,
+    8,
+    5,
+    1,
+    0,
+    6,
+    5,
+    0,
+    0,
+    9,
+    6,
+    1,
+    0,
+    11,
+    1,
+    255,
+    255,
+    36,
+    113,
+    0,
+    0,
+    49,
+    7,
+    0,
+    0,
+    2,
+    1,
+    0,
+    0,
+    35,
+    23,
+    0,
+    0,
+    14,
+    2,
+    0,
+    0,
+    14,
+    3,
+    0,
+    0,
+    11,
+    2,
+    1,
+    0,
+    36,
+    18,
+    0,
+    0,
+    11,
+    3,
+    1,
+    0,
+    1,
+    32,
+    0,
+    0,
+    9,
+    0,
+    8,
+    0,
+    8,
+    3,
+    8,
+    0,
+    6,
+    48,
+    0,
+    0,
+    34,
+    0,
+    0,
+    0
+  ],
+  "data": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "bss_size": 0,
+  "symbols": {
+    "abs_right": {
+      "section": "code",
+      "offset": 304
+    },
+    "extract_product": {
+      "section": "code",
+      "offset": 448
+    },
+    "iterate": {
+      "section": "code",
+      "offset": 60
+    },
+    "mul_q8": {
+      "section": "code",
+      "offset": 280
+    },
+    "multiply_bit": {
+      "section": "code",
+      "offset": 356
+    },
+    "multiply_unsigned": {
+      "section": "code",
+      "offset": 324
+    },
+    "next_pixel": {
+      "section": "code",
+      "offset": 44
+    },
+    "next_row": {
+      "section": "code",
+      "offset": 28
+    },
+    "no_add": {
+      "section": "code",
+      "offset": 384
+    },
+    "no_carry": {
+      "section": "code",
+      "offset": 380
+    },
+    "scratch": {
+      "section": "data",
+      "offset": 0
+    },
+    "start": {
+      "section": "code",
+      "offset": 0
+    },
+    "write_pixel": {
+      "section": "code",
+      "offset": 180
+    }
+  },
+  "entry": {
+    "section": "code",
+    "offset": 0
+  },
+  "relocations": [
+    {
+      "kind": "ABS24",
+      "section": "code",
+      "offset": 69,
+      "target": {
+        "section": "code",
+        "offset": 280
+      },
+      "addend": 0
+    },
+    {
+      "kind": "ABS24",
+      "section": "code",
+      "offset": 85,
+      "target": {
+        "section": "code",
+        "offset": 280
+      },
+      "addend": 0
+    },
+    {
+      "kind": "REL16_INSN",
+      "section": "code",
+      "offset": 104,
+      "target": {
+        "section": "code",
+        "offset": 180
+      },
+      "addend": 0
+    },
+    {
+      "kind": "ABS24",
+      "section": "code",
+      "offset": 117,
+      "target": {
+        "section": "code",
+        "offset": 280
+      },
+      "addend": 0
+    },
+    {
+      "kind": "REL16_INSN",
+      "section": "code",
+      "offset": 176,
+      "target": {
+        "section": "code",
+        "offset": 60
+      },
+      "addend": 0
+    },
+    {
+      "kind": "REL16_INSN",
+      "section": "code",
+      "offset": 224,
+      "target": {
+        "section": "code",
+        "offset": 44
+      },
+      "addend": 0
+    },
+    {
+      "kind": "REL16_INSN",
+      "section": "code",
+      "offset": 256,
+      "target": {
+        "section": "code",
+        "offset": 28
+      },
+      "addend": 0
+    },
+    {
+      "kind": "REL16_INSN",
+      "section": "code",
+      "offset": 288,
+      "target": {
+        "section": "code",
+        "offset": 304
+      },
+      "addend": 0
+    },
+    {
+      "kind": "REL16_INSN",
+      "section": "code",
+      "offset": 304,
+      "target": {
+        "section": "code",
+        "offset": 324
+      },
+      "addend": 0
+    },
+    {
+      "kind": "REL16_INSN",
+      "section": "code",
+      "offset": 364,
+      "target": {
+        "section": "code",
+        "offset": 384
+      },
+      "addend": 0
+    },
+    {
+      "kind": "REL16_INSN",
+      "section": "code",
+      "offset": 372,
+      "target": {
+        "section": "code",
+        "offset": 380
+      },
+      "addend": 0
+    },
+    {
+      "kind": "REL16_INSN",
+      "section": "code",
+      "offset": 412,
+      "target": {
+        "section": "code",
+        "offset": 356
+      },
+      "addend": 0
+    },
+    {
+      "kind": "REL16_INSN",
+      "section": "code",
+      "offset": 424,
+      "target": {
+        "section": "code",
+        "offset": 448
+      },
+      "addend": 0
+    },
+    {
+      "kind": "REL16_INSN",
+      "section": "code",
+      "offset": 440,
+      "target": {
+        "section": "code",
+        "offset": 448
+      },
+      "addend": 0
+    }
+  ],
+  "source_map": [
+    {
+      "address": 0,
+      "file": "apps/mandelbrot.casm",
+      "line": 11,
+      "column": 5
+    },
+    {
+      "address": 4,
+      "file": "apps/mandelbrot.casm",
+      "line": 12,
+      "column": 5
+    },
+    {
+      "address": 8,
+      "file": "apps/mandelbrot.casm",
+      "line": 13,
+      "column": 5
+    },
+    {
+      "address": 12,
+      "file": "apps/mandelbrot.casm",
+      "line": 14,
+      "column": 5
+    },
+    {
+      "address": 16,
+      "file": "apps/mandelbrot.casm",
+      "line": 15,
+      "column": 5
+    },
+    {
+      "address": 20,
+      "file": "apps/mandelbrot.casm",
+      "line": 16,
+      "column": 5
+    },
+    {
+      "address": 24,
+      "file": "apps/mandelbrot.casm",
+      "line": 17,
+      "column": 5
+    },
+    {
+      "address": 28,
+      "file": "apps/mandelbrot.casm",
+      "line": 19,
+      "column": 5
+    },
+    {
+      "address": 32,
+      "file": "apps/mandelbrot.casm",
+      "line": 20,
+      "column": 5
+    },
+    {
+      "address": 36,
+      "file": "apps/mandelbrot.casm",
+      "line": 21,
+      "column": 5
+    },
+    {
+      "address": 40,
+      "file": "apps/mandelbrot.casm",
+      "line": 22,
+      "column": 5
+    },
+    {
+      "address": 44,
+      "file": "apps/mandelbrot.casm",
+      "line": 24,
+      "column": 5
+    },
+    {
+      "address": 48,
+      "file": "apps/mandelbrot.casm",
+      "line": 25,
+      "column": 5
+    },
+    {
+      "address": 52,
+      "file": "apps/mandelbrot.casm",
+      "line": 26,
+      "column": 5
+    },
+    {
+      "address": 56,
+      "file": "apps/mandelbrot.casm",
+      "line": 27,
+      "column": 5
+    },
+    {
+      "address": 60,
+      "file": "apps/mandelbrot.casm",
+      "line": 29,
+      "column": 5
+    },
+    {
+      "address": 64,
+      "file": "apps/mandelbrot.casm",
+      "line": 30,
+      "column": 5
+    },
+    {
+      "address": 68,
+      "file": "apps/mandelbrot.casm",
+      "line": 31,
+      "column": 5
+    },
+    {
+      "address": 72,
+      "file": "apps/mandelbrot.casm",
+      "line": 32,
+      "column": 5
+    },
+    {
+      "address": 76,
+      "file": "apps/mandelbrot.casm",
+      "line": 33,
+      "column": 5
+    },
+    {
+      "address": 80,
+      "file": "apps/mandelbrot.casm",
+      "line": 34,
+      "column": 5
+    },
+    {
+      "address": 84,
+      "file": "apps/mandelbrot.casm",
+      "line": 35,
+      "column": 5
+    },
+    {
+      "address": 88,
+      "file": "apps/mandelbrot.casm",
+      "line": 36,
+      "column": 5
+    },
+    {
+      "address": 92,
+      "file": "apps/mandelbrot.casm",
+      "line": 37,
+      "column": 5
+    },
+    {
+      "address": 96,
+      "file": "apps/mandelbrot.casm",
+      "line": 38,
+      "column": 5
+    },
+    {
+      "address": 100,
+      "file": "apps/mandelbrot.casm",
+      "line": 39,
+      "column": 5
+    },
+    {
+      "address": 104,
+      "file": "apps/mandelbrot.casm",
+      "line": 40,
+      "column": 5
+    },
+    {
+      "address": 108,
+      "file": "apps/mandelbrot.casm",
+      "line": 41,
+      "column": 5
+    },
+    {
+      "address": 112,
+      "file": "apps/mandelbrot.casm",
+      "line": 42,
+      "column": 5
+    },
+    {
+      "address": 116,
+      "file": "apps/mandelbrot.casm",
+      "line": 43,
+      "column": 5
+    },
+    {
+      "address": 120,
+      "file": "apps/mandelbrot.casm",
+      "line": 44,
+      "column": 5
+    },
+    {
+      "address": 124,
+      "file": "apps/mandelbrot.casm",
+      "line": 45,
+      "column": 5
+    },
+    {
+      "address": 128,
+      "file": "apps/mandelbrot.casm",
+      "line": 46,
+      "column": 5
+    },
+    {
+      "address": 132,
+      "file": "apps/mandelbrot.casm",
+      "line": 47,
+      "column": 5
+    },
+    {
+      "address": 136,
+      "file": "apps/mandelbrot.casm",
+      "line": 48,
+      "column": 5
+    },
+    {
+      "address": 140,
+      "file": "apps/mandelbrot.casm",
+      "line": 49,
+      "column": 5
+    },
+    {
+      "address": 144,
+      "file": "apps/mandelbrot.casm",
+      "line": 50,
+      "column": 5
+    },
+    {
+      "address": 148,
+      "file": "apps/mandelbrot.casm",
+      "line": 51,
+      "column": 5
+    },
+    {
+      "address": 152,
+      "file": "apps/mandelbrot.casm",
+      "line": 52,
+      "column": 5
+    },
+    {
+      "address": 156,
+      "file": "apps/mandelbrot.casm",
+      "line": 53,
+      "column": 5
+    },
+    {
+      "address": 160,
+      "file": "apps/mandelbrot.casm",
+      "line": 54,
+      "column": 5
+    },
+    {
+      "address": 164,
+      "file": "apps/mandelbrot.casm",
+      "line": 55,
+      "column": 5
+    },
+    {
+      "address": 168,
+      "file": "apps/mandelbrot.casm",
+      "line": 56,
+      "column": 5
+    },
+    {
+      "address": 172,
+      "file": "apps/mandelbrot.casm",
+      "line": 57,
+      "column": 5
+    },
+    {
+      "address": 176,
+      "file": "apps/mandelbrot.casm",
+      "line": 58,
+      "column": 5
+    },
+    {
+      "address": 180,
+      "file": "apps/mandelbrot.casm",
+      "line": 60,
+      "column": 5
+    },
+    {
+      "address": 184,
+      "file": "apps/mandelbrot.casm",
+      "line": 61,
+      "column": 5
+    },
+    {
+      "address": 188,
+      "file": "apps/mandelbrot.casm",
+      "line": 62,
+      "column": 5
+    },
+    {
+      "address": 192,
+      "file": "apps/mandelbrot.casm",
+      "line": 63,
+      "column": 5
+    },
+    {
+      "address": 196,
+      "file": "apps/mandelbrot.casm",
+      "line": 64,
+      "column": 5
+    },
+    {
+      "address": 200,
+      "file": "apps/mandelbrot.casm",
+      "line": 65,
+      "column": 5
+    },
+    {
+      "address": 204,
+      "file": "apps/mandelbrot.casm",
+      "line": 66,
+      "column": 5
+    },
+    {
+      "address": 208,
+      "file": "apps/mandelbrot.casm",
+      "line": 67,
+      "column": 5
+    },
+    {
+      "address": 212,
+      "file": "apps/mandelbrot.casm",
+      "line": 68,
+      "column": 5
+    },
+    {
+      "address": 216,
+      "file": "apps/mandelbrot.casm",
+      "line": 69,
+      "column": 5
+    },
+    {
+      "address": 220,
+      "file": "apps/mandelbrot.casm",
+      "line": 70,
+      "column": 5
+    },
+    {
+      "address": 224,
+      "file": "apps/mandelbrot.casm",
+      "line": 71,
+      "column": 5
+    },
+    {
+      "address": 228,
+      "file": "apps/mandelbrot.casm",
+      "line": 72,
+      "column": 5
+    },
+    {
+      "address": 232,
+      "file": "apps/mandelbrot.casm",
+      "line": 73,
+      "column": 5
+    },
+    {
+      "address": 236,
+      "file": "apps/mandelbrot.casm",
+      "line": 74,
+      "column": 5
+    },
+    {
+      "address": 240,
+      "file": "apps/mandelbrot.casm",
+      "line": 75,
+      "column": 5
+    },
+    {
+      "address": 244,
+      "file": "apps/mandelbrot.casm",
+      "line": 76,
+      "column": 5
+    },
+    {
+      "address": 248,
+      "file": "apps/mandelbrot.casm",
+      "line": 77,
+      "column": 5
+    },
+    {
+      "address": 252,
+      "file": "apps/mandelbrot.casm",
+      "line": 78,
+      "column": 5
+    },
+    {
+      "address": 256,
+      "file": "apps/mandelbrot.casm",
+      "line": 79,
+      "column": 5
+    },
+    {
+      "address": 260,
+      "file": "apps/mandelbrot.casm",
+      "line": 80,
+      "column": 5
+    },
+    {
+      "address": 264,
+      "file": "apps/mandelbrot.casm",
+      "line": 81,
+      "column": 5
+    },
+    {
+      "address": 268,
+      "file": "apps/mandelbrot.casm",
+      "line": 82,
+      "column": 5
+    },
+    {
+      "address": 272,
+      "file": "apps/mandelbrot.casm",
+      "line": 83,
+      "column": 5
+    },
+    {
+      "address": 276,
+      "file": "apps/mandelbrot.casm",
+      "line": 84,
+      "column": 5
+    },
+    {
+      "address": 280,
+      "file": "apps/mandelbrot.casm",
+      "line": 88,
+      "column": 5
+    },
+    {
+      "address": 284,
+      "file": "apps/mandelbrot.casm",
+      "line": 89,
+      "column": 5
+    },
+    {
+      "address": 288,
+      "file": "apps/mandelbrot.casm",
+      "line": 90,
+      "column": 5
+    },
+    {
+      "address": 292,
+      "file": "apps/mandelbrot.casm",
+      "line": 91,
+      "column": 5
+    },
+    {
+      "address": 296,
+      "file": "apps/mandelbrot.casm",
+      "line": 92,
+      "column": 5
+    },
+    {
+      "address": 300,
+      "file": "apps/mandelbrot.casm",
+      "line": 93,
+      "column": 5
+    },
+    {
+      "address": 304,
+      "file": "apps/mandelbrot.casm",
+      "line": 95,
+      "column": 5
+    },
+    {
+      "address": 308,
+      "file": "apps/mandelbrot.casm",
+      "line": 96,
+      "column": 5
+    },
+    {
+      "address": 312,
+      "file": "apps/mandelbrot.casm",
+      "line": 97,
+      "column": 5
+    },
+    {
+      "address": 316,
+      "file": "apps/mandelbrot.casm",
+      "line": 98,
+      "column": 5
+    },
+    {
+      "address": 320,
+      "file": "apps/mandelbrot.casm",
+      "line": 99,
+      "column": 5
+    },
+    {
+      "address": 324,
+      "file": "apps/mandelbrot.casm",
+      "line": 101,
+      "column": 5
+    },
+    {
+      "address": 328,
+      "file": "apps/mandelbrot.casm",
+      "line": 102,
+      "column": 5
+    },
+    {
+      "address": 332,
+      "file": "apps/mandelbrot.casm",
+      "line": 103,
+      "column": 5
+    },
+    {
+      "address": 336,
+      "file": "apps/mandelbrot.casm",
+      "line": 104,
+      "column": 5
+    },
+    {
+      "address": 340,
+      "file": "apps/mandelbrot.casm",
+      "line": 105,
+      "column": 5
+    },
+    {
+      "address": 344,
+      "file": "apps/mandelbrot.casm",
+      "line": 106,
+      "column": 5
+    },
+    {
+      "address": 348,
+      "file": "apps/mandelbrot.casm",
+      "line": 107,
+      "column": 5
+    },
+    {
+      "address": 352,
+      "file": "apps/mandelbrot.casm",
+      "line": 108,
+      "column": 5
+    },
+    {
+      "address": 356,
+      "file": "apps/mandelbrot.casm",
+      "line": 110,
+      "column": 5
+    },
+    {
+      "address": 360,
+      "file": "apps/mandelbrot.casm",
+      "line": 111,
+      "column": 5
+    },
+    {
+      "address": 364,
+      "file": "apps/mandelbrot.casm",
+      "line": 112,
+      "column": 5
+    },
+    {
+      "address": 368,
+      "file": "apps/mandelbrot.casm",
+      "line": 113,
+      "column": 5
+    },
+    {
+      "address": 372,
+      "file": "apps/mandelbrot.casm",
+      "line": 114,
+      "column": 5
+    },
+    {
+      "address": 376,
+      "file": "apps/mandelbrot.casm",
+      "line": 115,
+      "column": 5
+    },
+    {
+      "address": 380,
+      "file": "apps/mandelbrot.casm",
+      "line": 117,
+      "column": 5
+    },
+    {
+      "address": 384,
+      "file": "apps/mandelbrot.casm",
+      "line": 119,
+      "column": 5
+    },
+    {
+      "address": 388,
+      "file": "apps/mandelbrot.casm",
+      "line": 120,
+      "column": 5
+    },
+    {
+      "address": 392,
+      "file": "apps/mandelbrot.casm",
+      "line": 121,
+      "column": 5
+    },
+    {
+      "address": 396,
+      "file": "apps/mandelbrot.casm",
+      "line": 122,
+      "column": 5
+    },
+    {
+      "address": 400,
+      "file": "apps/mandelbrot.casm",
+      "line": 123,
+      "column": 5
+    },
+    {
+      "address": 404,
+      "file": "apps/mandelbrot.casm",
+      "line": 124,
+      "column": 5
+    },
+    {
+      "address": 408,
+      "file": "apps/mandelbrot.casm",
+      "line": 125,
+      "column": 5
+    },
+    {
+      "address": 412,
+      "file": "apps/mandelbrot.casm",
+      "line": 126,
+      "column": 5
+    },
+    {
+      "address": 416,
+      "file": "apps/mandelbrot.casm",
+      "line": 127,
+      "column": 5
+    },
+    {
+      "address": 420,
+      "file": "apps/mandelbrot.casm",
+      "line": 128,
+      "column": 5
+    },
+    {
+      "address": 424,
+      "file": "apps/mandelbrot.casm",
+      "line": 129,
+      "column": 5
+    },
+    {
+      "address": 428,
+      "file": "apps/mandelbrot.casm",
+      "line": 130,
+      "column": 5
+    },
+    {
+      "address": 432,
+      "file": "apps/mandelbrot.casm",
+      "line": 131,
+      "column": 5
+    },
+    {
+      "address": 436,
+      "file": "apps/mandelbrot.casm",
+      "line": 132,
+      "column": 5
+    },
+    {
+      "address": 440,
+      "file": "apps/mandelbrot.casm",
+      "line": 133,
+      "column": 5
+    },
+    {
+      "address": 444,
+      "file": "apps/mandelbrot.casm",
+      "line": 134,
+      "column": 5
+    },
+    {
+      "address": 448,
+      "file": "apps/mandelbrot.casm",
+      "line": 136,
+      "column": 5
+    },
+    {
+      "address": 452,
+      "file": "apps/mandelbrot.casm",
+      "line": 137,
+      "column": 5
+    },
+    {
+      "address": 456,
+      "file": "apps/mandelbrot.casm",
+      "line": 138,
+      "column": 5
+    },
+    {
+      "address": 460,
+      "file": "apps/mandelbrot.casm",
+      "line": 139,
+      "column": 5
+    },
+    {
+      "address": 464,
+      "file": "apps/mandelbrot.casm",
+      "line": 140,
+      "column": 5
+    }
+  ]
+}

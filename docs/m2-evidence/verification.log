@@ -1,0 +1,1144 @@
++ cargo fmt --all -- --check
++ cargo test --locked --offline
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.01s
+     Running unittests src/lib.rs (target/debug/deps/cos_tools-beb47215c345e449)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/cosasm.rs (target/debug/deps/cosasm-cb84f74a8f1f214e)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/cosdis.rs (target/debug/deps/cosdis-475c176fd4cee7c0)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/cosfixtures.rs (target/debug/deps/cosfixtures-9646d7210c062824)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/cospack.rs (target/debug/deps/cospack-1a9ad1e013fd92ee)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/cosrun.rs (target/debug/deps/cosrun-3b6b602e326d837b)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/harness.rs (target/debug/deps/harness-db8baa8360f92540)
+
+running 8 tests
+test empty_copy_does_not_dereference_both_pointers ... ok
+test bounded_fill_preserves_fuel_and_waiting_line_has_no_effect ... ok
+test invocation_and_completion_are_exactly_once ... ok
+test equal_tokens_from_other_processes_or_incarnations_cannot_reassign_a_job ... ok
+test memmove_matches_snapshot_for_both_overlap_directions_and_identity ... ok
+test full_range_is_validated_before_progressive_job_effects ... ok
+test unavailable_services_report_explicit_errors_without_memory_effects ... ok
+test sleep_uses_wrapping_monotonic_frames_and_only_real_wait_refills ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/semantics.rs (target/debug/deps/semantics-ba8d3bd9afa023ca)
+
+running 30 tests
+test encoding_and_decoding_match_independent_known_bytes ... ok
+test fuel_three_preempts_and_resumes_a_loop_without_yield ... ok
+test call_checks_both_target_and_future_return_address_before_push ... ok
+test invalid_syscall_result_is_rejected_atomically_while_valid_outputs_preserve_others ... ok
+test entry_state_matches_the_loader_abi_with_and_without_data ... ok
+test full_and_empty_stacks_fail_before_any_effect ... ok
+test memory_waits_preserve_pc_fuel_registers_and_multiline_writes ... ok
+test nested_calls_save_24bit_return_addresses_and_restore_sp_exactly ... ok
+test out_of_arena_pointers_remain_valid_values_until_dereferenced ... ok
+test only_the_selected_branch_destination_must_be_valid ... ok
+test invalid_fallthrough_is_rejected_before_register_memory_or_stack_effects ... ok
+test integer_operations_have_explicit_fixed_width_results ... ok
+test pointer_overflow_and_underflow_leave_registers_unchanged ... ok
+test multibyte_loads_and_stores_cross_64k_and_cache_line_boundaries ... ok
+test pc_alignment_and_relative_branch_overflow_never_wrap ... ok
+test arena_and_24bit_end_bounds_are_checked_without_partial_writes ... ok
+test push_pop_and_get_set_sp_follow_the_descending_packed_stack ... ok
+test step_one_and_run_preserve_a_split_store_until_all_lines_are_available ... ok
+test ret_validates_saved_target_before_changing_sp_or_pc ... ok
+test pointer_construction_arithmetic_and_extraction_are_linear ... ok
+test step_one_retires_one_opcode_and_reaches_the_same_fuel_boundary_as_run ... ok
+test syscall_acceptance_and_completion_happen_exactly_once ... ok
+test each_integer_and_pointer_branch_selects_the_expected_pc ... ok
+test valid_encodings_cover_every_defined_opcode ... ok
+test returning_syscall_needs_resume_pc_but_terminal_instructions_do_not ... ok
+test step_one_matches_run_for_pending_syscall_priority_and_completion ... ok
+test step_one_and_run_keep_faults_and_exits_terminal_after_refueling ... ok
+test suspended_load_pop_and_ret_publish_no_partial_results ... ok
+test writes_into_code_are_rejected_but_reading_code_is_allowed ... ok
+test invalid_registers_shift_counts_and_reserved_fields_are_rejected ... ok
+
+test result: ok. 30 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+     Running tests/toolchain.rs (target/debug/deps/toolchain-be02ff502bce4ae1)
+
+running 15 tests
+test complete_opcode_table_is_the_normative_table ... ok
+test independent_instruction_vectors ... ok
+test assembler_errors_have_file_line_column ... ok
+test assembly_relocations_have_independent_expected_linked_bytes ... ok
+test direct_linker_rejects_invalid_layout_without_panicking ... ok
+test empty_pack_header_and_shared_reservation ... ok
+test malformed_operands_and_reserved_fields_are_rejected ... ok
+test objects_reject_unknown_json_fields_and_malformed_relocations ... ok
+test repeated_numeric_signs_are_rejected_instead_of_silently_changed ... ok
+test static_control_flow_overflow_and_alignment_are_rejected ... ok
+test serialized_manifest_bounds_are_revalidated ... ok
+test arena_validation_rejects_overlaps_ids_alignment_and_profile ... ok
+test complete_assembly_samples_link_deterministically ... ok
+test relative_relocation_range_and_addend_alignment_are_checked ... ok
+test seed_capacity_is_bounded_and_bss_does_not_consume_it ... ok
+
+test result: ok. 15 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+   Doc-tests cos_tools
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
++ cargo clippy --locked --offline --all-targets -- -D warnings
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.05s
++ /opt/homebrew/opt/python@3.14/bin/python3.14 scripts/check_m1.py --offline
+M1 pipeline passed: Linear=0xABCD, Calls=42 with restored SP, Spin=18 opcodes/9 increments.
+Repeated objects, linked image, manifest, constants and map are byte-identical.
++ /opt/homebrew/opt/python@3.14/bin/python3.14 scripts/m0.py --kickass /Users/frenchfaso/Documents/Code/C64/toolchain/kickassembler/KickAss.jar --java /Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java
+Built /Users/frenchfaso/Documents/Code/C64/C-OS/build/m0: resident 1425 bytes; renderer 2289 bytes
+build_tag=$9847e053; delay=140; hardware timing remains unqualified
++ /opt/homebrew/opt/python@3.14/bin/python3.14 scripts/m2.py --cache-line 128 --out /Users/frenchfaso/Documents/Code/C64/C-OS/build/m2/128 --skip-host-build --kickass /Users/frenchfaso/Documents/Code/C64/toolchain/kickassembler/KickAss.jar --java /Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java
+M2 128-byte cache: resident=7612, VM=2645, cache=1804, diagnostics=728; tag=$cfbed205
++ /opt/homebrew/opt/python@3.14/bin/python3.14 scripts/m2.py --cache-line 128 --out /Users/frenchfaso/Documents/Code/C64/C-OS/build/m2/128 --skip-host-build --kickass /Users/frenchfaso/Documents/Code/C64/toolchain/kickassembler/KickAss.jar --java /Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java
+M2 128-byte cache: resident=7612, VM=2645, cache=1804, diagnostics=728; tag=$cfbed205
++ /opt/homebrew/opt/python@3.14/bin/python3.14 scripts/m2_bounds.py --build /Users/frenchfaso/Documents/Code/C64/C-OS/build/m2/128 --out /Users/frenchfaso/Documents/Code/C64/C-OS/build/m2/128/bounds.json
+{
+  "format": "COSM2STATICBOUND1",
+  "build_tag": 3485389317,
+  "cache_line_bytes": 128,
+  "artifact_sha256": {
+    "m2.manifest.json": "218088abaaca43a3326ec1ea5eec7c702b6d8417e35c3deeaae686be65f36168",
+    "m2.prg": "8018a9a6358e254406b97997fe7e3d06d0bca42886e0b4dbf00fc76d856652fe",
+    "m2.reu": "e7daede08a259c677272ed1004fc94344cb1aaeaef384852dc726147ce6bb64a",
+    "native.bin": "dde59a2bc446c4d76451bc26b5a1c52cb130247de5bce7514b1df9c43e6d361c",
+    "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+    "renderer.prg": "e78c014bfc840438660982ca37321bebc83466ce957136e3fa48f10431d9ea1f"
+  },
+  "map_sha256": "24b1fce4ebfcff99ea98b945b408f1da473cd3a95953599c875a1760264b94bb",
+  "uniform_cycles_per_instruction": 7,
+  "qualified_model_fast_cycles_per_phi2": 48,
+  "extra_phi2_per_io_access": 7,
+  "latest_admission_guard_phi2": 4410,
+  "loops": {
+    "vm_retire": 7,
+    "vm_e_shl_loop": 14,
+    "vm_e_shr_loop": 14,
+    "vm_e_sar_loop": 14,
+    "vm_e_token_increment": 7,
+    "cache_unpin": 15,
+    "cache_require_data": 7,
+    "cache_clock_scan": 15,
+    "cache_code_hit": 3,
+    "cache_read_byte": 2,
+    "cache_write_byte": 2,
+    "cache_native_begin": 2,
+    "cache_native_transfer": 2,
+    "cache_native_dma": 2,
+    "cache_native_find_dirty": 7,
+    "cache_native_write_done": 15
+  },
+  "backedges": {
+    "2744": {
+      "target": 10043,
+      "label": "cache_unpin",
+      "taken_edge_cap": 15
+    },
+    "283e": {
+      "target": 10294,
+      "label": "cache_code_hit",
+      "taken_edge_cap": 3
+    },
+    "28e5": {
+      "target": 10427,
+      "label": "cache_clock_scan",
+      "taken_edge_cap": 15
+    },
+    "28a9": {
+      "target": 10401,
+      "label": "cache_require_data",
+      "taken_edge_cap": 7
+    },
+    "2973": {
+      "target": 10593,
+      "label": "cache_read_byte",
+      "taken_edge_cap": 2
+    },
+    "240f": {
+      "target": 9225,
+      "label": "vm_e_shl_loop",
+      "taken_edge_cap": 14
+    },
+    "241e": {
+      "target": 9240,
+      "label": "vm_e_shr_loop",
+      "taken_edge_cap": 14
+    },
+    "2431": {
+      "target": 9255,
+      "label": "vm_e_sar_loop",
+      "taken_edge_cap": 14
+    },
+    "298c": {
+      "target": 10618,
+      "label": "cache_write_byte",
+      "taken_edge_cap": 2
+    },
+    "2568": {
+      "target": 9569,
+      "label": "vm_e_token_increment",
+      "taken_edge_cap": 7
+    },
+    "1de8": {
+      "target": 7649,
+      "label": "vm_retire",
+      "taken_edge_cap": 7
+    },
+    "2d7d": {
+      "target": 11628,
+      "label": "cache_native_find_dirty",
+      "taken_edge_cap": 7
+    },
+    "2d3f": {
+      "target": 11574,
+      "label": "cache_native_dma",
+      "taken_edge_cap": 2
+    },
+    "2d5a": {
+      "target": 11597,
+      "label": "cache_native_write_done",
+      "taken_edge_cap": 15
+    },
+    "2d1a": {
+      "target": 11539,
+      "label": "cache_native_transfer",
+      "taken_edge_cap": 2
+    },
+    "2cfd": {
+      "target": 11511,
+      "label": "cache_native_transfer",
+      "taken_edge_cap": 2
+    },
+    "2c9c": {
+      "target": 11409,
+      "label": "cache_native_begin",
+      "taken_edge_cap": 2
+    }
+  },
+  "results": {
+    "vm_step": {
+      "instruction_visits": 3082,
+      "cpu_cycle_upper_bound": 21581,
+      "io_access_upper_bound": 2,
+      "cpu_io_phi2_upper_bound": 464,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 464
+    },
+    "cache_service": {
+      "instruction_visits": 283,
+      "cpu_cycle_upper_bound": 1988,
+      "io_access_upper_bound": 16,
+      "cpu_io_phi2_upper_bound": 154,
+      "dma_phi2_allowance": 511,
+      "conditional_total_phi2_upper_bound": 665
+    },
+    "cache_native_read": {
+      "instruction_visits": 2263,
+      "cpu_cycle_upper_bound": 15848,
+      "io_access_upper_bound": 16,
+      "cpu_io_phi2_upper_bound": 443,
+      "dma_phi2_allowance": 511,
+      "conditional_total_phi2_upper_bound": 954
+    },
+    "cache_native_write": {
+      "instruction_visits": 2262,
+      "cpu_cycle_upper_bound": 15841,
+      "io_access_upper_bound": 16,
+      "cpu_io_phi2_upper_bound": 443,
+      "dma_phi2_allowance": 511,
+      "conditional_total_phi2_upper_bound": 954
+    }
+  },
+  "qualification": "Conditional fixed emulated turbo profile; physical memory/I/O/DMA stall bounds pending",
+  "scope": "One vm_step or one service/native call; vm_run and diagnostic harness/IRQ time excluded"
+}
++ /opt/homebrew/opt/python@3.14/bin/python3.14 scripts/m2.py --cache-line 64 --out /Users/frenchfaso/Documents/Code/C64/C-OS/build/m2/64 --skip-host-build --kickass /Users/frenchfaso/Documents/Code/C64/toolchain/kickassembler/KickAss.jar --java /Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java
+M2 64-byte cache: resident=7618, VM=2645, cache=1810, diagnostics=728; tag=$06a147b0
++ /opt/homebrew/opt/python@3.14/bin/python3.14 scripts/m2.py --cache-line 64 --out /Users/frenchfaso/Documents/Code/C64/C-OS/build/m2/64 --skip-host-build --kickass /Users/frenchfaso/Documents/Code/C64/toolchain/kickassembler/KickAss.jar --java /Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java
+M2 64-byte cache: resident=7618, VM=2645, cache=1810, diagnostics=728; tag=$06a147b0
++ /opt/homebrew/opt/python@3.14/bin/python3.14 scripts/m2_bounds.py --build /Users/frenchfaso/Documents/Code/C64/C-OS/build/m2/64 --out /Users/frenchfaso/Documents/Code/C64/C-OS/build/m2/64/bounds.json
+{
+  "format": "COSM2STATICBOUND1",
+  "build_tag": 111232944,
+  "cache_line_bytes": 64,
+  "artifact_sha256": {
+    "m2.manifest.json": "f8ec0eae07fb96c46b9adb6c16ca70099d8049cb6a302a41b34bf016aab5bd22",
+    "m2.prg": "75861d8139e1712315a7ec69ae057501516a2dd8df36013ff5d2529a81a52b74",
+    "m2.reu": "ebf44381ef5ccee1853dc8c070c5f8f22f29b6da69ecdd8e52f6327e6a376115",
+    "native.bin": "c30c34271c725b33c29ee79b268cadc9aaa9f5674a6dbeea1cd5734b8e95469e",
+    "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+    "renderer.prg": "e78c014bfc840438660982ca37321bebc83466ce957136e3fa48f10431d9ea1f"
+  },
+  "map_sha256": "51c4403ab6c4a284f733b1beb5dfcc8bcbe4d5dd40e5b505242ee7d42c343f1a",
+  "uniform_cycles_per_instruction": 7,
+  "qualified_model_fast_cycles_per_phi2": 48,
+  "extra_phi2_per_io_access": 7,
+  "latest_admission_guard_phi2": 4410,
+  "loops": {
+    "vm_retire": 7,
+    "vm_e_shl_loop": 14,
+    "vm_e_shr_loop": 14,
+    "vm_e_sar_loop": 14,
+    "vm_e_token_increment": 7,
+    "cache_unpin": 15,
+    "cache_require_data": 7,
+    "cache_clock_scan": 15,
+    "cache_code_hit": 3,
+    "cache_read_byte": 2,
+    "cache_write_byte": 2,
+    "cache_native_begin": 2,
+    "cache_native_transfer": 2,
+    "cache_native_dma": 2,
+    "cache_native_find_dirty": 7,
+    "cache_native_write_done": 15
+  },
+  "backedges": {
+    "2744": {
+      "target": 10043,
+      "label": "cache_unpin",
+      "taken_edge_cap": 15
+    },
+    "2844": {
+      "target": 10300,
+      "label": "cache_code_hit",
+      "taken_edge_cap": 3
+    },
+    "28eb": {
+      "target": 10433,
+      "label": "cache_clock_scan",
+      "taken_edge_cap": 15
+    },
+    "28af": {
+      "target": 10407,
+      "label": "cache_require_data",
+      "taken_edge_cap": 7
+    },
+    "2979": {
+      "target": 10599,
+      "label": "cache_read_byte",
+      "taken_edge_cap": 2
+    },
+    "240f": {
+      "target": 9225,
+      "label": "vm_e_shl_loop",
+      "taken_edge_cap": 14
+    },
+    "241e": {
+      "target": 9240,
+      "label": "vm_e_shr_loop",
+      "taken_edge_cap": 14
+    },
+    "2431": {
+      "target": 9255,
+      "label": "vm_e_sar_loop",
+      "taken_edge_cap": 14
+    },
+    "2992": {
+      "target": 10624,
+      "label": "cache_write_byte",
+      "taken_edge_cap": 2
+    },
+    "2568": {
+      "target": 9569,
+      "label": "vm_e_token_increment",
+      "taken_edge_cap": 7
+    },
+    "1de8": {
+      "target": 7649,
+      "label": "vm_retire",
+      "taken_edge_cap": 7
+    },
+    "2d83": {
+      "target": 11634,
+      "label": "cache_native_find_dirty",
+      "taken_edge_cap": 7
+    },
+    "2d45": {
+      "target": 11580,
+      "label": "cache_native_dma",
+      "taken_edge_cap": 2
+    },
+    "2d60": {
+      "target": 11603,
+      "label": "cache_native_write_done",
+      "taken_edge_cap": 15
+    },
+    "2d20": {
+      "target": 11545,
+      "label": "cache_native_transfer",
+      "taken_edge_cap": 2
+    },
+    "2d03": {
+      "target": 11517,
+      "label": "cache_native_transfer",
+      "taken_edge_cap": 2
+    },
+    "2ca2": {
+      "target": 11415,
+      "label": "cache_native_begin",
+      "taken_edge_cap": 2
+    }
+  },
+  "results": {
+    "vm_step": {
+      "instruction_visits": 3124,
+      "cpu_cycle_upper_bound": 21875,
+      "io_access_upper_bound": 2,
+      "cpu_io_phi2_upper_bound": 470,
+      "dma_phi2_allowance": 0,
+      "conditional_total_phi2_upper_bound": 470
+    },
+    "cache_service": {
+      "instruction_visits": 289,
+      "cpu_cycle_upper_bound": 2030,
+      "io_access_upper_bound": 16,
+      "cpu_io_phi2_upper_bound": 155,
+      "dma_phi2_allowance": 511,
+      "conditional_total_phi2_upper_bound": 666
+    },
+    "cache_native_read": {
+      "instruction_visits": 2263,
+      "cpu_cycle_upper_bound": 15848,
+      "io_access_upper_bound": 16,
+      "cpu_io_phi2_upper_bound": 443,
+      "dma_phi2_allowance": 511,
+      "conditional_total_phi2_upper_bound": 954
+    },
+    "cache_native_write": {
+      "instruction_visits": 2262,
+      "cpu_cycle_upper_bound": 15841,
+      "io_access_upper_bound": 16,
+      "cpu_io_phi2_upper_bound": 443,
+      "dma_phi2_allowance": 511,
+      "conditional_total_phi2_upper_bound": 954
+    }
+  },
+  "qualification": "Conditional fixed emulated turbo profile; physical memory/I/O/DMA stall bounds pending",
+  "scope": "One vm_step or one service/native call; vm_run and diagnostic harness/IRQ time excluded"
+}
++ /Users/frenchfaso/Documents/Code/C64/C-OS/target/release/cosfixtures /Users/frenchfaso/Documents/Code/C64/C-OS/build/m2-fixtures.json --manifest /Users/frenchfaso/Documents/Code/C64/C-OS/build/m1.manifest.json
+Generated 609 native differential cases: /Users/frenchfaso/Documents/Code/C64/C-OS/build/m2-fixtures.json
++ /opt/homebrew/opt/python@3.14/bin/python3.14 -m unittest discover -s tests/native -v
+test_independent_pixel_machine_bytes (test_m0.AssembledContract.test_independent_pixel_machine_bytes) ... ok
+test_map_covers_64k_and_never_claims_io_as_ram (test_m0.AssembledContract.test_map_covers_64k_and_never_claims_io_as_ram) ... ok
+test_pack_and_bootstrap_safe_ranges (test_m0.AssembledContract.test_pack_and_bootstrap_safe_ranges) ... ok
+test_literal_geometry_edges_and_nibble_order (test_m0.PatternContract.test_literal_geometry_edges_and_nibble_order) ... ok
+test_publish_failure_restores_previous_complete_set (test_m0.PublicationContract.test_publish_failure_restores_previous_complete_set) ... ok
+test_cumulative_map_includes_all_caches_and_future_numeric_reserve (test_m2_artifacts.NativeBootArtifacts.test_cumulative_map_includes_all_caches_and_future_numeric_reserve) ... ok
+test_pairing_images_and_nonoverlapping_system_ranges (test_m2_artifacts.NativeBootArtifacts.test_pairing_images_and_nonoverlapping_system_ranges) ... ok
+test_overflow_fault_retains_the_fourth_address_byte (test_m2_compare.NativeSuspension.test_overflow_fault_retains_the_fourth_address_byte) ... ok
+test_wait_preserves_effects_fuel_and_pending_identity (test_m2_compare.NativeSuspension.test_wait_preserves_effects_fuel_and_pending_identity) ... ok
+test_clean_and_invalid_lines_cannot_mask_a_bad_physical_byte (test_m2_compare.NativeVisibility.test_clean_and_invalid_lines_cannot_mask_a_bad_physical_byte) ... ok
+test_duplicate_dirty_ownership_is_a_failure (test_m2_compare.NativeVisibility.test_duplicate_dirty_ownership_is_a_failure) ... ok
+test_two_dirty_lines_overlay_without_flushing_physical_memory (test_m2_compare.NativeVisibility.test_two_dirty_lines_overlay_without_flushing_physical_memory) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.032s
+
+OK
++ /opt/homebrew/opt/python@3.14/bin/python3.14 scripts/m0_ue2.py --emulator /Users/frenchfaso/Documents/Code/C64/UE2-C64U-Emulator/target/release/ue2emu --config /Users/frenchfaso/Documents/Code/C64/runtime/c64u.toml --flash /Users/frenchfaso/Documents/Code/C64/runtime/flash.bin --settings /Users/frenchfaso/Documents/Code/C64/runtime/ultimate.cfg --suite
+Running pal64-reu16
+{
+  "format": "COSM0UE2RESULT1",
+  "qualification": "Functional emulation only; hardware timing pending",
+  "backend_executable_sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+  "supplied_config": "/Users/frenchfaso/Documents/Code/C64/runtime/c64u.toml",
+  "supplied_settings_sha256": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961",
+  "executed_private_reu_sha256": "8fb9abe6f2e3e730475b03b25d1739c3e395b8d933b6b41d6579bf18f7d90270",
+  "artifact_sha256": {
+    "diagnostic.reu": "5311f95561adfe703685108a7e4d720f0954aed984bbea90ca7ccf09b5646a00",
+    "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+    "probe.prg": "b43a9ecf6067259b04d45e25442e1afc3c1d303233bf0e8e34c18319a78deba9",
+    "renderer.prg": "e78c014bfc840438660982ca37321bebc83466ce957136e3fa48f10431d9ea1f"
+  },
+  "line_delay": 140,
+  "raster_lines": 312,
+  "slow_cpu_loop_count": 16,
+  "fast_cpu_loop_count": 704,
+  "expected_status": 1,
+  "actual_status": 1,
+  "reu_banks": 256,
+  "restore_errors": 0,
+  "alias_detected": 0,
+  "scanouts": 90,
+  "missed_syncs": 0,
+  "nmi_count": 0,
+  "deferred_dma": 26632,
+  "runtime_dma_pairs": 450,
+  "active_dma_violations": 0,
+  "maximum_observed_stack_bytes": 10,
+  "framebuffer_matches": true,
+  "timings": [
+    {
+      "direction": "setup",
+      "bytes": 1,
+      "minimum_phi2_ticks": 2,
+      "maximum_phi2_ticks": 2
+    },
+    {
+      "direction": "timer",
+      "bytes": 0,
+      "minimum_phi2_ticks": 0,
+      "maximum_phi2_ticks": 1
+    },
+    {
+      "direction": "FETCH",
+      "bytes": 1,
+      "minimum_phi2_ticks": 3,
+      "maximum_phi2_ticks": 3
+    },
+    {
+      "direction": "FETCH",
+      "bytes": 16,
+      "minimum_phi2_ticks": 18,
+      "maximum_phi2_ticks": 18
+    },
+    {
+      "direction": "FETCH",
+      "bytes": 64,
+      "minimum_phi2_ticks": 66,
+      "maximum_phi2_ticks": 66
+    },
+    {
+      "direction": "FETCH",
+      "bytes": 128,
+      "minimum_phi2_ticks": 130,
+      "maximum_phi2_ticks": 130
+    },
+    {
+      "direction": "FETCH",
+      "bytes": 256,
+      "minimum_phi2_ticks": 258,
+      "maximum_phi2_ticks": 258
+    },
+    {
+      "direction": "STASH",
+      "bytes": 1,
+      "minimum_phi2_ticks": 3,
+      "maximum_phi2_ticks": 3
+    },
+    {
+      "direction": "STASH",
+      "bytes": 16,
+      "minimum_phi2_ticks": 18,
+      "maximum_phi2_ticks": 18
+    },
+    {
+      "direction": "STASH",
+      "bytes": 64,
+      "minimum_phi2_ticks": 66,
+      "maximum_phi2_ticks": 66
+    },
+    {
+      "direction": "STASH",
+      "bytes": 128,
+      "minimum_phi2_ticks": 130,
+      "maximum_phi2_ticks": 130
+    },
+    {
+      "direction": "STASH",
+      "bytes": 256,
+      "minimum_phi2_ticks": 258,
+      "maximum_phi2_ticks": 258
+    }
+  ],
+  "independent_reu_restoration_matches": true,
+  "scanout": {
+    "source_width": 320,
+    "source_height": 200,
+    "output_width": 720,
+    "output_height": 576,
+    "output_rectangle": [
+      12,
+      104,
+      601,
+      400
+    ],
+    "separately_visible_stripe_pixels": 320,
+    "all_64000_pixels_and_both_output_rows_match": true,
+    "palette_rgb": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        247,
+        247,
+        247
+      ],
+      [
+        141,
+        47,
+        52
+      ],
+      [
+        106,
+        212,
+        205
+      ],
+      [
+        152,
+        53,
+        164
+      ],
+      [
+        76,
+        180,
+        66
+      ],
+      [
+        44,
+        41,
+        177
+      ],
+      [
+        239,
+        239,
+        93
+      ],
+      [
+        152,
+        78,
+        32
+      ],
+      [
+        91,
+        56,
+        0
+      ],
+      [
+        209,
+        103,
+        109
+      ],
+      [
+        74,
+        74,
+        74
+      ],
+      [
+        123,
+        123,
+        123
+      ],
+      [
+        159,
+        239,
+        147
+      ],
+      [
+        109,
+        106,
+        239
+      ],
+      [
+        178,
+        178,
+        178
+      ]
+    ],
+    "first_and_last_pixels_visible": true,
+    "even_low_odd_high": true
+  },
+  "sample_emulated_milliseconds": 2000
+}
+Running reu128
+{
+  "format": "COSM0UE2RESULT1",
+  "qualification": "Functional emulation only; hardware timing pending",
+  "backend_executable_sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+  "supplied_config": "/Users/frenchfaso/Documents/Code/C64/runtime/c64u.toml",
+  "supplied_settings_sha256": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961",
+  "executed_private_reu_sha256": "8fb9abe6f2e3e730475b03b25d1739c3e395b8d933b6b41d6579bf18f7d90270",
+  "artifact_sha256": {
+    "diagnostic.reu": "5311f95561adfe703685108a7e4d720f0954aed984bbea90ca7ccf09b5646a00",
+    "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+    "probe.prg": "b43a9ecf6067259b04d45e25442e1afc3c1d303233bf0e8e34c18319a78deba9",
+    "renderer.prg": "e78c014bfc840438660982ca37321bebc83466ce957136e3fa48f10431d9ea1f"
+  },
+  "line_delay": 140,
+  "raster_lines": 312,
+  "slow_cpu_loop_count": 16,
+  "fast_cpu_loop_count": 704,
+  "expected_status": 227,
+  "actual_status": 227,
+  "reu_banks": 2,
+  "restore_errors": 0,
+  "alias_detected": 1,
+  "scanouts": 0,
+  "missed_syncs": 0,
+  "nmi_count": 0,
+  "deferred_dma": 0,
+  "runtime_dma_pairs": 0,
+  "active_dma_violations": 0,
+  "maximum_observed_stack_bytes": 6,
+  "framebuffer_matches": false,
+  "timings": [],
+  "independent_reu_restoration_matches": true,
+  "scanout": null,
+  "sample_emulated_milliseconds": 2000
+}
+Running reu512
+{
+  "format": "COSM0UE2RESULT1",
+  "qualification": "Functional emulation only; hardware timing pending",
+  "backend_executable_sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+  "supplied_config": "/Users/frenchfaso/Documents/Code/C64/runtime/c64u.toml",
+  "supplied_settings_sha256": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961",
+  "executed_private_reu_sha256": "8fb9abe6f2e3e730475b03b25d1739c3e395b8d933b6b41d6579bf18f7d90270",
+  "artifact_sha256": {
+    "diagnostic.reu": "5311f95561adfe703685108a7e4d720f0954aed984bbea90ca7ccf09b5646a00",
+    "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+    "probe.prg": "b43a9ecf6067259b04d45e25442e1afc3c1d303233bf0e8e34c18319a78deba9",
+    "renderer.prg": "e78c014bfc840438660982ca37321bebc83466ce957136e3fa48f10431d9ea1f"
+  },
+  "line_delay": 140,
+  "raster_lines": 312,
+  "slow_cpu_loop_count": 16,
+  "fast_cpu_loop_count": 704,
+  "expected_status": 227,
+  "actual_status": 227,
+  "reu_banks": 8,
+  "restore_errors": 0,
+  "alias_detected": 1,
+  "scanouts": 0,
+  "missed_syncs": 0,
+  "nmi_count": 0,
+  "deferred_dma": 0,
+  "runtime_dma_pairs": 0,
+  "active_dma_violations": 0,
+  "maximum_observed_stack_bytes": 6,
+  "framebuffer_matches": false,
+  "timings": [],
+  "independent_reu_restoration_matches": true,
+  "scanout": null,
+  "sample_emulated_milliseconds": 2000
+}
+Running reu2m
+{
+  "format": "COSM0UE2RESULT1",
+  "qualification": "Functional emulation only; hardware timing pending",
+  "backend_executable_sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+  "supplied_config": "/Users/frenchfaso/Documents/Code/C64/runtime/c64u.toml",
+  "supplied_settings_sha256": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961",
+  "executed_private_reu_sha256": "8fb9abe6f2e3e730475b03b25d1739c3e395b8d933b6b41d6579bf18f7d90270",
+  "artifact_sha256": {
+    "diagnostic.reu": "5311f95561adfe703685108a7e4d720f0954aed984bbea90ca7ccf09b5646a00",
+    "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+    "probe.prg": "b43a9ecf6067259b04d45e25442e1afc3c1d303233bf0e8e34c18319a78deba9",
+    "renderer.prg": "e78c014bfc840438660982ca37321bebc83466ce957136e3fa48f10431d9ea1f"
+  },
+  "line_delay": 140,
+  "raster_lines": 312,
+  "slow_cpu_loop_count": 16,
+  "fast_cpu_loop_count": 704,
+  "expected_status": 227,
+  "actual_status": 227,
+  "reu_banks": 32,
+  "restore_errors": 0,
+  "alias_detected": 1,
+  "scanouts": 0,
+  "missed_syncs": 0,
+  "nmi_count": 0,
+  "deferred_dma": 0,
+  "runtime_dma_pairs": 0,
+  "active_dma_violations": 0,
+  "maximum_observed_stack_bytes": 6,
+  "framebuffer_matches": false,
+  "timings": [],
+  "independent_reu_restoration_matches": true,
+  "scanout": null,
+  "sample_emulated_milliseconds": 2000
+}
+Running reu8m
+{
+  "format": "COSM0UE2RESULT1",
+  "qualification": "Functional emulation only; hardware timing pending",
+  "backend_executable_sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+  "supplied_config": "/Users/frenchfaso/Documents/Code/C64/runtime/c64u.toml",
+  "supplied_settings_sha256": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961",
+  "executed_private_reu_sha256": "8fb9abe6f2e3e730475b03b25d1739c3e395b8d933b6b41d6579bf18f7d90270",
+  "artifact_sha256": {
+    "diagnostic.reu": "5311f95561adfe703685108a7e4d720f0954aed984bbea90ca7ccf09b5646a00",
+    "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+    "probe.prg": "b43a9ecf6067259b04d45e25442e1afc3c1d303233bf0e8e34c18319a78deba9",
+    "renderer.prg": "e78c014bfc840438660982ca37321bebc83466ce957136e3fa48f10431d9ea1f"
+  },
+  "line_delay": 140,
+  "raster_lines": 312,
+  "slow_cpu_loop_count": 16,
+  "fast_cpu_loop_count": 704,
+  "expected_status": 227,
+  "actual_status": 227,
+  "reu_banks": 128,
+  "restore_errors": 0,
+  "alias_detected": 1,
+  "scanouts": 0,
+  "missed_syncs": 0,
+  "nmi_count": 0,
+  "deferred_dma": 0,
+  "runtime_dma_pairs": 0,
+  "active_dma_violations": 0,
+  "maximum_observed_stack_bytes": 6,
+  "framebuffer_matches": false,
+  "timings": [],
+  "independent_reu_restoration_matches": true,
+  "scanout": null,
+  "sample_emulated_milliseconds": 2000
+}
+Running reu-absent
+{
+  "format": "COSM0UE2RESULT1",
+  "qualification": "Functional emulation only; hardware timing pending",
+  "backend_executable_sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+  "supplied_config": "/Users/frenchfaso/Documents/Code/C64/runtime/c64u.toml",
+  "supplied_settings_sha256": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961",
+  "executed_private_reu_sha256": "8fb9abe6f2e3e730475b03b25d1739c3e395b8d933b6b41d6579bf18f7d90270",
+  "artifact_sha256": {
+    "diagnostic.reu": "5311f95561adfe703685108a7e4d720f0954aed984bbea90ca7ccf09b5646a00",
+    "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+    "probe.prg": "b43a9ecf6067259b04d45e25442e1afc3c1d303233bf0e8e34c18319a78deba9",
+    "renderer.prg": "e78c014bfc840438660982ca37321bebc83466ce957136e3fa48f10431d9ea1f"
+  },
+  "line_delay": 140,
+  "raster_lines": 312,
+  "slow_cpu_loop_count": 16,
+  "fast_cpu_loop_count": 704,
+  "expected_status": 227,
+  "actual_status": 227,
+  "reu_banks": 1,
+  "restore_errors": 0,
+  "alias_detected": 1,
+  "scanouts": 0,
+  "missed_syncs": 0,
+  "nmi_count": 0,
+  "deferred_dma": 0,
+  "runtime_dma_pairs": 0,
+  "active_dma_violations": 0,
+  "maximum_observed_stack_bytes": 6,
+  "framebuffer_matches": false,
+  "timings": [],
+  "independent_reu_restoration_matches": true,
+  "scanout": null,
+  "sample_emulated_milliseconds": 2000
+}
+Running turbo32
+{
+  "format": "COSM0UE2RESULT1",
+  "qualification": "Functional emulation only; hardware timing pending",
+  "backend_executable_sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+  "supplied_config": "/Users/frenchfaso/Documents/Code/C64/runtime/c64u.toml",
+  "supplied_settings_sha256": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961",
+  "executed_private_reu_sha256": "8fb9abe6f2e3e730475b03b25d1739c3e395b8d933b6b41d6579bf18f7d90270",
+  "artifact_sha256": {
+    "diagnostic.reu": "5311f95561adfe703685108a7e4d720f0954aed984bbea90ca7ccf09b5646a00",
+    "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+    "probe.prg": "b43a9ecf6067259b04d45e25442e1afc3c1d303233bf0e8e34c18319a78deba9",
+    "renderer.prg": "e78c014bfc840438660982ca37321bebc83466ce957136e3fa48f10431d9ea1f"
+  },
+  "line_delay": 140,
+  "raster_lines": 312,
+  "slow_cpu_loop_count": 368,
+  "fast_cpu_loop_count": 368,
+  "expected_status": 226,
+  "actual_status": 226,
+  "reu_banks": 0,
+  "restore_errors": 0,
+  "alias_detected": 0,
+  "scanouts": 0,
+  "missed_syncs": 0,
+  "nmi_count": 0,
+  "deferred_dma": 0,
+  "runtime_dma_pairs": 0,
+  "active_dma_violations": 0,
+  "maximum_observed_stack_bytes": 0,
+  "framebuffer_matches": false,
+  "timings": [],
+  "independent_reu_restoration_matches": true,
+  "scanout": null,
+  "sample_emulated_milliseconds": 6500
+}
+Running turbo48
+{
+  "format": "COSM0UE2RESULT1",
+  "qualification": "Functional emulation only; hardware timing pending",
+  "backend_executable_sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+  "supplied_config": "/Users/frenchfaso/Documents/Code/C64/runtime/c64u.toml",
+  "supplied_settings_sha256": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961",
+  "executed_private_reu_sha256": "8fb9abe6f2e3e730475b03b25d1739c3e395b8d933b6b41d6579bf18f7d90270",
+  "artifact_sha256": {
+    "diagnostic.reu": "5311f95561adfe703685108a7e4d720f0954aed984bbea90ca7ccf09b5646a00",
+    "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+    "probe.prg": "b43a9ecf6067259b04d45e25442e1afc3c1d303233bf0e8e34c18319a78deba9",
+    "renderer.prg": "e78c014bfc840438660982ca37321bebc83466ce957136e3fa48f10431d9ea1f"
+  },
+  "line_delay": 140,
+  "raster_lines": 312,
+  "slow_cpu_loop_count": 528,
+  "fast_cpu_loop_count": 528,
+  "expected_status": 226,
+  "actual_status": 226,
+  "reu_banks": 0,
+  "restore_errors": 0,
+  "alias_detected": 0,
+  "scanouts": 0,
+  "missed_syncs": 0,
+  "nmi_count": 0,
+  "deferred_dma": 0,
+  "runtime_dma_pairs": 0,
+  "active_dma_violations": 0,
+  "maximum_observed_stack_bytes": 0,
+  "framebuffer_matches": false,
+  "timings": [],
+  "independent_reu_restoration_matches": true,
+  "scanout": null,
+  "sample_emulated_milliseconds": 6500
+}
+Running ntsc
+{
+  "format": "COSM0UE2RESULT1",
+  "qualification": "Functional emulation only; hardware timing pending",
+  "backend_executable_sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+  "supplied_config": "/Users/frenchfaso/Documents/Code/C64/runtime/c64u.toml",
+  "supplied_settings_sha256": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961",
+  "executed_private_reu_sha256": "8fb9abe6f2e3e730475b03b25d1739c3e395b8d933b6b41d6579bf18f7d90270",
+  "artifact_sha256": {
+    "diagnostic.reu": "5311f95561adfe703685108a7e4d720f0954aed984bbea90ca7ccf09b5646a00",
+    "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+    "probe.prg": "b43a9ecf6067259b04d45e25442e1afc3c1d303233bf0e8e34c18319a78deba9",
+    "renderer.prg": "e78c014bfc840438660982ca37321bebc83466ce957136e3fa48f10431d9ea1f"
+  },
+  "line_delay": 140,
+  "raster_lines": 263,
+  "slow_cpu_loop_count": 0,
+  "fast_cpu_loop_count": 0,
+  "expected_status": 225,
+  "actual_status": 225,
+  "reu_banks": 0,
+  "restore_errors": 0,
+  "alias_detected": 0,
+  "scanouts": 0,
+  "missed_syncs": 0,
+  "nmi_count": 0,
+  "deferred_dma": 0,
+  "runtime_dma_pairs": 0,
+  "active_dma_violations": 0,
+  "maximum_observed_stack_bytes": 0,
+  "framebuffer_matches": false,
+  "timings": [],
+  "independent_reu_restoration_matches": true,
+  "scanout": null,
+  "sample_emulated_milliseconds": 2000
+}
+Running bad-pack
+{
+  "format": "COSM0UE2RESULT1",
+  "qualification": "Functional emulation only; hardware timing pending",
+  "backend_executable_sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+  "supplied_config": "/Users/frenchfaso/Documents/Code/C64/runtime/c64u.toml",
+  "supplied_settings_sha256": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961",
+  "executed_private_reu_sha256": "b9be3a321d8afaa90c0ca6a0ec24d79566932d2bd00c19eb3ee8afb0bf68fc9d",
+  "artifact_sha256": {
+    "diagnostic.reu": "5311f95561adfe703685108a7e4d720f0954aed984bbea90ca7ccf09b5646a00",
+    "pattern.columns": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+    "probe.prg": "b43a9ecf6067259b04d45e25442e1afc3c1d303233bf0e8e34c18319a78deba9",
+    "renderer.prg": "e78c014bfc840438660982ca37321bebc83466ce957136e3fa48f10431d9ea1f"
+  },
+  "line_delay": 140,
+  "raster_lines": 312,
+  "slow_cpu_loop_count": 16,
+  "fast_cpu_loop_count": 704,
+  "expected_status": 228,
+  "actual_status": 228,
+  "reu_banks": 256,
+  "restore_errors": 0,
+  "alias_detected": 0,
+  "scanouts": 0,
+  "missed_syncs": 0,
+  "nmi_count": 0,
+  "deferred_dma": 0,
+  "runtime_dma_pairs": 0,
+  "active_dma_violations": 0,
+  "maximum_observed_stack_bytes": 6,
+  "framebuffer_matches": false,
+  "timings": [],
+  "independent_reu_restoration_matches": true,
+  "scanout": null,
+  "sample_emulated_milliseconds": 2000
+}
++ /opt/homebrew/opt/python@3.14/bin/python3.14 tests/native/check_cache_cancel.py --emulator /Users/frenchfaso/Documents/Code/C64/UE2-C64U-Emulator/target/release/ue2emu --config /Users/frenchfaso/Documents/Code/C64/runtime/c64u.toml --flash /Users/frenchfaso/Documents/Code/C64/runtime/flash.bin --settings /Users/frenchfaso/Documents/Code/C64/runtime/ultimate.cfg --kickassembler /Users/frenchfaso/Documents/Code/C64/toolchain/kickassembler/KickAss.jar --java /Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java
+[
+  {
+    "cache_line": 128,
+    "status": "pass",
+    "counters": {
+      "fetch_bytes": 1409,
+      "stash_bytes": 129,
+      "stale": 1,
+      "native_reads": 1,
+      "native_writes": 1,
+      "dma_calls": 14
+    },
+    "observed_stack_bytes": 8,
+    "logical_first_bytes": "4041424344454647",
+    "physical_sha256": "78e32f2bace2ae43da7734547105c378dc33c455814abdc7783f2e5b1109b368",
+    "prg_sha256": "b9eddbc4192e1ae5806e6253809ea6a7756d881bcff234363c03570a5ca25342",
+    "cache_source_sha256": "6e32186aa5c8410ff1b89ca5c40d8cd63d186e693a97d77dc6a40759dff9a7bb",
+    "fixture_source_sha256": "792efe6836dacb3fc3a0696bcf8221be6ebb787e5be83a263f2633979c575b88",
+    "supplied_config_sha256": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+    "supplied_flash_sha256": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be",
+    "supplied_settings_sha256": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961",
+    "emulator_path": "/Users/frenchfaso/Documents/Code/C64/UE2-C64U-Emulator/target/release/ue2emu"
+  },
+  {
+    "cache_line": 64,
+    "status": "pass",
+    "counters": {
+      "fetch_bytes": 705,
+      "stash_bytes": 65,
+      "stale": 1,
+      "native_reads": 1,
+      "native_writes": 1,
+      "dma_calls": 14
+    },
+    "observed_stack_bytes": 8,
+    "logical_first_bytes": "4041424344454647",
+    "physical_sha256": "04333c3da657e3f12b8697480ac3fca2152459762fcbca0628dc20301d301fcf",
+    "prg_sha256": "493f50bcb6c325e506486c6f6197acd1f574abfbfd079a3f10317e04e52bb4c6",
+    "cache_source_sha256": "6e32186aa5c8410ff1b89ca5c40d8cd63d186e693a97d77dc6a40759dff9a7bb",
+    "fixture_source_sha256": "792efe6836dacb3fc3a0696bcf8221be6ebb787e5be83a263f2633979c575b88",
+    "supplied_config_sha256": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+    "supplied_flash_sha256": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be",
+    "supplied_settings_sha256": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961",
+    "emulator_path": "/Users/frenchfaso/Documents/Code/C64/UE2-C64U-Emulator/target/release/ue2emu"
+  }
+]
++ /opt/homebrew/opt/python@3.14/bin/python3.14 scripts/m2_margins.py --emulator /Users/frenchfaso/Documents/Code/C64/UE2-C64U-Emulator/target/release/ue2emu --config /Users/frenchfaso/Documents/Code/C64/runtime/c64u.toml --flash /Users/frenchfaso/Documents/Code/C64/runtime/flash.bin --settings /Users/frenchfaso/Documents/Code/C64/runtime/ultimate.cfg --kickass /Users/frenchfaso/Documents/Code/C64/toolchain/kickassembler/KickAss.jar --java /Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java
+{
+  "actual_phase_cost_measured": false,
+  "assembler_sha256": "9592a39336e73a1db8b4a7749256d62d29b113b1c7f0f6c86ea43870ebd9ae1f",
+  "backend_executable_sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+  "command": [
+    "/Users/frenchfaso/Documents/Code/C64/UE2-C64U-Emulator/target/release/ue2emu",
+    "run",
+    "--config",
+    "/Users/frenchfaso/Documents/Code/C64/runtime/c64u.toml",
+    "--flash",
+    "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m2/margins/isolated-flash.bin",
+    "--settings",
+    "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m2/margins/settings.cfg",
+    "--usb-dir",
+    "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m2/margins/usb",
+    "--headless",
+    "--speed",
+    "max",
+    "--audio",
+    "off",
+    "--script",
+    "/Users/frenchfaso/Documents/Code/C64/C-OS/build/m2/margins/run.ctl"
+  ],
+  "completions": 2,
+  "conservative_nmos_claim_cycle_bound": 512,
+  "failure": 0,
+  "format": "COSM2MARGINS1",
+  "lifecycle_assertions": 66,
+  "module_bytes": 394,
+  "prg_sha256": "a7ce28e1066d27411f67e12e78b7102f11e7066846e8e2b8ceb9b327ad32e183",
+  "private_ram_bytes": 48,
+  "qualification": "Native lifecycle only; margin execution disabled",
+  "qualification_flag": 0,
+  "source_sha256": "5369e13d1ed475351452682e0f1f78f64de5cc0469e972b43139adbeefd23783",
+  "supplied_config": "/Users/frenchfaso/Documents/Code/C64/runtime/c64u.toml",
+  "supplied_settings_sha256": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961",
+  "zero_page_bytes": 0
+}
++ /opt/homebrew/opt/python@3.14/bin/python3.14 scripts/m2_ue2.py --emulator /Users/frenchfaso/Documents/Code/C64/UE2-C64U-Emulator/target/release/ue2emu --config /Users/frenchfaso/Documents/Code/C64/runtime/c64u.toml --flash /Users/frenchfaso/Documents/Code/C64/runtime/flash.bin --settings /Users/frenchfaso/Documents/Code/C64/runtime/ultimate.cfg --build /Users/frenchfaso/Documents/Code/C64/C-OS/build/m2/128 --out /Users/frenchfaso/Documents/Code/C64/C-OS/build/m2/ue2/128 --fixtures /Users/frenchfaso/Documents/Code/C64/C-OS/build/m2-fixtures.json
+Native128: 1/609 cases pass (opcode-00)
+Native128: 25/609 cases pass (opcode-19)
+Native128: 50/609 cases pass (opcode-35)
+Native128: 75/609 cases pass (invalid-021-[4a, 00, 00, 00])
+Native128: 100/609 cases pass (invalid-046-[63, 00, 00, 00])
+Native128: 125/609 cases pass (invalid-071-[7c, 00, 00, 00])
+Native128: 150/609 cases pass (invalid-096-[95, 00, 00, 00])
+Native128: 175/609 cases pass (invalid-121-[ae, 00, 00, 00])
+Native128: 200/609 cases pass (invalid-146-[c7, 00, 00, 00])
+Native128: 225/609 cases pass (invalid-171-[e0, 00, 00, 00])
+Native128: 250/609 cases pass (invalid-196-[f9, 00, 00, 00])
+Native128: 275/609 cases pass (invalid-221-[03, 00, 00, 01])
+Native128: 300/609 cases pass (invalid-246-[24, 80, 00, 00])
+Native128: 325/609 cases pass (invalid-271-[0d, 08, 00, 00])
+Native128: 350/609 cases pass (invalid-296-[09, 00, 00, 01])
+Native128: 375/609 cases pass (invalid-321-[18, 00, 00, 01])
+Native128: 400/609 cases pass (invalid-346-[32, 00, 01, 00])
+Native128: 425/609 cases pass (integer-08)
+Native128: 450/609 cases pass (access-12-040101)
+Native128: 475/609 cases pass (bounds-11-03ffff)
+Native128: 500/609 cases pass (stack-30-false)
+Native128: 525/609 cases pass (return-ffffff)
+Native128: 550/609 cases pass (branch-27-0)
+Native128: 575/609 cases pass (branch-2b-1)
+Native128: 600/609 cases pass (native-run-fuel-slices)
+Native128: all 609 selected cases passed; output /Users/frenchfaso/Documents/Code/C64/C-OS/build/m2/ue2/128
++ /opt/homebrew/opt/python@3.14/bin/python3.14 scripts/m2_ue2.py --emulator /Users/frenchfaso/Documents/Code/C64/UE2-C64U-Emulator/target/release/ue2emu --config /Users/frenchfaso/Documents/Code/C64/runtime/c64u.toml --flash /Users/frenchfaso/Documents/Code/C64/runtime/flash.bin --settings /Users/frenchfaso/Documents/Code/C64/runtime/ultimate.cfg --build /Users/frenchfaso/Documents/Code/C64/C-OS/build/m2/64 --out /Users/frenchfaso/Documents/Code/C64/C-OS/build/m2/ue2/64 --fixtures /Users/frenchfaso/Documents/Code/C64/C-OS/build/m2-fixtures.json
+Native64: 1/609 cases pass (opcode-00)
+Native64: 25/609 cases pass (opcode-19)
+Native64: 50/609 cases pass (opcode-35)
+Native64: 75/609 cases pass (invalid-021-[4a, 00, 00, 00])
+Native64: 100/609 cases pass (invalid-046-[63, 00, 00, 00])
+Native64: 125/609 cases pass (invalid-071-[7c, 00, 00, 00])
+Native64: 150/609 cases pass (invalid-096-[95, 00, 00, 00])
+Native64: 175/609 cases pass (invalid-121-[ae, 00, 00, 00])
+Native64: 200/609 cases pass (invalid-146-[c7, 00, 00, 00])
+Native64: 225/609 cases pass (invalid-171-[e0, 00, 00, 00])
+Native64: 250/609 cases pass (invalid-196-[f9, 00, 00, 00])
+Native64: 275/609 cases pass (invalid-221-[03, 00, 00, 01])
+Native64: 300/609 cases pass (invalid-246-[24, 80, 00, 00])
+Native64: 325/609 cases pass (invalid-271-[0d, 08, 00, 00])
+Native64: 350/609 cases pass (invalid-296-[09, 00, 00, 01])
+Native64: 375/609 cases pass (invalid-321-[18, 00, 00, 01])
+Native64: 400/609 cases pass (invalid-346-[32, 00, 01, 00])
+Native64: 425/609 cases pass (integer-08)
+Native64: 450/609 cases pass (access-12-040101)
+Native64: 475/609 cases pass (bounds-11-03ffff)
+Native64: 500/609 cases pass (stack-30-false)
+Native64: 525/609 cases pass (return-ffffff)
+Native64: 550/609 cases pass (branch-27-0)
+Native64: 575/609 cases pass (branch-2b-1)
+Native64: 600/609 cases pass (native-run-fuel-slices)
+Native64: all 609 selected cases passed; output /Users/frenchfaso/Documents/Code/C64/C-OS/build/m2/ue2/64
+M2 complete functional verification passed: /Users/frenchfaso/Documents/Code/C64/C-OS/build/m2-results.json

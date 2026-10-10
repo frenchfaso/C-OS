@@ -1,0 +1,15 @@
+{
+  "format": "COSM3SCHEDULER1",
+  "native_assertions": 126,
+  "failures": 0,
+  "cache_line_bytes": 128,
+  "autonomous": true,
+  "host_opcode_commands": 0,
+  "qualification": "Native contract emulation; raster integration tested separately",
+  "backend_executable_sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+  "assembler_sha256": "9592a39336e73a1db8b4a7749256d62d29b113b1c7f0f6c86ea43870ebd9ae1f",
+  "source_sha256": "9e35c48e7de2870ffc45ff05e58f02d4e94aa5b8f63e3da9e34afe52a12cb16c",
+  "prg_sha256": "cce44ae1103f5e515bf7e944f9d0fa4c76b7f8fc606f0cd9ef3bfa78d0e306ea",
+  "scheduler_bytes": 1287,
+  "jobs_bytes": 1397
+}

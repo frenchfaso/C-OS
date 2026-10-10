@@ -1,0 +1,143 @@
+; Autonomous fixed-point Mandelbrot: 16x12, limit16, signed Q8.8.
+; cx=-2+x/4, cy=-1.5+y/4. Escape when xx+yy >=4 before updating z.
+; Multiplication computes floor(signed(a)*signed(b)/256) in bytecode.
+; Output: one iteration-count byte per pixel at the initial heap address.
+.const WIDTH = 16
+.const HEIGHT = 12
+.const LIMIT = 16
+.entry start
+.code
+start:
+    SYSCALL 2
+    ST16 R1, P2, 20
+    ST16 R2, P2, 22
+    LDI R0, 65152
+    ST16 R0, P2, 2
+    LDI R0, 0
+    ST16 R0, P2, 16
+next_row:
+    LDI R0, 65024
+    ST16 R0, P2, 0
+    LDI R0, 0
+    ST16 R0, P2, 14
+next_pixel:
+    LDI R0, 0
+    ST16 R0, P2, 4
+    ST16 R0, P2, 6
+    ST16 R0, P2, 12
+iterate:
+    LD16 R0, P2, 4
+    MOV R1, R0
+    CALL mul_q8
+    ST16 R0, P2, 8
+    LD16 R0, P2, 6
+    MOV R1, R0
+    CALL mul_q8
+    ST16 R0, P2, 10
+    LD16 R1, P2, 8
+    ADD R1, R0
+    LDI R2, 1024
+    BGEU R1, R2, write_pixel
+    LD16 R0, P2, 4
+    LD16 R1, P2, 6
+    CALL mul_q8
+    SHL R0, 1
+    LD16 R1, P2, 2
+    ADD R0, R1
+    ST16 R0, P2, 6
+    LD16 R0, P2, 8
+    LD16 R1, P2, 10
+    SUB R0, R1
+    LD16 R1, P2, 0
+    ADD R0, R1
+    ST16 R0, P2, 4
+    LD16 R0, P2, 12
+    ADDI R0, 1
+    ST16 R0, P2, 12
+    LDI R1, LIMIT
+    BLTU R0, R1, iterate
+write_pixel:
+    LD16 R0, P2, 12
+    ST8 R0, P0, 0
+    LDI R1, 1
+    PADD P0, R1
+    LD16 R0, P2, 0
+    ADDI R0, 64
+    ST16 R0, P2, 0
+    LD16 R0, P2, 14
+    ADDI R0, 1
+    ST16 R0, P2, 14
+    LDI R1, WIDTH
+    BLTU R0, R1, next_pixel
+    LD16 R0, P2, 2
+    ADDI R0, 64
+    ST16 R0, P2, 2
+    LD16 R0, P2, 16
+    ADDI R0, 1
+    ST16 R0, P2, 16
+    LDI R1, HEIGHT
+    BLTU R0, R1, next_row
+    SYSCALL 2
+    ST16 R1, P2, 24
+    ST16 R2, P2, 26
+    LDI R0, 0
+    SYSCALL 0
+; Signed16 x signed16 -> signed32, then arithmetic shift8/truncate16.
+; No native arithmetic service, no host iteration, no voluntary yield.
+mul_q8:
+    LDI R6, 0
+    LDI R7, 0
+    BGES R0, R6, abs_right
+    NOT R0
+    ADDI R0, 1
+    LDI R7, 1
+abs_right:
+    BGES R1, R6, multiply_unsigned
+    NOT R1
+    ADDI R1, 1
+    LDI R6, 1
+    XOR R7, R6
+multiply_unsigned:
+    PUSH16 R7
+    MOV R4, R0
+    MOV R6, R1
+    LDI R2, 0
+    LDI R3, 0
+    LDI R5, 0
+    LDI R7, 0
+    LDI R1, 16
+multiply_bit:
+    MOV R0, R6
+    SHL R0, 15
+    BEQ R0, R7, no_add
+    ADD R2, R4
+    BGEU R2, R4, no_carry
+    ADDI R3, 1
+no_carry:
+    ADD R3, R5
+no_add:
+    MOV R0, R4
+    SHR R0, 15
+    SHL R4, 1
+    SHL R5, 1
+    OR R5, R0
+    SHR R6, 1
+    ADDI R1, 65535
+    BNE R1, R7, multiply_bit
+    POP16 R7
+    LDI R1, 0
+    BEQ R7, R1, extract_product
+    NOT R2
+    NOT R3
+    ADDI R2, 1
+    BNE R2, R1, extract_product
+    ADDI R3, 1
+extract_product:
+    MOV R0, R2
+    SHR R0, 8
+    SHL R3, 8
+    OR R0, R3
+    RET
+.data
+scratch:
+    .space 28

@@ -1,0 +1,417 @@
+{
+  "format": "COSPACK1",
+  "abi": 2,
+  "numeric_profile": "COS-NUM-1",
+  "target": "c64u-pal-upic320",
+  "build_tag": 691693920,
+  "reu_image": "m3.reu",
+  "system_reserve": {
+    "first": 0,
+    "last": 262143
+  },
+  "storage": {
+    "mode": "discover",
+    "directory": "cos",
+    "marker": ".cos-volume"
+  },
+  "apps": [
+    {
+      "id": 1,
+      "name": "Mandelbrot",
+      "source": "build/m3-perf/apps/registers.cobj",
+      "arena": {
+        "first": 262144,
+        "last": 278527
+      },
+      "code": {
+        "first": 262144,
+        "last": 262379
+      },
+      "data": {
+        "start": 262400,
+        "length": 28
+      },
+      "bss": {
+        "start": 262528,
+        "length": 0
+      },
+      "heap": {
+        "first": 262528,
+        "last": 277503
+      },
+      "stack": {
+        "first": 277504,
+        "last": 278527
+      },
+      "entry": 262144,
+      "data_seed": {
+        "start": 128,
+        "length": 28
+      },
+      "symbols": {
+        "iterate": 262184,
+        "next_pixel": 262168,
+        "next_row": 262164,
+        "scratch": 262400,
+        "start": 262144,
+        "write_pixel": 262316
+      },
+      "source_map": [
+        {
+          "address": 262144,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 14,
+          "column": 5
+        },
+        {
+          "address": 262148,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 15,
+          "column": 5
+        },
+        {
+          "address": 262152,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 16,
+          "column": 5
+        },
+        {
+          "address": 262156,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 17,
+          "column": 5
+        },
+        {
+          "address": 262160,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 18,
+          "column": 5
+        },
+        {
+          "address": 262164,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 20,
+          "column": 5
+        },
+        {
+          "address": 262168,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 22,
+          "column": 5
+        },
+        {
+          "address": 262172,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 23,
+          "column": 5
+        },
+        {
+          "address": 262176,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 24,
+          "column": 5
+        },
+        {
+          "address": 262180,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 25,
+          "column": 5
+        },
+        {
+          "address": 262184,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 28,
+          "column": 5
+        },
+        {
+          "address": 262188,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 29,
+          "column": 5
+        },
+        {
+          "address": 262192,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 30,
+          "column": 5
+        },
+        {
+          "address": 262196,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 31,
+          "column": 5
+        },
+        {
+          "address": 262200,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 32,
+          "column": 5
+        },
+        {
+          "address": 262204,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 33,
+          "column": 5
+        },
+        {
+          "address": 262208,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 34,
+          "column": 5
+        },
+        {
+          "address": 262212,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 35,
+          "column": 5
+        },
+        {
+          "address": 262216,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 36,
+          "column": 5
+        },
+        {
+          "address": 262220,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 37,
+          "column": 5
+        },
+        {
+          "address": 262224,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 38,
+          "column": 5
+        },
+        {
+          "address": 262228,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 39,
+          "column": 5
+        },
+        {
+          "address": 262232,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 40,
+          "column": 5
+        },
+        {
+          "address": 262236,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 41,
+          "column": 5
+        },
+        {
+          "address": 262240,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 42,
+          "column": 5
+        },
+        {
+          "address": 262244,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 43,
+          "column": 5
+        },
+        {
+          "address": 262248,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 44,
+          "column": 5
+        },
+        {
+          "address": 262252,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 45,
+          "column": 5
+        },
+        {
+          "address": 262256,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 46,
+          "column": 5
+        },
+        {
+          "address": 262260,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 47,
+          "column": 5
+        },
+        {
+          "address": 262264,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 48,
+          "column": 5
+        },
+        {
+          "address": 262268,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 49,
+          "column": 5
+        },
+        {
+          "address": 262272,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 50,
+          "column": 5
+        },
+        {
+          "address": 262276,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 51,
+          "column": 5
+        },
+        {
+          "address": 262280,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 52,
+          "column": 5
+        },
+        {
+          "address": 262284,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 53,
+          "column": 5
+        },
+        {
+          "address": 262288,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 54,
+          "column": 5
+        },
+        {
+          "address": 262292,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 55,
+          "column": 5
+        },
+        {
+          "address": 262296,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 56,
+          "column": 5
+        },
+        {
+          "address": 262300,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 57,
+          "column": 5
+        },
+        {
+          "address": 262304,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 58,
+          "column": 5
+        },
+        {
+          "address": 262308,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 59,
+          "column": 5
+        },
+        {
+          "address": 262312,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 60,
+          "column": 5
+        },
+        {
+          "address": 262316,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 62,
+          "column": 5
+        },
+        {
+          "address": 262320,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 63,
+          "column": 5
+        },
+        {
+          "address": 262324,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 64,
+          "column": 5
+        },
+        {
+          "address": 262328,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 65,
+          "column": 5
+        },
+        {
+          "address": 262332,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 66,
+          "column": 5
+        },
+        {
+          "address": 262336,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 67,
+          "column": 5
+        },
+        {
+          "address": 262340,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 68,
+          "column": 5
+        },
+        {
+          "address": 262344,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 69,
+          "column": 5
+        },
+        {
+          "address": 262348,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 70,
+          "column": 5
+        },
+        {
+          "address": 262352,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 71,
+          "column": 5
+        },
+        {
+          "address": 262356,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 72,
+          "column": 5
+        },
+        {
+          "address": 262360,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 73,
+          "column": 5
+        },
+        {
+          "address": 262364,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 74,
+          "column": 5
+        },
+        {
+          "address": 262368,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 75,
+          "column": 5
+        },
+        {
+          "address": 262372,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 76,
+          "column": 5
+        },
+        {
+          "address": 262376,
+          "file": "apps/mandelbrot-registers.casm",
+          "line": 77,
+          "column": 5
+        }
+      ]
+    }
+  ]
+}

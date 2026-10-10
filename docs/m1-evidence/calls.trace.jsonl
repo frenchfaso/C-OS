@@ -1,0 +1,5 @@
+{"context":{"fuel":0,"p":[397311,396287,0,397311],"pc":393228,"r":[2,1,21,0,0,0,0,0],"retired":3,"sp":397308},"outcome":"FuelExhausted","slice":0}
+{"context":{"fuel":0,"p":[397311,396287,0,397311],"pc":393252,"r":[2,1,21,21,0,0,0,0],"retired":6,"sp":397303},"outcome":"FuelExhausted","slice":1}
+{"context":{"fuel":0,"p":[397311,396287,0,397311],"pc":393256,"r":[2,1,42,21,0,0,0,0],"retired":9,"sp":397303},"outcome":"FuelExhausted","slice":2}
+{"context":{"fuel":0,"p":[397311,397311,0,397311],"pc":393236,"r":[2,1,42,0,0,0,0,0],"retired":12,"sp":397311},"outcome":"FuelExhausted","slice":3}
+{"context":{"fuel":1,"p":[397311,397311,0,397311],"pc":393240,"r":[0,1,42,0,0,0,0,0],"retired":14,"sp":397311},"outcome":{"Syscall":{"id":0,"p":[397311,397311,0,397311],"pc":393240,"r":[0,1,42,0,0,0,0,0],"resume_pc":null,"token":1}},"slice":4}

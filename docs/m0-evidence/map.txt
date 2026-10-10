@@ -1,0 +1,28 @@
+C-OS M0 memory budget (inclusive bounds)
+Actual assembly and runtime allocations are distinct from future reservations.
+first last   reserved assembled runtime remaining name
+0000  0001         2         0       0         2 6510 ports
+0002  007f       126         0       0       126 VM registers (future)
+0080  00bf        64         0      17        47 driver scratch
+00c0  00ff        64         0       2        62 raster scratch
+0100  01ff       256         0      18       238 hardware stack
+0200  02ff       256         0     256         0 nibble table
+0300  03ff       256         0      80       176 diagnostics/global state
+0400  05ff       512         0       0       512 PCBs (future)
+0600  07ff       512         0       0       512 event rings (future)
+0800  0bff      1024         0       0      1024 code cache (future)
+0c00  0fff      1024         0       0      1024 data cache (future)
+1000  11ff       512         0     512         0 DMA staging
+1200  3fff     11776      1411       0     10365 resident code
+4000  cfff     36864         0   36864         0 framebuffer part 1
+d000  dfff      4096         0       0      4096 I/O
+e000  efff      4096         0    4096         0 framebuffer part 2
+f000  f9ff      2560      2289       0       271 renderer
+fa00  fcff       768         0       0       768 font (future)
+fd00  fd7f       128         0       0       128 cursor (future)
+fd80  fdff       128         0       0       128 metadata (future)
+fe00  fff9       506         0       0       506 desktop/diagnostics (future)
+fffa  ffff         6         0       6         0 vectors
+Hardware stack static bound: 18 bytes (one IRQ and one NMI).
+Numeric core future target: 4096 bytes, within existing resident code reserve.
+REU: 16777216 shared physical bytes; 262144 system; 16515072 application.

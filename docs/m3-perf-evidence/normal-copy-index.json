@@ -1,0 +1,703 @@
+{
+  "excluded_large_inputs": "Full 16 MiB REU images and private firmware/FAT inputs remain hash-bound at their original build paths.",
+  "files": {
+    "artifacts/128/bounds.json": {
+      "bytes": 25777,
+      "sha256": "d45564d9454fa079cb51eb60999113169aef06bf5cd56565ab4a1c54c3046ab3",
+      "source": "build/m3-perf/final-candidate/128/bounds.json"
+    },
+    "artifacts/128/m3.manifest.json": {
+      "bytes": 9086,
+      "sha256": "2fab8aa53c16455f19df74541cea04b1d52e366d07542f88a5570fcefc2e858f",
+      "source": "build/m3-perf/final-candidate/128/m3.manifest.json"
+    },
+    "artifacts/128/m3.prg": {
+      "bytes": 1689,
+      "sha256": "4c242c8f13773de17901c5c350faeb2bb3a6f137f69987de2f1723bce7f4db10",
+      "source": "build/m3-perf/final-candidate/128/m3.prg"
+    },
+    "artifacts/128/m3_kernel.prg": {
+      "bytes": 7527,
+      "sha256": "61ba8ab417018019a6a9e4e4b5e3e9d6e013ee5fae7d8a3dbd055366387a00ad",
+      "source": "build/m3-perf/final-candidate/128/m3_kernel.prg"
+    },
+    "artifacts/128/m3_kernel.sym": {
+      "bytes": 13908,
+      "sha256": "2615e90f841d84385cdc836b6ad0ecb4f9c049298bf9a2b33ef8e80a31ecaa1d",
+      "source": "build/m3-perf/final-candidate/128/m3_kernel.sym"
+    },
+    "artifacts/128/map.json": {
+      "bytes": 28170,
+      "sha256": "6aec6f96fe90032b6fe4ed7d959d28e23c41173b5d8384c72797abf7f888f572",
+      "source": "build/m3-perf/final-candidate/128/map.json"
+    },
+    "artifacts/128/map.txt": {
+      "bytes": 2152,
+      "sha256": "9b187488c0ea6af09ee1ab905f604dc1f891b29d7e4565ae8cd6e88294f1a50f",
+      "source": "build/m3-perf/final-candidate/128/map.txt"
+    },
+    "artifacts/128/native.bin": {
+      "bytes": 7525,
+      "sha256": "50cae5a9d3d495d056c064cbee9fdae9780c611660dbb942a39c96ecbf075171",
+      "source": "build/m3-perf/final-candidate/128/native.bin"
+    },
+    "artifacts/128/pattern.columns": {
+      "bytes": 40960,
+      "sha256": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+      "source": "build/m3-perf/final-candidate/128/pattern.columns"
+    },
+    "artifacts/128/renderer.prg": {
+      "bytes": 2291,
+      "sha256": "5858b9691af7965b54c4f0ca5e96a314c2105293c291f91c72dd8246ad02adb2",
+      "source": "build/m3-perf/final-candidate/128/renderer.prg"
+    },
+    "artifacts/64/bounds.json": {
+      "bytes": 25776,
+      "sha256": "b8dd76d9888688536e48fdc9ab6db44370a27ce50cb5b5a81145855e6f37f143",
+      "source": "build/m3-perf/final-candidate/64/bounds.json"
+    },
+    "artifacts/64/m3.manifest.json": {
+      "bytes": 9086,
+      "sha256": "27472719b142d4b97df12ea296a44b2e9f29567bd52a6b6e88e39bd36d29457c",
+      "source": "build/m3-perf/final-candidate/64/m3.manifest.json"
+    },
+    "artifacts/64/m3.prg": {
+      "bytes": 1689,
+      "sha256": "a2bac78aca780f1b425e60a8e2ea3d878c1df479b347b76dc8db2ffce6ce59ee",
+      "source": "build/m3-perf/final-candidate/64/m3.prg"
+    },
+    "artifacts/64/m3_kernel.prg": {
+      "bytes": 7527,
+      "sha256": "53e453d7958cced53b161739fc11d75ec1228a2315800874ff160f4130c75b05",
+      "source": "build/m3-perf/final-candidate/64/m3_kernel.prg"
+    },
+    "artifacts/64/m3_kernel.sym": {
+      "bytes": 13908,
+      "sha256": "2615e90f841d84385cdc836b6ad0ecb4f9c049298bf9a2b33ef8e80a31ecaa1d",
+      "source": "build/m3-perf/final-candidate/64/m3_kernel.sym"
+    },
+    "artifacts/64/map.json": {
+      "bytes": 28169,
+      "sha256": "b676216bbe81d4b4bc6e8cbc8f36f32a1113a03575a51cd2b44c4beb33ddc60b",
+      "source": "build/m3-perf/final-candidate/64/map.json"
+    },
+    "artifacts/64/map.txt": {
+      "bytes": 2152,
+      "sha256": "5a29d1c62c6fe9e4e14efd5776344f390680a1e2387fcc356149941f099c7f5c",
+      "source": "build/m3-perf/final-candidate/64/map.txt"
+    },
+    "artifacts/64/native.bin": {
+      "bytes": 7525,
+      "sha256": "6e24d4672a168f983060343ab1a2a8f28d660dca26ef1a57b7e6a288f316f0ea",
+      "source": "build/m3-perf/final-candidate/64/native.bin"
+    },
+    "artifacts/64/pattern.columns": {
+      "bytes": 40960,
+      "sha256": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+      "source": "build/m3-perf/final-candidate/64/pattern.columns"
+    },
+    "artifacts/64/renderer.prg": {
+      "bytes": 2291,
+      "sha256": "5858b9691af7965b54c4f0ca5e96a314c2105293c291f91c72dd8246ad02adb2",
+      "source": "build/m3-perf/final-candidate/64/renderer.prg"
+    },
+    "artifacts/larger-128/bounds.json": {
+      "bytes": 25777,
+      "sha256": "d4e58709347269e558b13d3f1c97bd83f4fbb007e279e0405f13ad34ae7d02b0",
+      "source": "build/m3-perf/final-candidate/larger-128/bounds.json"
+    },
+    "artifacts/larger-128/m3.manifest.json": {
+      "bytes": 9426,
+      "sha256": "7d28db388ad8650ccb951b714ccd30a5bf92d417c450e13448b4f0583c6cb89a",
+      "source": "build/m3-perf/final-candidate/larger-128/m3.manifest.json"
+    },
+    "artifacts/larger-128/m3.prg": {
+      "bytes": 1689,
+      "sha256": "cd9c1b351e6f18f81c175487ce575907fe219152ae52852aae6063d28f7bd6e3",
+      "source": "build/m3-perf/final-candidate/larger-128/m3.prg"
+    },
+    "artifacts/larger-128/m3_kernel.prg": {
+      "bytes": 7527,
+      "sha256": "61ba8ab417018019a6a9e4e4b5e3e9d6e013ee5fae7d8a3dbd055366387a00ad",
+      "source": "build/m3-perf/final-candidate/larger-128/m3_kernel.prg"
+    },
+    "artifacts/larger-128/m3_kernel.sym": {
+      "bytes": 13908,
+      "sha256": "2615e90f841d84385cdc836b6ad0ecb4f9c049298bf9a2b33ef8e80a31ecaa1d",
+      "source": "build/m3-perf/final-candidate/larger-128/m3_kernel.sym"
+    },
+    "artifacts/larger-128/map.json": {
+      "bytes": 28170,
+      "sha256": "3ebc8104f412044904043a8adb010702304199935d47d1f26233c4eb8f519e3e",
+      "source": "build/m3-perf/final-candidate/larger-128/map.json"
+    },
+    "artifacts/larger-128/map.txt": {
+      "bytes": 2152,
+      "sha256": "9b187488c0ea6af09ee1ab905f604dc1f891b29d7e4565ae8cd6e88294f1a50f",
+      "source": "build/m3-perf/final-candidate/larger-128/map.txt"
+    },
+    "artifacts/larger-128/native.bin": {
+      "bytes": 7525,
+      "sha256": "50cae5a9d3d495d056c064cbee9fdae9780c611660dbb942a39c96ecbf075171",
+      "source": "build/m3-perf/final-candidate/larger-128/native.bin"
+    },
+    "artifacts/larger-128/pattern.columns": {
+      "bytes": 40960,
+      "sha256": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+      "source": "build/m3-perf/final-candidate/larger-128/pattern.columns"
+    },
+    "artifacts/larger-128/renderer.prg": {
+      "bytes": 2291,
+      "sha256": "5858b9691af7965b54c4f0ca5e96a314c2105293c291f91c72dd8246ad02adb2",
+      "source": "build/m3-perf/final-candidate/larger-128/renderer.prg"
+    },
+    "artifacts/larger-64/bounds.json": {
+      "bytes": 25776,
+      "sha256": "0d7e51c58cbbcffa5ea146c6554468721261ace1d6506b59045d654171756acc",
+      "source": "build/m3-perf/final-candidate/larger-64/bounds.json"
+    },
+    "artifacts/larger-64/m3.manifest.json": {
+      "bytes": 9426,
+      "sha256": "705f5f66cace4a3dde14dbfe2b3215a7aa9f8649ddff51e9cd1b5fef15e39ec8",
+      "source": "build/m3-perf/final-candidate/larger-64/m3.manifest.json"
+    },
+    "artifacts/larger-64/m3.prg": {
+      "bytes": 1689,
+      "sha256": "a47f0ad4ee115c690399dc3c55c365f1ce1d0350c326da9e387de02dbf120eb5",
+      "source": "build/m3-perf/final-candidate/larger-64/m3.prg"
+    },
+    "artifacts/larger-64/m3_kernel.prg": {
+      "bytes": 7527,
+      "sha256": "53e453d7958cced53b161739fc11d75ec1228a2315800874ff160f4130c75b05",
+      "source": "build/m3-perf/final-candidate/larger-64/m3_kernel.prg"
+    },
+    "artifacts/larger-64/m3_kernel.sym": {
+      "bytes": 13908,
+      "sha256": "2615e90f841d84385cdc836b6ad0ecb4f9c049298bf9a2b33ef8e80a31ecaa1d",
+      "source": "build/m3-perf/final-candidate/larger-64/m3_kernel.sym"
+    },
+    "artifacts/larger-64/map.json": {
+      "bytes": 28169,
+      "sha256": "f7c12c644134fc08f40c56a2b4b1061c7902a79ac2704fe0d3292d304a7b02b0",
+      "source": "build/m3-perf/final-candidate/larger-64/map.json"
+    },
+    "artifacts/larger-64/map.txt": {
+      "bytes": 2152,
+      "sha256": "5a29d1c62c6fe9e4e14efd5776344f390680a1e2387fcc356149941f099c7f5c",
+      "source": "build/m3-perf/final-candidate/larger-64/map.txt"
+    },
+    "artifacts/larger-64/native.bin": {
+      "bytes": 7525,
+      "sha256": "6e24d4672a168f983060343ab1a2a8f28d660dca26ef1a57b7e6a288f316f0ea",
+      "source": "build/m3-perf/final-candidate/larger-64/native.bin"
+    },
+    "artifacts/larger-64/pattern.columns": {
+      "bytes": 40960,
+      "sha256": "a0d78a842e0f23fd183d12017a7099157e0c55fddd7f0260301748f6d42e3b79",
+      "source": "build/m3-perf/final-candidate/larger-64/pattern.columns"
+    },
+    "artifacts/larger-64/renderer.prg": {
+      "bytes": 2291,
+      "sha256": "5858b9691af7965b54c4f0ca5e96a314c2105293c291f91c72dd8246ad02adb2",
+      "source": "build/m3-perf/final-candidate/larger-64/renderer.prg"
+    },
+    "benchmarks/benchmark-larger-128/cos/emulator.log": {
+      "bytes": 8870,
+      "sha256": "64485b66401cb01a5476ba02d4f961019be7bc2249b0e123f72067e7f3e72cba",
+      "source": "build/m3-perf/final-candidate/benchmark-larger-128/cos/emulator.log"
+    },
+    "benchmarks/benchmark-larger-128/cos/image.bin": {
+      "bytes": 768,
+      "sha256": "83c6af3119bdd417f7429627c04198faa2732a05d03f65ce62cff704278cb69a",
+      "source": "build/m3-perf/final-candidate/benchmark-larger-128/cos/image.bin"
+    },
+    "benchmarks/benchmark-larger-128/cos/protocol.log": {
+      "bytes": 19563,
+      "sha256": "4b172140835a46e8f645b35ccad16ba59d11ddc64ab0b12e783272822258ecdd",
+      "source": "build/m3-perf/final-candidate/benchmark-larger-128/cos/protocol.log"
+    },
+    "benchmarks/benchmark-larger-128/cos/scanout.png": {
+      "bytes": 131185,
+      "sha256": "70cefe5734301e9fd1c7c80055b428be57bc32435beedc5119bb7aab70977dfb",
+      "source": "build/m3-perf/final-candidate/benchmark-larger-128/cos/scanout.png"
+    },
+    "benchmarks/benchmark-larger-128/cos/scanout.png.geometry.json": {
+      "bytes": 956,
+      "sha256": "10c2e56a72920b65fe46beb70f84e8d3978389c20fcd492a9138b54134f6a981",
+      "source": "build/m3-perf/final-candidate/benchmark-larger-128/cos/scanout.png.geometry.json"
+    },
+    "benchmarks/benchmark-larger-128/native1mhz/emulator.log": {
+      "bytes": 8599,
+      "sha256": "3c39a3b2a3bcd895f0c06fdb933ed30d04e942a7c606180a389e55e8a529da6d",
+      "source": "build/m3-perf/final-candidate/benchmark-larger-128/native1mhz/emulator.log"
+    },
+    "benchmarks/benchmark-larger-128/native1mhz/image.bin": {
+      "bytes": 768,
+      "sha256": "83c6af3119bdd417f7429627c04198faa2732a05d03f65ce62cff704278cb69a",
+      "source": "build/m3-perf/final-candidate/benchmark-larger-128/native1mhz/image.bin"
+    },
+    "benchmarks/benchmark-larger-128/native1mhz/mandelbrot_32x24_1mhz.assembly.log": {
+      "bytes": 1009,
+      "sha256": "c02196390e1c9857994e6c67a1e2980377138271dbc8eb7766a92b132e667564",
+      "source": "build/m3-perf/final-candidate/benchmark-larger-128/native1mhz/mandelbrot_32x24_1mhz.assembly.log"
+    },
+    "benchmarks/benchmark-larger-128/native1mhz/mandelbrot_32x24_1mhz.prg": {
+      "bytes": 23297,
+      "sha256": "7b4c90f6b8aa75d2cc2df855171685c2d14936c890bef1667420fad3d07afff5",
+      "source": "build/m3-perf/final-candidate/benchmark-larger-128/native1mhz/mandelbrot_32x24_1mhz.prg"
+    },
+    "benchmarks/benchmark-larger-128/native1mhz/mandelbrot_32x24_1mhz.sym": {
+      "bytes": 786,
+      "sha256": "180c6f68db65465bc7c8631054384c078cd1c2cb00fb6381c56f2e4b6816e6e8",
+      "source": "build/m3-perf/final-candidate/benchmark-larger-128/native1mhz/mandelbrot_32x24_1mhz.sym"
+    },
+    "benchmarks/benchmark-larger-128/native1mhz/mandelbrot_32x24_1mhz.vs": {
+      "bytes": 708,
+      "sha256": "116736079d95010805c3b76f4f2bf9d051abd9754c55a9d5d09bd3f7a7179632",
+      "source": "build/m3-perf/final-candidate/benchmark-larger-128/native1mhz/mandelbrot_32x24_1mhz.vs"
+    },
+    "benchmarks/benchmark-larger-128/native1mhz/protocol.log": {
+      "bytes": 86359,
+      "sha256": "efd55f4232f5c2d27684b46d37f58f94d45b55f55caaa7b3d8b1a5525e875af3",
+      "source": "build/m3-perf/final-candidate/benchmark-larger-128/native1mhz/protocol.log"
+    },
+    "benchmarks/benchmark-larger-128/result.json": {
+      "bytes": 26803,
+      "sha256": "1e53b8279c5e5b14eb257307f5ba9399cf1b79317850fd1c0024f93b93795bf9",
+      "source": "build/m3-perf/final-candidate/benchmark-larger-128/result.json"
+    },
+    "benchmarks/benchmark-larger-64/cos/emulator.log": {
+      "bytes": 8867,
+      "sha256": "9810e4db4dad6599794e50b94791e3f01b844925be4d1069c12749605a8d53f4",
+      "source": "build/m3-perf/final-candidate/benchmark-larger-64/cos/emulator.log"
+    },
+    "benchmarks/benchmark-larger-64/cos/image.bin": {
+      "bytes": 768,
+      "sha256": "83c6af3119bdd417f7429627c04198faa2732a05d03f65ce62cff704278cb69a",
+      "source": "build/m3-perf/final-candidate/benchmark-larger-64/cos/image.bin"
+    },
+    "benchmarks/benchmark-larger-64/cos/protocol.log": {
+      "bytes": 19363,
+      "sha256": "519a3c8f3f90319a27c96f0c697a847847413469fbd2eed10edb45a84d0aaa9e",
+      "source": "build/m3-perf/final-candidate/benchmark-larger-64/cos/protocol.log"
+    },
+    "benchmarks/benchmark-larger-64/cos/scanout.png": {
+      "bytes": 131185,
+      "sha256": "70cefe5734301e9fd1c7c80055b428be57bc32435beedc5119bb7aab70977dfb",
+      "source": "build/m3-perf/final-candidate/benchmark-larger-64/cos/scanout.png"
+    },
+    "benchmarks/benchmark-larger-64/cos/scanout.png.geometry.json": {
+      "bytes": 956,
+      "sha256": "88235be3da3a65cb4af1d36e6fbbfac6e794065c6e13f65923d82852df1de72d",
+      "source": "build/m3-perf/final-candidate/benchmark-larger-64/cos/scanout.png.geometry.json"
+    },
+    "benchmarks/benchmark-larger-64/native1mhz/emulator.log": {
+      "bytes": 8595,
+      "sha256": "bc2b9cee274b015a5fd80dd792ba7e67f12b657c9aac9583a109d37194161c01",
+      "source": "build/m3-perf/final-candidate/benchmark-larger-64/native1mhz/emulator.log"
+    },
+    "benchmarks/benchmark-larger-64/native1mhz/image.bin": {
+      "bytes": 768,
+      "sha256": "83c6af3119bdd417f7429627c04198faa2732a05d03f65ce62cff704278cb69a",
+      "source": "build/m3-perf/final-candidate/benchmark-larger-64/native1mhz/image.bin"
+    },
+    "benchmarks/benchmark-larger-64/native1mhz/mandelbrot_32x24_1mhz.assembly.log": {
+      "bytes": 1006,
+      "sha256": "d94fd2915c15c5bdb9b7e59066ad85f964e4005e61e618d370cff5a384de85ce",
+      "source": "build/m3-perf/final-candidate/benchmark-larger-64/native1mhz/mandelbrot_32x24_1mhz.assembly.log"
+    },
+    "benchmarks/benchmark-larger-64/native1mhz/mandelbrot_32x24_1mhz.prg": {
+      "bytes": 23297,
+      "sha256": "7b4c90f6b8aa75d2cc2df855171685c2d14936c890bef1667420fad3d07afff5",
+      "source": "build/m3-perf/final-candidate/benchmark-larger-64/native1mhz/mandelbrot_32x24_1mhz.prg"
+    },
+    "benchmarks/benchmark-larger-64/native1mhz/mandelbrot_32x24_1mhz.sym": {
+      "bytes": 786,
+      "sha256": "180c6f68db65465bc7c8631054384c078cd1c2cb00fb6381c56f2e4b6816e6e8",
+      "source": "build/m3-perf/final-candidate/benchmark-larger-64/native1mhz/mandelbrot_32x24_1mhz.sym"
+    },
+    "benchmarks/benchmark-larger-64/native1mhz/mandelbrot_32x24_1mhz.vs": {
+      "bytes": 708,
+      "sha256": "116736079d95010805c3b76f4f2bf9d051abd9754c55a9d5d09bd3f7a7179632",
+      "source": "build/m3-perf/final-candidate/benchmark-larger-64/native1mhz/mandelbrot_32x24_1mhz.vs"
+    },
+    "benchmarks/benchmark-larger-64/native1mhz/protocol.log": {
+      "bytes": 86359,
+      "sha256": "dd953183cb78faf65a0294d34210129575b2e3bbf30e90cd8ecbb7dc228300c9",
+      "source": "build/m3-perf/final-candidate/benchmark-larger-64/native1mhz/protocol.log"
+    },
+    "benchmarks/benchmark-larger-64/result.json": {
+      "bytes": 22044,
+      "sha256": "23c622d566a3c7cd43c900e06208bfe5b738883f8bfd57d4885bd596a9e8b3fa",
+      "source": "build/m3-perf/final-candidate/benchmark-larger-64/result.json"
+    },
+    "benchmarks/benchmark-primary-128-repeat/cos/emulator.log": {
+      "bytes": 8902,
+      "sha256": "1926c48efbbc018563c24b0db1906c8c7c9d76ca78263142b9ecb975031296f8",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-128-repeat/cos/emulator.log"
+    },
+    "benchmarks/benchmark-primary-128-repeat/cos/image.bin": {
+      "bytes": 192,
+      "sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-128-repeat/cos/image.bin"
+    },
+    "benchmarks/benchmark-primary-128-repeat/cos/protocol.log": {
+      "bytes": 16805,
+      "sha256": "b7dad3545d4b771f73c00300a225d64a5ade061cfef702f82cb31cfbf1f785a0",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-128-repeat/cos/protocol.log"
+    },
+    "benchmarks/benchmark-primary-128-repeat/cos/scanout.png": {
+      "bytes": 131185,
+      "sha256": "70cefe5734301e9fd1c7c80055b428be57bc32435beedc5119bb7aab70977dfb",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-128-repeat/cos/scanout.png"
+    },
+    "benchmarks/benchmark-primary-128-repeat/cos/scanout.png.geometry.json": {
+      "bytes": 956,
+      "sha256": "98f1195a92547d15cbc5066e9a1ce5972847f1aaa1524be338ceb49a08d981ad",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-128-repeat/cos/scanout.png.geometry.json"
+    },
+    "benchmarks/benchmark-primary-128-repeat/native1mhz/emulator.log": {
+      "bytes": 8630,
+      "sha256": "87c693550f315f7fbcc8cd51bd031332c7ee42fbb0b4fbddd3e425f5e2369e14",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-128-repeat/native1mhz/emulator.log"
+    },
+    "benchmarks/benchmark-primary-128-repeat/native1mhz/image.bin": {
+      "bytes": 192,
+      "sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-128-repeat/native1mhz/image.bin"
+    },
+    "benchmarks/benchmark-primary-128-repeat/native1mhz/mandelbrot_1mhz.assembly.log": {
+      "bytes": 1015,
+      "sha256": "c34d31a04b163217d6f88c4e7bc47e3f1158fd63d763383eaff8eb5d00b69e8c",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-128-repeat/native1mhz/mandelbrot_1mhz.assembly.log"
+    },
+    "benchmarks/benchmark-primary-128-repeat/native1mhz/mandelbrot_1mhz.prg": {
+      "bytes": 22721,
+      "sha256": "e39eb8bc584ab683400ba14dd8e86d21b39af34149dcf1cd082c34cc93571d90",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-128-repeat/native1mhz/mandelbrot_1mhz.prg"
+    },
+    "benchmarks/benchmark-primary-128-repeat/native1mhz/mandelbrot_1mhz.sym": {
+      "bytes": 786,
+      "sha256": "180c6f68db65465bc7c8631054384c078cd1c2cb00fb6381c56f2e4b6816e6e8",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-128-repeat/native1mhz/mandelbrot_1mhz.sym"
+    },
+    "benchmarks/benchmark-primary-128-repeat/native1mhz/mandelbrot_1mhz.vs": {
+      "bytes": 708,
+      "sha256": "116736079d95010805c3b76f4f2bf9d051abd9754c55a9d5d09bd3f7a7179632",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-128-repeat/native1mhz/mandelbrot_1mhz.vs"
+    },
+    "benchmarks/benchmark-primary-128-repeat/native1mhz/protocol.log": {
+      "bytes": 80460,
+      "sha256": "46bd7a6ed174bbac4b3950479418f08037f08e1dc39c153d1ae79e90711c213f",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-128-repeat/native1mhz/protocol.log"
+    },
+    "benchmarks/benchmark-primary-128-repeat/result.json": {
+      "bytes": 27344,
+      "sha256": "9f9683c3e1aa86e3507fbd7118476d6a2455c44f74933fd96f21f479ce538eb8",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-128-repeat/result.json"
+    },
+    "benchmarks/benchmark-primary-128/cos/emulator.log": {
+      "bytes": 8874,
+      "sha256": "37d1ab5a8242f4fa02c6e336ee30fe593c07d6c97aa91cf5498b54498778e35c",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-128/cos/emulator.log"
+    },
+    "benchmarks/benchmark-primary-128/cos/image.bin": {
+      "bytes": 192,
+      "sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-128/cos/image.bin"
+    },
+    "benchmarks/benchmark-primary-128/cos/protocol.log": {
+      "bytes": 16798,
+      "sha256": "b0378782ed896ab4c2bea42535029b3e47d2aac4d39bb8c6a894554df9c017c4",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-128/cos/protocol.log"
+    },
+    "benchmarks/benchmark-primary-128/cos/scanout.png": {
+      "bytes": 131185,
+      "sha256": "70cefe5734301e9fd1c7c80055b428be57bc32435beedc5119bb7aab70977dfb",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-128/cos/scanout.png"
+    },
+    "benchmarks/benchmark-primary-128/cos/scanout.png.geometry.json": {
+      "bytes": 956,
+      "sha256": "98f1195a92547d15cbc5066e9a1ce5972847f1aaa1524be338ceb49a08d981ad",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-128/cos/scanout.png.geometry.json"
+    },
+    "benchmarks/benchmark-primary-128/native1mhz/emulator.log": {
+      "bytes": 8602,
+      "sha256": "0b5b049ad663493f24ed88074ed9595d0ab5a32ff6314dc4369e01c96906f09e",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-128/native1mhz/emulator.log"
+    },
+    "benchmarks/benchmark-primary-128/native1mhz/image.bin": {
+      "bytes": 192,
+      "sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-128/native1mhz/image.bin"
+    },
+    "benchmarks/benchmark-primary-128/native1mhz/mandelbrot_1mhz.assembly.log": {
+      "bytes": 994,
+      "sha256": "1a94c7697310ed46b28183698dfefaa01ed928b1c4e32709730f1695218db569",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-128/native1mhz/mandelbrot_1mhz.assembly.log"
+    },
+    "benchmarks/benchmark-primary-128/native1mhz/mandelbrot_1mhz.prg": {
+      "bytes": 22721,
+      "sha256": "e39eb8bc584ab683400ba14dd8e86d21b39af34149dcf1cd082c34cc93571d90",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-128/native1mhz/mandelbrot_1mhz.prg"
+    },
+    "benchmarks/benchmark-primary-128/native1mhz/mandelbrot_1mhz.sym": {
+      "bytes": 786,
+      "sha256": "180c6f68db65465bc7c8631054384c078cd1c2cb00fb6381c56f2e4b6816e6e8",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-128/native1mhz/mandelbrot_1mhz.sym"
+    },
+    "benchmarks/benchmark-primary-128/native1mhz/mandelbrot_1mhz.vs": {
+      "bytes": 708,
+      "sha256": "116736079d95010805c3b76f4f2bf9d051abd9754c55a9d5d09bd3f7a7179632",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-128/native1mhz/mandelbrot_1mhz.vs"
+    },
+    "benchmarks/benchmark-primary-128/native1mhz/protocol.log": {
+      "bytes": 80460,
+      "sha256": "0cf4f3bc94b8859ab48fa41e07548614d6ff3e149203406c2f6f2a34937b8d20",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-128/native1mhz/protocol.log"
+    },
+    "benchmarks/benchmark-primary-128/result.json": {
+      "bytes": 27344,
+      "sha256": "26180bcf99d0d8accb9a7a75a6748926a3e8778d6528dfd37862fe40e15f6fa9",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-128/result.json"
+    },
+    "benchmarks/benchmark-primary-64-repeat/cos/emulator.log": {
+      "bytes": 8898,
+      "sha256": "56f457674ceacd59d8350b9e1e9033814218355c1cd86ab3e6df96fa57df558d",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-64-repeat/cos/emulator.log"
+    },
+    "benchmarks/benchmark-primary-64-repeat/cos/image.bin": {
+      "bytes": 192,
+      "sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-64-repeat/cos/image.bin"
+    },
+    "benchmarks/benchmark-primary-64-repeat/cos/protocol.log": {
+      "bytes": 15036,
+      "sha256": "82865757828099213cc234fc1dadd80a55a3ae17a625909df6c4c49ae83d49de",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-64-repeat/cos/protocol.log"
+    },
+    "benchmarks/benchmark-primary-64-repeat/cos/scanout.png": {
+      "bytes": 131185,
+      "sha256": "70cefe5734301e9fd1c7c80055b428be57bc32435beedc5119bb7aab70977dfb",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-64-repeat/cos/scanout.png"
+    },
+    "benchmarks/benchmark-primary-64-repeat/cos/scanout.png.geometry.json": {
+      "bytes": 956,
+      "sha256": "ab730b39964b4cb27d6694d86422851a56315d44f5005966acdcc87e0df07552",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-64-repeat/cos/scanout.png.geometry.json"
+    },
+    "benchmarks/benchmark-primary-64-repeat/native1mhz/emulator.log": {
+      "bytes": 8626,
+      "sha256": "68c762567632b754d251ec56c9ca8f100cf5664a05e1d55c844e4c864c9e956b",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-64-repeat/native1mhz/emulator.log"
+    },
+    "benchmarks/benchmark-primary-64-repeat/native1mhz/image.bin": {
+      "bytes": 192,
+      "sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-64-repeat/native1mhz/image.bin"
+    },
+    "benchmarks/benchmark-primary-64-repeat/native1mhz/mandelbrot_1mhz.assembly.log": {
+      "bytes": 1012,
+      "sha256": "637edd89c45e997d48adac5d4a020eb4166950eea43a26c0ac2900fc0482b718",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-64-repeat/native1mhz/mandelbrot_1mhz.assembly.log"
+    },
+    "benchmarks/benchmark-primary-64-repeat/native1mhz/mandelbrot_1mhz.prg": {
+      "bytes": 22721,
+      "sha256": "e39eb8bc584ab683400ba14dd8e86d21b39af34149dcf1cd082c34cc93571d90",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-64-repeat/native1mhz/mandelbrot_1mhz.prg"
+    },
+    "benchmarks/benchmark-primary-64-repeat/native1mhz/mandelbrot_1mhz.sym": {
+      "bytes": 786,
+      "sha256": "180c6f68db65465bc7c8631054384c078cd1c2cb00fb6381c56f2e4b6816e6e8",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-64-repeat/native1mhz/mandelbrot_1mhz.sym"
+    },
+    "benchmarks/benchmark-primary-64-repeat/native1mhz/mandelbrot_1mhz.vs": {
+      "bytes": 708,
+      "sha256": "116736079d95010805c3b76f4f2bf9d051abd9754c55a9d5d09bd3f7a7179632",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-64-repeat/native1mhz/mandelbrot_1mhz.vs"
+    },
+    "benchmarks/benchmark-primary-64-repeat/native1mhz/protocol.log": {
+      "bytes": 80460,
+      "sha256": "0f132f29f6aa0ae83758696da889aa6c3eaf66fdec4b778bbad0b8d301792673",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-64-repeat/native1mhz/protocol.log"
+    },
+    "benchmarks/benchmark-primary-64-repeat/result.json": {
+      "bytes": 22341,
+      "sha256": "257d3dc88f6c911c7a35a6df9285d54a4fb5246edc46887e09682ad39530246d",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-64-repeat/result.json"
+    },
+    "benchmarks/benchmark-primary-64/cos/emulator.log": {
+      "bytes": 8870,
+      "sha256": "7f49834a217409e27252e4ee538c91c12e4f019617d60e8645df0ce35f7ac144",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-64/cos/emulator.log"
+    },
+    "benchmarks/benchmark-primary-64/cos/image.bin": {
+      "bytes": 192,
+      "sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-64/cos/image.bin"
+    },
+    "benchmarks/benchmark-primary-64/cos/protocol.log": {
+      "bytes": 15029,
+      "sha256": "32b42a4ae97c1ac757fb43b792c72ee0fef0d50dbfb263ceb599f4c91c4121a2",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-64/cos/protocol.log"
+    },
+    "benchmarks/benchmark-primary-64/cos/scanout.png": {
+      "bytes": 131185,
+      "sha256": "70cefe5734301e9fd1c7c80055b428be57bc32435beedc5119bb7aab70977dfb",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-64/cos/scanout.png"
+    },
+    "benchmarks/benchmark-primary-64/cos/scanout.png.geometry.json": {
+      "bytes": 956,
+      "sha256": "ab730b39964b4cb27d6694d86422851a56315d44f5005966acdcc87e0df07552",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-64/cos/scanout.png.geometry.json"
+    },
+    "benchmarks/benchmark-primary-64/native1mhz/emulator.log": {
+      "bytes": 8598,
+      "sha256": "5bb7439d70b2971e50ead7419587b19bcfcab7e652e93a3c6b7cbd7650576196",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-64/native1mhz/emulator.log"
+    },
+    "benchmarks/benchmark-primary-64/native1mhz/image.bin": {
+      "bytes": 192,
+      "sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-64/native1mhz/image.bin"
+    },
+    "benchmarks/benchmark-primary-64/native1mhz/mandelbrot_1mhz.assembly.log": {
+      "bytes": 991,
+      "sha256": "bd70f2ff2c840cac259dc5ca5ef3856b230d3c28be9efda3de724d5a4b2a6a52",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-64/native1mhz/mandelbrot_1mhz.assembly.log"
+    },
+    "benchmarks/benchmark-primary-64/native1mhz/mandelbrot_1mhz.prg": {
+      "bytes": 22721,
+      "sha256": "e39eb8bc584ab683400ba14dd8e86d21b39af34149dcf1cd082c34cc93571d90",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-64/native1mhz/mandelbrot_1mhz.prg"
+    },
+    "benchmarks/benchmark-primary-64/native1mhz/mandelbrot_1mhz.sym": {
+      "bytes": 786,
+      "sha256": "180c6f68db65465bc7c8631054384c078cd1c2cb00fb6381c56f2e4b6816e6e8",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-64/native1mhz/mandelbrot_1mhz.sym"
+    },
+    "benchmarks/benchmark-primary-64/native1mhz/mandelbrot_1mhz.vs": {
+      "bytes": 708,
+      "sha256": "116736079d95010805c3b76f4f2bf9d051abd9754c55a9d5d09bd3f7a7179632",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-64/native1mhz/mandelbrot_1mhz.vs"
+    },
+    "benchmarks/benchmark-primary-64/native1mhz/protocol.log": {
+      "bytes": 80460,
+      "sha256": "769d12cb43806a582323369c2eecda2199f8d29a7b90a9318185e62bf7867b05",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-64/native1mhz/protocol.log"
+    },
+    "benchmarks/benchmark-primary-64/result.json": {
+      "bytes": 22341,
+      "sha256": "2f63aad6f6b8db135a18b29814ba9fb7a356a1d5ceb29fc572aa79b2d9dfbf36",
+      "source": "build/m3-perf/final-candidate/benchmark-primary-64/result.json"
+    },
+    "host/larger/32x24.cobj": {
+      "bytes": 9936,
+      "sha256": "151e4b69ff32291c9085c4e9474b759316a68b5903dd64c614c8eac2447e9774",
+      "source": "build/m3-perf/apps/32x24.cobj"
+    },
+    "host/larger/32x24.lst": {
+      "bytes": 2144,
+      "sha256": "eb258dbbe351f95cfab25ef46c978ae5c3ff85122f460fe8d6a2c7cc76bf6814",
+      "source": "build/m3-perf/apps/32x24.lst"
+    },
+    "host/larger/32x24.map.json": {
+      "bytes": 5949,
+      "sha256": "b81da7d55374e527e461fed2722199f6df58ac0cd22f4077a6f8b560b82f19ad",
+      "source": "build/m3-perf/apps/32x24.map.json"
+    },
+    "host/larger/host-output.bin": {
+      "bytes": 768,
+      "sha256": "83c6af3119bdd417f7429627c04198faa2732a05d03f65ce62cff704278cb69a",
+      "source": "build/m3-perf/apps/32x24/host-output.bin"
+    },
+    "host/larger/host-profile.json": {
+      "bytes": 938,
+      "sha256": "a45995b965b44eb1250cef8757553127b893a13073cc39a83ad4bffc2961e77d",
+      "source": "build/m3-perf/apps/32x24/host-profile.json"
+    },
+    "host/larger/reference.bin": {
+      "bytes": 768,
+      "sha256": "83c6af3119bdd417f7429627c04198faa2732a05d03f65ce62cff704278cb69a",
+      "source": "build/m3-perf/apps/32x24/reference.bin"
+    },
+    "host/larger/reference.json": {
+      "bytes": 691,
+      "sha256": "734fb9ce3b4bcfe860e42c4357cacb419af9c9d12a23dcf53ea2d6dfd161b460",
+      "source": "build/m3-perf/apps/32x24/reference.json"
+    },
+    "host/larger/summary.json": {
+      "bytes": 2843,
+      "sha256": "463eb2426f33137612b521c1586eed50717ae6d097900acd5eb27f0f3f72cb3f",
+      "source": "build/m3-perf/apps/32x24/summary.json"
+    },
+    "host/primary/final-primary.cobj": {
+      "bytes": 9588,
+      "sha256": "f659f3d8ae455110d276054fcca9087c8c1649ee904e6830b97f027c7d8e52c1",
+      "source": "build/m3-perf/apps/final-primary.cobj"
+    },
+    "host/primary/final-primary.lst": {
+      "bytes": 2144,
+      "sha256": "8ec4d0df7034f82de9db6bd4d20ae77f0d348422df5fd3162f52dd25303b9428",
+      "source": "build/m3-perf/apps/final-primary.lst"
+    },
+    "host/primary/final-primary.map.json": {
+      "bytes": 5601,
+      "sha256": "440c2de2a24a872afc6359824c30c16ba4092804ee11207c4a98747d017477bd",
+      "source": "build/m3-perf/apps/final-primary.map.json"
+    },
+    "host/primary/host-profile.json": {
+      "bytes": 926,
+      "sha256": "3f3f95b8cb13383f6df3d0fe9ab731f816c859e44b892ce342e4af1340088692",
+      "source": "build/m3-perf/pointer-cy/source/build/m3-perf/apps/pointer-cy/host-profile.json"
+    },
+    "normal-timing/cleanup.json": {
+      "bytes": 9249,
+      "sha256": "b5b8f9408c667ca93568b23c6e50addd35a20e652056a6acc28cc287029f6c24",
+      "source": "build/m3-perf/final-candidate/normal-timing/cleanup.json"
+    },
+    "normal-timing/commands.json": {
+      "bytes": 8833,
+      "sha256": "7f15ff12645afaae72ba98af48b4595092401cd948885542f116d833e738e2ae",
+      "source": "build/m3-perf/final-candidate/normal-timing/commands.json"
+    },
+    "qualification/check_collection_residual.py": {
+      "bytes": 2951,
+      "sha256": "47ec55443e50936695284bb97838b4bced0fc2528826a70982ff0c5178745c6a",
+      "source": "build/m3-perf/final-candidate/check_collection_residual.py"
+    },
+    "qualification/collection-ceiling.json": {
+      "bytes": 13389,
+      "sha256": "abec8f7f562df0e633bf0ee0d630d48bed6d07ec66fb5bb56dfe6eee21f9daf2",
+      "source": "build/m3-perf/final-candidate/collection-ceiling.json"
+    },
+    "qualification/collection-ceiling.md": {
+      "bytes": 3598,
+      "sha256": "c6cee21c7af6c86b268a39da1de9692ddb9317565487a10a5e380b5deeb41036",
+      "source": "build/m3-perf/final-candidate/collection-ceiling.md"
+    },
+    "qualification/collection-residual.json": {
+      "bytes": 4486,
+      "sha256": "5cbc222b737c53bbc8bf51ec04361e4dd1544df9c4b7036ba1166383a61b43ed",
+      "source": "build/m3-perf/final-candidate/collection-residual.json"
+    },
+    "qualification/larger.json": {
+      "bytes": 427,
+      "sha256": "6297c5fa2f6bdc92c0da39a4c07be89d1aa7fba2bf2de12b123e334c842c66cd",
+      "source": "build/m3-perf/final-candidate/larger.json"
+    },
+    "qualification/primary.json": {
+      "bytes": 435,
+      "sha256": "3ae2bf0b92a1ea8288f76f131a432eb82af615e6e73c9df4a91fc7d6332fd362",
+      "source": "build/m3-perf/final-candidate/primary.json"
+    },
+    "source-inventory-v2.json": {
+      "bytes": 9546,
+      "sha256": "6cc2533e45c5c99d0c566d1d541d59b13c2ea33c293709fc1704b4987c7184f7",
+      "source": "build/m3-perf/frozen-source-inventory-v2.json"
+    }
+  },
+  "format": "COSM3PERFNORMALCOPIES1",
+  "qualification": "Byte-identical evidence copies; full current-source regression is recorded separately.",
+  "status": "pass"
+}
