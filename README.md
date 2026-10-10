@@ -1,6 +1,6 @@
 # C-OS · Commodore OS
 
-**8-bit roots. Bigger ideas.**
+**Back to the future.**
 
 What if a C64 had 16 MiB of linear app memory, preemptive multitasking, and a tiny desktop?
 
@@ -16,9 +16,5 @@ The plan:
 **Current stage: reviewed specifications.** The implementation comes next; hardware timing and memory budgets still need validation.
 
 → [Start with the specification](specs/SPEC.md) · [C-Script](specs/LANGUAGE.md) · [Ultimate API](specs/ULTIMATE-API.md) · [Numerics](specs/NUMERICS.md)
-
-<img src="specs/ui/mockups/C-next-libero.png" alt="C-OS desktop concept with square icons and widgets" width="640">
-
-*UI concept, not an implementation screenshot. [Explore the mockups](specs/ui/PROMPTS.md).*
 
 License: **to be decided**.

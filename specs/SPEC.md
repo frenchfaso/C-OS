@@ -13,7 +13,7 @@ Questa specifica definisce il comportamento da implementare. I valori indicati c
 
 Fanno parte della specifica anche [C-Script: linguaggio e compilatore](LANGUAGE.md), [SDK e servizi Ultimate](ULTIMATE-API.md) e [numeri frazionari](NUMERICS.md). Il presente documento definisce VM, memoria, scheduling e shell; gli allegati definiscono sorgente delle app, API e profilo numerico. Sono contratti da implementare, non documentazione di funzionalità già esistenti.
 
-Per il dev agent: partire dalla sezione 22 e dalle dipendenze delle milestone in §18. Le tabelle di questo documento sono normative per ISA e syscall core; ULTIMATE-API.md per binding, record SDK, eventi e servizi dispositivo; NUMERICS.md per rappresentazione e semantica numerica; LANGUAGE.md per tipizzazione e ABI delle funzioni. Aggiornare insieme i rimandi quando si cambia un contratto condiviso. I mockup sono riferimenti estetici, non sostituiscono dimensioni e comportamento qui definiti. La revisione 4 corregge il contratto ancora non implementato e mantiene ABI 1.
+Per il dev agent: partire dalla sezione 22 e dalle dipendenze delle milestone in §18. Le tabelle di questo documento sono normative per ISA e syscall core; ULTIMATE-API.md per binding, record SDK, eventi e servizi dispositivo; NUMERICS.md per rappresentazione e semantica numerica; LANGUAGE.md per tipizzazione e ABI delle funzioni. Aggiornare insieme i rimandi quando si cambia un contratto condiviso. Dimensioni e comportamento della UI sono definiti da questa specifica. La revisione 4 corregge il contratto ancora non implementato e mantiene ABI 1.
 
 ## 1 Decisioni e perimetro
 
@@ -59,7 +59,7 @@ Includere una demo di elenco directory con stat della voce selezionata e un pann
 
 Includere inoltre un piccolo pannello numerico C-Script: input testuale, scelta float24/float32, quattro operazioni e risultato formattato. Un loop di calcolo senza yield in un'altra app deve convivere con il pannello e il desktop. L'esempio dimostra i due tipi e la gestione degli errori; il confronto delle prestazioni vive nel benchmark separato.
 
-Il nome “Files” presente nei mockup è un esempio visivo, non un requisito di implementare subito un file manager. Ogni icona attiva dell'MVP deve aprire una funzione reale; evitare pulsanti decorativi che non fanno nulla.
+Un file manager completo non è richiesto nell'MVP. Ogni icona attiva deve aprire una funzione reale; evitare pulsanti decorativi che non fanno nulla.
 
 Il monitor della shell può aprire un pannello temporaneo gestito come un menu del compositor: non occupa un quinto processo o una quinta superficie di finestra. Deve restare raggiungibile quando tutti e quattro i processi sono occupati, e consentire di identificare e terminare quello attivo.
 
@@ -482,11 +482,11 @@ Disabilitare le sorgenti CIA non necessarie. Un NMI esterno può disturbare il t
 
 ### 11.1 Direzione visiva approvata
 
-Riferimento selezionato: [mockup C, NeXT libero](ui/mockups/C-next-libero.png). I mockup [A](ui/mockups/A-classico-compatto.png) e [B](ui/mockups/B-next-dock.png) sono soltanto alternative archiviate.
+Direzione scelta: **NeXT libero**, con desktop essenziale e oggetti mobili sulla griglia.
 
 Il desktop ha un fondo uniforme, poche icone quadrate e piccoli widget. Non riserva spazio a taskbar, dock, barra menu globale o pannelli permanenti. Le finestre possono sovrapporsi alle icone; un comando “Mostra desktop” permette di raggiungerle.
 
-Il PNG rappresenta lo stile, non una specifica dei pixel. Font, icone, posizioni e colori devono essere ridisegnati sulla griglia reale del renderer. Le correzioni testuali di questa specifica prevalgono sul mockup, in particolare per il movimento a celle intere.
+Font, icone, posizioni e colori devono rispettare la griglia reale del renderer e le metriche definite qui, in particolare il movimento a celle intere. Le immagini di presentazione del progetto saranno screenshot dell'implementazione quando disponibili.
 
 ### 11.2 Palette
 
@@ -954,7 +954,7 @@ Verificare anche le scritture VM e native verso campioni audio protetti, la visi
 - Batch grafico con campi inutilizzati nonzero respinto con EINVAL prima di ogni effetto; FRAME_RECT clippato senza bordi artificiali.
 - INPUT_STATE dopo BLUR durante una pressione non riattiva pulsanti della vecchia finestra; rilascio fuori client e successivo focus restano coerenti.
 
-Il controllo della palette va eseguito sugli indici del framebuffer, non contando gli RGB di una fotografia o del PNG del mockup.
+Il controllo della palette va eseguito sugli indici del framebuffer; fotografie e screenshot servono a documentare il risultato visivo.
 
 ### 17.5 Carico integrato
 
@@ -1067,7 +1067,7 @@ Riferimenti nel workspace C64 originale, esterni a questa repository:
 
 Questi riferimenti locali documentano il lavoro preliminare; non sono dipendenze disponibili in un clone di C-OS. I riferimenti pubblici sopra permettono di studiare i backend senza il workspace originale.
 
-Il renderer locale di riferimento riporta una licenza GPL-3.0-only. Prima di integrare sorgenti esterni, registrare provenienza, revisione e licenza, conservandone gli avvisi. I mockup generati sono riferimenti visivi; icone e font per la build devono avere sorgenti e provenienza definiti.
+Il renderer locale di riferimento riporta una licenza GPL-3.0-only. Prima di integrare sorgenti esterni, registrare provenienza, revisione e licenza, conservandone gli avvisi. Icone e font per la build devono avere sorgenti e provenienza definiti.
 
 ## 22 Istruzioni di consegna al dev agent
 
