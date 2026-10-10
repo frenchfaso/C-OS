@@ -1,6 +1,6 @@
 # Fractional numbers in C-Script
 
-Specification 0.1, revision 7 — October 10, 2026. Normative companion to [SPEC.md](SPEC.md) and [LANGUAGE.md](LANGUAGE.md). Application ABI 2; unchanged numeric profile: `COS-NUM-1`.
+Specification 0.1, revision 8 — October 10, 2026. Normative companion to [SPEC.md](SPEC.md) and [LANGUAGE.md](LANGUAGE.md). Application ABI 2; unchanged numeric profile: `COS-NUM-1`. M3-R preserves the numeric budget and reviews memory/throughput before M4; it does not implement or remove either float format.
 
 C-Script provides two fractional formats: **float24**, for compact data and calculations with a short significand, and **float32**, for greater precision. `float` is an alias for float32. The chosen type determines representation and rounding; the assembly backend must produce the same results as the host model. Any float24 speed advantage must be measured, including REU access and call overhead.
 

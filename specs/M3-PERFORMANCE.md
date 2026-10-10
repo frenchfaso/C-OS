@@ -3,6 +3,11 @@
 Specification 0.1, revision 7 — October 10, 2026. Normative implementation
 supplement to [SPEC.md](SPEC.md) and [PERFORMANCE.md](PERFORMANCE.md).
 
+Revision 8 follow-up: this document preserves the completed M3-P contract.
+The current pre-M4 priority and stronger memory/2x acceptance gate are in
+[M3-RESOURCE-GATE.md](M3-RESOURCE-GATE.md); the earlier >1x exit target below
+does not satisfy that new gate.
+
 The user has authorized target profiling, VM optimization and general native
 integer multiplication, aiming above original native PAL C64 throughput.
 This step precedes M4. It is not a compiler, float, UI or hardware-service

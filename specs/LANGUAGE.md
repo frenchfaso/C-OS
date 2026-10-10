@@ -1,6 +1,6 @@
 # C-Script: the C-OS userspace language
 
-Specification 0.1, revision 7 — 10 October 2026. Normative companion to [SPEC.md](SPEC.md). Application ABI 2. Project name: **C-Script**; source extension `.cos`.
+Specification 0.1, revision 8 — 10 October 2026. Normative companion to [SPEC.md](SPEC.md). Application ABI 2. Project name: **C-Script**; source extension `.cos`. Language semantics are unchanged; M4 waits for the M3-R memory and throughput review.
 
 The goal is the simplicity of a small BASIC, with functions, local variables, blocks, and syntax familiar to JavaScript or Lua users. C-Script is compiled on the development computer directly into C-OS bytecode. Only the assembly VM runs on the C64: no parser, language interpreter, JIT, or additional dynamic runtime.
 

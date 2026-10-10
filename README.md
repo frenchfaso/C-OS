@@ -35,6 +35,10 @@ remain historical evidence. Current-source verification uses
 physical Ultimate qualification. The [independent M3-P review](docs/m3-perf-review.md)
 reproduces the complete regression and equivalent-image performance results.
 
+Before C-Script and the desktop, [M3-R](specs/M3-RESOURCE-GATE.md) addresses the
+remaining native-memory budget and a required 2× real-workload speedup over a
+reasonably optimized original C64. That target is not yet achieved.
+
 Build and verify the host tools with Rust 1.93.0 and Python 3:
 
 ```sh

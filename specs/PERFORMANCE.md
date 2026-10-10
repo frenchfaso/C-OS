@@ -1,13 +1,15 @@
 # Real-workload performance contract
 
-October 10, 2026. Companion to SPEC.md revision 7. The measurement contract
+October 10, 2026. Companion to SPEC.md revision 8. The measurement contract
 continues to apply to the frozen ABI 1 baseline and the ABI 2 performance work.
 
 ## Goal and scope
 
-The application-throughput goal is **greater than 1× an original PAL C64 running
-native 6510 code**, with **2× or better** as the stretch goal. These are targets,
-not measured claims. Report results per workload rather than using a favorable
+The application-throughput requirement for continuing the VM architecture is
+now **at least 2× an original PAL C64 running reasonably optimized native
+6510 code**. The [M3-R gate](M3-RESOURCE-GATE.md) defines the required pre-M4
+workloads and evidence. This is a target, not a measured claim; the earlier
+greater-than-1× milestone remains historical. Report results per workload rather than using a favorable
 average to hide regressions. Input latency and uninterrupted UPIC scanout remain
 separate requirements from SPEC.md §16.
 
@@ -102,20 +104,20 @@ the smallest justified next optimization. Preserve isolation, exact resumption,
 fairness, the memory budget and raster safety. Do not introduce a JIT, a second
 scheduler or alternate bytecode format merely to meet an unmeasured estimate.
 
-## Current priority: M3-P before M4
+## Current priority: M3-R before M4
 
-The [independent M3 review](../docs/m3-review.md) reproduced only
-0.0152703x/0.0145787x native-C64 throughput on the 128/64-byte profiles. This is
-the starting measurement, not an expected ceiling. The user has authorized a
-focused optimization step, including general native multiplication, before M4.
-Follow [M3-PERFORMANCE.md](M3-PERFORMANCE.md) for profiling, safe optimization,
-ABI migration and delivery requirements. Keep the old result and its inputs;
-never overwrite it with a new build using the same evidence identity.
+The [independent M3-P review](../docs/m3-perf-review.md) reproduces 1.436694x
+and 1.465730x on the two Mandelbrot workloads with 128-byte lines, or
+1.287637x and 1.314340x against separately improved native controls. The
+64-byte profile remains below 1x. The user now requires a credible memory
+budget and at least 2x before further feature work. Follow
+[M3-RESOURCE-GATE.md](M3-RESOURCE-GATE.md). The earlier M3 and M3-P results,
+sources, comparators and evidence identities remain unchanged.
 
-Pursue greater than 1x through measured iterations, not just an instruction-rate
-improvement or the first faster run. Confirm a result above 1x with independent
-reruns and a larger equivalent workload. If the goal remains unmet, identify
-the measured residual costs and the next concrete architectural choice, then
-report the remaining gap for review before beginning feature work. Missing
+Pursue at least 2x through measured iterations, not just an instruction-rate
+improvement or a favorable small working set. Use repeated equivalent outputs,
+conservative timing and the stronger native controls. If the goal remains
+unmet, identify the measured residual costs and compare concrete architecture
+alternatives before beginning feature work. Missing
 the goal never permits changing the image, precision, baseline, timing scope,
 preemption or active-video requirement to manufacture a pass.
