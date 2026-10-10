@@ -1,0 +1,27 @@
+primary-object
+primary-128-build
+primary-128-bounds
+primary-host
+primary-128-run1
+primary-128-run2
+primary-64-build
+primary-64-bounds
+primary-64-run1
+primary-native-control-run1
+primary-native-control-run2
+larger-object
+larger-128-build
+larger-128-bounds
+larger-host
+larger-128-run1
+Traceback (most recent call last):
+  File "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/review-evidence/run_benchmarks.py", line 91, in <module>
+    run(name, [sys.executable, 'scripts/m3_benchmark.py', '--build', build, '--out', dest,
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        '--host-profile', profile, '--application', app, '--workload', workload] + backend + assembler,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        clean=dest)
+        ^^^^^^^^^^^
+  File "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/review-evidence/run_benchmarks.py", line 30, in run
+    raise RuntimeError(f'{name}: see {log}')
+RuntimeError: larger-128-run1: see /private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/logs/larger-128-run1.log

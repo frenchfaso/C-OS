@@ -1,0 +1,117 @@
+{
+  "format": "COSM1RESULT1",
+  "qualification": "Host semantic verification only",
+  "artifact_sha256": {
+    "linear.cobj": "a0da86cb56d6b2615c1c9bf20a11bccab75290d032cb2db77cf4c067464c2ba7",
+    "calls.cobj": "3eaa1c6169b8e304798decd3cf9d76f1e5e6b7843bece611f64d5f781f598662",
+    "spin.cobj": "9f8a89a637d4a69455fdc271983161fb4f67e78676674d5c1a7f081daaca74e6",
+    "m1.reu": "9406273b3519c30549bd47e4da0156ce22c085154e5cc79d3d51e0b4a6c21f9e",
+    "m1.manifest.json": "b0ebc45ef8963c1d943d09274016d22c2f8ceaea0a15b10a311126d0e4f995a9",
+    "m1.asm": "e4e633b687dc4481aac498c234d2fa74f496bbec971ec814843114f007f9f202",
+    "m1.map.txt": "0f64a904df8eae7685568cdcb88b9d3d7a16b065bea0b001cbd4c22aba52b185"
+  },
+  "reproducible": true,
+  "programs": {
+    "Linear": {
+      "app": "Linear",
+      "build_tag": 3016158409,
+      "context": {
+        "fuel": 1,
+        "p": [
+          262272,
+          327679,
+          262272,
+          393215
+        ],
+        "pc": 262172,
+        "r": [
+          0,
+          2,
+          43981,
+          43981,
+          4,
+          0,
+          0,
+          0
+        ],
+        "retired": 8,
+        "sp": 393215
+      },
+      "model_frames": 0,
+      "native_chunks": 0,
+      "outcome": {
+        "Stopped": {
+          "code": 0
+        }
+      },
+      "pid": 1,
+      "syscalls": 1
+    },
+    "Calls": {
+      "app": "Calls",
+      "build_tag": 3016158409,
+      "context": {
+        "fuel": 1,
+        "p": [
+          397311,
+          397311,
+          0,
+          397311
+        ],
+        "pc": 393240,
+        "r": [
+          0,
+          2,
+          42,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "retired": 14,
+        "sp": 397311
+      },
+      "model_frames": 0,
+      "native_chunks": 0,
+      "outcome": {
+        "Stopped": {
+          "code": 0
+        }
+      },
+      "pid": 2,
+      "syscalls": 1
+    },
+    "Spin": {
+      "app": "Spin",
+      "build_tag": 3016158409,
+      "context": {
+        "fuel": 3,
+        "p": [
+          397440,
+          400383,
+          0,
+          401407
+        ],
+        "pc": 397312,
+        "r": [
+          3,
+          2,
+          9,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "retired": 18,
+        "sp": 401407
+      },
+      "model_frames": 0,
+      "native_chunks": 0,
+      "outcome": "SliceLimit",
+      "pid": 3,
+      "syscalls": 0
+    }
+  }
+}

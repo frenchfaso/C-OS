@@ -1,0 +1,38 @@
+{
+  "accepted_paths": {
+    "primary-128-run1": "primary-128-run1",
+    "primary-128-run2": "primary-128-run2",
+    "primary-64-run1": "primary-64-run1",
+    "primary-native-control-run1": "primary-native-control-run1",
+    "primary-native-control-run2": "primary-native-control-run2",
+    "larger-128-run1": "larger-128-run1-retry1",
+    "larger-128-run2": "larger-128-run2",
+    "larger-64-run1": "larger-64-run1",
+    "larger-native-control-run1": "larger-native-control-run1",
+    "larger-native-control-run2": "larger-native-control-run2"
+  },
+  "oracles": {
+    "primary": {
+      "width": 16,
+      "height": 12,
+      "step": 64,
+      "limit": 16,
+      "iterations": 964,
+      "negative_fractional_products": 170,
+      "sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c"
+    },
+    "larger": {
+      "width": 32,
+      "height": 24,
+      "step": 32,
+      "limit": 16,
+      "iterations": 3891,
+      "negative_fractional_products": 921,
+      "sha256": "83c6af3119bdd417f7429627c04198faa2732a05d03f65ce62cff704278cb69a"
+    }
+  },
+  "excluded_attempt": "larger-128-run1: monitor socket timeout during wait 1000, no result",
+  "continuation": "Fresh outputs; unchanged target timing, workload and artifacts; serial retry",
+  "transport_socket_timeout_seconds": 300,
+  "transport_wrapper_sha256": "75c8b9415cd5617b425185ad7268744e338d8b6747d3c5275fa445673267ba00"
+}

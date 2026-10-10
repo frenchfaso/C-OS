@@ -1,0 +1,247 @@
+{
+  "status": "pass",
+  "completed_calls": 65539,
+  "sample_factor": 128,
+  "observed_interval_wraps": 1,
+  "register_flags_record": [
+    85,
+    165,
+    51,
+    102,
+    165,
+    51,
+    102,
+    167,
+    228,
+    167,
+    134,
+    174,
+    0,
+    0,
+    0,
+    0,
+    181,
+    181,
+    181,
+    181
+  ],
+  "profile": {
+    "vm_step": {
+      "routine": "vm_step",
+      "inclusive_phi2_ticks": 9702,
+      "calls": 514,
+      "minimum_phi2_ticks": 18,
+      "maximum_phi2_ticks": 19,
+      "carry_set_phi2_ticks": 19,
+      "carry_set_calls": 1,
+      "body_excess_vs_empty_interval_phi2_ticks": [
+        0,
+        8674
+      ]
+    },
+    "code_fetch": {
+      "routine": "cache_fetch_code",
+      "inclusive_phi2_ticks": 0,
+      "calls": 0,
+      "minimum_phi2_ticks": 4294967295,
+      "maximum_phi2_ticks": 0,
+      "carry_set_phi2_ticks": 0,
+      "carry_set_calls": 0,
+      "body_excess_vs_empty_interval_phi2_ticks": [
+        0,
+        0
+      ]
+    },
+    "pc_bounds": {
+      "routine": "vm_check_pc",
+      "inclusive_phi2_ticks": 0,
+      "calls": 0,
+      "minimum_phi2_ticks": 4294967295,
+      "maximum_phi2_ticks": 0,
+      "carry_set_phi2_ticks": 0,
+      "carry_set_calls": 0,
+      "body_excess_vs_empty_interval_phi2_ticks": [
+        0,
+        0
+      ]
+    },
+    "decode": {
+      "routine": "vm_decode_operands",
+      "inclusive_phi2_ticks": 0,
+      "calls": 0,
+      "minimum_phi2_ticks": 4294967295,
+      "maximum_phi2_ticks": 0,
+      "carry_set_phi2_ticks": 0,
+      "carry_set_calls": 0,
+      "body_excess_vs_empty_interval_phi2_ticks": [
+        0,
+        0
+      ]
+    },
+    "preflight": {
+      "routine": "vm_preflight",
+      "inclusive_phi2_ticks": 0,
+      "calls": 0,
+      "minimum_phi2_ticks": 4294967295,
+      "maximum_phi2_ticks": 0,
+      "carry_set_phi2_ticks": 0,
+      "carry_set_calls": 0,
+      "body_excess_vs_empty_interval_phi2_ticks": [
+        0,
+        0
+      ]
+    },
+    "execute": {
+      "routine": "vm_execute",
+      "inclusive_phi2_ticks": 0,
+      "calls": 0,
+      "minimum_phi2_ticks": 4294967295,
+      "maximum_phi2_ticks": 0,
+      "carry_set_phi2_ticks": 0,
+      "carry_set_calls": 0,
+      "body_excess_vs_empty_interval_phi2_ticks": [
+        0,
+        0
+      ]
+    },
+    "cache_unpin": {
+      "routine": "cache_unpin",
+      "inclusive_phi2_ticks": 0,
+      "calls": 0,
+      "minimum_phi2_ticks": 4294967295,
+      "maximum_phi2_ticks": 0,
+      "carry_set_phi2_ticks": 0,
+      "carry_set_calls": 0,
+      "body_excess_vs_empty_interval_phi2_ticks": [
+        0,
+        0
+      ]
+    },
+    "data_read": {
+      "routine": "cache_read_prepared",
+      "inclusive_phi2_ticks": 0,
+      "calls": 0,
+      "minimum_phi2_ticks": 4294967295,
+      "maximum_phi2_ticks": 0,
+      "carry_set_phi2_ticks": 0,
+      "carry_set_calls": 0,
+      "body_excess_vs_empty_interval_phi2_ticks": [
+        0,
+        0
+      ]
+    },
+    "data_write": {
+      "routine": "cache_write_prepared",
+      "inclusive_phi2_ticks": 0,
+      "calls": 0,
+      "minimum_phi2_ticks": 4294967295,
+      "maximum_phi2_ticks": 0,
+      "carry_set_phi2_ticks": 0,
+      "carry_set_calls": 0,
+      "body_excess_vs_empty_interval_phi2_ticks": [
+        0,
+        0
+      ]
+    },
+    "scheduler_tick": {
+      "routine": "scheduler_tick",
+      "inclusive_phi2_ticks": 0,
+      "calls": 0,
+      "minimum_phi2_ticks": 4294967295,
+      "maximum_phi2_ticks": 0,
+      "carry_set_phi2_ticks": 0,
+      "carry_set_calls": 0,
+      "body_excess_vs_empty_interval_phi2_ticks": [
+        0,
+        0
+      ]
+    },
+    "native_phase": {
+      "routine": "scheduler_native_phase",
+      "inclusive_phi2_ticks": 0,
+      "calls": 0,
+      "minimum_phi2_ticks": 4294967295,
+      "maximum_phi2_ticks": 0,
+      "carry_set_phi2_ticks": 0,
+      "carry_set_calls": 0,
+      "body_excess_vs_empty_interval_phi2_ticks": [
+        0,
+        0
+      ]
+    },
+    "cache_service": {
+      "routine": "cache_service",
+      "inclusive_phi2_ticks": 0,
+      "calls": 0,
+      "minimum_phi2_ticks": 4294967295,
+      "maximum_phi2_ticks": 0,
+      "carry_set_phi2_ticks": 0,
+      "carry_set_calls": 0,
+      "body_excess_vs_empty_interval_phi2_ticks": [
+        0,
+        0
+      ]
+    },
+    "video_admission": {
+      "routine": "vm_video_admit",
+      "inclusive_phi2_ticks": 0,
+      "calls": 0,
+      "minimum_phi2_ticks": 4294967295,
+      "maximum_phi2_ticks": 0,
+      "carry_set_phi2_ticks": 0,
+      "carry_set_calls": 0,
+      "body_excess_vs_empty_interval_phi2_ticks": [
+        0,
+        0
+      ]
+    },
+    "dma_admission": {
+      "routine": "vm_dma_admit",
+      "inclusive_phi2_ticks": 0,
+      "calls": 0,
+      "minimum_phi2_ticks": 4294967295,
+      "maximum_phi2_ticks": 0,
+      "carry_set_phi2_ticks": 0,
+      "carry_set_calls": 0,
+      "body_excess_vs_empty_interval_phi2_ticks": [
+        0,
+        0
+      ]
+    },
+    "fixed_syscall": {
+      "routine": "jobs_accept",
+      "inclusive_phi2_ticks": 0,
+      "calls": 0,
+      "minimum_phi2_ticks": 4294967295,
+      "maximum_phi2_ticks": 0,
+      "carry_set_phi2_ticks": 0,
+      "carry_set_calls": 0,
+      "body_excess_vs_empty_interval_phi2_ticks": [
+        0,
+        0
+      ]
+    },
+    "empty_probe": {
+      "routine": "profile_nop",
+      "inclusive_phi2_ticks": 741,
+      "calls": 256,
+      "minimum_phi2_ticks": 2,
+      "maximum_phi2_ticks": 45,
+      "carry_set_phi2_ticks": 0,
+      "carry_set_calls": 0,
+      "body_excess_vs_empty_interval_phi2_ticks": [
+        0,
+        229
+      ]
+    }
+  },
+  "source_sha256": "b5f5f074b55ee69b8c463474f50faa723bd8418e868159421765c88f9f7027fd",
+  "prg_sha256": "168aa0f461e44281dbd429e1b8d54c383d06849cc03cc1b23da18e7d4991eff4",
+  "supplied_input_sha256": {
+    "emulator": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+    "config": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+    "flash": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be",
+    "settings": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961"
+  },
+  "qualification": "Target turbo profile; no IRQ; sparse short probes cross 16-bit CIA2A wrap"
+}

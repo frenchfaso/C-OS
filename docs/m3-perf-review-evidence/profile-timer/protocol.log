@@ -1,0 +1,89 @@
+>>> wait 6000
+ok
+>>> monitor c64 halt
+  c64  stopped at $e5d4, cycle 5038227
+ok
+>>> monitor wr ram 080d 78 d8 a2 ff 9a a9 35 85 01 a9 7f 8d 0d dc 8d 0d dd ad 0d dc ad 0d dd a9 00 8d 11 d0 8d 20 d0 8d 30 d0 a9 8f 8d 31 d0 20 ad 0a a9 00 85 40 85 41 20 90 0c e6 40 d0 f9 e6 41 d0 f5 a9 7f 8d 30 fc ad 05 dd d0 fb ad 04 dd c9 10 b0 f4 20 90 0c a9 a5 a2 33 a0 66 a9 a5 38 08 68 8d 10 03 a9 a5 20 90 0c 8d 01 03 8e 02 03 8c 03 03 08 68 8d 11 03 a9 7f 8d 30 fc a9 a5 a2 33 a0 66 a9 a5 38 08 68
+>>> monitor wr ram 088d 8d 12 03 a9 a5 20 90 0c 8d 04 03 8e 05 03 8c 06 03 08 68 8d 13 03 a9 55 8d 00 03 4c a8 08 60 ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea
+>>> monitor wr ram 090d ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea
+>>> monitor wr ram 098d ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea
+>>> monitor wr ram 0a0d ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea
+>>> monitor wr ram 0a8d ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea 60 a9 00 a2 00 9d 00 fa 9d 00 fb ca d0 f7 a2 3f 9d 00 fc ca 10 fa a9 ff a2 00 9d 08 fa 9d 09 fa 9d 0a fa 9d 0b fa 8a 18 69 10 aa a9 ff e0 00 d0 e9 a9 7f 8d 0d dd ad 0d dd a9 10 8d 0e dd a9 10 8d 0f dd a9 ff 8d 04 dd 8d 05 dd 8d 06 dd 8d 07 dd a9 01 8d 0e dd ad 04 dd c9 f0 b0 f9 a9 00 8d 0a
+>>> monitor wr ram 0b0d fc 20 6e 10 ce 0a fc d0 f8 60 ad 05 dd 8d 01 fc ad 04 dd 8d 00 fc ad 05 dd cd 01 fc d0 ec a9 00 8d 02 fc 8d 03 fc 60 20 17 0b ad 00 fc 9d 00 fb ad 01 fc 9d 01 fb ad 02 fc 9d 02 fb ad 03 fc 9d 03 fb 60 8e 08 fc ba bd 06 01 8d 09 fc ae 08 fc 20 17 0b 38 bd 00 fb ed 00 fc 8d 04 fc bd 01 fb ed 01 fc 8d 05 fc b0 08 ee 24 fc d0 03 ee 25 fc a9 00 8d 06 fc 8d 07 fc 18 bd 00 fa 6d 04 fc 9d
+>>> monitor wr ram 0b8d 00 fa bd 01 fa 6d 05 fc 9d 01 fa bd 02 fa 6d 06 fc 9d 02 fa bd 03 fa 6d 07 fc 9d 03 fa 90 03 ee 22 fc fe 04 fa d0 12 fe 05 fa d0 0d fe 06 fa d0 08 fe 07 fa d0 03 ee 22 fc ad 07 fc dd 0b fa 90 20 d0 36 ad 06 fc dd 0a fa 90 16 d0 2c ad 05 fc dd 09 fa 90 0c d0 22 ad 04 fc dd 08 fa 90 02 d0 18 ad 04 fc 9d 08 fa ad 05 fc 9d 09 fa ad 06 fc 9d 0a fa ad 07 fc 9d 0b fa ad 07 fc dd 0f fa 90
+>>> monitor wr ram 0c0d 38 d0 1e ad 06 fc dd 0e fa 90 2e d0 14 ad 05 fc dd 0d fa 90 24 d0 0a ad 04 fc dd 0c fa 90 1a d0 00 ad 04 fc 9d 0c fa ad 05 fc 9d 0d fa ad 06 fc 9d 0e fa ad 07 fc 9d 0f fa ad 09 fc 29 01 f0 41 18 bd 04 fb 6d 04 fc 9d 04 fb bd 05 fb 6d 05 fc 9d 05 fb bd 06 fb 6d 06 fc 9d 06 fb bd 07 fb 6d 07 fc 9d 07 fb 90 03 ee 22 fc fe 08 fb d0 12 fe 09 fb d0 0d fe 0a fb d0 08 fe 0b fb d0 03 ee 22
+>>> monitor wr ram 0c8d fc 60 60 08 48 8a 48 a2 00 fe 30 fc bd 30 fc 29 7f f0 08 68 aa 68 28 20 ac 08 60 68 aa 68 28 08 48 8a 48 98 48 a2 00 20 34 0b 68 a8 68 aa 68 28 20 ac 08 08 48 8a 48 98 48 a2 00 20 50 0b 68 a8 68 aa 68 28 60 08 48 8a 48 a2 01 fe 30 fc bd 30 fc 29 7f f0 08 68 aa 68 28 20 ab 08 60 68 aa 68 28 08 48 8a 48 98 48 a2 10 20 34 0b 68 a8 68 aa 68 28 20 ab 08 08 48 8a 48 98 48 a2 10 20 50 0b
+>>> monitor wr ram 0d0d 68 a8 68 aa 68 28 60 08 48 8a 48 a2 02 fe 30 fc bd 30 fc 29 7f f0 08 68 aa 68 28 20 ab 08 60 68 aa 68 28 08 48 8a 48 98 48 a2 20 20 34 0b 68 a8 68 aa 68 28 20 ab 08 08 48 8a 48 98 48 a2 20 20 50 0b 68 a8 68 aa 68 28 60 08 48 8a 48 a2 03 fe 30 fc bd 30 fc 29 7f f0 08 68 aa 68 28 20 ab 08 60 68 aa 68 28 08 48 8a 48 98 48 a2 30 20 34 0b 68 a8 68 aa 68 28 20 ab 08 08 48 8a 48 98 48 a2
+>>> monitor wr ram 0d8d 30 20 50 0b 68 a8 68 aa 68 28 60 08 48 8a 48 a2 04 fe 30 fc bd 30 fc 29 7f f0 08 68 aa 68 28 20 ab 08 60 68 aa 68 28 08 48 8a 48 98 48 a2 40 20 34 0b 68 a8 68 aa 68 28 20 ab 08 08 48 8a 48 98 48 a2 40 20 50 0b 68 a8 68 aa 68 28 60 08 48 8a 48 a2 05 fe 30 fc bd 30 fc 29 7f f0 08 68 aa 68 28 20 ab 08 60 68 aa 68 28 08 48 8a 48 98 48 a2 50 20 34 0b 68 a8 68 aa 68 28 20 ab 08 08 48 8a
+>>> monitor wr ram 0e0d 48 98 48 a2 50 20 50 0b 68 a8 68 aa 68 28 60 08 48 8a 48 a2 06 fe 30 fc bd 30 fc 29 7f f0 08 68 aa 68 28 20 ab 08 60 68 aa 68 28 08 48 8a 48 98 48 a2 60 20 34 0b 68 a8 68 aa 68 28 20 ab 08 08 48 8a 48 98 48 a2 60 20 50 0b 68 a8 68 aa 68 28 60 08 48 8a 48 a2 07 fe 30 fc bd 30 fc 29 7f f0 08 68 aa 68 28 20 ab 08 60 68 aa 68 28 08 48 8a 48 98 48 a2 70 20 34 0b 68 a8 68 aa 68 28 20 ab
+>>> monitor wr ram 0e8d 08 08 48 8a 48 98 48 a2 70 20 50 0b 68 a8 68 aa 68 28 60 08 48 8a 48 a2 08 fe 30 fc bd 30 fc 29 7f f0 08 68 aa 68 28 20 ab 08 60 68 aa 68 28 08 48 8a 48 98 48 a2 80 20 34 0b 68 a8 68 aa 68 28 20 ab 08 08 48 8a 48 98 48 a2 80 20 50 0b 68 a8 68 aa 68 28 60 08 48 8a 48 a2 09 fe 30 fc bd 30 fc 29 7f f0 08 68 aa 68 28 20 ab 08 60 68 aa 68 28 08 48 8a 48 98 48 a2 90 20 34 0b 68 a8 68 aa
+>>> monitor wr ram 0f0d 68 28 20 ab 08 08 48 8a 48 98 48 a2 90 20 50 0b 68 a8 68 aa 68 28 60 08 48 8a 48 a2 0a fe 30 fc bd 30 fc 29 7f f0 08 68 aa 68 28 20 ab 08 60 68 aa 68 28 08 48 8a 48 98 48 a2 a0 20 34 0b 68 a8 68 aa 68 28 20 ab 08 08 48 8a 48 98 48 a2 a0 20 50 0b 68 a8 68 aa 68 28 60 08 48 8a 48 a2 0b fe 30 fc bd 30 fc 29 7f f0 08 68 aa 68 28 20 ab 08 60 68 aa 68 28 08 48 8a 48 98 48 a2 b0 20 34 0b
+>>> monitor wr ram 0f8d 68 a8 68 aa 68 28 20 ab 08 08 48 8a 48 98 48 a2 b0 20 50 0b 68 a8 68 aa 68 28 60 08 48 8a 48 a2 0c fe 30 fc bd 30 fc 29 7f f0 08 68 aa 68 28 20 ab 08 60 68 aa 68 28 08 48 8a 48 98 48 a2 c0 20 34 0b 68 a8 68 aa 68 28 20 ab 08 08 48 8a 48 98 48 a2 c0 20 50 0b 68 a8 68 aa 68 28 60 08 48 8a 48 a2 0d fe 30 fc bd 30 fc 29 7f f0 08 68 aa 68 28 20 ab 08 60 68 aa 68 28 08 48 8a 48 98 48 a2
+>>> monitor wr ram 100d d0 20 34 0b 68 a8 68 aa 68 28 20 ab 08 08 48 8a 48 98 48 a2 d0 20 50 0b 68 a8 68 aa 68 28 60 08 48 8a 48 a2 0e fe 30 fc bd 30 fc 29 7f f0 08 68 aa 68 28 20 ab 08 60 68 aa 68 28 08 48 8a 48 98 48 a2 e0 20 34 0b 68 a8 68 aa 68 28 20 ab 08 08 48 8a 48 98 48 a2 e0 20 50 0b 68 a8 68 aa 68 28 60 08 48 8a 48 98 48 a2 f0 20 34 0b 68 a8 68 aa 68 28 20 8f 0c 08 48 8a 48 98 48 a2 f0 20 50 0b
+>>> monitor wr ram 108d 68 a8 68 aa 68 28 60
+wrote 128 byte(s) @ $080d (ram)
+ok
+wrote 128 byte(s) @ $088d (ram)
+ok
+wrote 128 byte(s) @ $090d (ram)
+ok
+wrote 128 byte(s) @ $098d (ram)
+ok
+wrote 128 byte(s) @ $0a0d (ram)
+ok
+wrote 128 byte(s) @ $0a8d (ram)
+ok
+wrote 128 byte(s) @ $0b0d (ram)
+ok
+wrote 128 byte(s) @ $0b8d (ram)
+ok
+wrote 128 byte(s) @ $0c0d (ram)
+ok
+wrote 128 byte(s) @ $0c8d (ram)
+ok
+wrote 128 byte(s) @ $0d0d (ram)
+ok
+wrote 128 byte(s) @ $0d8d (ram)
+ok
+wrote 128 byte(s) @ $0e0d (ram)
+ok
+wrote 128 byte(s) @ $0e8d (ram)
+ok
+wrote 128 byte(s) @ $0f0d (ram)
+ok
+wrote 128 byte(s) @ $0f8d (ram)
+ok
+wrote 128 byte(s) @ $100d (ram)
+ok
+wrote 7 byte(s) @ $108d (ram)
+ok
+>>> monitor g 080d
+  c64  running at $080d, cycle 5361362 (nobody is asking it to stop)
+ok
+>>> wait 4000
+ok
+>>> monitor m ram 0300 0313
+>R:0300  55 a5 33 66 a5 33 66 a7 e4 a7 86 ae 00 00 00 00 b5 b5 b5 b5                                       U.3f.3f.............
+ok
+>>> monitor m ram fa00 fc3f
+>R:fa00  e6 25 00 00 02 02 00 00 12 00 00 00 13 00 00 00 00 00 00 00 00 00 00 00 ff ff ff ff 00 00 00 00   .%..............................
+>R:fa20  00 00 00 00 00 00 00 00 ff ff ff ff 00 00 00 00 00 00 00 00 00 00 00 00 ff ff ff ff 00 00 00 00   ................................
+>R:fa40  00 00 00 00 00 00 00 00 ff ff ff ff 00 00 00 00 00 00 00 00 00 00 00 00 ff ff ff ff 00 00 00 00   ................................
+>R:fa60  00 00 00 00 00 00 00 00 ff ff ff ff 00 00 00 00 00 00 00 00 00 00 00 00 ff ff ff ff 00 00 00 00   ................................
+>R:fa80  00 00 00 00 00 00 00 00 ff ff ff ff 00 00 00 00 00 00 00 00 00 00 00 00 ff ff ff ff 00 00 00 00   ................................
+>R:faa0  00 00 00 00 00 00 00 00 ff ff ff ff 00 00 00 00 00 00 00 00 00 00 00 00 ff ff ff ff 00 00 00 00   ................................
+>R:fac0  00 00 00 00 00 00 00 00 ff ff ff ff 00 00 00 00 00 00 00 00 00 00 00 00 ff ff ff ff 00 00 00 00   ................................
+>R:fae0  00 00 00 00 00 00 00 00 ff ff ff ff 00 00 00 00 e5 02 00 00 00 01 00 00 02 00 00 00 2d 00 00 00   ............................-...
+>R:fb00  e2 ff 00 00 13 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................................
+>R:fb20  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................................
+>R:fb40  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................................
+>R:fb60  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................................
+>R:fb80  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................................
+>R:fba0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................................
+>R:fbc0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................................
+>R:fbe0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 c6 f7 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................................
+>R:fc00  cf ff 00 00 13 00 00 00 00 b5 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................................
+>R:fc20  00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 80 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................................
+ok
+>>> quit
+ok

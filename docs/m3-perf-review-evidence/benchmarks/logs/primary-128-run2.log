@@ -1,0 +1,8 @@
+{
+  "format": "COSM3BENCH1",
+  "speedup_estimate": 1.4366942998521945,
+  "speedup_interval": [
+    1.421694817528151,
+    4.54953194953195
+  ]
+}

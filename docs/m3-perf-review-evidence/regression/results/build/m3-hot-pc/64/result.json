@@ -1,0 +1,26 @@
+{
+  "format": "COSM3HOTPC1",
+  "status": "pass",
+  "cases": 74,
+  "failures": 0,
+  "current_pc_invariant": "Full first step on every vm_run/import; only a preceding RUN can reach the private validated-PC entry",
+  "comparison": "vm_run versus repeated full vm_step, stopped at identical first boundary",
+  "scheduler_job_comparison": "Production scheduler_vm_phase with a second owner WAIT_JOB versus one full vm_step",
+  "native_resident_bytes_unchanged": true,
+  "hardware_stack_unwound": true,
+  "build_tag": 3970524921,
+  "cache_line": 64,
+  "native_sha256": "6e24d4672a168f983060343ab1a2a8f28d660dca26ef1a57b7e6a288f316f0ea",
+  "map_sha256": "5dbefe4ff18091d2cc46522758282e7acd116b58d0a8210da911c37d77a245e7",
+  "corpus_sha256": "d9e307651003ec305fc447b2c2563dfeb8cab4a83a4243daa7f23ca936fb8105",
+  "snapshots_sha256": "20c7b1d16c16b363991580aa3615cdce83d62a7de666ab6981ef2896222c0109",
+  "prg_sha256": "98e96258c2c4f6a9499be1c20f9b5eaf41b567352e81511956071d05e7b52330",
+  "runner_sha256": "6a9ce165e17435529000b9e05dfb508171eb605419e90b4be1dc9f3f25d16341",
+  "supplied_input_sha256": {
+    "emulator": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+    "config": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+    "flash": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be",
+    "settings": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961"
+  },
+  "qualification": "Native semantics with trusted context/cache seeds and video disabled; independent live timing/scanout required"
+}

@@ -1,0 +1,46 @@
+[
+  {
+    "cache_line": 128,
+    "status": "pass",
+    "counters": {
+      "fetch_bytes": 1409,
+      "stash_bytes": 129,
+      "stale": 1,
+      "native_reads": 1,
+      "native_writes": 1,
+      "dma_calls": 14
+    },
+    "observed_stack_bytes": 8,
+    "logical_first_bytes": "4041424344454647",
+    "physical_sha256": "78e32f2bace2ae43da7734547105c378dc33c455814abdc7783f2e5b1109b368",
+    "prg_sha256": "107fe618f66335b45928562d141b37ca7d24301368c508aef7d78a4ef21e16a2",
+    "cache_source_sha256": "291ff44a8011f0397115a7b1c7d7f5884b24763d93dfba503d4f38749157aa5b",
+    "fixture_source_sha256": "792efe6836dacb3fc3a0696bcf8221be6ebb787e5be83a263f2633979c575b88",
+    "supplied_config_sha256": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+    "supplied_flash_sha256": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be",
+    "supplied_settings_sha256": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961",
+    "emulator_path": "/Users/frenchfaso/Documents/Code/C64/UE2-C64U-Emulator/target/release/ue2emu"
+  },
+  {
+    "cache_line": 64,
+    "status": "pass",
+    "counters": {
+      "fetch_bytes": 705,
+      "stash_bytes": 65,
+      "stale": 1,
+      "native_reads": 1,
+      "native_writes": 1,
+      "dma_calls": 14
+    },
+    "observed_stack_bytes": 8,
+    "logical_first_bytes": "4041424344454647",
+    "physical_sha256": "04333c3da657e3f12b8697480ac3fca2152459762fcbca0628dc20301d301fcf",
+    "prg_sha256": "4699a81dd023d58f2cc56536b9b7670f58faec5e997b2c655e2274c94b722b97",
+    "cache_source_sha256": "291ff44a8011f0397115a7b1c7d7f5884b24763d93dfba503d4f38749157aa5b",
+    "fixture_source_sha256": "792efe6836dacb3fc3a0696bcf8221be6ebb787e5be83a263f2633979c575b88",
+    "supplied_config_sha256": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+    "supplied_flash_sha256": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be",
+    "supplied_settings_sha256": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961",
+    "emulator_path": "/Users/frenchfaso/Documents/Code/C64/UE2-C64U-Emulator/target/release/ue2emu"
+  }
+]

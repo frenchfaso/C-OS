@@ -1,0 +1,1380 @@
+{
+  "format": "COSM3PERFREVIEWFILES1",
+  "review_sha256": "55cc60adba68d7564ac3263000cec69929e9decef0ca6371d229bf19ccd6cebe",
+  "files": [
+    {
+      "path": "verification.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/review-evidence/verification.json",
+      "bytes": 4525,
+      "sha256": "853ad264774f5910e9f1b679769cd14a6342d4852e9a24d5119db070ee0d0386"
+    },
+    {
+      "path": "source-inventory.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/review-evidence/source-inventory.json",
+      "bytes": 9546,
+      "sha256": "6cc2533e45c5c99d0c566d1d541d59b13c2ea33c293709fc1704b4987c7184f7"
+    },
+    {
+      "path": "external-inputs.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/review-evidence/external-inputs.json",
+      "bytes": 2547,
+      "sha256": "fc861e8094408c989cea70d223dd9b6bf29419bf028c569038f14eb425d4f1ab"
+    },
+    {
+      "path": "delivery-check.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/review-evidence/delivery-check.json",
+      "bytes": 174,
+      "sha256": "d3a2d90c0221cf217478915aad8d1a72771d9b1743a444743f46119f856857aa"
+    },
+    {
+      "path": "historical-preservation.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/review-evidence/historical-preservation.json",
+      "bytes": 92,
+      "sha256": "bcc64d5cbfabab0bc02d4104640d6a5e12214636da1b0a80ce227d513de83a1e"
+    },
+    {
+      "path": "profile-counter-audit.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/review-evidence/profile-counter-audit.json",
+      "bytes": 6895,
+      "sha256": "0690eea0c25384621803dcd68b7a02510408a1c5b8381fdd7dd0a025c1348a18"
+    },
+    {
+      "path": "full-regression.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/review-evidence/full-regression.log",
+      "bytes": 23068,
+      "sha256": "58edc7c337b347ab78720c905f6081fe7aad8f5534abe54367248268380ba290"
+    },
+    {
+      "path": "benchmarks.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/review-evidence/benchmarks.log",
+      "bytes": 1152,
+      "sha256": "006f7548db096df510ec0e18d82563bd816c28d8f33c3a1c473b2b62a9d70d6f"
+    },
+    {
+      "path": "benchmark-continuation.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/review-evidence/benchmark-continuation.log",
+      "bytes": 177,
+      "sha256": "fbf76cac0648576126ff2e741294fac1dd61341031ebffb0a58065f5741678d4"
+    },
+    {
+      "path": "profile-timer.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/review-evidence/profile-timer.log",
+      "bytes": 75,
+      "sha256": "7283e93326c9488a464179ff477bfe640368976f6f784bb8f3e8dfdce88e115c"
+    },
+    {
+      "path": "reproduction/run_benchmarks.py",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/review-evidence/run_benchmarks.py",
+      "bytes": 7731,
+      "sha256": "67d720feaebbd1141a6a93d42ad6b8d57c9846768d07f6e79753fa59c9bb37e6"
+    },
+    {
+      "path": "reproduction/continue_benchmarks.py",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/review-evidence/continue_benchmarks.py",
+      "bytes": 5632,
+      "sha256": "a0e0e322a64cecbdf714da18357db401515a38e8e1dec85a4b9087f503beacac"
+    },
+    {
+      "path": "reproduction/benchmark_transport.py",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/review-evidence/benchmark_transport.py",
+      "bytes": 629,
+      "sha256": "75c8b9415cd5617b425185ad7268744e338d8b6747d3c5275fa445673267ba00"
+    },
+    {
+      "path": "reproduction/audit_final.py",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/review-evidence/audit_final.py",
+      "bytes": 5888,
+      "sha256": "b4b1985fd42057a15ca652702259cdc257576be196e931dc0fc4b2f5b162e1b5"
+    },
+    {
+      "path": "reproduction/publish_review.py",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/review-evidence/publish_review.py",
+      "bytes": 14781,
+      "sha256": "d7ccd5c4b4273ad8c42ded9e93fc6a2820ce0381a0732171e56ecb623bea91d0"
+    },
+    {
+      "path": "regression/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/result.json",
+      "bytes": 24148,
+      "sha256": "489bfb3403de7c2ab167bf974ac2c3cdaee4fd919f8b0e89dbf48eaba247b036"
+    },
+    {
+      "path": "regression/commands.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/commands.json",
+      "bytes": 49194,
+      "sha256": "3276de86effd45af4554b674ad302ec443556338ee9c9de75f4ab02da8f632b8"
+    },
+    {
+      "path": "regression/host-receipts.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/host-receipts.json",
+      "bytes": 2840,
+      "sha256": "2b9e256d996dc49fcf3160bf46f4a8c2a30a242b3d6f33e33cd3703b43fe3ce5"
+    },
+    {
+      "path": "regression/external-inputs.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/external-inputs.json",
+      "bytes": 2547,
+      "sha256": "fc861e8094408c989cea70d223dd9b6bf29419bf028c569038f14eb425d4f1ab"
+    },
+    {
+      "path": "regression/preparation.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/preparation.json",
+      "bytes": 9778,
+      "sha256": "8a2d6ab167073ec32b759368ec851a8e34f337f14a679423766dc0ff315d6126"
+    },
+    {
+      "path": "regression/cleanup.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/cleanup.json",
+      "bytes": 22136,
+      "sha256": "25456913abbba0ace3b1c7f4db3b9736e5cdcb57e6a739e76a138a439f66a352"
+    },
+    {
+      "path": "regression/logs/abi2-rejection.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/abi2-rejection.log",
+      "bytes": 67,
+      "sha256": "93e20c6deb3c2a0888907d9683fd5a0ac5ba5a87dea80cb675a4a6015fb046bb"
+    },
+    {
+      "path": "regression/logs/cache-cancel.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/cache-cancel.log",
+      "bytes": 2130,
+      "sha256": "aa0d8bf157e6d4067c0c71601b8fe7ce3a1e1540dc72a6a3fc2b12f141765815"
+    },
+    {
+      "path": "regression/logs/fixtures.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/fixtures.log",
+      "bytes": 140,
+      "sha256": "a564e94df6ec233f1499b65e52fa06b1ccedfe914321be0fdf65d06ef27c083f"
+    },
+    {
+      "path": "regression/logs/host-clippy.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/host-clippy.log",
+      "bytes": 354,
+      "sha256": "35252671b2e28e37bf0c8c6911fcd59b6204f611bfc46821c35b785f4fa1e5b4"
+    },
+    {
+      "path": "regression/logs/host-fmt.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/host-fmt.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "regression/logs/host-release.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/host-release.log",
+      "bytes": 501,
+      "sha256": "8fe2e9a4f8e9e1f5581cd9ed09f2bd30e3e4a027f3a77135120a5b4c7ca8eada"
+    },
+    {
+      "path": "regression/logs/host-test.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/host-test.log",
+      "bytes": 7921,
+      "sha256": "f2ad67773ca9268a81de13158c98e321c72b752eeeb7498e9d4cb5d416da9caa"
+    },
+    {
+      "path": "regression/logs/m0-bad-pack.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m0-bad-pack.log",
+      "bytes": 1409,
+      "sha256": "4fa9bdce1f953a480709a0e20e7052e818fd3c6071f0c0592f6821edccecdcd6"
+    },
+    {
+      "path": "regression/logs/m0-build.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m0-build.log",
+      "bytes": 201,
+      "sha256": "27b503adcb7f48eeaf81664553de47c1b81bce29e6187f53b951317f1dd1a664"
+    },
+    {
+      "path": "regression/logs/m0-ntsc.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m0-ntsc.log",
+      "bytes": 1404,
+      "sha256": "c9358c99ef84b79623fa80339e447c4d34837ec409c7dc8c57fbd3d8be902b57"
+    },
+    {
+      "path": "regression/logs/m0-pal64-reu16.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m0-pal64-reu16.log",
+      "bytes": 4127,
+      "sha256": "0f73b9943e67d692252fde433d82055ca32e7146267a8d47ac66ce4a5193a9cd"
+    },
+    {
+      "path": "regression/logs/m0-reu-absent.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m0-reu-absent.log",
+      "bytes": 1407,
+      "sha256": "0ef4eaeb08af5e08cd948fac5f98acff59491dc27a0c06086dd9e645c0e75623"
+    },
+    {
+      "path": "regression/logs/m0-reu128.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m0-reu128.log",
+      "bytes": 1407,
+      "sha256": "f270da340c84b723db7bec0a826cb464413a9574f730c911af89b8f55b417f1b"
+    },
+    {
+      "path": "regression/logs/m0-reu2m.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m0-reu2m.log",
+      "bytes": 1408,
+      "sha256": "f1a4061ed38611ca08e0ae59ff00336512c595c4e211f3e8b0f4648429367c6f"
+    },
+    {
+      "path": "regression/logs/m0-reu512.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m0-reu512.log",
+      "bytes": 1407,
+      "sha256": "4a23eaac53dcd70fcbe66609650aa2a16370ac7a29d3f728b3e40b4ccd35dc5b"
+    },
+    {
+      "path": "regression/logs/m0-reu8m.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m0-reu8m.log",
+      "bytes": 1409,
+      "sha256": "dbfa7c2a5d27b1d67a2d13a05a051a90f84d3fe6ea95971875bd5ce1a497f7be"
+    },
+    {
+      "path": "regression/logs/m0-turbo32.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m0-turbo32.log",
+      "bytes": 1408,
+      "sha256": "e0e5a6740d39b54943bd91eb0560b694d5b60469407fb78b04d9ebb9ddf34f75"
+    },
+    {
+      "path": "regression/logs/m0-turbo48.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m0-turbo48.log",
+      "bytes": 1408,
+      "sha256": "412ee4b5256daa3484d15288cf438f65b61d336800341d9d21111c2942b0baa1"
+    },
+    {
+      "path": "regression/logs/m1.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m1.log",
+      "bytes": 172,
+      "sha256": "3ffc0f74c67d45bfd7696303de8d8b1a0b60bd2a7276248046d45c2439184e1a"
+    },
+    {
+      "path": "regression/logs/m2-128-bounds.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m2-128-bounds.log",
+      "bytes": 9822,
+      "sha256": "eb788a2dc6acc1c866615101a2d1a96d79096c2205b08e47641db8e64cf6b561"
+    },
+    {
+      "path": "regression/logs/m2-128-build.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m2-128-build.log",
+      "bytes": 109,
+      "sha256": "646c4467a233ddd77255241b3f5e13ebade0d82716b97404a628f21e479d2c68"
+    },
+    {
+      "path": "regression/logs/m2-128-differential.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m2-128-differential.log",
+      "bytes": 1598,
+      "sha256": "7f0b2867a7656865190a827f87e1a3650f8658e778ff8cd9e5449c2c7e24018f"
+    },
+    {
+      "path": "regression/logs/m2-128-repeat.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m2-128-repeat.log",
+      "bytes": 109,
+      "sha256": "646c4467a233ddd77255241b3f5e13ebade0d82716b97404a628f21e479d2c68"
+    },
+    {
+      "path": "regression/logs/m2-64-bounds.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m2-64-bounds.log",
+      "bytes": 9820,
+      "sha256": "e0bc690c965b12b713b8a94160466d8823ab5f6efda0483e499c1f92f6f69da7"
+    },
+    {
+      "path": "regression/logs/m2-64-build.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m2-64-build.log",
+      "bytes": 108,
+      "sha256": "6a3145195eb9d33e0b02e914219c8a6444a4130660d659bb623c1e30dc7e6f02"
+    },
+    {
+      "path": "regression/logs/m2-64-differential.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m2-64-differential.log",
+      "bytes": 1569,
+      "sha256": "6aabc2387bfd5df75d944c38807b0d1679e76a9424449c59a4da2644f0c3618d"
+    },
+    {
+      "path": "regression/logs/m2-64-repeat.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m2-64-repeat.log",
+      "bytes": 108,
+      "sha256": "6a3145195eb9d33e0b02e914219c8a6444a4130660d659bb623c1e30dc7e6f02"
+    },
+    {
+      "path": "regression/logs/m3-128-admission.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m3-128-admission.log",
+      "bytes": 142,
+      "sha256": "7f52cf1066acc057a2630030dafa7806a6a183747ee1d4f2d0a4527ea84deb9e"
+    },
+    {
+      "path": "regression/logs/m3-128-autonomous.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m3-128-autonomous.log",
+      "bytes": 214,
+      "sha256": "a53420bc4c952ae52dc3012c3a91eb93c1cbe1a662cc67e0ad4d94e9a0992994"
+    },
+    {
+      "path": "regression/logs/m3-128-bounds.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m3-128-bounds.log",
+      "bytes": 25777,
+      "sha256": "7196ff48bc42f6e77875489873db936e786771d9f06927c172a28a7736d9dff3"
+    },
+    {
+      "path": "regression/logs/m3-128-build.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m3-128-build.log",
+      "bytes": 105,
+      "sha256": "dda4fdbf9ee7274a20180e89bb0afdfaa799519e906eed50428f0dae51c89742"
+    },
+    {
+      "path": "regression/logs/m3-128-contract.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m3-128-contract.log",
+      "bytes": 652,
+      "sha256": "357708ef9db293842c9a746e0bc02da8d18ee53d4ef7c6ed599a2633c2eab6fc"
+    },
+    {
+      "path": "regression/logs/m3-128-hot-pc.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m3-128-hot-pc.log",
+      "bytes": 39,
+      "sha256": "27e00183fde6aa6c57a82edf1c5d2e0cf63377fdf211770fe2f5c116b7f22bd6"
+    },
+    {
+      "path": "regression/logs/m3-128-raster-active.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m3-128-raster-active.log",
+      "bytes": 141,
+      "sha256": "29425260eb6e8b9dd38f0dd1a1bc5a051d294f8e3ad8cf414da4f20f5e25c711"
+    },
+    {
+      "path": "regression/logs/m3-128-repeat.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m3-128-repeat.log",
+      "bytes": 105,
+      "sha256": "dda4fdbf9ee7274a20180e89bb0afdfaa799519e906eed50428f0dae51c89742"
+    },
+    {
+      "path": "regression/logs/m3-64-admission.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m3-64-admission.log",
+      "bytes": 141,
+      "sha256": "9bc3d185cdebf7db7328791cc44fd3c409affbcd548f001f27ce356be207f73d"
+    },
+    {
+      "path": "regression/logs/m3-64-autonomous.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m3-64-autonomous.log",
+      "bytes": 210,
+      "sha256": "767d859a86f54ba154363447f43663efd9c72d3e36de146ff8965f041f781330"
+    },
+    {
+      "path": "regression/logs/m3-64-bounds.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m3-64-bounds.log",
+      "bytes": 25776,
+      "sha256": "9ad497f5b088371b00b5d5aecac57a84c9dad9f37d7993e6d3a5a75b48170720"
+    },
+    {
+      "path": "regression/logs/m3-64-build.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m3-64-build.log",
+      "bytes": 104,
+      "sha256": "270e20dc0cf609861da830220ebfd681e6362897cfb2e6335c7fd6e0aedbff32"
+    },
+    {
+      "path": "regression/logs/m3-64-contract.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m3-64-contract.log",
+      "bytes": 651,
+      "sha256": "c40dde392ff8b2e070e6402d789ef4e42e5b39d232ce2f1653b1e63572e35cfb"
+    },
+    {
+      "path": "regression/logs/m3-64-hot-pc.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m3-64-hot-pc.log",
+      "bytes": 39,
+      "sha256": "27e00183fde6aa6c57a82edf1c5d2e0cf63377fdf211770fe2f5c116b7f22bd6"
+    },
+    {
+      "path": "regression/logs/m3-64-raster-active.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m3-64-raster-active.log",
+      "bytes": 140,
+      "sha256": "ea68ae5996d6a5d53e08f55ac095d4a3e71f7f3d17bbed0415314e7c0604f144"
+    },
+    {
+      "path": "regression/logs/m3-64-repeat.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/m3-64-repeat.log",
+      "bytes": 104,
+      "sha256": "270e20dc0cf609861da830220ebfd681e6362897cfb2e6335c7fd6e0aedbff32"
+    },
+    {
+      "path": "regression/logs/margins.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/margins.log",
+      "bytes": 1664,
+      "sha256": "24f746fe94f19e1bd7cce4e396d575d0f108cd78ff328a7344df4c0b39466a51"
+    },
+    {
+      "path": "regression/logs/python-tests.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/python-tests.log",
+      "bytes": 9098,
+      "sha256": "14c4828f7ee0f0b720e49b2c104a82517ff3581441d1c3012add58a54357b006"
+    },
+    {
+      "path": "regression/logs/rollback-128-extended.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/rollback-128-extended.log",
+      "bytes": 1326,
+      "sha256": "8ac6e2928df31d88dc7a19c501656f9632215615660afaf0b9a455dcc170d7d6"
+    },
+    {
+      "path": "regression/logs/rollback-128-normal.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/rollback-128-normal.log",
+      "bytes": 1327,
+      "sha256": "31d687032f2ca5b9876e922e73d3af3f4853eea5332748cff98d66be3fca3a84"
+    },
+    {
+      "path": "regression/logs/rollback-64-extended.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/rollback-64-extended.log",
+      "bytes": 1325,
+      "sha256": "4e6d66026d802947884036c18af6ac26bfe2f766f7025d53cce8084729f7f059"
+    },
+    {
+      "path": "regression/logs/rollback-64-normal.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/rollback-64-normal.log",
+      "bytes": 1326,
+      "sha256": "1af4a431488fbab2e00016899cf6d38d56d5420c4e9d6051b8b21ec1a8a7ed2c"
+    },
+    {
+      "path": "regression/logs/workload-object.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/logs/workload-object.log",
+      "bytes": 136,
+      "sha256": "659450f12b2e0e2c00dce939669cb8dd72e6abbea567571c1d96b5bb44e6a49a"
+    },
+    {
+      "path": "regression/results/build/abi2-rejection/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/abi2-rejection/result.json",
+      "bytes": 2499,
+      "sha256": "932588324f57c34fd1f6dc0267d09d56945cf3cb2def993351e99544c458a9f1"
+    },
+    {
+      "path": "regression/results/build/cache-cancel/128/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/cache-cancel/128/result.json",
+      "bytes": 1020,
+      "sha256": "264d6e390f71d3a5869cc6946dd156ecf4832f6de926c893ba7eca35bd20af3e"
+    },
+    {
+      "path": "regression/results/build/cache-cancel/64/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/cache-cancel/64/result.json",
+      "bytes": 1017,
+      "sha256": "095836ae589a025a983233a71928e1cd78d7ad3b60c5e883393b496f73f3d2b2"
+    },
+    {
+      "path": "regression/results/build/cache-rollback/128/extended/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/cache-rollback/128/extended/result.json",
+      "bytes": 51779,
+      "sha256": "6953de2d2ce903687beb3c48365acdc43dc5f9fe33b98e552b563264f4b547d4"
+    },
+    {
+      "path": "regression/results/build/cache-rollback/128/normal/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/cache-rollback/128/normal/result.json",
+      "bytes": 51780,
+      "sha256": "b4f182573ddfd666dd2fc7158eb223fd3d4b342fc17b31000119c1765332fbfb"
+    },
+    {
+      "path": "regression/results/build/cache-rollback/64/extended/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/cache-rollback/64/extended/result.json",
+      "bytes": 51698,
+      "sha256": "ee5b66c17316f1a69fb59402c10c9ade9af58e1a48ba72405fab66564127a105"
+    },
+    {
+      "path": "regression/results/build/cache-rollback/64/normal/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/cache-rollback/64/normal/result.json",
+      "bytes": 51699,
+      "sha256": "f66bf66aae72ba1900550ba5659393832c690840175e9e40b89e2776022dcae3"
+    },
+    {
+      "path": "regression/results/build/m0/ue2/bad-pack/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/m0/ue2/bad-pack/result.json",
+      "bytes": 1409,
+      "sha256": "4fa9bdce1f953a480709a0e20e7052e818fd3c6071f0c0592f6821edccecdcd6"
+    },
+    {
+      "path": "regression/results/build/m0/ue2/ntsc/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/m0/ue2/ntsc/result.json",
+      "bytes": 1404,
+      "sha256": "c9358c99ef84b79623fa80339e447c4d34837ec409c7dc8c57fbd3d8be902b57"
+    },
+    {
+      "path": "regression/results/build/m0/ue2/pal64-reu16/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/m0/ue2/pal64-reu16/result.json",
+      "bytes": 4127,
+      "sha256": "0f73b9943e67d692252fde433d82055ca32e7146267a8d47ac66ce4a5193a9cd"
+    },
+    {
+      "path": "regression/results/build/m0/ue2/reu-absent/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/m0/ue2/reu-absent/result.json",
+      "bytes": 1407,
+      "sha256": "0ef4eaeb08af5e08cd948fac5f98acff59491dc27a0c06086dd9e645c0e75623"
+    },
+    {
+      "path": "regression/results/build/m0/ue2/reu128/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/m0/ue2/reu128/result.json",
+      "bytes": 1407,
+      "sha256": "f270da340c84b723db7bec0a826cb464413a9574f730c911af89b8f55b417f1b"
+    },
+    {
+      "path": "regression/results/build/m0/ue2/reu2m/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/m0/ue2/reu2m/result.json",
+      "bytes": 1408,
+      "sha256": "f1a4061ed38611ca08e0ae59ff00336512c595c4e211f3e8b0f4648429367c6f"
+    },
+    {
+      "path": "regression/results/build/m0/ue2/reu512/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/m0/ue2/reu512/result.json",
+      "bytes": 1407,
+      "sha256": "4a23eaac53dcd70fcbe66609650aa2a16370ac7a29d3f728b3e40b4ccd35dc5b"
+    },
+    {
+      "path": "regression/results/build/m0/ue2/reu8m/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/m0/ue2/reu8m/result.json",
+      "bytes": 1409,
+      "sha256": "dbfa7c2a5d27b1d67a2d13a05a051a90f84d3fe6ea95971875bd5ce1a497f7be"
+    },
+    {
+      "path": "regression/results/build/m0/ue2/turbo32/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/m0/ue2/turbo32/result.json",
+      "bytes": 1408,
+      "sha256": "e0e5a6740d39b54943bd91eb0560b694d5b60469407fb78b04d9ebb9ddf34f75"
+    },
+    {
+      "path": "regression/results/build/m0/ue2/turbo48/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/m0/ue2/turbo48/result.json",
+      "bytes": 1408,
+      "sha256": "412ee4b5256daa3484d15288cf438f65b61d336800341d9d21111c2942b0baa1"
+    },
+    {
+      "path": "regression/results/build/m1-results.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/m1-results.json",
+      "bytes": 2446,
+      "sha256": "44f75cb9022dd862f4b448c2ac1ddae0218603586b1b0fb82a58c3b9d66348b3"
+    },
+    {
+      "path": "regression/results/build/m2/128/bounds.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/m2/128/bounds.json",
+      "bytes": 9822,
+      "sha256": "eb788a2dc6acc1c866615101a2d1a96d79096c2205b08e47641db8e64cf6b561"
+    },
+    {
+      "path": "regression/results/build/m2/64/bounds.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/m2/64/bounds.json",
+      "bytes": 9820,
+      "sha256": "e0bc690c965b12b713b8a94160466d8823ab5f6efda0483e499c1f92f6f69da7"
+    },
+    {
+      "path": "regression/results/build/m2/margins/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/m2/margins/result.json",
+      "bytes": 1664,
+      "sha256": "24f746fe94f19e1bd7cce4e396d575d0f108cd78ff328a7344df4c0b39466a51"
+    },
+    {
+      "path": "regression/results/build/m2/ue2/128/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/m2/ue2/128/result.json",
+      "bytes": 1130170,
+      "sha256": "b7261c8e1d901398b51cc5aab563334bf853cebcdf3da29d7c0a178d32f085ed"
+    },
+    {
+      "path": "regression/results/build/m2/ue2/64/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/m2/ue2/64/result.json",
+      "bytes": 1129588,
+      "sha256": "cbe893f0c6de29f2a45ede6ca784df010c3b5c49c2df956831bea1d1e481ee9e"
+    },
+    {
+      "path": "regression/results/build/m3-admission/128/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/m3-admission/128/result.json",
+      "bytes": 5438,
+      "sha256": "6e6f8ad6bab450e070c3408949b92fcc5011e5cd30d40907a132253fbc719aa9"
+    },
+    {
+      "path": "regression/results/build/m3-admission/128/scheduler_video_admit/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/m3-admission/128/scheduler_video_admit/result.json",
+      "bytes": 1635,
+      "sha256": "b324b9e5c4a147f56d9aad3ad827cf44c7609cc11dcede9bd59ddcc121c7cbbe"
+    },
+    {
+      "path": "regression/results/build/m3-admission/128/vm_video_admit/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/m3-admission/128/vm_video_admit/result.json",
+      "bytes": 1935,
+      "sha256": "808cc56b44bb98a1ff83baea59b07146a76bb2087685f03a5f5628fc0d33c336"
+    },
+    {
+      "path": "regression/results/build/m3-admission/64/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/m3-admission/64/result.json",
+      "bytes": 5438,
+      "sha256": "9c2d9ad18dbcfb6fe2449ee3374cc92120aeff233e3bad2088aec66ec3496333"
+    },
+    {
+      "path": "regression/results/build/m3-admission/64/scheduler_video_admit/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/m3-admission/64/scheduler_video_admit/result.json",
+      "bytes": 1635,
+      "sha256": "b324b9e5c4a147f56d9aad3ad827cf44c7609cc11dcede9bd59ddcc121c7cbbe"
+    },
+    {
+      "path": "regression/results/build/m3-admission/64/vm_video_admit/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/m3-admission/64/vm_video_admit/result.json",
+      "bytes": 1935,
+      "sha256": "808cc56b44bb98a1ff83baea59b07146a76bb2087685f03a5f5628fc0d33c336"
+    },
+    {
+      "path": "regression/results/build/m3-autonomous/128/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/m3-autonomous/128/result.json",
+      "bytes": 183988,
+      "sha256": "de8078d2c08ce40de2d91bb823a235f55c9795bdf89d29ee70f7ede8375d3c68"
+    },
+    {
+      "path": "regression/results/build/m3-autonomous/64/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/m3-autonomous/64/result.json",
+      "bytes": 147640,
+      "sha256": "16cb1381d0d72f4e7a269c8e9c27fcdf282d7e30ab3d5c67c7d1fd98bd93aa50"
+    },
+    {
+      "path": "regression/results/build/m3-contract/128/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/m3-contract/128/result.json",
+      "bytes": 652,
+      "sha256": "357708ef9db293842c9a746e0bc02da8d18ee53d4ef7c6ed599a2633c2eab6fc"
+    },
+    {
+      "path": "regression/results/build/m3-contract/64/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/m3-contract/64/result.json",
+      "bytes": 651,
+      "sha256": "c40dde392ff8b2e070e6402d789ef4e42e5b39d232ce2f1653b1e63572e35cfb"
+    },
+    {
+      "path": "regression/results/build/m3-hot-pc/128/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/m3-hot-pc/128/result.json",
+      "bytes": 1562,
+      "sha256": "ecc9e9bbf085987d24cf11544715af97149a504cf26d5803302107b688d0305d"
+    },
+    {
+      "path": "regression/results/build/m3-hot-pc/64/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/m3-hot-pc/64/result.json",
+      "bytes": 1561,
+      "sha256": "cc8fe0d9c1e07550dfdf1e3e40a687a3aadd3239ceef5549780bbb18fab1a0b9"
+    },
+    {
+      "path": "regression/results/build/m3-raster-active/128/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/m3-raster-active/128/result.json",
+      "bytes": 3079,
+      "sha256": "73d71866530cf717aae4c7d044f52a5031a00e7d92debabf9d2a7ed0a6c69024"
+    },
+    {
+      "path": "regression/results/build/m3-raster-active/64/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/m3-raster-active/64/result.json",
+      "bytes": 3079,
+      "sha256": "be70bee5617b663b93cfb69bd9949726e78a186d43a92fc465545d4a4f00f378"
+    },
+    {
+      "path": "regression/results/build/m3/128/bounds.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/m3/128/bounds.json",
+      "bytes": 25777,
+      "sha256": "7196ff48bc42f6e77875489873db936e786771d9f06927c172a28a7736d9dff3"
+    },
+    {
+      "path": "regression/results/build/m3/64/bounds.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source/build/m3/64/bounds.json",
+      "bytes": 25776,
+      "sha256": "9ad497f5b088371b00b5d5aecac57a84c9dad9f37d7993e6d3a5a75b48170720"
+    },
+    {
+      "path": "profile-timer/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-profile-timer/result.json",
+      "bytes": 6181,
+      "sha256": "7fd52ee96b4c79ba97f8b2dc3ee9bb0b04e37501c17c11f801d87496dcea9e90"
+    },
+    {
+      "path": "profile-timer/counters.bin",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-profile-timer/counters.bin",
+      "bytes": 576,
+      "sha256": "02041dd09794b70446ddd31192c06dc9ac266e5d352b4eb5f93ac9d774a44da8"
+    },
+    {
+      "path": "profile-timer/timer.asm",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-profile-timer/timer.asm",
+      "bytes": 13206,
+      "sha256": "b5f5f074b55ee69b8c463474f50faa723bd8418e868159421765c88f9f7027fd"
+    },
+    {
+      "path": "profile-timer/timer.prg",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-profile-timer/timer.prg",
+      "bytes": 2185,
+      "sha256": "168aa0f461e44281dbd429e1b8d54c383d06849cc03cc1b23da18e7d4991eff4"
+    },
+    {
+      "path": "profile-timer/protocol.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-profile-timer/protocol.log",
+      "bytes": 10519,
+      "sha256": "51057d00fddf7b3f74dce3f35301b817226e4db142482997fa52ef074702df5d"
+    },
+    {
+      "path": "benchmarks/commands.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/commands.json",
+      "bytes": 16244,
+      "sha256": "d39d38301455bd6c9c77eee649db1ff3c1db82a0984b24e135f40ea0db06de3a"
+    },
+    {
+      "path": "benchmarks/continuation-commands.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/continuation-commands.json",
+      "bytes": 9145,
+      "sha256": "5425f733f71b83a645639cd59045d616fedc76d742e7bba65381897fb8ce035b"
+    },
+    {
+      "path": "benchmarks/cleanup.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/cleanup.json",
+      "bytes": 5791,
+      "sha256": "e42bc2a6f54447fb61644eb7e60c18ec89bfa2748567321a8f86bd76ae04637e"
+    },
+    {
+      "path": "benchmarks/continuation-cleanup.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/continuation-cleanup.json",
+      "bytes": 5823,
+      "sha256": "b48629ee44cb94bd800c5516214935177486d536a80b633062c10e9303784c25"
+    },
+    {
+      "path": "benchmarks/summary.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/summary.json",
+      "bytes": 1403,
+      "sha256": "b12b0c2f35d64d92a6ade1179d216707a44516fe5dcb460ee8b08984f2d0d7dc"
+    },
+    {
+      "path": "benchmarks/logs/larger-128-bounds.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/logs/larger-128-bounds.log",
+      "bytes": 25776,
+      "sha256": "57cdec3f415a1aa03741bca598a069f0eecde4e2dfe9c01ea26b679dd104e404"
+    },
+    {
+      "path": "benchmarks/logs/larger-128-build.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/logs/larger-128-build.log",
+      "bytes": 105,
+      "sha256": "f0ade674ac2e2bac92a7ab3bcfc3c576f8fddfbf7a38395849de39c412117434"
+    },
+    {
+      "path": "benchmarks/logs/larger-128-run1-retry1.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/logs/larger-128-run1-retry1.log",
+      "bytes": 148,
+      "sha256": "2af1111cceb1a447cad13c94993ca59fe2389030349583c82af47cf5bf7a24d2"
+    },
+    {
+      "path": "benchmarks/logs/larger-128-run1.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/logs/larger-128-run1.log",
+      "bytes": 24,
+      "sha256": "7928df88260666382081cdcedd1e01a89d5b5723e8a326975bea9ad5be90e9ef"
+    },
+    {
+      "path": "benchmarks/logs/larger-128-run2.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/logs/larger-128-run2.log",
+      "bytes": 148,
+      "sha256": "2af1111cceb1a447cad13c94993ca59fe2389030349583c82af47cf5bf7a24d2"
+    },
+    {
+      "path": "benchmarks/logs/larger-64-bounds.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/logs/larger-64-bounds.log",
+      "bytes": 25776,
+      "sha256": "2b54bb32f382ad8f5e52fd2b741d1d9729c171882ae119cfd6b3c2e6ea26c58f"
+    },
+    {
+      "path": "benchmarks/logs/larger-64-build.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/logs/larger-64-build.log",
+      "bytes": 104,
+      "sha256": "7900a3cd23e15b14e25df4ae8c7c2eb3a44373aa4efdde9ce2e2ba5b80c24011"
+    },
+    {
+      "path": "benchmarks/logs/larger-64-run1.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/logs/larger-64-run1.log",
+      "bytes": 148,
+      "sha256": "70aef288823199b7389dec558252cd6ee01deea6608243a7c9382346cd975ff8"
+    },
+    {
+      "path": "benchmarks/logs/larger-host.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/logs/larger-host.log",
+      "bytes": 938,
+      "sha256": "a45995b965b44eb1250cef8757553127b893a13073cc39a83ad4bffc2961e77d"
+    },
+    {
+      "path": "benchmarks/logs/larger-native-control-run1.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/logs/larger-native-control-run1.log",
+      "bytes": 30,
+      "sha256": "cd29f19b27e2eca6bed59cff862c7b008111891ec82518c96b3f05d38250c693"
+    },
+    {
+      "path": "benchmarks/logs/larger-native-control-run2.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/logs/larger-native-control-run2.log",
+      "bytes": 30,
+      "sha256": "cd29f19b27e2eca6bed59cff862c7b008111891ec82518c96b3f05d38250c693"
+    },
+    {
+      "path": "benchmarks/logs/larger-object.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/logs/larger-object.log",
+      "bytes": 124,
+      "sha256": "00b78fe41d100405dcdaa0ad26d64de679306fa82610c9729bccce7a9b15d77b"
+    },
+    {
+      "path": "benchmarks/logs/primary-128-bounds.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/logs/primary-128-bounds.log",
+      "bytes": 25777,
+      "sha256": "6d14726d976fd9d76a33c3c31bc9631fb586ec017134a0c32ce57e313523cf07"
+    },
+    {
+      "path": "benchmarks/logs/primary-128-build.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/logs/primary-128-build.log",
+      "bytes": 105,
+      "sha256": "62266efa7f33f8ecef247b8713d0a30ade07cc53b956c20d1e4ff4fe08e862c4"
+    },
+    {
+      "path": "benchmarks/logs/primary-128-run1.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/logs/primary-128-run1.log",
+      "bytes": 145,
+      "sha256": "06d6b513356a103e2864da57441e7c2c0e78e26b3bf34e430a341e488bb665de"
+    },
+    {
+      "path": "benchmarks/logs/primary-128-run2.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/logs/primary-128-run2.log",
+      "bytes": 145,
+      "sha256": "06d6b513356a103e2864da57441e7c2c0e78e26b3bf34e430a341e488bb665de"
+    },
+    {
+      "path": "benchmarks/logs/primary-64-bounds.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/logs/primary-64-bounds.log",
+      "bytes": 25776,
+      "sha256": "c78dc14f7c5176f5e6bed730473557e56160cb572d266fd7eae364350ceb0b78"
+    },
+    {
+      "path": "benchmarks/logs/primary-64-build.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/logs/primary-64-build.log",
+      "bytes": 104,
+      "sha256": "d01e76a9c66660114021f9b49103bf92b845feaa2253d01a42a71a8dbabfd4a6"
+    },
+    {
+      "path": "benchmarks/logs/primary-64-run1.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/logs/primary-64-run1.log",
+      "bytes": 147,
+      "sha256": "bbde8376c15ae3164e73189c7a2dd4d520746e3979f32a0d365bfafa3de8417e"
+    },
+    {
+      "path": "benchmarks/logs/primary-host.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/logs/primary-host.log",
+      "bytes": 926,
+      "sha256": "3f3f95b8cb13383f6df3d0fe9ab731f816c859e44b892ce342e4af1340088692"
+    },
+    {
+      "path": "benchmarks/logs/primary-native-control-run1.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/logs/primary-native-control-run1.log",
+      "bytes": 30,
+      "sha256": "cd29f19b27e2eca6bed59cff862c7b008111891ec82518c96b3f05d38250c693"
+    },
+    {
+      "path": "benchmarks/logs/primary-native-control-run2.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/logs/primary-native-control-run2.log",
+      "bytes": 30,
+      "sha256": "cd29f19b27e2eca6bed59cff862c7b008111891ec82518c96b3f05d38250c693"
+    },
+    {
+      "path": "benchmarks/logs/primary-object.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/logs/primary-object.log",
+      "bytes": 125,
+      "sha256": "697450408414a15af884cd0093b4cb4605cebc89a55046c797153c3e127c4ad5"
+    },
+    {
+      "path": "benchmarks/primary-128-run1/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-128-run1/result.json",
+      "bytes": 27314,
+      "sha256": "a7ecf80546bc3016bfb281c95d7b68c0be62ee3ff33cb23fa308b1bf8bc7ae53"
+    },
+    {
+      "path": "benchmarks/primary-128-run1/native1mhz/image.bin",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-128-run1/native1mhz/image.bin",
+      "bytes": 192,
+      "sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c"
+    },
+    {
+      "path": "benchmarks/primary-128-run1/native1mhz/protocol.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-128-run1/native1mhz/protocol.log",
+      "bytes": 80460,
+      "sha256": "7b541dd5dfbbc98f24badb21d6d4c9141c4c5b279bbc18dbbee17f5ae8a4f7b2"
+    },
+    {
+      "path": "benchmarks/primary-128-run1/cos/image.bin",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-128-run1/cos/image.bin",
+      "bytes": 192,
+      "sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c"
+    },
+    {
+      "path": "benchmarks/primary-128-run1/cos/protocol.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-128-run1/cos/protocol.log",
+      "bytes": 16795,
+      "sha256": "b9cbf573bd39026652439e3304af360ef26e740e2e7489becb366124be7e702d"
+    },
+    {
+      "path": "benchmarks/primary-128-run1/cos/scanout.png",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-128-run1/cos/scanout.png",
+      "bytes": 131185,
+      "sha256": "70cefe5734301e9fd1c7c80055b428be57bc32435beedc5119bb7aab70977dfb"
+    },
+    {
+      "path": "benchmarks/primary-128-run2/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-128-run2/result.json",
+      "bytes": 27314,
+      "sha256": "651c5c7847eda6622498ea3f5760ac06ae64d8599a18d3bebdbb9ff68bbd53b4"
+    },
+    {
+      "path": "benchmarks/primary-128-run2/native1mhz/image.bin",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-128-run2/native1mhz/image.bin",
+      "bytes": 192,
+      "sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c"
+    },
+    {
+      "path": "benchmarks/primary-128-run2/native1mhz/protocol.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-128-run2/native1mhz/protocol.log",
+      "bytes": 80460,
+      "sha256": "c7d92cd10755a9446fdd8ef87e68c7e55ed1c7e3ee22971ff44e2347504b3295"
+    },
+    {
+      "path": "benchmarks/primary-128-run2/cos/image.bin",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-128-run2/cos/image.bin",
+      "bytes": 192,
+      "sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c"
+    },
+    {
+      "path": "benchmarks/primary-128-run2/cos/protocol.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-128-run2/cos/protocol.log",
+      "bytes": 16795,
+      "sha256": "a787e01ecbdafb910244f051add5d78bb0500db2977e84d8cf6839e0af30af29"
+    },
+    {
+      "path": "benchmarks/primary-128-run2/cos/scanout.png",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-128-run2/cos/scanout.png",
+      "bytes": 131185,
+      "sha256": "70cefe5734301e9fd1c7c80055b428be57bc32435beedc5119bb7aab70977dfb"
+    },
+    {
+      "path": "benchmarks/primary-64-run1/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-64-run1/result.json",
+      "bytes": 22310,
+      "sha256": "56182c27f38aef57a5c631597580526a69c20d7f75ee1419d2e89994153c5b3a"
+    },
+    {
+      "path": "benchmarks/primary-64-run1/native1mhz/image.bin",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-64-run1/native1mhz/image.bin",
+      "bytes": 192,
+      "sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c"
+    },
+    {
+      "path": "benchmarks/primary-64-run1/native1mhz/protocol.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-64-run1/native1mhz/protocol.log",
+      "bytes": 80460,
+      "sha256": "1ca83ec60467312dc148340e6fbc17cf9f96f67940b0fed4d3666d26e1c7d5e5"
+    },
+    {
+      "path": "benchmarks/primary-64-run1/cos/image.bin",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-64-run1/cos/image.bin",
+      "bytes": 192,
+      "sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c"
+    },
+    {
+      "path": "benchmarks/primary-64-run1/cos/protocol.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-64-run1/cos/protocol.log",
+      "bytes": 15026,
+      "sha256": "2e32867296bd16fe3eff1e9a7a01fe6ab0536635c2e068b16455aa3ccfbb7206"
+    },
+    {
+      "path": "benchmarks/primary-64-run1/cos/scanout.png",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-64-run1/cos/scanout.png",
+      "bytes": 131185,
+      "sha256": "70cefe5734301e9fd1c7c80055b428be57bc32435beedc5119bb7aab70977dfb"
+    },
+    {
+      "path": "benchmarks/primary-native-control-run1/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-native-control-run1/result.json",
+      "bytes": 4226,
+      "sha256": "99a2ec31d7b70d4566c66789c60e664e41269bc09261e151db3c900b9b0c3ad1"
+    },
+    {
+      "path": "benchmarks/primary-native-control-run1/native1mhz/image.bin",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-native-control-run1/native1mhz/image.bin",
+      "bytes": 192,
+      "sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c"
+    },
+    {
+      "path": "benchmarks/primary-native-control-run1/native1mhz/protocol.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-native-control-run1/native1mhz/protocol.log",
+      "bytes": 80460,
+      "sha256": "a3c521422c9b5d0c7c303fda4b579cf3d984cc84f5de7bbf804dbe97c1fdcbb3"
+    },
+    {
+      "path": "benchmarks/primary-native-control-run2/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-native-control-run2/result.json",
+      "bytes": 4226,
+      "sha256": "5875961974710ff5cbcff1e3efbb91f92e35965e430c1747fe7fb54ef2d9f83c"
+    },
+    {
+      "path": "benchmarks/primary-native-control-run2/native1mhz/image.bin",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-native-control-run2/native1mhz/image.bin",
+      "bytes": 192,
+      "sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c"
+    },
+    {
+      "path": "benchmarks/primary-native-control-run2/native1mhz/protocol.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-native-control-run2/native1mhz/protocol.log",
+      "bytes": 80460,
+      "sha256": "5e86ce9b36f7adb30101bc6a3d6a3fb5652d4220ce2b4d1d1ce5261f949319b0"
+    },
+    {
+      "path": "benchmarks/larger-128-run1/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-128-run1-retry1/result.json",
+      "bytes": 26808,
+      "sha256": "a95174774eaab9394dbfa7b7b03fac5a7c3d0c4d638b0a015afc51276f34e203"
+    },
+    {
+      "path": "benchmarks/larger-128-run1/native1mhz/image.bin",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-128-run1-retry1/native1mhz/image.bin",
+      "bytes": 768,
+      "sha256": "83c6af3119bdd417f7429627c04198faa2732a05d03f65ce62cff704278cb69a"
+    },
+    {
+      "path": "benchmarks/larger-128-run1/native1mhz/protocol.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-128-run1-retry1/native1mhz/protocol.log",
+      "bytes": 86359,
+      "sha256": "1684e1fa055496e27cf41f7049a22537ec1970ab182f13cee77603b7cfe3e3f4"
+    },
+    {
+      "path": "benchmarks/larger-128-run1/cos/image.bin",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-128-run1-retry1/cos/image.bin",
+      "bytes": 768,
+      "sha256": "83c6af3119bdd417f7429627c04198faa2732a05d03f65ce62cff704278cb69a"
+    },
+    {
+      "path": "benchmarks/larger-128-run1/cos/protocol.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-128-run1-retry1/cos/protocol.log",
+      "bytes": 19567,
+      "sha256": "50b77c540c9cc0e291103630fcc8887ea7c3b3fa54b623db0042c7455b6f7806"
+    },
+    {
+      "path": "benchmarks/larger-128-run1/cos/scanout.png",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-128-run1-retry1/cos/scanout.png",
+      "bytes": 131185,
+      "sha256": "70cefe5734301e9fd1c7c80055b428be57bc32435beedc5119bb7aab70977dfb"
+    },
+    {
+      "path": "benchmarks/larger-128-run2/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-128-run2/result.json",
+      "bytes": 26808,
+      "sha256": "23afd1a56febeacb3c70815858cf897d0878cd87e0cec4e357bbfed4cda446da"
+    },
+    {
+      "path": "benchmarks/larger-128-run2/native1mhz/image.bin",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-128-run2/native1mhz/image.bin",
+      "bytes": 768,
+      "sha256": "83c6af3119bdd417f7429627c04198faa2732a05d03f65ce62cff704278cb69a"
+    },
+    {
+      "path": "benchmarks/larger-128-run2/native1mhz/protocol.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-128-run2/native1mhz/protocol.log",
+      "bytes": 86359,
+      "sha256": "dd953183cb78faf65a0294d34210129575b2e3bbf30e90cd8ecbb7dc228300c9"
+    },
+    {
+      "path": "benchmarks/larger-128-run2/cos/image.bin",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-128-run2/cos/image.bin",
+      "bytes": 768,
+      "sha256": "83c6af3119bdd417f7429627c04198faa2732a05d03f65ce62cff704278cb69a"
+    },
+    {
+      "path": "benchmarks/larger-128-run2/cos/protocol.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-128-run2/cos/protocol.log",
+      "bytes": 19560,
+      "sha256": "7c9884bde18113592c9f68cf16e3e139ae50e46edd1fdf5ef27d5a17e317f355"
+    },
+    {
+      "path": "benchmarks/larger-128-run2/cos/scanout.png",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-128-run2/cos/scanout.png",
+      "bytes": 131185,
+      "sha256": "70cefe5734301e9fd1c7c80055b428be57bc32435beedc5119bb7aab70977dfb"
+    },
+    {
+      "path": "benchmarks/larger-64-run1/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-64-run1/result.json",
+      "bytes": 22050,
+      "sha256": "d86bee8b3d9579e9460df82afcbb5dc4af26255dd067ed04b270ac15ef12d29c"
+    },
+    {
+      "path": "benchmarks/larger-64-run1/native1mhz/image.bin",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-64-run1/native1mhz/image.bin",
+      "bytes": 768,
+      "sha256": "83c6af3119bdd417f7429627c04198faa2732a05d03f65ce62cff704278cb69a"
+    },
+    {
+      "path": "benchmarks/larger-64-run1/native1mhz/protocol.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-64-run1/native1mhz/protocol.log",
+      "bytes": 86359,
+      "sha256": "eee6e102b3cbf0e656e51fe389d691204ab6d78ddfc172fba06d977897c5beca"
+    },
+    {
+      "path": "benchmarks/larger-64-run1/cos/image.bin",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-64-run1/cos/image.bin",
+      "bytes": 768,
+      "sha256": "83c6af3119bdd417f7429627c04198faa2732a05d03f65ce62cff704278cb69a"
+    },
+    {
+      "path": "benchmarks/larger-64-run1/cos/protocol.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-64-run1/cos/protocol.log",
+      "bytes": 19360,
+      "sha256": "e6073c77c3a7d79b462c110c81e63d2cfc82338b390aee8a4f08b58d55d4ec3c"
+    },
+    {
+      "path": "benchmarks/larger-64-run1/cos/scanout.png",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-64-run1/cos/scanout.png",
+      "bytes": 131185,
+      "sha256": "70cefe5734301e9fd1c7c80055b428be57bc32435beedc5119bb7aab70977dfb"
+    },
+    {
+      "path": "benchmarks/larger-native-control-run1/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-native-control-run1/result.json",
+      "bytes": 4242,
+      "sha256": "5ef31eff733f806cf0c3bf696068ca1039c2ab85e2985604644e135ba49b6606"
+    },
+    {
+      "path": "benchmarks/larger-native-control-run1/native1mhz/image.bin",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-native-control-run1/native1mhz/image.bin",
+      "bytes": 768,
+      "sha256": "83c6af3119bdd417f7429627c04198faa2732a05d03f65ce62cff704278cb69a"
+    },
+    {
+      "path": "benchmarks/larger-native-control-run1/native1mhz/protocol.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-native-control-run1/native1mhz/protocol.log",
+      "bytes": 86045,
+      "sha256": "d28cbbc14a38fd77dad31831a999abfa2b16bd35479f5e3884d45d030663c18b"
+    },
+    {
+      "path": "benchmarks/larger-native-control-run2/result.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-native-control-run2/result.json",
+      "bytes": 4242,
+      "sha256": "f27b5e1b11abc20578f2e2170e6a31d5ff22e6a7977a0c0479938306aa5d7d99"
+    },
+    {
+      "path": "benchmarks/larger-native-control-run2/native1mhz/image.bin",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-native-control-run2/native1mhz/image.bin",
+      "bytes": 768,
+      "sha256": "83c6af3119bdd417f7429627c04198faa2732a05d03f65ce62cff704278cb69a"
+    },
+    {
+      "path": "benchmarks/larger-native-control-run2/native1mhz/protocol.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-native-control-run2/native1mhz/protocol.log",
+      "bytes": 86045,
+      "sha256": "26d61b31f23bd6cfb4c756ffa2e03e9e6acaddc2544991d126f5bdf72ffda0e2"
+    },
+    {
+      "path": "benchmarks/inputs/primary-native-control.asm",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-native-control.asm",
+      "bytes": 5168,
+      "sha256": "35eac05cb63db1c31be3c599bc2bb774cbd104396e8a4d8d20922c512a84c4f8"
+    },
+    {
+      "path": "benchmarks/inputs/larger-native-control.asm",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-native-control.asm",
+      "bytes": 5246,
+      "sha256": "b26e6bd210e5541d21da581d658c1db4e80285fc72530a419229ab3f5584d363"
+    },
+    {
+      "path": "benchmarks/inputs/primary-expected.bin",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-expected.bin",
+      "bytes": 192,
+      "sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c"
+    },
+    {
+      "path": "benchmarks/inputs/larger-expected.bin",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-expected.bin",
+      "bytes": 768,
+      "sha256": "83c6af3119bdd417f7429627c04198faa2732a05d03f65ce62cff704278cb69a"
+    },
+    {
+      "path": "benchmarks/inputs/primary.cobj",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary.cobj",
+      "bytes": 12488,
+      "sha256": "f9d7075cd817f9303ee954c297eca58b175349856f6c8b772845e321a9a40bee"
+    },
+    {
+      "path": "benchmarks/inputs/larger.cobj",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger.cobj",
+      "bytes": 12836,
+      "sha256": "b69a103b70e5023c78ecc5d691a2ce1c9059cb5e6078f440769042b460c14b10"
+    },
+    {
+      "path": "benchmarks/inputs/primary-host-profile.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-host-profile.json",
+      "bytes": 926,
+      "sha256": "3f3f95b8cb13383f6df3d0fe9ab731f816c859e44b892ce342e4af1340088692"
+    },
+    {
+      "path": "benchmarks/inputs/larger-host-profile.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-host-profile.json",
+      "bytes": 938,
+      "sha256": "a45995b965b44eb1250cef8757553127b893a13073cc39a83ad4bffc2961e77d"
+    },
+    {
+      "path": "benchmarks/inputs/primary.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary.json",
+      "bytes": 434,
+      "sha256": "f71641de986185399b52f5eea3f1e4d00aee38e31616b2394f9f419eae83d7d8"
+    },
+    {
+      "path": "benchmarks/inputs/larger.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger.json",
+      "bytes": 433,
+      "sha256": "024382ce556f06c10fe62dcefb7544917f124031daaaa9a1b6aabff076f55525"
+    },
+    {
+      "path": "benchmarks/inputs/mandelbrot.casm",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+      "bytes": 1663,
+      "sha256": "3b7a8a4aaf24fbb492fe0c3c66727f81d54ca1715018fff9990502701ff5290a"
+    },
+    {
+      "path": "benchmarks/inputs/mandelbrot-32x24.casm",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot-32x24.casm",
+      "bytes": 1708,
+      "sha256": "ec2c940023246ab7f0a9646da562f67c69d92dd48ca4c3edda2ff5302c15c7a5"
+    },
+    {
+      "path": "benchmarks/inputs/mandelbrot_1mhz.asm",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/tests/native/mandelbrot_1mhz.asm",
+      "bytes": 5470,
+      "sha256": "db97bb32af94906134b4c327cb83458d92f3fe6372712df6336ec5c07205b4d8"
+    },
+    {
+      "path": "benchmarks/inputs/mandelbrot_32x24_1mhz.asm",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/tests/native/mandelbrot_32x24_1mhz.asm",
+      "bytes": 5548,
+      "sha256": "6c92171b307fed2e6b834f390a01efa2a1bf0d4ebf2a0a4ef2ac40a199b3d42e"
+    },
+    {
+      "path": "artifacts/primary-128/native.bin",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-128/native.bin",
+      "bytes": 7525,
+      "sha256": "50cae5a9d3d495d056c064cbee9fdae9780c611660dbb942a39c96ecbf075171"
+    },
+    {
+      "path": "artifacts/primary-128/map.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-128/map.json",
+      "bytes": 28170,
+      "sha256": "7c8c378818da14c8631d015e1cd85c0b8fc30e80b79f63ed05f42b072819116f"
+    },
+    {
+      "path": "artifacts/primary-128/map.txt",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-128/map.txt",
+      "bytes": 2152,
+      "sha256": "9b187488c0ea6af09ee1ab905f604dc1f891b29d7e4565ae8cd6e88294f1a50f"
+    },
+    {
+      "path": "artifacts/primary-128/bounds.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-128/bounds.json",
+      "bytes": 25777,
+      "sha256": "6d14726d976fd9d76a33c3c31bc9631fb586ec017134a0c32ce57e313523cf07"
+    },
+    {
+      "path": "artifacts/primary-128/m3.manifest.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-128/m3.manifest.json",
+      "bytes": 11985,
+      "sha256": "cff327d30fe0afa43ec0693a89092309d417b2ac42bf43b4bf2ffca78027203e"
+    },
+    {
+      "path": "artifacts/primary-64/native.bin",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-64/native.bin",
+      "bytes": 7525,
+      "sha256": "6e24d4672a168f983060343ab1a2a8f28d660dca26ef1a57b7e6a288f316f0ea"
+    },
+    {
+      "path": "artifacts/primary-64/map.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-64/map.json",
+      "bytes": 28169,
+      "sha256": "9b12fc331a757d2ae417365f5f8424646b442a05e61b6ba8cd79565dd50024ae"
+    },
+    {
+      "path": "artifacts/primary-64/map.txt",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-64/map.txt",
+      "bytes": 2152,
+      "sha256": "5a29d1c62c6fe9e4e14efd5776344f390680a1e2387fcc356149941f099c7f5c"
+    },
+    {
+      "path": "artifacts/primary-64/bounds.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-64/bounds.json",
+      "bytes": 25776,
+      "sha256": "c78dc14f7c5176f5e6bed730473557e56160cb572d266fd7eae364350ceb0b78"
+    },
+    {
+      "path": "artifacts/primary-64/m3.manifest.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/primary-64/m3.manifest.json",
+      "bytes": 11985,
+      "sha256": "13021bc3bc70e53be625f60e3df2a5e74fe741337493c8f98e3d1c8a4d9ed53b"
+    },
+    {
+      "path": "artifacts/larger-128/native.bin",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-128/native.bin",
+      "bytes": 7525,
+      "sha256": "50cae5a9d3d495d056c064cbee9fdae9780c611660dbb942a39c96ecbf075171"
+    },
+    {
+      "path": "artifacts/larger-128/map.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-128/map.json",
+      "bytes": 28169,
+      "sha256": "6c63a92147d33f738bb607cf2b9546873f2b74c16c34e57d59e15a298c055224"
+    },
+    {
+      "path": "artifacts/larger-128/map.txt",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-128/map.txt",
+      "bytes": 2152,
+      "sha256": "9b187488c0ea6af09ee1ab905f604dc1f891b29d7e4565ae8cd6e88294f1a50f"
+    },
+    {
+      "path": "artifacts/larger-128/bounds.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-128/bounds.json",
+      "bytes": 25776,
+      "sha256": "57cdec3f415a1aa03741bca598a069f0eecde4e2dfe9c01ea26b679dd104e404"
+    },
+    {
+      "path": "artifacts/larger-128/m3.manifest.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-128/m3.manifest.json",
+      "bytes": 12331,
+      "sha256": "d871fe371ebddc9056828084c9b263a3786402894bace1fbfa27bf546ca7764b"
+    },
+    {
+      "path": "artifacts/larger-64/native.bin",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-64/native.bin",
+      "bytes": 7525,
+      "sha256": "6e24d4672a168f983060343ab1a2a8f28d660dca26ef1a57b7e6a288f316f0ea"
+    },
+    {
+      "path": "artifacts/larger-64/map.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-64/map.json",
+      "bytes": 28169,
+      "sha256": "aa4a258e7dafb842173c65b4f28ebd954d4a22edb4ffb25b16ef19387ee6b163"
+    },
+    {
+      "path": "artifacts/larger-64/map.txt",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-64/map.txt",
+      "bytes": 2152,
+      "sha256": "5a29d1c62c6fe9e4e14efd5776344f390680a1e2387fcc356149941f099c7f5c"
+    },
+    {
+      "path": "artifacts/larger-64/bounds.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-64/bounds.json",
+      "bytes": 25776,
+      "sha256": "2b54bb32f382ad8f5e52fd2b741d1d9729c171882ae119cfd6b3c2e6ea26c58f"
+    },
+    {
+      "path": "artifacts/larger-64/m3.manifest.json",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-64/m3.manifest.json",
+      "bytes": 12332,
+      "sha256": "e5f95b7c49d7a6df1bb1eab982bee5b09705b0fdfbe7e7d9c2a0b6e06389e982"
+    },
+    {
+      "path": "rejected/larger-128-transport-timeout/cos/protocol.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-128-run1/cos/protocol.log",
+      "bytes": 6755,
+      "sha256": "30eeb6d5f68409830a5efabee8ceac799f44f441358f09677a8aab8f82f490da"
+    },
+    {
+      "path": "rejected/larger-128-transport-timeout/cos/emulator.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-128-run1/cos/emulator.log",
+      "bytes": 8856,
+      "sha256": "d0d535f93e967ce26c1b2a1395655758f3e35a87004088846981516c073feeac"
+    },
+    {
+      "path": "rejected/larger-128-transport-timeout/native1mhz/protocol.log",
+      "original_path": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/review-benchmarks/larger-128-run1/native1mhz/protocol.log",
+      "bytes": 86359,
+      "sha256": "cb79803f822543fa986324286bb256aca054b442eb79546cf377a4ecbd277bde"
+    },
+    {
+      "path": "README.md",
+      "bytes": 178,
+      "sha256": "1804356313a7f1a987110694575eef31f232998190b4040444d4775df58f27ec"
+    }
+  ],
+  "qualification": "Independent functional emulation and conditional timing; physical hardware pending"
+}

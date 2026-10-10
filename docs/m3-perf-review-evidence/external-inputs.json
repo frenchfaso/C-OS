@@ -1,0 +1,58 @@
+{
+  "cargo": {
+    "path": "/Users/frenchfaso/.cargo/bin/rustup",
+    "sha256": "20ef5516c31b1ac2290084199ba77dbbcaa1406c45c1d978ca68558ef5964ef5"
+  },
+  "cargo_toolchain": {
+    "path": "/Users/frenchfaso/.rustup/toolchains/1.93.0-aarch64-apple-darwin/bin/cargo",
+    "sha256": "46c9483604e913070b085dc5acf972bc560395c10dfec1cdb389c4b6bf17cf67"
+  },
+  "config": {
+    "path": "/Users/frenchfaso/Documents/Code/C64/runtime/c64u.toml",
+    "sha256": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048"
+  },
+  "cpu_core_cpu.rs": {
+    "path": "/Users/frenchfaso/Documents/Code/C64/UE2-C64U-Emulator/vendor/trx64-core/src/cpu.rs",
+    "sha256": "58e5f831ee3a3f708ff67c3d1f7749775d17ce31c96e5a4c89e029bd2bf45101"
+  },
+  "cpu_core_tables.rs": {
+    "path": "/Users/frenchfaso/Documents/Code/C64/UE2-C64U-Emulator/vendor/trx64-core/src/tables.rs",
+    "sha256": "8c34037354a84636b4d7f6df7c62498c95ab5c2dda6e70e81b6fe8e4a0d7fbad"
+  },
+  "emulator": {
+    "path": "/Users/frenchfaso/Documents/Code/C64/UE2-C64U-Emulator/target/release/ue2emu",
+    "sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225"
+  },
+  "flash": {
+    "path": "/Users/frenchfaso/Documents/Code/C64/runtime/flash.bin",
+    "sha256": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be"
+  },
+  "java": {
+    "path": "/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java",
+    "sha256": "83c9c5310d044e7c4262432854eb1bc5f49763d7c1e9971777a646c91b96c06d"
+  },
+  "kickass": {
+    "path": "/Users/frenchfaso/Documents/Code/C64/toolchain/kickassembler/KickAss.jar",
+    "sha256": "9592a39336e73a1db8b4a7749256d62d29b113b1c7f0f6c86ea43870ebd9ae1f"
+  },
+  "lsof": {
+    "path": "/usr/sbin/lsof",
+    "sha256": "deff85c7b4750a948a69fcd48eae3b394a37575e5048e5eb4a35b7a0482c3dc8"
+  },
+  "python": {
+    "path": "/opt/homebrew/Cellar/python@3.14/3.14.8_1/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+    "sha256": "a98562fe4ead1d19685b0c82ac8d2f9572c9b7e8cf3d7040f7af4ba973b70d9a"
+  },
+  "rustc": {
+    "path": "/Users/frenchfaso/.cargo/bin/rustup",
+    "sha256": "20ef5516c31b1ac2290084199ba77dbbcaa1406c45c1d978ca68558ef5964ef5"
+  },
+  "rustc_toolchain": {
+    "path": "/Users/frenchfaso/.rustup/toolchains/1.93.0-aarch64-apple-darwin/bin/rustc",
+    "sha256": "87b02c67012c28083fe485a50b10470a662c828c6e2cd0caf4775e00986cdfc8"
+  },
+  "settings": {
+    "path": "/Users/frenchfaso/Documents/Code/C64/runtime/ultimate.cfg",
+    "sha256": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961"
+  }
+}

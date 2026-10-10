@@ -1,0 +1,8 @@
+    Checking memchr v2.8.3
+    Checking itoa v1.0.18
+    Checking serde_core v1.0.228
+    Checking zmij v1.0.23
+    Checking serde v1.0.228
+    Checking serde_json v1.0.149
+    Checking cos-tools v0.1.0 (/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 14.97s

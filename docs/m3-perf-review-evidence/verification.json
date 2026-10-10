@@ -1,0 +1,141 @@
+{
+  "format": "COSM3PERFINDEPENDENTREVIEW1",
+  "status": "pass",
+  "source_files_verified": 95,
+  "external_inputs_verified": 14,
+  "source_stable_after_review": true,
+  "full_suite_commands": 50,
+  "full_suite_results": 39,
+  "full_suite_result_sha256": "489bfb3403de7c2ab167bf974ac2c3cdaee4fd919f8b0e89dbf48eaba247b036",
+  "benchmarks": [
+    {
+      "name": "primary-128-run1",
+      "frames": 95,
+      "cos_phi2": 1867320,
+      "original_native_phi2": 2682768,
+      "original_ratio": 1.4366942998521945,
+      "original_lower": 1.421694817528151,
+      "faster_native_phi2": 2404431,
+      "faster_native_ratio": 1.2876373626373627,
+      "faster_native_lower": 1.2741905567426401,
+      "retired": 36357,
+      "valid_cache_entries": 5,
+      "cache_counts": {
+        "code_misses": 2,
+        "data_misses": 3,
+        "dirty_writebacks": 0
+      },
+      "source_bytecode_bytes": 232,
+      "result_sha256": "a7ecf80546bc3016bfb281c95d7b68c0be62ee3ff33cb23fa308b1bf8bc7ae53"
+    },
+    {
+      "name": "primary-128-run2",
+      "frames": 95,
+      "cos_phi2": 1867320,
+      "original_native_phi2": 2682768,
+      "original_ratio": 1.4366942998521945,
+      "original_lower": 1.421694817528151,
+      "faster_native_phi2": 2404431,
+      "faster_native_ratio": 1.2876373626373627,
+      "faster_native_lower": 1.2741905567426401,
+      "retired": 36357,
+      "valid_cache_entries": 5,
+      "cache_counts": {
+        "code_misses": 2,
+        "data_misses": 3,
+        "dirty_writebacks": 0
+      },
+      "source_bytecode_bytes": 232,
+      "result_sha256": "651c5c7847eda6622498ea3f5760ac06ae64d8599a18d3bebdbb9ff68bbd53b4"
+    },
+    {
+      "name": "primary-64-run1",
+      "frames": 257,
+      "cos_phi2": 5051592,
+      "original_native_phi2": 2682768,
+      "original_ratio": 0.531073768427854,
+      "original_lower": 0.5290027228011724,
+      "faster_native_phi2": 2404431,
+      "faster_native_ratio": 0.4759749005857955,
+      "faster_native_lower": 0.4741174164623777,
+      "retired": 36357,
+      "valid_cache_entries": 6,
+      "cache_counts": {
+        "code_misses": 3381,
+        "data_misses": 4,
+        "dirty_writebacks": 0
+      },
+      "source_bytecode_bytes": 232,
+      "result_sha256": "56182c27f38aef57a5c631597580526a69c20d7f75ee1419d2e89994153c5b3a"
+    },
+    {
+      "name": "larger-128-run1-retry1",
+      "frames": 382,
+      "cos_phi2": 7508592,
+      "original_native_phi2": 11005565,
+      "original_ratio": 1.4657295269206263,
+      "original_lower": 1.4618940555624629,
+      "faster_native_phi2": 9868842,
+      "faster_native_ratio": 1.3143398922194733,
+      "faster_native_lower": 1.310899694058963,
+      "retired": 146476,
+      "valid_cache_entries": 9,
+      "cache_counts": {
+        "code_misses": 2,
+        "data_misses": 7,
+        "dirty_writebacks": 0
+      },
+      "source_bytecode_bytes": 232,
+      "result_sha256": "a95174774eaab9394dbfa7b7b03fac5a7c3d0c4d638b0a015afc51276f34e203"
+    },
+    {
+      "name": "larger-128-run2",
+      "frames": 382,
+      "cos_phi2": 7508592,
+      "original_native_phi2": 11005565,
+      "original_ratio": 1.4657295269206263,
+      "original_lower": 1.4618940555624629,
+      "faster_native_phi2": 9868842,
+      "faster_native_ratio": 1.3143398922194733,
+      "faster_native_lower": 1.310899694058963,
+      "retired": 146476,
+      "valid_cache_entries": 9,
+      "cache_counts": {
+        "code_misses": 2,
+        "data_misses": 7,
+        "dirty_writebacks": 0
+      },
+      "source_bytecode_bytes": 232,
+      "result_sha256": "23afd1a56febeacb3c70815858cf897d0878cd87e0cec4e357bbfed4cda446da"
+    },
+    {
+      "name": "larger-64-run1",
+      "frames": 1040,
+      "cos_phi2": 20442240,
+      "original_native_phi2": 11005565,
+      "original_ratio": 0.5383737300804609,
+      "original_lower": 0.5378534325460358,
+      "faster_native_phi2": 9868842,
+      "faster_native_ratio": 0.4827671527190758,
+      "faster_native_lower": 0.48230027168547823,
+      "retired": 146476,
+      "valid_cache_entries": 10,
+      "cache_counts": {
+        "code_misses": 13617,
+        "data_misses": 14,
+        "dirty_writebacks": 6
+      },
+      "source_bytecode_bytes": 232,
+      "result_sha256": "d86bee8b3d9579e9460df82afcbb5dc4af26255dd067ed04b270ac15ef12d29c"
+    }
+  ],
+  "profile_timer_calls": 65539,
+  "profile_timer_wraps": 1,
+  "history": {
+    "docs/m3-evidence": 43,
+    "historical_artifacts": 16,
+    "docs/m3-review-evidence": 26
+  },
+  "hardware_qualified": false,
+  "periodic_monitor_enabled": false
+}

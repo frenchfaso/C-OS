@@ -1,0 +1,115 @@
+{
+  "format": "COSM3BENCH1",
+  "width": 16,
+  "height": 12,
+  "limit": 16,
+  "workload": "primary",
+  "viewport": {
+    "cx_first": -512,
+    "cy_first": -384,
+    "step": 64
+  },
+  "arithmetic": "signed Q8.8, fullsigned32 product floor>>8",
+  "native": {
+    "elapsed_phi2_ticks": 2404431,
+    "timer": "CIA2A PHI2, B counts A underflows; stopped coherent32-bit downcounter",
+    "timer_collection_overhead_upper_phi2_ticks": 64,
+    "display": "VIC display disabled; image computation only",
+    "no_reu_access": true,
+    "executed_slow_cpu_loop_count": 16,
+    "code_and_constants_bytes": 575,
+    "output_bytes": 192,
+    "zero_page_bytes": 33,
+    "stack_page_reserved_bytes": 256,
+    "flat_prg_bytes": 22719,
+    "supplied_input_sha256": {
+      "emulator": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+      "config": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+      "flash": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be",
+      "settings": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961"
+    },
+    "private_settings_sha256": "da8e61d21ff8c6798100b0bf2b599f88adc5ac7535cf3ba1a31067b18619a4c7",
+    "prg_sha256": "69c01cda663db53f9160e3095ec0ba61e44579c0084c89a381e285224bcdb4d8",
+    "source_sha256": "35eac05cb63db1c31be3c599bc2bb774cbd104396e8a4d8d20922c512a84c4f8",
+    "image_sha256": "2e62867fb2ecf558567623cd291435f3269a930383edb8602b8ff0c6aab0ca5c",
+    "monitor_status": "  fw   running at 00035cc0  0x00035cc0\n  c64  running at $08a9, cycle 9041447 (nobody is asking it to stop)"
+  },
+  "cos": null,
+  "backend_sha256": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+  "config_sha256": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+  "settings_sha256": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961",
+  "reference_sha256": "bf6625529b191dc66f79bbe94ad1a654f1436da4cc0edf61474444ebb41970fc",
+  "vm_application_sha256": "3b7a8a4aaf24fbb492fe0c3c66727f81d54ca1715018fff9990502701ff5290a",
+  "host_profile": {
+    "abi": 2,
+    "app": "Mandelbrot",
+    "arithmetic_library_retired": 0,
+    "final_context": {
+      "fuel": 123,
+      "p": [
+        262720,
+        277503,
+        262400,
+        65920
+      ],
+      "pc": 262372,
+      "r": [
+        0,
+        0,
+        0,
+        400,
+        448,
+        320,
+        1,
+        784
+      ],
+      "retired": 36357,
+      "sp": 278527
+    },
+    "multiply_signed_retired": 3210,
+    "multiply_unsigned_retired": 0,
+    "native_chunks": 0,
+    "opcode_histogram": {
+      "1": 10435,
+      "11": 1156,
+      "18": 192,
+      "19": 4,
+      "2": 3276,
+      "23": 204,
+      "25": 976,
+      "3": 3051,
+      "31": 1,
+      "36": 204,
+      "37": 964,
+      "38": 1123,
+      "4": 964,
+      "54": 3,
+      "58": 3210,
+      "6": 3210,
+      "8": 4174,
+      "9": 3210
+    },
+    "output_address": 262528,
+    "output_bytes": 192,
+    "pid": 1,
+    "qualification": "Functional host output/profile only; not target throughput",
+    "retired": 36357,
+    "slices": 285,
+    "syscalls": 3
+  },
+  "input_sha256": {
+    "emulator": "c6a59402c2fd8a09199c5f1d825cfa50b89995b9a7f6e2e089f6b4bcd90cf225",
+    "config": "9587eeeb733182c2b9f5fe3e776423767baf82eeb5c5ce4f47e35c31d8b08048",
+    "flash": "9c3bb4cd73bed0ce97946f745bfbc4ef5eeeb8e75c846e3fc3d5668a1b3257be",
+    "settings": "6f4791d6138b13e9c8a77999c8d13a16974c3e46f3a0f2b611a474c95175b961",
+    "kickass": "9592a39336e73a1db8b4a7749256d62d29b113b1c7f0f6c86ea43870ebd9ae1f"
+  },
+  "source_sha256": {
+    "scripts/m3_benchmark.py": "0fb094223f04559760bff0cb348db8ddfce351b11cdb67af0f2fadc6e6d5536f",
+    "apps/mandelbrot.casm": "3b7a8a4aaf24fbb492fe0c3c66727f81d54ca1715018fff9990502701ff5290a",
+    "build/review-benchmarks/primary-host-profile.json": "3f3f95b8cb13383f6df3d0fe9ab731f816c859e44b892ce342e4af1340088692",
+    "build/review-benchmarks/primary-native-control.asm": "35eac05cb63db1c31be3c599bc2bb774cbd104396e8a4d8d20922c512a84c4f8",
+    "scripts/mandelbrot_reference.py": "bf6625529b191dc66f79bbe94ad1a654f1436da4cc0edf61474444ebb41970fc",
+    "src/bin/cosbench.rs": "98184ae79891d27f6d13181a2d3c204d79f8799cb9218010a3d0d897311f9dbd"
+  }
+}

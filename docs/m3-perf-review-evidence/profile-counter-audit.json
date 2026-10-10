@@ -1,0 +1,263 @@
+[
+  {
+    "group": "profile-A",
+    "raw_counter_sha256": "547ed8342cb19fb6e9c4c623ba949c82134427969a154378cdd379f6d5d5f341",
+    "values": [
+      {
+        "name": "decode",
+        "samples": 5415,
+        "inclusive_phi2": 23624,
+        "min_phi2": 3,
+        "max_phi2": 6,
+        "mean_excess_low": 1.3626962142197598,
+        "mean_excess_high": 2.36269621421976
+      },
+      {
+        "name": "execute",
+        "samples": 5415,
+        "inclusive_phi2": 23324,
+        "min_phi2": 3,
+        "max_phi2": 12,
+        "mean_excess_low": 1.3072945521698989,
+        "mean_excess_high": 2.307294552169899
+      },
+      {
+        "name": "empty_probe",
+        "samples": 256,
+        "inclusive_phi2": 665,
+        "min_phi2": 2,
+        "max_phi2": 3,
+        "mean_excess_low": 0,
+        "mean_excess_high": 0.59765625
+      }
+    ]
+  },
+  {
+    "group": "profile-checks",
+    "raw_counter_sha256": "97ae411e1115394886c0f96098c9e214f42e1ccbe5f9d650e66484ded5913244",
+    "values": [
+      {
+        "name": "code_fetch",
+        "samples": 5499,
+        "inclusive_phi2": 40615,
+        "min_phi2": 6,
+        "max_phi2": 9,
+        "mean_excess_low": 4.385888343335152,
+        "mean_excess_high": 5.385888343335152
+      },
+      {
+        "name": "pc_bounds",
+        "samples": 10940,
+        "inclusive_phi2": 55749,
+        "min_phi2": 5,
+        "max_phi2": 6,
+        "mean_excess_low": 2.095886654478976,
+        "mean_excess_high": 3.095886654478976
+      },
+      {
+        "name": "preflight",
+        "samples": 5415,
+        "inclusive_phi2": 19874,
+        "min_phi2": 2,
+        "max_phi2": 18,
+        "mean_excess_low": 0.6701754385964911,
+        "mean_excess_high": 1.670175438596491
+      },
+      {
+        "name": "cache_unpin",
+        "samples": 5920,
+        "inclusive_phi2": 39487,
+        "min_phi2": 6,
+        "max_phi2": 7,
+        "mean_excess_low": 3.6701013513513514,
+        "mean_excess_high": 4.670101351351351
+      },
+      {
+        "name": "empty_probe",
+        "samples": 256,
+        "inclusive_phi2": 665,
+        "min_phi2": 2,
+        "max_phi2": 3,
+        "mean_excess_low": 0,
+        "mean_excess_high": 0.59765625
+      }
+    ]
+  },
+  {
+    "group": "profile-services",
+    "raw_counter_sha256": "13163b6db09eeb3dc1f38ea0b8f989a58bc4611c2d353974c97ca0064de9770d",
+    "values": [
+      {
+        "name": "scheduler_tick",
+        "samples": 123522,
+        "inclusive_phi2": 2146855,
+        "min_phi2": 4,
+        "max_phi2": 12729,
+        "mean_excess_low": 14.380345201664479,
+        "mean_excess_high": 15.380345201664479
+      },
+      {
+        "name": "native_phase",
+        "samples": 201,
+        "inclusive_phi2": 36995,
+        "min_phi2": 15,
+        "max_phi2": 243,
+        "mean_excess_low": 181.0547263681592,
+        "mean_excess_high": 182.0547263681592
+      },
+      {
+        "name": "cache_service",
+        "samples": 85,
+        "inclusive_phi2": 11804,
+        "min_phi2": 9,
+        "max_phi2": 142,
+        "mean_excess_low": 135.87058823529412,
+        "mean_excess_high": 136.87058823529412
+      },
+      {
+        "name": "video_admission",
+        "samples": 129092,
+        "inclusive_phi2": 1417123,
+        "min_phi2": 2,
+        "max_phi2": 12720,
+        "mean_excess_low": 7.977620611656803,
+        "mean_excess_high": 8.977620611656803
+      },
+      {
+        "name": "dma_admission",
+        "samples": 169,
+        "inclusive_phi2": 571,
+        "min_phi2": 3,
+        "max_phi2": 4,
+        "mean_excess_low": 0.37869822485207116,
+        "mean_excess_high": 1.3786982248520712
+      },
+      {
+        "name": "empty_probe",
+        "samples": 256,
+        "inclusive_phi2": 665,
+        "min_phi2": 2,
+        "max_phi2": 3,
+        "mean_excess_low": 0,
+        "mean_excess_high": 0.59765625
+      }
+    ]
+  },
+  {
+    "group": "profile-wrap",
+    "raw_counter_sha256": "e8f9243e4fcb2cb2db6d72b086eca469c2120afefab8903afb3c5dad8d177b6f",
+    "values": [
+      {
+        "name": "vm_step",
+        "samples": 290,
+        "inclusive_phi2": 9379,
+        "min_phi2": 8,
+        "max_phi2": 52,
+        "mean_excess_low": 29.341379310344827,
+        "mean_excess_high": 30.341379310344827
+      },
+      {
+        "name": "code_fetch",
+        "samples": 284,
+        "inclusive_phi2": 2129,
+        "min_phi2": 6,
+        "max_phi2": 8,
+        "mean_excess_low": 4.496478873239437,
+        "mean_excess_high": 5.496478873239437
+      },
+      {
+        "name": "pc_bounds",
+        "samples": 568,
+        "inclusive_phi2": 2988,
+        "min_phi2": 5,
+        "max_phi2": 6,
+        "mean_excess_low": 2.26056338028169,
+        "mean_excess_high": 3.26056338028169
+      },
+      {
+        "name": "cache_unpin",
+        "samples": 299,
+        "inclusive_phi2": 1998,
+        "min_phi2": 6,
+        "max_phi2": 7,
+        "mean_excess_low": 3.6822742474916392,
+        "mean_excess_high": 4.682274247491639
+      },
+      {
+        "name": "video_admission",
+        "samples": 7946,
+        "inclusive_phi2": 157605,
+        "min_phi2": 3,
+        "max_phi2": 12720,
+        "mean_excess_low": 16.834507928517493,
+        "mean_excess_high": 17.834507928517493
+      },
+      {
+        "name": "empty_probe",
+        "samples": 256,
+        "inclusive_phi2": 663,
+        "min_phi2": 2,
+        "max_phi2": 3,
+        "mean_excess_low": 0,
+        "mean_excess_high": 0.58984375
+      }
+    ]
+  },
+  {
+    "group": "profile-wrap-step",
+    "raw_counter_sha256": "1faa2d1d15a8df58ab20ad7e631da089a7944fc03083b28656dcde17e1ef183b",
+    "values": [
+      {
+        "name": "vm_step",
+        "samples": 288,
+        "inclusive_phi2": 8054,
+        "min_phi2": 7,
+        "max_phi2": 44,
+        "mean_excess_low": 24.96527777777778,
+        "mean_excess_high": 25.96527777777778
+      },
+      {
+        "name": "empty_probe",
+        "samples": 256,
+        "inclusive_phi2": 663,
+        "min_phi2": 2,
+        "max_phi2": 3,
+        "mean_excess_low": 0,
+        "mean_excess_high": 0.58984375
+      }
+    ]
+  },
+  {
+    "group": "profile-wrap-arithmetic",
+    "raw_counter_sha256": "a13a86bfe58a36f5791f84018a08d3ff4a81151d5fdde15966b96e1f53a423c7",
+    "values": [
+      {
+        "name": "preflight",
+        "samples": 284,
+        "inclusive_phi2": 903,
+        "min_phi2": 2,
+        "max_phi2": 8,
+        "mean_excess_low": 0.1795774647887325,
+        "mean_excess_high": 1.1795774647887325
+      },
+      {
+        "name": "execute",
+        "samples": 284,
+        "inclusive_phi2": 1372,
+        "min_phi2": 3,
+        "max_phi2": 18,
+        "mean_excess_low": 1.830985915492958,
+        "mean_excess_high": 2.830985915492958
+      },
+      {
+        "name": "empty_probe",
+        "samples": 256,
+        "inclusive_phi2": 663,
+        "min_phi2": 2,
+        "max_phi2": 3,
+        "mean_excess_low": 0,
+        "mean_excess_high": 0.58984375
+      }
+    ]
+  }
+]

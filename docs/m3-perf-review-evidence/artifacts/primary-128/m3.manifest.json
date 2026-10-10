@@ -1,0 +1,411 @@
+{
+  "format": "COSPACK1",
+  "abi": 2,
+  "numeric_profile": "COS-NUM-1",
+  "target": "c64u-pal-upic320",
+  "build_tag": 1968651497,
+  "reu_image": "m3.reu",
+  "system_reserve": {
+    "first": 0,
+    "last": 262143
+  },
+  "storage": {
+    "mode": "discover",
+    "directory": "cos",
+    "marker": ".cos-volume"
+  },
+  "apps": [
+    {
+      "id": 1,
+      "name": "Mandelbrot",
+      "source": "build/review-benchmarks/primary.cobj",
+      "arena": {
+        "first": 262144,
+        "last": 278527
+      },
+      "code": {
+        "first": 262144,
+        "last": 262375
+      },
+      "data": {
+        "start": 262400,
+        "length": 28
+      },
+      "bss": {
+        "start": 262528,
+        "length": 0
+      },
+      "heap": {
+        "first": 262528,
+        "last": 277503
+      },
+      "stack": {
+        "first": 277504,
+        "last": 278527
+      },
+      "entry": 262144,
+      "data_seed": {
+        "start": 128,
+        "length": 28
+      },
+      "symbols": {
+        "iterate": 262180,
+        "next_pixel": 262164,
+        "next_row": 262160,
+        "scratch": 262400,
+        "start": 262144,
+        "write_pixel": 262312
+      },
+      "source_map": [
+        {
+          "address": 262144,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 15,
+          "column": 5
+        },
+        {
+          "address": 262148,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 16,
+          "column": 5
+        },
+        {
+          "address": 262152,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 17,
+          "column": 5
+        },
+        {
+          "address": 262156,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 18,
+          "column": 5
+        },
+        {
+          "address": 262160,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 20,
+          "column": 5
+        },
+        {
+          "address": 262164,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 22,
+          "column": 5
+        },
+        {
+          "address": 262168,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 23,
+          "column": 5
+        },
+        {
+          "address": 262172,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 24,
+          "column": 5
+        },
+        {
+          "address": 262176,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 25,
+          "column": 5
+        },
+        {
+          "address": 262180,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 28,
+          "column": 5
+        },
+        {
+          "address": 262184,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 29,
+          "column": 5
+        },
+        {
+          "address": 262188,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 30,
+          "column": 5
+        },
+        {
+          "address": 262192,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 31,
+          "column": 5
+        },
+        {
+          "address": 262196,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 32,
+          "column": 5
+        },
+        {
+          "address": 262200,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 33,
+          "column": 5
+        },
+        {
+          "address": 262204,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 34,
+          "column": 5
+        },
+        {
+          "address": 262208,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 35,
+          "column": 5
+        },
+        {
+          "address": 262212,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 36,
+          "column": 5
+        },
+        {
+          "address": 262216,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 37,
+          "column": 5
+        },
+        {
+          "address": 262220,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 38,
+          "column": 5
+        },
+        {
+          "address": 262224,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 39,
+          "column": 5
+        },
+        {
+          "address": 262228,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 40,
+          "column": 5
+        },
+        {
+          "address": 262232,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 41,
+          "column": 5
+        },
+        {
+          "address": 262236,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 42,
+          "column": 5
+        },
+        {
+          "address": 262240,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 43,
+          "column": 5
+        },
+        {
+          "address": 262244,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 44,
+          "column": 5
+        },
+        {
+          "address": 262248,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 45,
+          "column": 5
+        },
+        {
+          "address": 262252,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 46,
+          "column": 5
+        },
+        {
+          "address": 262256,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 47,
+          "column": 5
+        },
+        {
+          "address": 262260,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 48,
+          "column": 5
+        },
+        {
+          "address": 262264,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 49,
+          "column": 5
+        },
+        {
+          "address": 262268,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 50,
+          "column": 5
+        },
+        {
+          "address": 262272,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 51,
+          "column": 5
+        },
+        {
+          "address": 262276,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 52,
+          "column": 5
+        },
+        {
+          "address": 262280,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 53,
+          "column": 5
+        },
+        {
+          "address": 262284,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 54,
+          "column": 5
+        },
+        {
+          "address": 262288,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 55,
+          "column": 5
+        },
+        {
+          "address": 262292,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 56,
+          "column": 5
+        },
+        {
+          "address": 262296,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 57,
+          "column": 5
+        },
+        {
+          "address": 262300,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 58,
+          "column": 5
+        },
+        {
+          "address": 262304,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 59,
+          "column": 5
+        },
+        {
+          "address": 262308,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 60,
+          "column": 5
+        },
+        {
+          "address": 262312,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 62,
+          "column": 5
+        },
+        {
+          "address": 262316,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 63,
+          "column": 5
+        },
+        {
+          "address": 262320,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 64,
+          "column": 5
+        },
+        {
+          "address": 262324,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 65,
+          "column": 5
+        },
+        {
+          "address": 262328,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 66,
+          "column": 5
+        },
+        {
+          "address": 262332,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 67,
+          "column": 5
+        },
+        {
+          "address": 262336,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 68,
+          "column": 5
+        },
+        {
+          "address": 262340,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 69,
+          "column": 5
+        },
+        {
+          "address": 262344,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 70,
+          "column": 5
+        },
+        {
+          "address": 262348,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 71,
+          "column": 5
+        },
+        {
+          "address": 262352,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 72,
+          "column": 5
+        },
+        {
+          "address": 262356,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 73,
+          "column": 5
+        },
+        {
+          "address": 262360,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 74,
+          "column": 5
+        },
+        {
+          "address": 262364,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 75,
+          "column": 5
+        },
+        {
+          "address": 262368,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 76,
+          "column": 5
+        },
+        {
+          "address": 262372,
+          "file": "/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/apps/mandelbrot.casm",
+          "line": 77,
+          "column": 5
+        }
+      ]
+    }
+  ]
+}

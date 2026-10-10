@@ -1,0 +1,13 @@
+   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.26
+   Compiling quote v1.0.47
+   Compiling serde_core v1.0.228
+   Compiling zmij v1.0.23
+   Compiling serde_json v1.0.149
+   Compiling serde v1.0.228
+   Compiling itoa v1.0.18
+   Compiling memchr v2.8.3
+   Compiling syn v2.0.117
+   Compiling serde_derive v1.0.228
+   Compiling cos-tools v0.1.0 (/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source)
+    Finished `release` profile [optimized] target(s) in 1m 04s

@@ -1,0 +1,153 @@
+   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.26
+   Compiling quote v1.0.47
+   Compiling serde_core v1.0.228
+   Compiling zmij v1.0.23
+   Compiling serde v1.0.228
+   Compiling serde_json v1.0.149
+   Compiling memchr v2.8.3
+   Compiling itoa v1.0.18
+   Compiling syn v2.0.117
+   Compiling serde_derive v1.0.228
+   Compiling cos-tools v0.1.0 (/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/build/m3-perf/full/source)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 43.23s
+     Running unittests src/lib.rs (/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/target/debug/deps/cos_tools-beb47215c345e449)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/cosasm.rs (/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/target/debug/deps/cosasm-cb84f74a8f1f214e)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/cosbench.rs (/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/target/debug/deps/cosbench-d112940fa879af35)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/cosdis.rs (/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/target/debug/deps/cosdis-475c176fd4cee7c0)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/cosfixtures.rs (/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/target/debug/deps/cosfixtures-9646d7210c062824)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/cospack.rs (/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/target/debug/deps/cospack-1a9ad1e013fd92ee)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/cosrun.rs (/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/target/debug/deps/cosrun-3b6b602e326d837b)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/abi.rs (/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/target/debug/deps/abi-5cfdd747f1d035aa)
+
+running 4 tests
+test abi_two_is_consistent_in_objects_manifest_header_constants_and_map ... ok
+test legacy_and_mixed_abis_are_rejected_before_linking ... ok
+test common_image_validation_checks_the_complete_header_and_length ... ok
+test matching_old_abi_and_mixed_headers_are_rejected_by_every_pack_reader ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.87s
+
+     Running tests/harness.rs (/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/target/debug/deps/harness-513120a11a3a5ed7)
+
+running 8 tests
+test empty_copy_does_not_dereference_both_pointers ... ok
+test equal_tokens_from_other_processes_or_incarnations_cannot_reassign_a_job ... ok
+test bounded_fill_preserves_fuel_and_waiting_line_has_no_effect ... ok
+test memmove_matches_snapshot_for_both_overlap_directions_and_identity ... ok
+test invocation_and_completion_are_exactly_once ... ok
+test full_range_is_validated_before_progressive_job_effects ... ok
+test sleep_uses_wrapping_monotonic_frames_and_only_real_wait_refills ... ok
+test unavailable_services_report_explicit_errors_without_memory_effects ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests/multiply.rs (/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/target/debug/deps/multiply-c4c0f699ff4fb57d)
+
+running 5 tests
+test interleaved_multiply_owners_and_run_have_independent_results ... ok
+test multiply_zero_fuel_and_fetch_retries_preserve_the_complete_state ... ok
+test multiplication_extrema_carries_signs_and_equal_operands ... ok
+test multiply_invalid_next_pc_or_reserved_fields_fault_before_results ... ok
+test multiplication_varied_inputs_match_an_independent_shift_add_oracle ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+     Running tests/semantics.rs (/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/target/debug/deps/semantics-4bcb51c4b53b2d2b)
+
+running 30 tests
+test encoding_and_decoding_match_independent_known_bytes ... ok
+test entry_state_matches_the_loader_abi_with_and_without_data ... ok
+test fuel_three_preempts_and_resumes_a_loop_without_yield ... ok
+test invalid_fallthrough_is_rejected_before_register_memory_or_stack_effects ... ok
+test call_checks_both_target_and_future_return_address_before_push ... ok
+test arena_and_24bit_end_bounds_are_checked_without_partial_writes ... ok
+test invalid_syscall_result_is_rejected_atomically_while_valid_outputs_preserve_others ... ok
+test memory_waits_preserve_pc_fuel_registers_and_multiline_writes ... ok
+test full_and_empty_stacks_fail_before_any_effect ... ok
+test nested_calls_save_24bit_return_addresses_and_restore_sp_exactly ... ok
+test each_integer_and_pointer_branch_selects_the_expected_pc ... ok
+test out_of_arena_pointers_remain_valid_values_until_dereferenced ... ok
+test pc_alignment_and_relative_branch_overflow_never_wrap ... ok
+test multibyte_loads_and_stores_cross_64k_and_cache_line_boundaries ... ok
+test integer_operations_have_explicit_fixed_width_results ... ok
+test pointer_overflow_and_underflow_leave_registers_unchanged ... ok
+test only_the_selected_branch_destination_must_be_valid ... ok
+test ret_validates_saved_target_before_changing_sp_or_pc ... ok
+test push_pop_and_get_set_sp_follow_the_descending_packed_stack ... ok
+test pointer_construction_arithmetic_and_extraction_are_linear ... ok
+test returning_syscall_needs_resume_pc_but_terminal_instructions_do_not ... ok
+test step_one_and_run_preserve_a_split_store_until_all_lines_are_available ... ok
+test step_one_matches_run_for_pending_syscall_priority_and_completion ... ok
+test step_one_retires_one_opcode_and_reaches_the_same_fuel_boundary_as_run ... ok
+test syscall_acceptance_and_completion_happen_exactly_once ... ok
+test suspended_load_pop_and_ret_publish_no_partial_results ... ok
+test valid_encodings_cover_every_defined_opcode ... ok
+test writes_into_code_are_rejected_but_reading_code_is_allowed ... ok
+test step_one_and_run_keep_faults_and_exits_terminal_after_refueling ... ok
+test invalid_registers_shift_counts_and_reserved_fields_are_rejected ... ok
+
+test result: ok. 30 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.11s
+
+     Running tests/toolchain.rs (/private/tmp/cos-m3-perf-review-20261010-l_cj5l_l/target/debug/deps/toolchain-b6c8dceccf1e3907)
+
+running 15 tests
+test complete_opcode_table_is_the_normative_table ... ok
+test independent_instruction_vectors ... ok
+test assembly_relocations_have_independent_expected_linked_bytes ... ok
+test direct_linker_rejects_invalid_layout_without_panicking ... ok
+test assembler_errors_have_file_line_column ... ok
+test malformed_operands_and_reserved_fields_are_rejected ... ok
+test objects_reject_unknown_json_fields_and_malformed_relocations ... ok
+test empty_pack_header_and_shared_reservation ... ok
+test repeated_numeric_signs_are_rejected_instead_of_silently_changed ... ok
+test static_control_flow_overflow_and_alignment_are_rejected ... ok
+test arena_validation_rejects_overlaps_ids_alignment_and_profile ... ok
+test serialized_manifest_bounds_are_revalidated ... ok
+test complete_assembly_samples_link_deterministically ... ok
+test relative_relocation_range_and_addend_alignment_are_checked ... ok
+test seed_capacity_is_bounded_and_bss_does_not_consume_it ... ok
+
+test result: ok. 15 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.23s
+
+   Doc-tests cos_tools
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
